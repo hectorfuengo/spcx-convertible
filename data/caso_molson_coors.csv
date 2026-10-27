@@ -1,0 +1,14 @@
+nombre,valor,fuente,fecha,estado
+precio_accion,87.61,"Teaching Notes NE90-06-107, Exhibit 1 y 2, p. 5 y 8",2007-06-11,dato del caso
+prima_conversion,0.25,"Exhibit 1, p. 5",2007-06-11,dato del caso
+precio_conversion,109.51,"Exhibit 2, p. 8",2007-06-11,dato del caso
+tasa_libre_riesgo,0.0446,"Pregunta 6, p. 2 (Treasury 5 anios)",2007-06-11,supuesto del caso
+volatilidad,0.23,"Pregunta 6, p. 2",2007-06-11,supuesto del caso
+plazo_anios,6,"Pregunta 6, p. 2",2007-06-11,supuesto del caso
+tasa_descuento_bono,0.0575,"Pregunta 6, p. 2",2007-06-11,supuesto del caso
+valor_nominal_bono,1000,"Exhibit 3, p. 9",2007-06-11,dato del caso
+cupon_equilibrio,0.0193,"Exhibit 3, p. 9",2007-06-11,resultado del caso
+prima_conversion_warrant,0.60,"Exhibit 1, p. 5",2007-06-11,dato del caso
+strike_warrant,140.2,"Exhibit 4, p. 10",2007-06-11,dato del caso
+volatilidad_warrant,0.21,"Exhibit 4, p. 10",2007-06-11,supuesto del caso
+acciones_subyacentes_millones,5.3,"Exhibit 1, p. 5",2007-06-11,dato del caso
