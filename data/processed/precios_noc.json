@@ -1,0 +1,4520 @@
+{
+ "ticker": "NOC",
+ "historia_declarada": "2 Years",
+ "desde": "2024-10-28",
+ "hasta": "2026-10-27",
+ "n_dias": 501,
+ "datos": [
+  {
+   "fecha": "2024-10-28",
+   "cierre": 512.15,
+   "apertura": 519.27,
+   "minimo": 511.45,
+   "maximo": 519.27,
+   "volumen": 680701.0,
+   "monto_usd": 349483857.0
+  },
+  {
+   "fecha": "2024-10-29",
+   "cierre": 504.05,
+   "apertura": 512.5,
+   "minimo": 504.01,
+   "maximo": 512.6575,
+   "volumen": 582072.0,
+   "monto_usd": 294677509.0
+  },
+  {
+   "fecha": "2024-10-30",
+   "cierre": 505.34,
+   "apertura": 504.05,
+   "minimo": 501.85,
+   "maximo": 509.37,
+   "volumen": 799181.0,
+   "monto_usd": 404353411.0
+  },
+  {
+   "fecha": "2024-10-31",
+   "cierre": 509.02,
+   "apertura": 505.61,
+   "minimo": 504.06,
+   "maximo": 511.695,
+   "volumen": 908242.0,
+   "monto_usd": 462129985.0
+  },
+  {
+   "fecha": "2024-11-01",
+   "cierre": 506.95,
+   "apertura": 513.9,
+   "minimo": 506.33,
+   "maximo": 513.9,
+   "volumen": 497886.0,
+   "monto_usd": 253017990.0
+  },
+  {
+   "fecha": "2024-11-04",
+   "cierre": 507.44,
+   "apertura": 507.79,
+   "minimo": 502.14,
+   "maximo": 510.9899,
+   "volumen": 455730.0,
+   "monto_usd": 230932465.0
+  },
+  {
+   "fecha": "2024-11-05",
+   "cierre": 512.9,
+   "apertura": 508.94,
+   "minimo": 505.48,
+   "maximo": 513.19,
+   "volumen": 695563.0,
+   "monto_usd": 355892478.0
+  },
+  {
+   "fecha": "2024-11-06",
+   "cierre": 523.14,
+   "apertura": 529.35,
+   "minimo": 515.44,
+   "maximo": 529.35,
+   "volumen": 965807.0,
+   "monto_usd": 504945829.0
+  },
+  {
+   "fecha": "2024-11-07",
+   "cierre": 520.58,
+   "apertura": 525.92,
+   "minimo": 517.45,
+   "maximo": 525.92,
+   "volumen": 671768.0,
+   "monto_usd": 349707563.0
+  },
+  {
+   "fecha": "2024-11-08",
+   "cierre": 528.99,
+   "apertura": 523.37,
+   "minimo": 522.2336,
+   "maximo": 531.2699,
+   "volumen": 495835.0,
+   "monto_usd": 262276318.0
+  },
+  {
+   "fecha": "2024-11-11",
+   "cierre": 533.7,
+   "apertura": 532.93,
+   "minimo": 532.505,
+   "maximo": 539.76,
+   "volumen": 538462.0,
+   "monto_usd": 288450893.0
+  },
+  {
+   "fecha": "2024-11-12",
+   "cierre": 531.39,
+   "apertura": 536.15,
+   "minimo": 529.91,
+   "maximo": 536.15,
+   "volumen": 650229.0,
+   "monto_usd": 345631550.0
+  },
+  {
+   "fecha": "2024-11-13",
+   "cierre": 520.42,
+   "apertura": 528.75,
+   "minimo": 518.84,
+   "maximo": 529.9,
+   "volumen": 773461.0,
+   "monto_usd": 404321147.0
+  },
+  {
+   "fecha": "2024-11-14",
+   "cierre": 500.34,
+   "apertura": 521.0,
+   "minimo": 492.13,
+   "maximo": 521.0,
+   "volumen": 1187626.0,
+   "monto_usd": 595264813.0
+  },
+  {
+   "fecha": "2024-11-15",
+   "cierre": 493.99,
+   "apertura": 497.56,
+   "minimo": 490.87,
+   "maximo": 504.235,
+   "volumen": 1428579.0,
+   "monto_usd": 706836158.0
+  },
+  {
+   "fecha": "2024-11-18",
+   "cierre": 488.68,
+   "apertura": 494.85,
+   "minimo": 487.64,
+   "maximo": 498.32,
+   "volumen": 876011.0,
+   "monto_usd": 430031897.0
+  },
+  {
+   "fecha": "2024-11-19",
+   "cierre": 491.02,
+   "apertura": 494.12,
+   "minimo": 489.65,
+   "maximo": 497.94,
+   "volumen": 795309.0,
+   "monto_usd": 391719323.0
+  },
+  {
+   "fecha": "2024-11-20",
+   "cierre": 491.98,
+   "apertura": 490.32,
+   "minimo": 487.44,
+   "maximo": 492.9499,
+   "volumen": 533501.0,
+   "monto_usd": 261784079.0
+  },
+  {
+   "fecha": "2024-11-21",
+   "cierre": 496.41,
+   "apertura": 493.9,
+   "minimo": 489.17,
+   "maximo": 496.9,
+   "volumen": 609791.0,
+   "monto_usd": 302266708.0
+  },
+  {
+   "fecha": "2024-11-22",
+   "cierre": 496.87,
+   "apertura": 497.98,
+   "minimo": 494.31,
+   "maximo": 500.0,
+   "volumen": 507535.0,
+   "monto_usd": 252120131.0
+  },
+  {
+   "fecha": "2024-11-25",
+   "cierre": 485.27,
+   "apertura": 493.5,
+   "minimo": 478.42,
+   "maximo": 493.99,
+   "volumen": 1805930.0,
+   "monto_usd": 873270572.0
+  },
+  {
+   "fecha": "2024-11-26",
+   "cierre": 488.43,
+   "apertura": 486.56,
+   "minimo": 482.565,
+   "maximo": 491.74,
+   "volumen": 849287.0,
+   "monto_usd": 415154679.0
+  },
+  {
+   "fecha": "2024-11-27",
+   "cierre": 489.08,
+   "apertura": 488.27,
+   "minimo": 488.0,
+   "maximo": 492.42,
+   "volumen": 583432.0,
+   "monto_usd": 285534725.0
+  },
+  {
+   "fecha": "2024-11-29",
+   "cierre": 489.65,
+   "apertura": 489.9,
+   "minimo": 486.6,
+   "maximo": 490.62,
+   "volumen": 336736.0,
+   "monto_usd": 164783141.0
+  },
+  {
+   "fecha": "2024-12-02",
+   "cierre": 484.75,
+   "apertura": 487.0,
+   "minimo": 481.91,
+   "maximo": 489.18,
+   "volumen": 479605.0,
+   "monto_usd": 232504701.0
+  },
+  {
+   "fecha": "2024-12-03",
+   "cierre": 485.21,
+   "apertura": 485.68,
+   "minimo": 483.13,
+   "maximo": 486.295,
+   "volumen": 683900.0,
+   "monto_usd": 331732638.0
+  },
+  {
+   "fecha": "2024-12-04",
+   "cierre": 486.62,
+   "apertura": 482.74,
+   "minimo": 481.06,
+   "maximo": 487.8429,
+   "volumen": 804726.0,
+   "monto_usd": 391233493.0
+  },
+  {
+   "fecha": "2024-12-05",
+   "cierre": 479.57,
+   "apertura": 485.8,
+   "minimo": 478.14,
+   "maximo": 486.59,
+   "volumen": 932686.0,
+   "monto_usd": 448302363.0
+  },
+  {
+   "fecha": "2024-12-06",
+   "cierre": 473.65,
+   "apertura": 479.61,
+   "minimo": 470.55,
+   "maximo": 480.05,
+   "volumen": 915772.0,
+   "monto_usd": 434334150.0
+  },
+  {
+   "fecha": "2024-12-09",
+   "cierre": 479.17,
+   "apertura": 471.45,
+   "minimo": 470.5979,
+   "maximo": 482.0068,
+   "volumen": 930263.0,
+   "monto_usd": 445230835.0
+  },
+  {
+   "fecha": "2024-12-10",
+   "cierre": 480.18,
+   "apertura": 477.71,
+   "minimo": 473.29,
+   "maximo": 480.68,
+   "volumen": 789633.0,
+   "monto_usd": 378153624.0
+  },
+  {
+   "fecha": "2024-12-11",
+   "cierre": 475.62,
+   "apertura": 480.3,
+   "minimo": 474.0,
+   "maximo": 480.855,
+   "volumen": 1058530.0,
+   "monto_usd": 503759845.0
+  },
+  {
+   "fecha": "2024-12-12",
+   "cierre": 481.51,
+   "apertura": 477.0,
+   "minimo": 473.77,
+   "maximo": 486.22,
+   "volumen": 1317362.0,
+   "monto_usd": 632256140.0
+  },
+  {
+   "fecha": "2024-12-13",
+   "cierre": 480.0,
+   "apertura": 479.99,
+   "minimo": 477.67,
+   "maximo": 484.015,
+   "volumen": 699634.0,
+   "monto_usd": 336118978.0
+  },
+  {
+   "fecha": "2024-12-16",
+   "cierre": 482.6,
+   "apertura": 478.84,
+   "minimo": 477.485,
+   "maximo": 484.65,
+   "volumen": 859441.0,
+   "monto_usd": 414763002.0
+  },
+  {
+   "fecha": "2024-12-17",
+   "cierre": 480.29,
+   "apertura": 480.95,
+   "minimo": 478.39,
+   "maximo": 486.89,
+   "volumen": 747294.0,
+   "monto_usd": 359373253.0
+  },
+  {
+   "fecha": "2024-12-18",
+   "cierre": 467.66,
+   "apertura": 480.88,
+   "minimo": 467.12,
+   "maximo": 483.5,
+   "volumen": 839191.0,
+   "monto_usd": 395549748.0
+  },
+  {
+   "fecha": "2024-12-19",
+   "cierre": 467.13,
+   "apertura": 466.28,
+   "minimo": 462.81,
+   "maximo": 470.97,
+   "volumen": 730309.0,
+   "monto_usd": 341458715.0
+  },
+  {
+   "fecha": "2024-12-20",
+   "cierre": 469.54,
+   "apertura": 467.49,
+   "minimo": 464.35,
+   "maximo": 474.4,
+   "volumen": 1283886.0,
+   "monto_usd": 602850484.0
+  },
+  {
+   "fecha": "2024-12-23",
+   "cierre": 467.2,
+   "apertura": 469.37,
+   "minimo": 464.1225,
+   "maximo": 470.255,
+   "volumen": 581858.0,
+   "monto_usd": 271388797.0
+  },
+  {
+   "fecha": "2024-12-24",
+   "cierre": 471.09,
+   "apertura": 466.69,
+   "minimo": 465.9,
+   "maximo": 471.79,
+   "volumen": 235079.0,
+   "monto_usd": 110503001.0
+  },
+  {
+   "fecha": "2024-12-26",
+   "cierre": 472.23,
+   "apertura": 471.09,
+   "minimo": 469.67,
+   "maximo": 474.02,
+   "volumen": 294709.0,
+   "monto_usd": 139207681.0
+  },
+  {
+   "fecha": "2024-12-27",
+   "cierre": 471.35,
+   "apertura": 469.62,
+   "minimo": 469.0264,
+   "maximo": 474.65,
+   "volumen": 376022.0,
+   "monto_usd": 177519281.0
+  },
+  {
+   "fecha": "2024-12-30",
+   "cierre": 466.52,
+   "apertura": 467.82,
+   "minimo": 465.1835,
+   "maximo": 469.055,
+   "volumen": 440216.0,
+   "monto_usd": 205626000.0
+  },
+  {
+   "fecha": "2024-12-31",
+   "cierre": 469.29,
+   "apertura": 466.52,
+   "minimo": 465.31,
+   "maximo": 470.5183,
+   "volumen": 439907.0,
+   "monto_usd": 205920244.0
+  },
+  {
+   "fecha": "2025-01-02",
+   "cierre": 468.01,
+   "apertura": 471.99,
+   "minimo": 466.2783,
+   "maximo": 476.09,
+   "volumen": 598346.0,
+   "monto_usd": 280416779.0
+  },
+  {
+   "fecha": "2025-01-03",
+   "cierre": 467.82,
+   "apertura": 467.56,
+   "minimo": 466.46,
+   "maximo": 469.61,
+   "volumen": 624523.0,
+   "monto_usd": 292118494.0
+  },
+  {
+   "fecha": "2025-01-06",
+   "cierre": 455.14,
+   "apertura": 465.27,
+   "minimo": 453.96,
+   "maximo": 466.22,
+   "volumen": 873418.0,
+   "monto_usd": 400399908.0
+  },
+  {
+   "fecha": "2025-01-07",
+   "cierre": 452.39,
+   "apertura": 454.19,
+   "minimo": 450.81,
+   "maximo": 458.545,
+   "volumen": 1100021.0,
+   "monto_usd": 499523315.0
+  },
+  {
+   "fecha": "2025-01-08",
+   "cierre": 462.21,
+   "apertura": 456.02,
+   "minimo": 453.96,
+   "maximo": 464.62,
+   "volumen": 746599.0,
+   "monto_usd": 343941213.0
+  },
+  {
+   "fecha": "2025-01-10",
+   "cierre": 458.69,
+   "apertura": 461.36,
+   "minimo": 455.425,
+   "maximo": 464.375,
+   "volumen": 626425.0,
+   "monto_usd": 287409335.0
+  },
+  {
+   "fecha": "2025-01-13",
+   "cierre": 472.38,
+   "apertura": 458.69,
+   "minimo": 458.69,
+   "maximo": 477.39,
+   "volumen": 964536.0,
+   "monto_usd": 455630340.0
+  },
+  {
+   "fecha": "2025-01-14",
+   "cierre": 475.5,
+   "apertura": 473.51,
+   "minimo": 471.575,
+   "maximo": 475.98,
+   "volumen": 554115.0,
+   "monto_usd": 262979797.0
+  },
+  {
+   "fecha": "2025-01-15",
+   "cierre": 472.3,
+   "apertura": 476.53,
+   "minimo": 470.19,
+   "maximo": 477.7,
+   "volumen": 646439.0,
+   "monto_usd": 305203252.0
+  },
+  {
+   "fecha": "2025-01-16",
+   "cierre": 481.19,
+   "apertura": 471.33,
+   "minimo": 470.77,
+   "maximo": 481.33,
+   "volumen": 706639.0,
+   "monto_usd": 337070187.0
+  },
+  {
+   "fecha": "2025-01-17",
+   "cierre": 482.38,
+   "apertura": 480.42,
+   "minimo": 477.355,
+   "maximo": 483.43,
+   "volumen": 1091623.0,
+   "monto_usd": 525639962.0
+  },
+  {
+   "fecha": "2025-01-21",
+   "cierre": 504.45,
+   "apertura": 490.0,
+   "minimo": 489.54,
+   "maximo": 507.67,
+   "volumen": 1310320.0,
+   "monto_usd": 659496907.0
+  },
+  {
+   "fecha": "2025-01-22",
+   "cierre": 502.41,
+   "apertura": 504.0,
+   "minimo": 497.17,
+   "maximo": 505.26,
+   "volumen": 1326544.0,
+   "monto_usd": 666746600.0
+  },
+  {
+   "fecha": "2025-01-23",
+   "cierre": 499.77,
+   "apertura": 506.0,
+   "minimo": 493.23,
+   "maximo": 507.64,
+   "volumen": 780191.0,
+   "monto_usd": 389351802.0
+  },
+  {
+   "fecha": "2025-01-24",
+   "cierre": 497.02,
+   "apertura": 497.93,
+   "minimo": 496.66,
+   "maximo": 500.0,
+   "volumen": 556443.0,
+   "monto_usd": 277080478.0
+  },
+  {
+   "fecha": "2025-01-27",
+   "cierre": 503.23,
+   "apertura": 502.39,
+   "minimo": 497.0,
+   "maximo": 507.38,
+   "volumen": 738231.0,
+   "monto_usd": 370410560.0
+  },
+  {
+   "fecha": "2025-01-28",
+   "cierre": 486.64,
+   "apertura": 501.11,
+   "minimo": 485.48,
+   "maximo": 502.912,
+   "volumen": 1036746.0,
+   "monto_usd": 508483958.0
+  },
+  {
+   "fecha": "2025-01-29",
+   "cierre": 481.54,
+   "apertura": 486.64,
+   "minimo": 480.245,
+   "maximo": 492.76,
+   "volumen": 873545.0,
+   "monto_usd": 421662996.0
+  },
+  {
+   "fecha": "2025-01-30",
+   "cierre": 483.37,
+   "apertura": 472.0,
+   "minimo": 469.7273,
+   "maximo": 485.0,
+   "volumen": 1468496.0,
+   "monto_usd": 700853895.0
+  },
+  {
+   "fecha": "2025-01-31",
+   "cierre": 487.27,
+   "apertura": 484.0,
+   "minimo": 478.5,
+   "maximo": 488.1,
+   "volumen": 795031.0,
+   "monto_usd": 386158585.0
+  },
+  {
+   "fecha": "2025-02-03",
+   "cierre": 487.75,
+   "apertura": 488.41,
+   "minimo": 481.66,
+   "maximo": 493.33,
+   "volumen": 763381.0,
+   "monto_usd": 372340918.0
+  },
+  {
+   "fecha": "2025-02-04",
+   "cierre": 482.39,
+   "apertura": 486.6,
+   "minimo": 481.42,
+   "maximo": 487.785,
+   "volumen": 525931.0,
+   "monto_usd": 254350565.0
+  },
+  {
+   "fecha": "2025-02-05",
+   "cierre": 472.34,
+   "apertura": 484.99,
+   "minimo": 470.93,
+   "maximo": 486.0043,
+   "volumen": 1079969.0,
+   "monto_usd": 513498244.0
+  },
+  {
+   "fecha": "2025-02-06",
+   "cierre": 466.55,
+   "apertura": 470.85,
+   "minimo": 462.24,
+   "maximo": 472.745,
+   "volumen": 789945.0,
+   "monto_usd": 368366653.0
+  },
+  {
+   "fecha": "2025-02-07",
+   "cierre": 468.58,
+   "apertura": 468.36,
+   "minimo": 465.87,
+   "maximo": 474.145,
+   "volumen": 820005.0,
+   "monto_usd": 385239980.0
+  },
+  {
+   "fecha": "2025-02-10",
+   "cierre": 474.37,
+   "apertura": 469.81,
+   "minimo": 468.53,
+   "maximo": 477.08,
+   "volumen": 804829.0,
+   "monto_usd": 381580259.0
+  },
+  {
+   "fecha": "2025-02-11",
+   "cierre": 473.84,
+   "apertura": 475.62,
+   "minimo": 468.42,
+   "maximo": 475.83,
+   "volumen": 539054.0,
+   "monto_usd": 254987702.0
+  },
+  {
+   "fecha": "2025-02-12",
+   "cierre": 470.86,
+   "apertura": 472.24,
+   "minimo": 469.26,
+   "maximo": 477.47,
+   "volumen": 807079.0,
+   "monto_usd": 381013466.0
+  },
+  {
+   "fecha": "2025-02-13",
+   "cierre": 455.06,
+   "apertura": 472.26,
+   "minimo": 453.62,
+   "maximo": 474.74,
+   "volumen": 1245401.0,
+   "monto_usd": 575872787.0
+  },
+  {
+   "fecha": "2025-02-14",
+   "cierre": 438.9,
+   "apertura": 453.74,
+   "minimo": 434.15,
+   "maximo": 453.995,
+   "volumen": 2036150.0,
+   "monto_usd": 896275144.0
+  },
+  {
+   "fecha": "2025-02-18",
+   "cierre": 441.36,
+   "apertura": 445.35,
+   "minimo": 439.445,
+   "maximo": 448.9499,
+   "volumen": 1074602.0,
+   "monto_usd": 475606036.0
+  },
+  {
+   "fecha": "2025-02-19",
+   "cierre": 433.45,
+   "apertura": 443.47,
+   "minimo": 430.0,
+   "maximo": 451.08,
+   "volumen": 1784680.0,
+   "monto_usd": 781070251.0
+  },
+  {
+   "fecha": "2025-02-20",
+   "cierre": 438.11,
+   "apertura": 429.08,
+   "minimo": 426.24,
+   "maximo": 439.0,
+   "volumen": 1218926.0,
+   "monto_usd": 528781711.0
+  },
+  {
+   "fecha": "2025-02-21",
+   "cierre": 447.96,
+   "apertura": 437.83,
+   "minimo": 437.83,
+   "maximo": 450.09,
+   "volumen": 1677678.0,
+   "monto_usd": 749417684.0
+  },
+  {
+   "fecha": "2025-02-24",
+   "cierre": 449.94,
+   "apertura": 450.23,
+   "minimo": 449.205,
+   "maximo": 456.51,
+   "volumen": 1507574.0,
+   "monto_usd": 681187979.0
+  },
+  {
+   "fecha": "2025-02-25",
+   "cierre": 461.01,
+   "apertura": 451.85,
+   "minimo": 450.84,
+   "maximo": 462.56,
+   "volumen": 1241318.0,
+   "monto_usd": 570297673.0
+  },
+  {
+   "fecha": "2025-02-26",
+   "cierre": 454.87,
+   "apertura": 458.27,
+   "minimo": 452.7301,
+   "maximo": 458.905,
+   "volumen": 738919.0,
+   "monto_usd": 336815051.0
+  },
+  {
+   "fecha": "2025-02-27",
+   "cierre": 459.97,
+   "apertura": 455.97,
+   "minimo": 455.88,
+   "maximo": 464.0,
+   "volumen": 1131008.0,
+   "monto_usd": 521212378.0
+  },
+  {
+   "fecha": "2025-02-28",
+   "cierre": 461.74,
+   "apertura": 460.75,
+   "minimo": 455.93,
+   "maximo": 464.93,
+   "volumen": 901027.0,
+   "monto_usd": 414678401.0
+  },
+  {
+   "fecha": "2025-03-03",
+   "cierre": 473.41,
+   "apertura": 466.36,
+   "minimo": 463.16,
+   "maximo": 473.8099,
+   "volumen": 1255892.0,
+   "monto_usd": 591133644.0
+  },
+  {
+   "fecha": "2025-03-04",
+   "cierre": 463.83,
+   "apertura": 471.43,
+   "minimo": 463.14,
+   "maximo": 480.88,
+   "volumen": 1335757.0,
+   "monto_usd": 628564587.0
+  },
+  {
+   "fecha": "2025-03-05",
+   "cierre": 474.2,
+   "apertura": 466.74,
+   "minimo": 466.59,
+   "maximo": 479.635,
+   "volumen": 1188734.0,
+   "monto_usd": 563446101.0
+  },
+  {
+   "fecha": "2025-03-06",
+   "cierre": 475.2,
+   "apertura": 475.65,
+   "minimo": 465.1972,
+   "maximo": 477.065,
+   "volumen": 941680.0,
+   "monto_usd": 444555720.0
+  },
+  {
+   "fecha": "2025-03-07",
+   "cierre": 486.52,
+   "apertura": 473.12,
+   "minimo": 472.225,
+   "maximo": 491.1,
+   "volumen": 1027327.0,
+   "monto_usd": 499937087.0
+  },
+  {
+   "fecha": "2025-03-10",
+   "cierre": 495.45,
+   "apertura": 486.44,
+   "minimo": 483.71,
+   "maximo": 510.21,
+   "volumen": 1567057.0,
+   "monto_usd": 784708600.0
+  },
+  {
+   "fecha": "2025-03-11",
+   "cierre": 494.11,
+   "apertura": 494.0,
+   "minimo": 484.805,
+   "maximo": 495.45,
+   "volumen": 1555026.0,
+   "monto_usd": 764224389.0
+  },
+  {
+   "fecha": "2025-03-12",
+   "cierre": 475.1,
+   "apertura": 489.04,
+   "minimo": 474.5,
+   "maximo": 492.0,
+   "volumen": 1136643.0,
+   "monto_usd": 542552304.0
+  },
+  {
+   "fecha": "2025-03-13",
+   "cierre": 490.59,
+   "apertura": 474.61,
+   "minimo": 471.89,
+   "maximo": 492.6,
+   "volumen": 1330620.0,
+   "monto_usd": 647848292.0
+  },
+  {
+   "fecha": "2025-03-14",
+   "cierre": 484.93,
+   "apertura": 487.29,
+   "minimo": 483.07,
+   "maximo": 497.36,
+   "volumen": 1402947.0,
+   "monto_usd": 685889235.0
+  },
+  {
+   "fecha": "2025-03-17",
+   "cierre": 490.5,
+   "apertura": 484.48,
+   "minimo": 484.19,
+   "maximo": 492.99,
+   "volumen": 748298.0,
+   "monto_usd": 366990761.0
+  },
+  {
+   "fecha": "2025-03-18",
+   "cierre": 489.81,
+   "apertura": 491.0,
+   "minimo": 488.23,
+   "maximo": 494.2,
+   "volumen": 620073.0,
+   "monto_usd": 304010005.0
+  },
+  {
+   "fecha": "2025-03-19",
+   "cierre": 491.52,
+   "apertura": 490.58,
+   "minimo": 486.0,
+   "maximo": 497.66,
+   "volumen": 846818.0,
+   "monto_usd": 415048083.0
+  },
+  {
+   "fecha": "2025-03-20",
+   "cierre": 489.23,
+   "apertura": 490.5,
+   "minimo": 487.015,
+   "maximo": 492.835,
+   "volumen": 685626.0,
+   "monto_usd": 335811137.0
+  },
+  {
+   "fecha": "2025-03-21",
+   "cierre": 490.72,
+   "apertura": 490.21,
+   "minimo": 483.9877,
+   "maximo": 494.79,
+   "volumen": 2084847.0,
+   "monto_usd": 1022374365.0
+  },
+  {
+   "fecha": "2025-03-24",
+   "cierre": 495.08,
+   "apertura": 491.0,
+   "minimo": 489.0949,
+   "maximo": 495.5,
+   "volumen": 626701.0,
+   "monto_usd": 309197507.0
+  },
+  {
+   "fecha": "2025-03-25",
+   "cierre": 506.62,
+   "apertura": 498.0,
+   "minimo": 496.0,
+   "maximo": 509.42,
+   "volumen": 991509.0,
+   "monto_usd": 501664415.0
+  },
+  {
+   "fecha": "2025-03-26",
+   "cierre": 507.14,
+   "apertura": 508.81,
+   "minimo": 504.7702,
+   "maximo": 510.91,
+   "volumen": 821127.0,
+   "monto_usd": 416266379.0
+  },
+  {
+   "fecha": "2025-03-27",
+   "cierre": 513.82,
+   "apertura": 514.06,
+   "minimo": 511.91,
+   "maximo": 518.69,
+   "volumen": 928995.0,
+   "monto_usd": 478081975.0
+  },
+  {
+   "fecha": "2025-03-28",
+   "cierre": 512.19,
+   "apertura": 513.64,
+   "minimo": 507.13,
+   "maximo": 516.85,
+   "volumen": 730609.0,
+   "monto_usd": 373986073.0
+  },
+  {
+   "fecha": "2025-03-31",
+   "cierre": 512.01,
+   "apertura": 512.0,
+   "minimo": 508.475,
+   "maximo": 518.89,
+   "volumen": 981890.0,
+   "monto_usd": 503179758.0
+  },
+  {
+   "fecha": "2025-04-01",
+   "cierre": 513.1,
+   "apertura": 514.54,
+   "minimo": 509.38,
+   "maximo": 517.31,
+   "volumen": 710782.0,
+   "monto_usd": 364711207.0
+  },
+  {
+   "fecha": "2025-04-02",
+   "cierre": 512.18,
+   "apertura": 510.61,
+   "minimo": 508.04,
+   "maximo": 514.5,
+   "volumen": 750845.0,
+   "monto_usd": 384230206.0
+  },
+  {
+   "fecha": "2025-04-03",
+   "cierre": 515.17,
+   "apertura": 512.56,
+   "minimo": 512.5,
+   "maximo": 525.0,
+   "volumen": 1056006.0,
+   "monto_usd": 546915036.0
+  },
+  {
+   "fecha": "2025-04-04",
+   "cierre": 485.52,
+   "apertura": 513.5,
+   "minimo": 484.89,
+   "maximo": 516.775,
+   "volumen": 1692564.0,
+   "monto_usd": 839229078.0
+  },
+  {
+   "fecha": "2025-04-07",
+   "cierre": 481.57,
+   "apertura": 480.14,
+   "minimo": 472.9637,
+   "maximo": 495.0,
+   "volumen": 1967372.0,
+   "monto_usd": 945378975.0
+  },
+  {
+   "fecha": "2025-04-08",
+   "cierre": 491.97,
+   "apertura": 500.0,
+   "minimo": 487.58,
+   "maximo": 503.01,
+   "volumen": 1226373.0,
+   "monto_usd": 606611739.0
+  },
+  {
+   "fecha": "2025-04-09",
+   "cierre": 512.3,
+   "apertura": 483.11,
+   "minimo": 480.9,
+   "maximo": 519.5,
+   "volumen": 1608385.0,
+   "monto_usd": 813734978.0
+  },
+  {
+   "fecha": "2025-04-10",
+   "cierre": 516.09,
+   "apertura": 511.47,
+   "minimo": 503.285,
+   "maximo": 521.55,
+   "volumen": 1071871.0,
+   "monto_usd": 552011974.0
+  },
+  {
+   "fecha": "2025-04-11",
+   "cierre": 533.99,
+   "apertura": 516.09,
+   "minimo": 514.19,
+   "maximo": 537.75,
+   "volumen": 1179025.0,
+   "monto_usd": 626512786.0
+  },
+  {
+   "fecha": "2025-04-14",
+   "cierre": 535.82,
+   "apertura": 529.84,
+   "minimo": 525.71,
+   "maximo": 538.685,
+   "volumen": 714372.0,
+   "monto_usd": 382367478.0
+  },
+  {
+   "fecha": "2025-04-15",
+   "cierre": 529.36,
+   "apertura": 534.61,
+   "minimo": 528.0,
+   "maximo": 536.5475,
+   "volumen": 927069.0,
+   "monto_usd": 493173306.0
+  },
+  {
+   "fecha": "2025-04-16",
+   "cierre": 537.51,
+   "apertura": 537.11,
+   "minimo": 534.13,
+   "maximo": 544.0,
+   "volumen": 1381558.0,
+   "monto_usd": 744560708.0
+  },
+  {
+   "fecha": "2025-04-17",
+   "cierre": 540.39,
+   "apertura": 530.08,
+   "minimo": 530.08,
+   "maximo": 544.76,
+   "volumen": 1102427.0,
+   "monto_usd": 594864958.0
+  },
+  {
+   "fecha": "2025-04-21",
+   "cierre": 531.33,
+   "apertura": 540.0,
+   "minimo": 526.445,
+   "maximo": 540.0,
+   "volumen": 1342948.0,
+   "monto_usd": 712520616.0
+  },
+  {
+   "fecha": "2025-04-22",
+   "cierre": 464.08,
+   "apertura": 484.75,
+   "minimo": 450.13,
+   "maximo": 494.2,
+   "volumen": 4788433.0,
+   "monto_usd": 2234874306.0
+  },
+  {
+   "fecha": "2025-04-23",
+   "cierre": 472.65,
+   "apertura": 466.67,
+   "minimo": 460.36,
+   "maximo": 478.8199,
+   "volumen": 1929171.0,
+   "monto_usd": 910043206.0
+  },
+  {
+   "fecha": "2025-04-24",
+   "cierre": 463.07,
+   "apertura": 469.56,
+   "minimo": 462.48,
+   "maximo": 471.245,
+   "volumen": 1805297.0,
+   "monto_usd": 839229487.0
+  },
+  {
+   "fecha": "2025-04-25",
+   "cierre": 473.2,
+   "apertura": 465.3,
+   "minimo": 458.35,
+   "maximo": 473.49,
+   "volumen": 1329484.0,
+   "monto_usd": 622338242.0
+  },
+  {
+   "fecha": "2025-04-28",
+   "cierre": 483.31,
+   "apertura": 475.55,
+   "minimo": 475.55,
+   "maximo": 487.0,
+   "volumen": 1817329.0,
+   "monto_usd": 875589535.0
+  },
+  {
+   "fecha": "2025-04-29",
+   "cierre": 482.1,
+   "apertura": 483.79,
+   "minimo": 480.0,
+   "maximo": 487.115,
+   "volumen": 977355.0,
+   "monto_usd": 471910813.0
+  },
+  {
+   "fecha": "2025-04-30",
+   "cierre": 486.5,
+   "apertura": 484.09,
+   "minimo": 475.54,
+   "maximo": 487.82,
+   "volumen": 1312646.0,
+   "monto_usd": 635974987.0
+  },
+  {
+   "fecha": "2025-05-01",
+   "cierre": 486.67,
+   "apertura": 485.17,
+   "minimo": 482.088,
+   "maximo": 488.17,
+   "volumen": 1194027.0,
+   "monto_usd": 579746887.0
+  },
+  {
+   "fecha": "2025-05-02",
+   "cierre": 491.42,
+   "apertura": 492.72,
+   "minimo": 478.77,
+   "maximo": 498.53,
+   "volumen": 1728644.0,
+   "monto_usd": 845071688.0
+  },
+  {
+   "fecha": "2025-05-05",
+   "cierre": 493.33,
+   "apertura": 493.58,
+   "minimo": 489.48,
+   "maximo": 496.21,
+   "volumen": 830409.0,
+   "monto_usd": 409890842.0
+  },
+  {
+   "fecha": "2025-05-06",
+   "cierre": 487.48,
+   "apertura": 491.48,
+   "minimo": 484.98,
+   "maximo": 493.09,
+   "volumen": 655190.0,
+   "monto_usd": 319721327.0
+  },
+  {
+   "fecha": "2025-05-07",
+   "cierre": 486.04,
+   "apertura": 486.73,
+   "minimo": 481.0,
+   "maximo": 488.7,
+   "volumen": 875412.0,
+   "monto_usd": 425273724.0
+  },
+  {
+   "fecha": "2025-05-08",
+   "cierre": 484.37,
+   "apertura": 486.68,
+   "minimo": 483.63,
+   "maximo": 489.84,
+   "volumen": 920966.0,
+   "monto_usd": 447624158.0
+  },
+  {
+   "fecha": "2025-05-09",
+   "cierre": 482.62,
+   "apertura": 484.86,
+   "minimo": 475.88,
+   "maximo": 485.12,
+   "volumen": 639686.0,
+   "monto_usd": 307852648.0
+  },
+  {
+   "fecha": "2025-05-12",
+   "cierre": 479.16,
+   "apertura": 479.95,
+   "minimo": 471.55,
+   "maximo": 482.79,
+   "volumen": 1292098.0,
+   "monto_usd": 616804661.0
+  },
+  {
+   "fecha": "2025-05-13",
+   "cierre": 470.67,
+   "apertura": 478.7,
+   "minimo": 470.63,
+   "maximo": 479.98,
+   "volumen": 883925.0,
+   "monto_usd": 418267653.0
+  },
+  {
+   "fecha": "2025-05-14",
+   "cierre": 456.3,
+   "apertura": 461.375,
+   "minimo": 453.01,
+   "maximo": 465.0,
+   "volumen": 1272823.0,
+   "monto_usd": 582556739.0
+  },
+  {
+   "fecha": "2025-05-15",
+   "cierre": 469.05,
+   "apertura": 461.44,
+   "minimo": 459.25,
+   "maximo": 470.89,
+   "volumen": 1116163.0,
+   "monto_usd": 520170600.0
+  },
+  {
+   "fecha": "2025-05-16",
+   "cierre": 473.17,
+   "apertura": 469.61,
+   "minimo": 466.38,
+   "maximo": 473.56,
+   "volumen": 1148389.0,
+   "monto_usd": 542263359.0
+  },
+  {
+   "fecha": "2025-05-19",
+   "cierre": 471.12,
+   "apertura": 476.12,
+   "minimo": 469.28,
+   "maximo": 476.12,
+   "volumen": 959074.0,
+   "monto_usd": 452718514.0
+  },
+  {
+   "fecha": "2025-05-20",
+   "cierre": 476.6,
+   "apertura": 469.89,
+   "minimo": 469.89,
+   "maximo": 477.87,
+   "volumen": 1001786.0,
+   "monto_usd": 476182881.0
+  },
+  {
+   "fecha": "2025-05-21",
+   "cierre": 473.9,
+   "apertura": 481.11,
+   "minimo": 472.34,
+   "maximo": 481.11,
+   "volumen": 902975.0,
+   "monto_usd": 428525578.0
+  },
+  {
+   "fecha": "2025-05-22",
+   "cierre": 472.88,
+   "apertura": 471.53,
+   "minimo": 468.98,
+   "maximo": 475.651,
+   "volumen": 922364.0,
+   "monto_usd": 435752167.0
+  },
+  {
+   "fecha": "2025-05-23",
+   "cierre": 471.46,
+   "apertura": 472.07,
+   "minimo": 468.2864,
+   "maximo": 472.97,
+   "volumen": 679237.0,
+   "monto_usd": 319912819.0
+  },
+  {
+   "fecha": "2025-05-27",
+   "cierre": 475.47,
+   "apertura": 471.62,
+   "minimo": 470.3,
+   "maximo": 475.66,
+   "volumen": 868705.0,
+   "monto_usd": 411578126.0
+  },
+  {
+   "fecha": "2025-05-28",
+   "cierre": 475.32,
+   "apertura": 477.74,
+   "minimo": 473.7,
+   "maximo": 478.09,
+   "volumen": 924352.0,
+   "monto_usd": 439982807.0
+  },
+  {
+   "fecha": "2025-05-29",
+   "cierre": 479.39,
+   "apertura": 471.18,
+   "minimo": 468.5,
+   "maximo": 480.25,
+   "volumen": 864033.0,
+   "monto_usd": 412999725.0
+  },
+  {
+   "fecha": "2025-05-30",
+   "cierre": 484.77,
+   "apertura": 480.0,
+   "minimo": 475.0601,
+   "maximo": 485.99,
+   "volumen": 1304485.0,
+   "monto_usd": 631060901.0
+  },
+  {
+   "fecha": "2025-06-02",
+   "cierre": 483.38,
+   "apertura": 481.13,
+   "minimo": 478.92,
+   "maximo": 483.85,
+   "volumen": 765350.0,
+   "monto_usd": 368763143.0
+  },
+  {
+   "fecha": "2025-06-03",
+   "cierre": 488.22,
+   "apertura": 483.0,
+   "minimo": 481.75,
+   "maximo": 488.63,
+   "volumen": 578461.0,
+   "monto_usd": 281282024.0
+  },
+  {
+   "fecha": "2025-06-04",
+   "cierre": 491.29,
+   "apertura": 490.0,
+   "minimo": 488.05,
+   "maximo": 495.9,
+   "volumen": 766889.0,
+   "monto_usd": 377736787.0
+  },
+  {
+   "fecha": "2025-06-05",
+   "cierre": 488.12,
+   "apertura": 492.95,
+   "minimo": 484.53,
+   "maximo": 492.95,
+   "volumen": 634320.0,
+   "monto_usd": 309774993.0
+  },
+  {
+   "fecha": "2025-06-06",
+   "cierre": 489.41,
+   "apertura": 488.59,
+   "minimo": 486.56,
+   "maximo": 491.43,
+   "volumen": 372476.0,
+   "monto_usd": 182099025.0
+  },
+  {
+   "fecha": "2025-06-09",
+   "cierre": 491.36,
+   "apertura": 490.0,
+   "minimo": 483.76,
+   "maximo": 492.11,
+   "volumen": 617716.0,
+   "monto_usd": 302566247.0
+  },
+  {
+   "fecha": "2025-06-10",
+   "cierre": 488.8,
+   "apertura": 491.53,
+   "minimo": 486.635,
+   "maximo": 491.53,
+   "volumen": 535908.0,
+   "monto_usd": 261879189.0
+  },
+  {
+   "fecha": "2025-06-11",
+   "cierre": 488.46,
+   "apertura": 483.57,
+   "minimo": 472.02,
+   "maximo": 488.71,
+   "volumen": 895249.0,
+   "monto_usd": 432805680.0
+  },
+  {
+   "fecha": "2025-06-12",
+   "cierre": 497.13,
+   "apertura": 488.82,
+   "minimo": 487.945,
+   "maximo": 497.32,
+   "volumen": 635177.0,
+   "monto_usd": 313975698.0
+  },
+  {
+   "fecha": "2025-06-13",
+   "cierre": 516.72,
+   "apertura": 504.0,
+   "minimo": 503.2,
+   "maximo": 519.43,
+   "volumen": 1843953.0,
+   "monto_usd": 947934451.0
+  },
+  {
+   "fecha": "2025-06-16",
+   "cierre": 497.52,
+   "apertura": 510.81,
+   "minimo": 495.58,
+   "maximo": 515.0,
+   "volumen": 1168662.0,
+   "monto_usd": 586249053.0
+  },
+  {
+   "fecha": "2025-06-17",
+   "cierre": 503.97,
+   "apertura": 502.0,
+   "minimo": 498.059,
+   "maximo": 505.85,
+   "volumen": 764299.0,
+   "monto_usd": 384825705.0
+  },
+  {
+   "fecha": "2025-06-18",
+   "cierre": 494.65,
+   "apertura": 504.42,
+   "minimo": 493.58,
+   "maximo": 506.5999,
+   "volumen": 792680.0,
+   "monto_usd": 394114203.0
+  },
+  {
+   "fecha": "2025-06-20",
+   "cierre": 497.7,
+   "apertura": 496.62,
+   "minimo": 488.0,
+   "maximo": 499.86,
+   "volumen": 916352.0,
+   "monto_usd": 455584891.0
+  },
+  {
+   "fecha": "2025-06-23",
+   "cierre": 499.67,
+   "apertura": 500.81,
+   "minimo": 496.4412,
+   "maximo": 508.32,
+   "volumen": 978833.0,
+   "monto_usd": 491094813.0
+  },
+  {
+   "fecha": "2025-06-24",
+   "cierre": 484.0,
+   "apertura": 494.8,
+   "minimo": 481.28,
+   "maximo": 495.12,
+   "volumen": 930618.0,
+   "monto_usd": 451089727.0
+  },
+  {
+   "fecha": "2025-06-25",
+   "cierre": 486.92,
+   "apertura": 488.0,
+   "minimo": 483.84,
+   "maximo": 488.46,
+   "volumen": 724829.0,
+   "monto_usd": 353014584.0
+  },
+  {
+   "fecha": "2025-06-26",
+   "cierre": 493.66,
+   "apertura": 489.19,
+   "minimo": 487.68,
+   "maximo": 497.04,
+   "volumen": 876453.0,
+   "monto_usd": 433100011.0
+  },
+  {
+   "fecha": "2025-06-27",
+   "cierre": 494.0,
+   "apertura": 490.95,
+   "minimo": 489.26,
+   "maximo": 494.68,
+   "volumen": 874362.0,
+   "monto_usd": 431596949.0
+  },
+  {
+   "fecha": "2025-06-30",
+   "cierre": 499.98,
+   "apertura": 495.31,
+   "minimo": 493.96,
+   "maximo": 501.08,
+   "volumen": 644139.0,
+   "monto_usd": 321088729.0
+  },
+  {
+   "fecha": "2025-07-01",
+   "cierre": 503.53,
+   "apertura": 499.95,
+   "minimo": 496.38,
+   "maximo": 504.81,
+   "volumen": 651573.0,
+   "monto_usd": 327406932.0
+  },
+  {
+   "fecha": "2025-07-02",
+   "cierre": 498.9,
+   "apertura": 493.0,
+   "minimo": 489.52,
+   "maximo": 499.02,
+   "volumen": 817524.0,
+   "monto_usd": 404936607.0
+  },
+  {
+   "fecha": "2025-07-03",
+   "cierre": 504.2,
+   "apertura": 500.26,
+   "minimo": 498.61,
+   "maximo": 505.19,
+   "volumen": 381831.0,
+   "monto_usd": 192267405.0
+  },
+  {
+   "fecha": "2025-07-07",
+   "cierre": 507.92,
+   "apertura": 506.2,
+   "minimo": 503.2001,
+   "maximo": 509.6,
+   "volumen": 653555.0,
+   "monto_usd": 331466950.0
+  },
+  {
+   "fecha": "2025-07-08",
+   "cierre": 504.85,
+   "apertura": 501.0,
+   "minimo": 500.835,
+   "maximo": 506.93,
+   "volumen": 669571.0,
+   "monto_usd": 337942207.0
+  },
+  {
+   "fecha": "2025-07-09",
+   "cierre": 507.94,
+   "apertura": 505.81,
+   "minimo": 502.2955,
+   "maximo": 508.405,
+   "volumen": 608961.0,
+   "monto_usd": 308396386.0
+  },
+  {
+   "fecha": "2025-07-10",
+   "cierre": 513.87,
+   "apertura": 506.55,
+   "minimo": 504.9796,
+   "maximo": 514.93,
+   "volumen": 624131.0,
+   "monto_usd": 319787421.0
+  },
+  {
+   "fecha": "2025-07-11",
+   "cierre": 514.6,
+   "apertura": 513.7,
+   "minimo": 508.02,
+   "maximo": 515.195,
+   "volumen": 748973.0,
+   "monto_usd": 383998313.0
+  },
+  {
+   "fecha": "2025-07-14",
+   "cierre": 521.11,
+   "apertura": 517.0,
+   "minimo": 513.33,
+   "maximo": 523.76,
+   "volumen": 790441.0,
+   "monto_usd": 411722341.0
+  },
+  {
+   "fecha": "2025-07-15",
+   "cierre": 516.82,
+   "apertura": 519.4,
+   "minimo": 516.15,
+   "maximo": 523.46,
+   "volumen": 539574.0,
+   "monto_usd": 279705892.0
+  },
+  {
+   "fecha": "2025-07-16",
+   "cierre": 519.7,
+   "apertura": 516.84,
+   "minimo": 514.0601,
+   "maximo": 520.78,
+   "volumen": 483661.0,
+   "monto_usd": 250853290.0
+  },
+  {
+   "fecha": "2025-07-17",
+   "cierre": 523.83,
+   "apertura": 519.0,
+   "minimo": 518.64,
+   "maximo": 525.52,
+   "volumen": 621049.0,
+   "monto_usd": 324820350.0
+  },
+  {
+   "fecha": "2025-07-18",
+   "cierre": 519.04,
+   "apertura": 523.35,
+   "minimo": 515.64,
+   "maximo": 528.27,
+   "volumen": 874064.0,
+   "monto_usd": 454849278.0
+  },
+  {
+   "fecha": "2025-07-21",
+   "cierre": 515.29,
+   "apertura": 518.31,
+   "minimo": 514.39,
+   "maximo": 523.98,
+   "volumen": 832867.0,
+   "monto_usd": 432179523.0
+  },
+  {
+   "fecha": "2025-07-22",
+   "cierre": 563.79,
+   "apertura": 536.01,
+   "minimo": 535.52,
+   "maximo": 567.1234,
+   "volumen": 2395123.0,
+   "monto_usd": 1340994319.0
+  },
+  {
+   "fecha": "2025-07-23",
+   "cierre": 568.5,
+   "apertura": 562.35,
+   "minimo": 551.805,
+   "maximo": 568.67,
+   "volumen": 1251078.0,
+   "monto_usd": 704575318.0
+  },
+  {
+   "fecha": "2025-07-24",
+   "cierre": 568.48,
+   "apertura": 568.25,
+   "minimo": 566.5801,
+   "maximo": 576.86,
+   "volumen": 974954.0,
+   "monto_usd": 557207734.0
+  },
+  {
+   "fecha": "2025-07-25",
+   "cierre": 569.74,
+   "apertura": 568.0,
+   "minimo": 563.305,
+   "maximo": 570.155,
+   "volumen": 635756.0,
+   "monto_usd": 360974322.0
+  },
+  {
+   "fecha": "2025-07-28",
+   "cierre": 568.62,
+   "apertura": 569.24,
+   "minimo": 563.64,
+   "maximo": 570.0,
+   "volumen": 679713.0,
+   "monto_usd": 385561999.0
+  },
+  {
+   "fecha": "2025-07-29",
+   "cierre": 573.22,
+   "apertura": 571.4,
+   "minimo": 568.19,
+   "maximo": 573.3,
+   "volumen": 682782.0,
+   "monto_usd": 389872267.0
+  },
+  {
+   "fecha": "2025-07-30",
+   "cierre": 572.81,
+   "apertura": 572.94,
+   "minimo": 568.711,
+   "maximo": 573.8099,
+   "volumen": 661769.0,
+   "monto_usd": 378655079.0
+  },
+  {
+   "fecha": "2025-07-31",
+   "cierre": 576.61,
+   "apertura": 572.0,
+   "minimo": 568.8901,
+   "maximo": 577.38,
+   "volumen": 850666.0,
+   "monto_usd": 489725111.0
+  },
+  {
+   "fecha": "2025-08-01",
+   "cierre": 586.44,
+   "apertura": 577.135,
+   "minimo": 572.95,
+   "maximo": 587.88,
+   "volumen": 1006502.0,
+   "monto_usd": 587779235.0
+  },
+  {
+   "fecha": "2025-08-04",
+   "cierre": 589.75,
+   "apertura": 585.69,
+   "minimo": 584.125,
+   "maximo": 592.16,
+   "volumen": 970347.0,
+   "monto_usd": 572305475.0
+  },
+  {
+   "fecha": "2025-08-05",
+   "cierre": 589.95,
+   "apertura": 590.22,
+   "minimo": 586.01,
+   "maximo": 594.68,
+   "volumen": 905822.0,
+   "monto_usd": 534452547.0
+  },
+  {
+   "fecha": "2025-08-06",
+   "cierre": 589.29,
+   "apertura": 590.0,
+   "minimo": 586.7,
+   "maximo": 593.48,
+   "volumen": 992555.0,
+   "monto_usd": 586000751.0
+  },
+  {
+   "fecha": "2025-08-07",
+   "cierre": 587.38,
+   "apertura": 583.21,
+   "minimo": 580.0,
+   "maximo": 588.23,
+   "volumen": 626641.0,
+   "monto_usd": 366647430.0
+  },
+  {
+   "fecha": "2025-08-08",
+   "cierre": 581.11,
+   "apertura": 587.71,
+   "minimo": 579.15,
+   "maximo": 591.07,
+   "volumen": 749480.0,
+   "monto_usd": 436490418.0
+  },
+  {
+   "fecha": "2025-08-11",
+   "cierre": 580.24,
+   "apertura": 579.81,
+   "minimo": 575.45,
+   "maximo": 583.775,
+   "volumen": 744795.0,
+   "monto_usd": 431982385.0
+  },
+  {
+   "fecha": "2025-08-12",
+   "cierre": 580.8,
+   "apertura": 579.21,
+   "minimo": 577.62,
+   "maximo": 581.625,
+   "volumen": 643893.0,
+   "monto_usd": 373490435.0
+  },
+  {
+   "fecha": "2025-08-13",
+   "cierre": 582.09,
+   "apertura": 582.49,
+   "minimo": 576.22,
+   "maximo": 586.8866,
+   "volumen": 745676.0,
+   "monto_usd": 433086399.0
+  },
+  {
+   "fecha": "2025-08-14",
+   "cierre": 583.72,
+   "apertura": 583.89,
+   "minimo": 580.935,
+   "maximo": 585.285,
+   "volumen": 543334.0,
+   "monto_usd": 316961404.0
+  },
+  {
+   "fecha": "2025-08-15",
+   "cierre": 583.96,
+   "apertura": 583.41,
+   "minimo": 580.9186,
+   "maximo": 586.75,
+   "volumen": 667579.0,
+   "monto_usd": 390151105.0
+  },
+  {
+   "fecha": "2025-08-18",
+   "cierre": 584.82,
+   "apertura": 587.47,
+   "minimo": 583.5403,
+   "maximo": 592.225,
+   "volumen": 922401.0,
+   "monto_usd": 540854364.0
+  },
+  {
+   "fecha": "2025-08-19",
+   "cierre": 586.23,
+   "apertura": 584.0,
+   "minimo": 582.2225,
+   "maximo": 589.48,
+   "volumen": 470841.0,
+   "monto_usd": 276008618.0
+  },
+  {
+   "fecha": "2025-08-20",
+   "cierre": 592.54,
+   "apertura": 589.84,
+   "minimo": 587.77,
+   "maximo": 595.32,
+   "volumen": 610481.0,
+   "monto_usd": 361330370.0
+  },
+  {
+   "fecha": "2025-08-21",
+   "cierre": 597.21,
+   "apertura": 593.0,
+   "minimo": 591.313,
+   "maximo": 598.83,
+   "volumen": 610288.0,
+   "monto_usd": 364075576.0
+  },
+  {
+   "fecha": "2025-08-22",
+   "cierre": 592.44,
+   "apertura": 599.79,
+   "minimo": 591.3674,
+   "maximo": 600.99,
+   "volumen": 616735.0,
+   "monto_usd": 366683631.0
+  },
+  {
+   "fecha": "2025-08-25",
+   "cierre": 586.74,
+   "apertura": 592.0,
+   "minimo": 586.05,
+   "maximo": 595.4,
+   "volumen": 478197.0,
+   "monto_usd": 281405515.0
+  },
+  {
+   "fecha": "2025-08-26",
+   "cierre": 593.02,
+   "apertura": 588.39,
+   "minimo": 588.115,
+   "maximo": 595.85,
+   "volumen": 1002304.0,
+   "monto_usd": 594540277.0
+  },
+  {
+   "fecha": "2025-08-27",
+   "cierre": 586.61,
+   "apertura": 594.55,
+   "minimo": 585.037573,
+   "maximo": 594.55,
+   "volumen": 679475.0,
+   "monto_usd": 399507118.0
+  },
+  {
+   "fecha": "2025-08-28",
+   "cierre": 587.9,
+   "apertura": 586.61,
+   "minimo": 580.9,
+   "maximo": 587.94,
+   "volumen": 479159.0,
+   "monto_usd": 281046714.0
+  },
+  {
+   "fecha": "2025-08-29",
+   "cierre": 590.04,
+   "apertura": 587.9,
+   "minimo": 587.08,
+   "maximo": 591.5718,
+   "volumen": 528588.0,
+   "monto_usd": 311634723.0
+  },
+  {
+   "fecha": "2025-09-02",
+   "cierre": 589.32,
+   "apertura": 591.88,
+   "minimo": 585.26,
+   "maximo": 596.1647,
+   "volumen": 635899.0,
+   "monto_usd": 374499860.0
+  },
+  {
+   "fecha": "2025-09-03",
+   "cierre": 581.01,
+   "apertura": 586.53,
+   "minimo": 577.69,
+   "maximo": 588.0,
+   "volumen": 463170.0,
+   "monto_usd": 268871576.0
+  },
+  {
+   "fecha": "2025-09-04",
+   "cierre": 579.76,
+   "apertura": 581.71,
+   "minimo": 576.0,
+   "maximo": 581.94,
+   "volumen": 505548.0,
+   "monto_usd": 292764451.0
+  },
+  {
+   "fecha": "2025-09-05",
+   "cierre": 580.8,
+   "apertura": 579.34,
+   "minimo": 574.82,
+   "maximo": 581.165,
+   "volumen": 633710.0,
+   "monto_usd": 366942515.0
+  },
+  {
+   "fecha": "2025-09-08",
+   "cierre": 581.9,
+   "apertura": 574.99,
+   "minimo": 571.365,
+   "maximo": 582.13,
+   "volumen": 814129.0,
+   "monto_usd": 471085061.0
+  },
+  {
+   "fecha": "2025-09-09",
+   "cierre": 571.63,
+   "apertura": 580.46,
+   "minimo": 571.44,
+   "maximo": 580.49,
+   "volumen": 482591.0,
+   "monto_usd": 276684470.0
+  },
+  {
+   "fecha": "2025-09-10",
+   "cierre": 579.87,
+   "apertura": 571.24,
+   "minimo": 570.0,
+   "maximo": 580.84,
+   "volumen": 547458.0,
+   "monto_usd": 316587970.0
+  },
+  {
+   "fecha": "2025-09-11",
+   "cierre": 582.95,
+   "apertura": 579.31,
+   "minimo": 578.0,
+   "maximo": 585.76,
+   "volumen": 901131.0,
+   "monto_usd": 524661062.0
+  },
+  {
+   "fecha": "2025-09-12",
+   "cierre": 575.96,
+   "apertura": 582.34,
+   "minimo": 575.18,
+   "maximo": 583.13,
+   "volumen": 717913.0,
+   "monto_usd": 414554845.0
+  },
+  {
+   "fecha": "2025-09-15",
+   "cierre": 574.54,
+   "apertura": 574.0,
+   "minimo": 571.115,
+   "maximo": 576.47,
+   "volumen": 804620.0,
+   "monto_usd": 462132133.0
+  },
+  {
+   "fecha": "2025-09-16",
+   "cierre": 579.36,
+   "apertura": 578.0,
+   "minimo": 575.95,
+   "maximo": 587.24,
+   "volumen": 1104597.0,
+   "monto_usd": 643295687.0
+  },
+  {
+   "fecha": "2025-09-17",
+   "cierre": 577.08,
+   "apertura": 579.1,
+   "minimo": 576.3901,
+   "maximo": 585.0,
+   "volumen": 790271.0,
+   "monto_usd": 458029716.0
+  },
+  {
+   "fecha": "2025-09-18",
+   "cierre": 573.75,
+   "apertura": 572.0,
+   "minimo": 568.32,
+   "maximo": 576.98,
+   "volumen": 798950.0,
+   "monto_usd": 458219215.0
+  },
+  {
+   "fecha": "2025-09-19",
+   "cierre": 573.03,
+   "apertura": 571.91,
+   "minimo": 565.5,
+   "maximo": 576.15,
+   "volumen": 1478380.0,
+   "monto_usd": 845950857.0
+  },
+  {
+   "fecha": "2025-09-22",
+   "cierre": 576.15,
+   "apertura": 573.69,
+   "minimo": 570.26,
+   "maximo": 577.6475,
+   "volumen": 566750.0,
+   "monto_usd": 326338485.0
+  },
+  {
+   "fecha": "2025-09-23",
+   "cierre": 577.08,
+   "apertura": 576.0,
+   "minimo": 571.08,
+   "maximo": 580.665,
+   "volumen": 656281.0,
+   "monto_usd": 377518559.0
+  },
+  {
+   "fecha": "2025-09-24",
+   "cierre": 586.27,
+   "apertura": 580.64,
+   "minimo": 577.0,
+   "maximo": 589.6,
+   "volumen": 784174.0,
+   "monto_usd": 459989134.0
+  },
+  {
+   "fecha": "2025-09-25",
+   "cierre": 585.77,
+   "apertura": 590.0,
+   "minimo": 582.485,
+   "maximo": 593.75,
+   "volumen": 1074102.0,
+   "monto_usd": 631671880.0
+  },
+  {
+   "fecha": "2025-09-26",
+   "cierre": 594.52,
+   "apertura": 589.49,
+   "minimo": 586.85,
+   "maximo": 594.96,
+   "volumen": 511016.0,
+   "monto_usd": 302962846.0
+  },
+  {
+   "fecha": "2025-09-29",
+   "cierre": 593.99,
+   "apertura": 598.31,
+   "minimo": 591.51,
+   "maximo": 604.125,
+   "volumen": 777141.0,
+   "monto_usd": 462252949.0
+  },
+  {
+   "fecha": "2025-09-30",
+   "cierre": 609.32,
+   "apertura": 593.1,
+   "minimo": 593.1,
+   "maximo": 610.12,
+   "volumen": 803097.0,
+   "monto_usd": 486273245.0
+  },
+  {
+   "fecha": "2025-10-01",
+   "cierre": 605.42,
+   "apertura": 607.22,
+   "minimo": 603.01,
+   "maximo": 610.85,
+   "volumen": 558360.0,
+   "monto_usd": 338218302.0
+  },
+  {
+   "fecha": "2025-10-02",
+   "cierre": 605.01,
+   "apertura": 603.8,
+   "minimo": 601.96,
+   "maximo": 607.2635,
+   "volumen": 453946.0,
+   "monto_usd": 274571204.0
+  },
+  {
+   "fecha": "2025-10-03",
+   "cierre": 609.54,
+   "apertura": 607.0,
+   "minimo": 605.3,
+   "maximo": 610.64,
+   "volumen": 435952.0,
+   "monto_usd": 265655677.0
+  },
+  {
+   "fecha": "2025-10-06",
+   "cierre": 618.52,
+   "apertura": 609.12,
+   "minimo": 609.0,
+   "maximo": 619.71,
+   "volumen": 540307.0,
+   "monto_usd": 333526458.0
+  },
+  {
+   "fecha": "2025-10-07",
+   "cierre": 621.63,
+   "apertura": 622.85,
+   "minimo": 618.395,
+   "maximo": 627.8099,
+   "volumen": 838233.0,
+   "monto_usd": 521868733.0
+  },
+  {
+   "fecha": "2025-10-08",
+   "cierre": 637.95,
+   "apertura": 630.0,
+   "minimo": 625.55,
+   "maximo": 638.54,
+   "volumen": 939163.0,
+   "monto_usd": 596023380.0
+  },
+  {
+   "fecha": "2025-10-09",
+   "cierre": 635.01,
+   "apertura": 638.0,
+   "minimo": 631.37,
+   "maximo": 640.901,
+   "volumen": 1007665.0,
+   "monto_usd": 641381779.0
+  },
+  {
+   "fecha": "2025-10-10",
+   "cierre": 623.49,
+   "apertura": 633.36,
+   "minimo": 619.4101,
+   "maximo": 635.245,
+   "volumen": 660101.0,
+   "monto_usd": 414039718.0
+  },
+  {
+   "fecha": "2025-10-13",
+   "cierre": 618.88,
+   "apertura": 619.97,
+   "minimo": 616.9,
+   "maximo": 624.055,
+   "volumen": 452758.0,
+   "monto_usd": 280792586.0
+  },
+  {
+   "fecha": "2025-10-14",
+   "cierre": 626.93,
+   "apertura": 619.48,
+   "minimo": 618.07,
+   "maximo": 627.41,
+   "volumen": 437591.0,
+   "monto_usd": 273550825.0
+  },
+  {
+   "fecha": "2025-10-15",
+   "cierre": 608.93,
+   "apertura": 625.05,
+   "minimo": 600.0838,
+   "maximo": 627.05,
+   "volumen": 666900.0,
+   "monto_usd": 407467787.0
+  },
+  {
+   "fecha": "2025-10-16",
+   "cierre": 598.98,
+   "apertura": 611.0,
+   "minimo": 597.595,
+   "maximo": 611.8,
+   "volumen": 781930.0,
+   "monto_usd": 470275449.0
+  },
+  {
+   "fecha": "2025-10-17",
+   "cierre": 594.5,
+   "apertura": 597.0,
+   "minimo": 591.68,
+   "maximo": 601.645,
+   "volumen": 825196.0,
+   "monto_usd": 490852072.0
+  },
+  {
+   "fecha": "2025-10-20",
+   "cierre": 602.0,
+   "apertura": 599.66,
+   "minimo": 596.21,
+   "maximo": 602.9,
+   "volumen": 1084102.0,
+   "monto_usd": 651395861.0
+  },
+  {
+   "fecha": "2025-10-21",
+   "cierre": 599.35,
+   "apertura": 589.96,
+   "minimo": 571.36,
+   "maximo": 604.89,
+   "volumen": 1750875.0,
+   "monto_usd": 1042880834.0
+  },
+  {
+   "fecha": "2025-10-22",
+   "cierre": 596.48,
+   "apertura": 597.07,
+   "minimo": 595.65,
+   "maximo": 605.9599,
+   "volumen": 1122830.0,
+   "monto_usd": 672862585.0
+  },
+  {
+   "fecha": "2025-10-23",
+   "cierre": 605.74,
+   "apertura": 599.73,
+   "minimo": 598.01,
+   "maximo": 609.82,
+   "volumen": 655583.0,
+   "monto_usd": 396601541.0
+  },
+  {
+   "fecha": "2025-10-24",
+   "cierre": 605.58,
+   "apertura": 606.35,
+   "minimo": 597.08,
+   "maximo": 608.5,
+   "volumen": 564834.0,
+   "monto_usd": 340680345.0
+  },
+  {
+   "fecha": "2025-10-27",
+   "cierre": 595.95,
+   "apertura": 604.87,
+   "minimo": 595.0,
+   "maximo": 605.65,
+   "volumen": 501263.0,
+   "monto_usd": 299415929.0
+  },
+  {
+   "fecha": "2025-10-28",
+   "cierre": 595.05,
+   "apertura": 594.5,
+   "minimo": 591.24,
+   "maximo": 598.945,
+   "volumen": 714928.0,
+   "monto_usd": 425702248.0
+  },
+  {
+   "fecha": "2025-10-29",
+   "cierre": 584.99,
+   "apertura": 590.0,
+   "minimo": 582.51,
+   "maximo": 594.215,
+   "volumen": 723541.0,
+   "monto_usd": 425541050.0
+  },
+  {
+   "fecha": "2025-10-30",
+   "cierre": 578.6,
+   "apertura": 585.94,
+   "minimo": 577.74,
+   "maximo": 591.73,
+   "volumen": 1103098.0,
+   "monto_usd": 643935169.0
+  },
+  {
+   "fecha": "2025-10-31",
+   "cierre": 583.45,
+   "apertura": 579.15,
+   "minimo": 575.82,
+   "maximo": 586.63,
+   "volumen": 840195.0,
+   "monto_usd": 489388485.0
+  },
+  {
+   "fecha": "2025-11-03",
+   "cierre": 575.41,
+   "apertura": 580.44,
+   "minimo": 571.68,
+   "maximo": 581.19,
+   "volumen": 657827.0,
+   "monto_usd": 378305726.0
+  },
+  {
+   "fecha": "2025-11-04",
+   "cierre": 577.14,
+   "apertura": 574.49,
+   "minimo": 568.4,
+   "maximo": 579.59,
+   "volumen": 494370.0,
+   "monto_usd": 284954002.0
+  },
+  {
+   "fecha": "2025-11-05",
+   "cierre": 570.5,
+   "apertura": 572.77,
+   "minimo": 569.74,
+   "maximo": 579.53,
+   "volumen": 535803.0,
+   "monto_usd": 306542440.0
+  },
+  {
+   "fecha": "2025-11-06",
+   "cierre": 571.96,
+   "apertura": 570.0,
+   "minimo": 569.95,
+   "maximo": 578.04,
+   "volumen": 610823.0,
+   "monto_usd": 350276297.0
+  },
+  {
+   "fecha": "2025-11-07",
+   "cierre": 568.61,
+   "apertura": 571.97,
+   "minimo": 562.44,
+   "maximo": 571.97,
+   "volumen": 646062.0,
+   "monto_usd": 366961157.0
+  },
+  {
+   "fecha": "2025-11-10",
+   "cierre": 562.98,
+   "apertura": 564.8,
+   "minimo": 557.39,
+   "maximo": 567.06,
+   "volumen": 1075772.0,
+   "monto_usd": 603004966.0
+  },
+  {
+   "fecha": "2025-11-11",
+   "cierre": 566.74,
+   "apertura": 564.48,
+   "minimo": 559.0,
+   "maximo": 570.79,
+   "volumen": 743405.0,
+   "monto_usd": 420439263.0
+  },
+  {
+   "fecha": "2025-11-12",
+   "cierre": 558.57,
+   "apertura": 565.18,
+   "minimo": 558.4,
+   "maximo": 569.1501,
+   "volumen": 669774.0,
+   "monto_usd": 376181857.0
+  },
+  {
+   "fecha": "2025-11-13",
+   "cierre": 558.0,
+   "apertura": 563.24,
+   "minimo": 556.84,
+   "maximo": 563.41,
+   "volumen": 828402.0,
+   "monto_usd": 463612275.0
+  },
+  {
+   "fecha": "2025-11-14",
+   "cierre": 558.0,
+   "apertura": 557.75,
+   "minimo": 553.365,
+   "maximo": 562.03,
+   "volumen": 742576.0,
+   "monto_usd": 414547376.0
+  },
+  {
+   "fecha": "2025-11-17",
+   "cierre": 563.03,
+   "apertura": 559.98,
+   "minimo": 556.29,
+   "maximo": 563.08,
+   "volumen": 913005.0,
+   "monto_usd": 511655988.0
+  },
+  {
+   "fecha": "2025-11-18",
+   "cierre": 566.76,
+   "apertura": 565.0,
+   "minimo": 564.175,
+   "maximo": 573.305,
+   "volumen": 1047053.0,
+   "monto_usd": 595198063.0
+  },
+  {
+   "fecha": "2025-11-19",
+   "cierre": 565.0,
+   "apertura": 560.39,
+   "minimo": 557.46,
+   "maximo": 567.2,
+   "volumen": 665424.0,
+   "monto_usd": 375579121.0
+  },
+  {
+   "fecha": "2025-11-20",
+   "cierre": 567.35,
+   "apertura": 570.88,
+   "minimo": 563.51,
+   "maximo": 573.2632,
+   "volumen": 688174.0,
+   "monto_usd": 390815497.0
+  },
+  {
+   "fecha": "2025-11-21",
+   "cierre": 566.7,
+   "apertura": 568.28,
+   "minimo": 563.08,
+   "maximo": 571.67,
+   "volumen": 943949.0,
+   "monto_usd": 535724235.0
+  },
+  {
+   "fecha": "2025-11-24",
+   "cierre": 565.56,
+   "apertura": 562.92,
+   "minimo": 560.0,
+   "maximo": 566.27,
+   "volumen": 731697.0,
+   "monto_usd": 413049620.0
+  },
+  {
+   "fecha": "2025-11-25",
+   "cierre": 569.42,
+   "apertura": 565.7,
+   "minimo": 565.7,
+   "maximo": 574.5,
+   "volumen": 919543.0,
+   "monto_usd": 525274035.0
+  },
+  {
+   "fecha": "2025-11-26",
+   "cierre": 567.11,
+   "apertura": 569.61,
+   "minimo": 567.08,
+   "maximo": 582.6,
+   "volumen": 445835.0,
+   "monto_usd": 253674178.0
+  },
+  {
+   "fecha": "2025-11-28",
+   "cierre": 572.25,
+   "apertura": 567.35,
+   "minimo": 566.63,
+   "maximo": 573.68,
+   "volumen": 421752.0,
+   "monto_usd": 240926710.0
+  },
+  {
+   "fecha": "2025-12-01",
+   "cierre": 545.51,
+   "apertura": 567.73,
+   "minimo": 543.66,
+   "maximo": 568.5,
+   "volumen": 795036.0,
+   "monto_usd": 437768029.0
+  },
+  {
+   "fecha": "2025-12-02",
+   "cierre": 546.97,
+   "apertura": 546.68,
+   "minimo": 545.17,
+   "maximo": 551.275,
+   "volumen": 779359.0,
+   "monto_usd": 427041096.0
+  },
+  {
+   "fecha": "2025-12-03",
+   "cierre": 553.32,
+   "apertura": 549.56,
+   "minimo": 546.49,
+   "maximo": 554.52,
+   "volumen": 889964.0,
+   "monto_usd": 491276271.0
+  },
+  {
+   "fecha": "2025-12-04",
+   "cierre": 553.0,
+   "apertura": 552.84,
+   "minimo": 551.555,
+   "maximo": 560.0,
+   "volumen": 753134.0,
+   "monto_usd": 417491063.0
+  },
+  {
+   "fecha": "2025-12-05",
+   "cierre": 548.97,
+   "apertura": 551.5,
+   "minimo": 544.16,
+   "maximo": 552.28,
+   "volumen": 785551.0,
+   "monto_usd": 430675668.0
+  },
+  {
+   "fecha": "2025-12-08",
+   "cierre": 553.56,
+   "apertura": 549.0,
+   "minimo": 546.51,
+   "maximo": 553.615,
+   "volumen": 706019.0,
+   "monto_usd": 388754404.0
+  },
+  {
+   "fecha": "2025-12-09",
+   "cierre": 550.63,
+   "apertura": 554.12,
+   "minimo": 550.25,
+   "maximo": 557.7382,
+   "volumen": 411023.0,
+   "monto_usd": 226992150.0
+  },
+  {
+   "fecha": "2025-12-10",
+   "cierre": 555.36,
+   "apertura": 549.0,
+   "minimo": 546.52,
+   "maximo": 558.61,
+   "volumen": 680045.0,
+   "monto_usd": 377236247.0
+  },
+  {
+   "fecha": "2025-12-11",
+   "cierre": 560.04,
+   "apertura": 557.56,
+   "minimo": 556.93,
+   "maximo": 568.66,
+   "volumen": 618246.0,
+   "monto_usd": 347893965.0
+  },
+  {
+   "fecha": "2025-12-12",
+   "cierre": 569.76,
+   "apertura": 563.19,
+   "minimo": 560.5,
+   "maximo": 571.6,
+   "volumen": 784474.0,
+   "monto_usd": 445782525.0
+  },
+  {
+   "fecha": "2025-12-15",
+   "cierre": 575.79,
+   "apertura": 569.14,
+   "minimo": 568.571,
+   "maximo": 575.79,
+   "volumen": 448889.0,
+   "monto_usd": 257459204.0
+  },
+  {
+   "fecha": "2025-12-16",
+   "cierre": 568.72,
+   "apertura": 573.5,
+   "minimo": 565.84,
+   "maximo": 574.2,
+   "volumen": 488152.0,
+   "monto_usd": 277838430.0
+  },
+  {
+   "fecha": "2025-12-17",
+   "cierre": 564.19,
+   "apertura": 562.79,
+   "minimo": 557.59,
+   "maximo": 572.3,
+   "volumen": 761812.0,
+   "monto_usd": 430659084.0
+  },
+  {
+   "fecha": "2025-12-18",
+   "cierre": 559.52,
+   "apertura": 564.0,
+   "minimo": 558.06,
+   "maximo": 569.93,
+   "volumen": 950163.0,
+   "monto_usd": 533176019.0
+  },
+  {
+   "fecha": "2025-12-19",
+   "cierre": 568.46,
+   "apertura": 558.47,
+   "minimo": 557.975,
+   "maximo": 570.96,
+   "volumen": 1329782.0,
+   "monto_usd": 754369309.0
+  },
+  {
+   "fecha": "2025-12-22",
+   "cierre": 584.66,
+   "apertura": 568.9,
+   "minimo": 568.9,
+   "maximo": 585.28,
+   "volumen": 530052.0,
+   "monto_usd": 308207377.0
+  },
+  {
+   "fecha": "2025-12-23",
+   "cierre": 580.06,
+   "apertura": 585.28,
+   "minimo": 576.7,
+   "maximo": 586.0,
+   "volumen": 564760.0,
+   "monto_usd": 327765294.0
+  },
+  {
+   "fecha": "2025-12-24",
+   "cierre": 582.35,
+   "apertura": 581.23,
+   "minimo": 581.14,
+   "maximo": 587.2911,
+   "volumen": 202613.0,
+   "monto_usd": 118266124.0
+  },
+  {
+   "fecha": "2025-12-26",
+   "cierre": 577.37,
+   "apertura": 582.71,
+   "minimo": 575.4501,
+   "maximo": 582.71,
+   "volumen": 230390.0,
+   "monto_usd": 133105577.0
+  },
+  {
+   "fecha": "2025-12-29",
+   "cierre": 577.78,
+   "apertura": 577.92,
+   "minimo": 576.88,
+   "maximo": 580.7589,
+   "volumen": 250063.0,
+   "monto_usd": 144698655.0
+  },
+  {
+   "fecha": "2025-12-30",
+   "cierre": 574.57,
+   "apertura": 578.89,
+   "minimo": 574.31,
+   "maximo": 580.12,
+   "volumen": 526276.0,
+   "monto_usd": 303401124.0
+  },
+  {
+   "fecha": "2025-12-31",
+   "cierre": 570.21,
+   "apertura": 575.21,
+   "minimo": 570.02,
+   "maximo": 577.0,
+   "volumen": 419626.0,
+   "monto_usd": 239946627.0
+  },
+  {
+   "fecha": "2026-01-02",
+   "cierre": 585.66,
+   "apertura": 569.59,
+   "minimo": 564.5,
+   "maximo": 585.85,
+   "volumen": 477415.0,
+   "monto_usd": 277053711.0
+  },
+  {
+   "fecha": "2026-01-05",
+   "cierre": 611.32,
+   "apertura": 593.96,
+   "minimo": 591.195,
+   "maximo": 611.37,
+   "volumen": 941893.0,
+   "monto_usd": 569614008.0
+  },
+  {
+   "fecha": "2026-01-06",
+   "cierre": 610.61,
+   "apertura": 614.56,
+   "minimo": 606.82,
+   "maximo": 619.2,
+   "volumen": 997986.0,
+   "monto_usd": 610084519.0
+  },
+  {
+   "fecha": "2026-01-07",
+   "cierre": 577.01,
+   "apertura": 616.42,
+   "minimo": 574.51,
+   "maximo": 617.99,
+   "volumen": 1674529.0,
+   "monto_usd": 989798839.0
+  },
+  {
+   "fecha": "2026-01-08",
+   "cierre": 590.79,
+   "apertura": 617.88,
+   "minimo": 585.95,
+   "maximo": 638.84,
+   "volumen": 3608001.0,
+   "monto_usd": 2182379288.0
+  },
+  {
+   "fecha": "2026-01-09",
+   "cierre": 618.82,
+   "apertura": 590.68,
+   "minimo": 590.68,
+   "maximo": 619.785,
+   "volumen": 1450100.0,
+   "monto_usd": 890240743.0
+  },
+  {
+   "fecha": "2026-01-12",
+   "cierre": 629.32,
+   "apertura": 623.63,
+   "minimo": 623.38,
+   "maximo": 635.76,
+   "volumen": 1262566.0,
+   "monto_usd": 794888320.0
+  },
+  {
+   "fecha": "2026-01-13",
+   "cierre": 625.5,
+   "apertura": 639.16,
+   "minimo": 619.68,
+   "maximo": 639.79,
+   "volumen": 1153772.0,
+   "monto_usd": 724625082.0
+  },
+  {
+   "fecha": "2026-01-14",
+   "cierre": 653.14,
+   "apertura": 625.0,
+   "minimo": 624.855,
+   "maximo": 654.52,
+   "volumen": 1480940.0,
+   "monto_usd": 958911233.0
+  },
+  {
+   "fecha": "2026-01-15",
+   "cierre": 654.61,
+   "apertura": 640.37,
+   "minimo": 632.98,
+   "maximo": 658.41,
+   "volumen": 965718.0,
+   "monto_usd": 627140874.0
+  },
+  {
+   "fecha": "2026-01-16",
+   "cierre": 666.9,
+   "apertura": 657.6,
+   "minimo": 657.26,
+   "maximo": 669.68,
+   "volumen": 969323.0,
+   "monto_usd": 644591341.0
+  },
+  {
+   "fecha": "2026-01-20",
+   "cierre": 657.3,
+   "apertura": 665.93,
+   "minimo": 653.02,
+   "maximo": 674.75,
+   "volumen": 1000516.0,
+   "monto_usd": 660248856.0
+  },
+  {
+   "fecha": "2026-01-21",
+   "cierre": 664.16,
+   "apertura": 658.97,
+   "minimo": 654.655,
+   "maximo": 669.63,
+   "volumen": 1011259.0,
+   "monto_usd": 670471850.0
+  },
+  {
+   "fecha": "2026-01-22",
+   "cierre": 670.44,
+   "apertura": 661.18,
+   "minimo": 660.0,
+   "maximo": 671.1,
+   "volumen": 602166.0,
+   "monto_usd": 402492558.0
+  },
+  {
+   "fecha": "2026-01-23",
+   "cierre": 672.95,
+   "apertura": 674.2,
+   "minimo": 668.51,
+   "maximo": 677.3,
+   "volumen": 597948.0,
+   "monto_usd": 402086251.0
+  },
+  {
+   "fecha": "2026-01-26",
+   "cierre": 660.97,
+   "apertura": 670.0,
+   "minimo": 659.11,
+   "maximo": 671.45,
+   "volumen": 1024553.0,
+   "monto_usd": 679280786.0
+  },
+  {
+   "fecha": "2026-01-27",
+   "cierre": 678.74,
+   "apertura": 649.65,
+   "minimo": 636.0,
+   "maximo": 683.01,
+   "volumen": 1363626.0,
+   "monto_usd": 910690893.0
+  },
+  {
+   "fecha": "2026-01-28",
+   "cierre": 689.13,
+   "apertura": 674.46,
+   "minimo": 664.0,
+   "maximo": 690.74,
+   "volumen": 1222584.0,
+   "monto_usd": 836865613.0
+  },
+  {
+   "fecha": "2026-01-29",
+   "cierre": 695.35,
+   "apertura": 695.45,
+   "minimo": 686.05,
+   "maximo": 705.445,
+   "volumen": 1064621.0,
+   "monto_usd": 738749388.0
+  },
+  {
+   "fecha": "2026-01-30",
+   "cierre": 692.26,
+   "apertura": 688.0,
+   "minimo": 681.1,
+   "maximo": 697.67,
+   "volumen": 953190.0,
+   "monto_usd": 657612745.0
+  },
+  {
+   "fecha": "2026-02-02",
+   "cierre": 685.02,
+   "apertura": 685.0,
+   "minimo": 675.4,
+   "maximo": 690.47,
+   "volumen": 1180269.0,
+   "monto_usd": 807431225.0
+  },
+  {
+   "fecha": "2026-02-03",
+   "cierre": 704.98,
+   "apertura": 694.2,
+   "minimo": 685.5,
+   "maximo": 707.66,
+   "volumen": 942708.0,
+   "monto_usd": 660990805.0
+  },
+  {
+   "fecha": "2026-02-04",
+   "cierre": 689.75,
+   "apertura": 705.75,
+   "minimo": 677.39,
+   "maximo": 709.39,
+   "volumen": 1732021.0,
+   "monto_usd": 1193420409.0
+  },
+  {
+   "fecha": "2026-02-05",
+   "cierre": 696.5,
+   "apertura": 680.25,
+   "minimo": 679.0,
+   "maximo": 704.1799,
+   "volumen": 845704.0,
+   "monto_usd": 587935620.0
+  },
+  {
+   "fecha": "2026-02-06",
+   "cierre": 709.11,
+   "apertura": 702.0,
+   "minimo": 699.53,
+   "maximo": 711.88,
+   "volumen": 635159.0,
+   "monto_usd": 449917857.0
+  },
+  {
+   "fecha": "2026-02-09",
+   "cierre": 698.02,
+   "apertura": 712.15,
+   "minimo": 698.0,
+   "maximo": 715.61,
+   "volumen": 694076.0,
+   "monto_usd": 489473731.0
+  },
+  {
+   "fecha": "2026-02-10",
+   "cierre": 685.0,
+   "apertura": 702.32,
+   "minimo": 684.37,
+   "maximo": 702.32,
+   "volumen": 956318.0,
+   "monto_usd": 658165027.0
+  },
+  {
+   "fecha": "2026-02-11",
+   "cierre": 678.83,
+   "apertura": 682.34,
+   "minimo": 674.75,
+   "maximo": 688.1099,
+   "volumen": 865349.0,
+   "monto_usd": 588181190.0
+  },
+  {
+   "fecha": "2026-02-12",
+   "cierre": 695.06,
+   "apertura": 680.75,
+   "minimo": 679.92,
+   "maximo": 696.72,
+   "volumen": 887441.0,
+   "monto_usd": 614761173.0
+  },
+  {
+   "fecha": "2026-02-13",
+   "cierre": 702.57,
+   "apertura": 696.8,
+   "minimo": 696.26,
+   "maximo": 709.0,
+   "volumen": 676157.0,
+   "monto_usd": 474624963.0
+  },
+  {
+   "fecha": "2026-02-17",
+   "cierre": 701.12,
+   "apertura": 702.56,
+   "minimo": 698.7336,
+   "maximo": 708.0,
+   "volumen": 614507.0,
+   "monto_usd": 431657204.0
+  },
+  {
+   "fecha": "2026-02-18",
+   "cierre": 724.83,
+   "apertura": 709.97,
+   "minimo": 702.49,
+   "maximo": 725.55,
+   "volumen": 1194639.0,
+   "monto_usd": 858885991.0
+  },
+  {
+   "fecha": "2026-02-19",
+   "cierre": 736.87,
+   "apertura": 727.255,
+   "minimo": 727.255,
+   "maximo": 745.55,
+   "volumen": 1008423.0,
+   "monto_usd": 742075679.0
+  },
+  {
+   "fecha": "2026-02-20",
+   "cierre": 723.56,
+   "apertura": 735.0,
+   "minimo": 718.01,
+   "maximo": 737.7471,
+   "volumen": 744144.0,
+   "monto_usd": 538774220.0
+  },
+  {
+   "fecha": "2026-02-23",
+   "cierre": 725.39,
+   "apertura": 721.26,
+   "minimo": 719.42,
+   "maximo": 731.4525,
+   "volumen": 567191.0,
+   "monto_usd": 412164630.0
+  },
+  {
+   "fecha": "2026-02-24",
+   "cierre": 727.73,
+   "apertura": 726.56,
+   "minimo": 710.47,
+   "maximo": 734.58,
+   "volumen": 734963.0,
+   "monto_usd": 534811655.0
+  },
+  {
+   "fecha": "2026-02-25",
+   "cierre": 703.65,
+   "apertura": 727.4,
+   "minimo": 691.0303,
+   "maximo": 728.5,
+   "volumen": 1634856.0,
+   "monto_usd": 1155559809.0
+  },
+  {
+   "fecha": "2026-02-26",
+   "cierre": 710.9,
+   "apertura": 703.0,
+   "minimo": 700.17,
+   "maximo": 713.81,
+   "volumen": 588073.0,
+   "monto_usd": 417652221.0
+  },
+  {
+   "fecha": "2026-02-27",
+   "cierre": 724.38,
+   "apertura": 720.0,
+   "minimo": 714.81,
+   "maximo": 727.29,
+   "volumen": 896416.0,
+   "monto_usd": 648590517.0
+  },
+  {
+   "fecha": "2026-03-02",
+   "cierre": 768.02,
+   "apertura": 745.0,
+   "minimo": 739.81,
+   "maximo": 768.22,
+   "volumen": 1474378.0,
+   "monto_usd": 1117563804.0
+  },
+  {
+   "fecha": "2026-03-03",
+   "cierre": 759.11,
+   "apertura": 768.85,
+   "minimo": 751.87,
+   "maximo": 774.0,
+   "volumen": 1304764.0,
+   "monto_usd": 990532320.0
+  },
+  {
+   "fecha": "2026-03-04",
+   "cierre": 753.84,
+   "apertura": 757.5,
+   "minimo": 737.75,
+   "maximo": 758.2772,
+   "volumen": 1205145.0,
+   "monto_usd": 904217694.0
+  },
+  {
+   "fecha": "2026-03-05",
+   "cierre": 740.01,
+   "apertura": 749.64,
+   "minimo": 734.355,
+   "maximo": 751.94,
+   "volumen": 919555.0,
+   "monto_usd": 680910040.0
+  },
+  {
+   "fecha": "2026-03-06",
+   "cierre": 756.13,
+   "apertura": 742.27,
+   "minimo": 738.01,
+   "maximo": 758.68,
+   "volumen": 772869.0,
+   "monto_usd": 581628010.0
+  },
+  {
+   "fecha": "2026-03-09",
+   "cierre": 747.34,
+   "apertura": 763.0,
+   "minimo": 744.57,
+   "maximo": 765.58,
+   "volumen": 910397.0,
+   "monto_usd": 683581944.0
+  },
+  {
+   "fecha": "2026-03-10",
+   "cierre": 734.98,
+   "apertura": 738.0,
+   "minimo": 730.19,
+   "maximo": 744.97,
+   "volumen": 642315.0,
+   "monto_usd": 472838730.0
+  },
+  {
+   "fecha": "2026-03-11",
+   "cierre": 733.18,
+   "apertura": 730.74,
+   "minimo": 728.5701,
+   "maximo": 742.1,
+   "volumen": 622720.0,
+   "monto_usd": 457787239.0
+  },
+  {
+   "fecha": "2026-03-12",
+   "cierre": 736.3,
+   "apertura": 736.44,
+   "minimo": 726.575,
+   "maximo": 746.18,
+   "volumen": 753636.0,
+   "monto_usd": 556463302.0
+  },
+  {
+   "fecha": "2026-03-13",
+   "cierre": 733.71,
+   "apertura": 739.95,
+   "minimo": 728.3379,
+   "maximo": 746.89,
+   "volumen": 481854.0,
+   "monto_usd": 354704062.0
+  },
+  {
+   "fecha": "2026-03-16",
+   "cierre": 735.96,
+   "apertura": 733.53,
+   "minimo": 726.17,
+   "maximo": 737.395,
+   "volumen": 604690.0,
+   "monto_usd": 443682846.0
+  },
+  {
+   "fecha": "2026-03-17",
+   "cierre": 724.03,
+   "apertura": 734.44,
+   "minimo": 720.8001,
+   "maximo": 736.87,
+   "volumen": 764788.0,
+   "monto_usd": 554067437.0
+  },
+  {
+   "fecha": "2026-03-18",
+   "cierre": 724.84,
+   "apertura": 729.99,
+   "minimo": 720.0,
+   "maximo": 731.175,
+   "volumen": 545689.0,
+   "monto_usd": 396092812.0
+  },
+  {
+   "fecha": "2026-03-19",
+   "cierre": 714.15,
+   "apertura": 719.08,
+   "minimo": 707.01,
+   "maximo": 728.0,
+   "volumen": 849922.0,
+   "monto_usd": 607449045.0
+  },
+  {
+   "fecha": "2026-03-20",
+   "cierre": 706.95,
+   "apertura": 714.72,
+   "minimo": 701.0,
+   "maximo": 717.34,
+   "volumen": 1718224.0,
+   "monto_usd": 1215777230.0
+  },
+  {
+   "fecha": "2026-03-23",
+   "cierre": 680.0,
+   "apertura": 705.85,
+   "minimo": 678.745,
+   "maximo": 706.73,
+   "volumen": 1226263.0,
+   "monto_usd": 843931337.0
+  },
+  {
+   "fecha": "2026-03-24",
+   "cierre": 682.16,
+   "apertura": 670.0,
+   "minimo": 668.2,
+   "maximo": 689.29,
+   "volumen": 730962.0,
+   "monto_usd": 498786703.0
+  },
+  {
+   "fecha": "2026-03-25",
+   "cierre": 691.21,
+   "apertura": 685.48,
+   "minimo": 681.8001,
+   "maximo": 692.79,
+   "volumen": 579723.0,
+   "monto_usd": 399234462.0
+  },
+  {
+   "fecha": "2026-03-26",
+   "cierre": 691.99,
+   "apertura": 689.65,
+   "minimo": 687.475,
+   "maximo": 696.93,
+   "volumen": 543200.0,
+   "monto_usd": 375714653.0
+  },
+  {
+   "fecha": "2026-03-27",
+   "cierre": 679.0,
+   "apertura": 692.26,
+   "minimo": 677.96,
+   "maximo": 693.845,
+   "volumen": 581874.0,
+   "monto_usd": 397101692.0
+  },
+  {
+   "fecha": "2026-03-30",
+   "cierre": 671.59,
+   "apertura": 689.04,
+   "minimo": 663.925,
+   "maximo": 693.01,
+   "volumen": 927445.0,
+   "monto_usd": 623228782.0
+  },
+  {
+   "fecha": "2026-03-31",
+   "cierre": 682.24,
+   "apertura": 679.86,
+   "minimo": 667.2801,
+   "maximo": 685.52,
+   "volumen": 551308.0,
+   "monto_usd": 374600637.0
+  },
+  {
+   "fecha": "2026-04-01",
+   "cierre": 697.0,
+   "apertura": 689.34,
+   "minimo": 684.75,
+   "maximo": 702.18,
+   "volumen": 551454.0,
+   "monto_usd": 384505036.0
+  },
+  {
+   "fecha": "2026-04-02",
+   "cierre": 702.5,
+   "apertura": 700.7,
+   "minimo": 698.19,
+   "maximo": 708.55,
+   "volumen": 613281.0,
+   "monto_usd": 431627726.0
+  },
+  {
+   "fecha": "2026-04-06",
+   "cierre": 695.79,
+   "apertura": 701.0,
+   "minimo": 687.95,
+   "maximo": 703.06,
+   "volumen": 792547.0,
+   "monto_usd": 552025068.0
+  },
+  {
+   "fecha": "2026-04-07",
+   "cierre": 690.5,
+   "apertura": 690.14,
+   "minimo": 686.39,
+   "maximo": 696.785,
+   "volumen": 608490.0,
+   "monto_usd": 420622503.0
+  },
+  {
+   "fecha": "2026-04-08",
+   "cierre": 687.47,
+   "apertura": 677.47,
+   "minimo": 673.5,
+   "maximo": 690.79,
+   "volumen": 1300699.0,
+   "monto_usd": 892924393.0
+  },
+  {
+   "fecha": "2026-04-09",
+   "cierre": 690.57,
+   "apertura": 689.7,
+   "minimo": 685.0,
+   "maximo": 698.53,
+   "volumen": 777236.0,
+   "monto_usd": 537715448.0
+  },
+  {
+   "fecha": "2026-04-10",
+   "cierre": 673.73,
+   "apertura": 685.34,
+   "minimo": 665.0,
+   "maximo": 687.0,
+   "volumen": 499992.0,
+   "monto_usd": 338081845.0
+  },
+  {
+   "fecha": "2026-04-13",
+   "cierre": 681.31,
+   "apertura": 677.72,
+   "minimo": 677.01,
+   "maximo": 683.869,
+   "volumen": 515986.0,
+   "monto_usd": 351467061.0
+  },
+  {
+   "fecha": "2026-04-14",
+   "cierre": 680.13,
+   "apertura": 678.46,
+   "minimo": 674.549,
+   "maximo": 681.68,
+   "volumen": 535514.0,
+   "monto_usd": 363465692.0
+  },
+  {
+   "fecha": "2026-04-15",
+   "cierre": 678.59,
+   "apertura": 680.66,
+   "minimo": 676.0,
+   "maximo": 682.88,
+   "volumen": 547387.0,
+   "monto_usd": 371619638.0
+  },
+  {
+   "fecha": "2026-04-16",
+   "cierre": 672.77,
+   "apertura": 679.1,
+   "minimo": 669.895,
+   "maximo": 680.41,
+   "volumen": 670485.0,
+   "monto_usd": 451614514.0
+  },
+  {
+   "fecha": "2026-04-17",
+   "cierre": 665.26,
+   "apertura": 671.02,
+   "minimo": 663.02,
+   "maximo": 677.75,
+   "volumen": 745380.0,
+   "monto_usd": 497552467.0
+  },
+  {
+   "fecha": "2026-04-20",
+   "cierre": 656.98,
+   "apertura": 667.0,
+   "minimo": 653.36,
+   "maximo": 673.34,
+   "volumen": 787928.0,
+   "monto_usd": 519813592.0
+  },
+  {
+   "fecha": "2026-04-21",
+   "cierre": 611.13,
+   "apertura": 640.0,
+   "minimo": 610.39,
+   "maximo": 652.9999,
+   "volumen": 1632025.0,
+   "monto_usd": 1009963412.0
+  },
+  {
+   "fecha": "2026-04-22",
+   "cierre": 589.62,
+   "apertura": 611.1,
+   "minimo": 583.5,
+   "maximo": 615.0,
+   "volumen": 1304944.0,
+   "monto_usd": 773306643.0
+  },
+  {
+   "fecha": "2026-04-23",
+   "cierre": 587.66,
+   "apertura": 592.57,
+   "minimo": 583.23,
+   "maximo": 596.5,
+   "volumen": 1387121.0,
+   "monto_usd": 816827684.0
+  },
+  {
+   "fecha": "2026-04-24",
+   "cierre": 575.11,
+   "apertura": 582.32,
+   "minimo": 569.0,
+   "maximo": 582.78,
+   "volumen": 1041198.0,
+   "monto_usd": 597884715.0
+  },
+  {
+   "fecha": "2026-04-27",
+   "cierre": 575.28,
+   "apertura": 577.0,
+   "minimo": 569.56,
+   "maximo": 588.26,
+   "volumen": 932245.0,
+   "monto_usd": 537854979.0
+  },
+  {
+   "fecha": "2026-04-28",
+   "cierre": 577.82,
+   "apertura": 581.96,
+   "minimo": 570.66,
+   "maximo": 582.99,
+   "volumen": 585908.0,
+   "monto_usd": 337367511.0
+  },
+  {
+   "fecha": "2026-04-29",
+   "cierre": 572.41,
+   "apertura": 578.0,
+   "minimo": 567.3299,
+   "maximo": 582.13,
+   "volumen": 683931.0,
+   "monto_usd": 391485829.0
+  },
+  {
+   "fecha": "2026-04-30",
+   "cierre": 579.48,
+   "apertura": 574.14,
+   "minimo": 573.25,
+   "maximo": 580.74,
+   "volumen": 649737.0,
+   "monto_usd": 375542363.0
+  },
+  {
+   "fecha": "2026-05-01",
+   "cierre": 568.14,
+   "apertura": 578.745,
+   "minimo": 568.09,
+   "maximo": 580.86,
+   "volumen": 647148.0,
+   "monto_usd": 369562073.0
+  },
+  {
+   "fecha": "2026-05-04",
+   "cierre": 567.0,
+   "apertura": 567.31,
+   "minimo": 565.19,
+   "maximo": 577.5,
+   "volumen": 708092.0,
+   "monto_usd": 403550891.0
+  },
+  {
+   "fecha": "2026-05-05",
+   "cierre": 558.6,
+   "apertura": 570.05,
+   "minimo": 553.41,
+   "maximo": 570.5,
+   "volumen": 923670.0,
+   "monto_usd": 515126467.0
+  },
+  {
+   "fecha": "2026-05-06",
+   "cierre": 559.6,
+   "apertura": 558.97,
+   "minimo": 551.25,
+   "maximo": 560.62,
+   "volumen": 772801.0,
+   "monto_usd": 430678899.0
+  },
+  {
+   "fecha": "2026-05-07",
+   "cierre": 552.27,
+   "apertura": 559.23,
+   "minimo": 548.3,
+   "maximo": 561.32,
+   "volumen": 841481.0,
+   "monto_usd": 464125956.0
+  },
+  {
+   "fecha": "2026-05-08",
+   "cierre": 549.52,
+   "apertura": 554.97,
+   "minimo": 544.2401,
+   "maximo": 555.03,
+   "volumen": 742676.0,
+   "monto_usd": 407785244.0
+  },
+  {
+   "fecha": "2026-05-11",
+   "cierre": 548.21,
+   "apertura": 546.0,
+   "minimo": 544.12,
+   "maximo": 554.2481,
+   "volumen": 667698.0,
+   "monto_usd": 366979759.0
+  },
+  {
+   "fecha": "2026-05-12",
+   "cierre": 558.3,
+   "apertura": 550.0,
+   "minimo": 546.57,
+   "maximo": 559.46,
+   "volumen": 684924.0,
+   "monto_usd": 380352822.0
+  },
+  {
+   "fecha": "2026-05-13",
+   "cierre": 551.8,
+   "apertura": 554.35,
+   "minimo": 544.1,
+   "maximo": 554.35,
+   "volumen": 568213.0,
+   "monto_usd": 312865659.0
+  },
+  {
+   "fecha": "2026-05-14",
+   "cierre": 548.65,
+   "apertura": 553.54,
+   "minimo": 547.285,
+   "maximo": 555.97,
+   "volumen": 524720.0,
+   "monto_usd": 288365266.0
+  },
+  {
+   "fecha": "2026-05-15",
+   "cierre": 540.69,
+   "apertura": 548.72,
+   "minimo": 539.14,
+   "maximo": 552.8,
+   "volumen": 648912.0,
+   "monto_usd": 351947613.0
+  },
+  {
+   "fecha": "2026-05-18",
+   "cierre": 550.0,
+   "apertura": 540.0,
+   "minimo": 539.0,
+   "maximo": 552.75,
+   "volumen": 1286227.0,
+   "monto_usd": 706009649.0
+  },
+  {
+   "fecha": "2026-05-19",
+   "cierre": 556.34,
+   "apertura": 552.95,
+   "minimo": 550.08,
+   "maximo": 557.09,
+   "volumen": 829898.0,
+   "monto_usd": 460327354.0
+  },
+  {
+   "fecha": "2026-05-20",
+   "cierre": 552.17,
+   "apertura": 556.06,
+   "minimo": 547.565,
+   "maximo": 556.06,
+   "volumen": 966274.0,
+   "monto_usd": 532709255.0
+  },
+  {
+   "fecha": "2026-05-21",
+   "cierre": 551.58,
+   "apertura": 553.62,
+   "minimo": 546.76,
+   "maximo": 555.96,
+   "volumen": 799528.0,
+   "monto_usd": 441152207.0
+  },
+  {
+   "fecha": "2026-05-22",
+   "cierre": 555.58,
+   "apertura": 552.54,
+   "minimo": 550.49,
+   "maximo": 557.69,
+   "volumen": 652267.0,
+   "monto_usd": 362041841.0
+  },
+  {
+   "fecha": "2026-05-26",
+   "cierre": 556.8,
+   "apertura": 557.73,
+   "minimo": 550.34,
+   "maximo": 558.99,
+   "volumen": 607115.0,
+   "monto_usd": 337130219.0
+  },
+  {
+   "fecha": "2026-05-27",
+   "cierre": 551.34,
+   "apertura": 552.35,
+   "minimo": 548.55,
+   "maximo": 555.49,
+   "volumen": 520732.0,
+   "monto_usd": 287526007.0
+  },
+  {
+   "fecha": "2026-05-28",
+   "cierre": 559.29,
+   "apertura": 552.26,
+   "minimo": 551.34,
+   "maximo": 560.55,
+   "volumen": 1060239.0,
+   "monto_usd": 591298085.0
+  },
+  {
+   "fecha": "2026-05-29",
+   "cierre": 563.68,
+   "apertura": 561.31,
+   "minimo": 551.03,
+   "maximo": 563.93,
+   "volumen": 1975853.0,
+   "monto_usd": 1110815358.0
+  },
+  {
+   "fecha": "2026-06-01",
+   "cierre": 539.22,
+   "apertura": 559.93,
+   "minimo": 538.62,
+   "maximo": 559.93,
+   "volumen": 1321747.0,
+   "monto_usd": 716496775.0
+  },
+  {
+   "fecha": "2026-06-02",
+   "cierre": 536.59,
+   "apertura": 535.17,
+   "minimo": 531.8,
+   "maximo": 538.4253,
+   "volumen": 1333447.0,
+   "monto_usd": 714394527.0
+  },
+  {
+   "fecha": "2026-06-03",
+   "cierre": 526.06,
+   "apertura": 533.54,
+   "minimo": 525.73,
+   "maximo": 538.43,
+   "volumen": 1220882.0,
+   "monto_usd": 647064128.0
+  },
+  {
+   "fecha": "2026-06-04",
+   "cierre": 545.17,
+   "apertura": 532.5,
+   "minimo": 531.33,
+   "maximo": 545.43,
+   "volumen": 1014259.0,
+   "monto_usd": 546348966.0
+  },
+  {
+   "fecha": "2026-06-05",
+   "cierre": 544.4,
+   "apertura": 550.0,
+   "minimo": 540.165,
+   "maximo": 551.96,
+   "volumen": 1069825.0,
+   "monto_usd": 583396146.0
+  },
+  {
+   "fecha": "2026-06-08",
+   "cierre": 540.81,
+   "apertura": 542.03,
+   "minimo": 531.5,
+   "maximo": 546.8599,
+   "volumen": 1033213.0,
+   "monto_usd": 556946871.0
+  },
+  {
+   "fecha": "2026-06-09",
+   "cierre": 548.67,
+   "apertura": 538.35,
+   "minimo": 537.44,
+   "maximo": 548.75,
+   "volumen": 968157.0,
+   "monto_usd": 527377304.0
+  },
+  {
+   "fecha": "2026-06-10",
+   "cierre": 542.14,
+   "apertura": 552.9,
+   "minimo": 541.0,
+   "maximo": 552.92,
+   "volumen": 751210.0,
+   "monto_usd": 408835804.0
+  },
+  {
+   "fecha": "2026-06-11",
+   "cierre": 552.52,
+   "apertura": 543.87,
+   "minimo": 541.3778,
+   "maximo": 559.7,
+   "volumen": 896876.0,
+   "monto_usd": 497341128.0
+  },
+  {
+   "fecha": "2026-06-12",
+   "cierre": 550.33,
+   "apertura": 553.0,
+   "minimo": 546.99,
+   "maximo": 554.06,
+   "volumen": 800971.0,
+   "monto_usd": 440421236.0
+  },
+  {
+   "fecha": "2026-06-15",
+   "cierre": 544.73,
+   "apertura": 542.35,
+   "minimo": 536.74,
+   "maximo": 546.07,
+   "volumen": 1073731.0,
+   "monto_usd": 583336615.0
+  },
+  {
+   "fecha": "2026-06-16",
+   "cierre": 551.21,
+   "apertura": 545.9,
+   "minimo": 544.35,
+   "maximo": 554.2,
+   "volumen": 741415.0,
+   "monto_usd": 408525439.0
+  },
+  {
+   "fecha": "2026-06-17",
+   "cierre": 550.15,
+   "apertura": 549.0,
+   "minimo": 544.35,
+   "maximo": 558.7999,
+   "volumen": 709547.0,
+   "monto_usd": 391711362.0
+  },
+  {
+   "fecha": "2026-06-18",
+   "cierre": 521.5,
+   "apertura": 552.14,
+   "minimo": 515.38,
+   "maximo": 553.5,
+   "volumen": 2402885.0,
+   "monto_usd": 1256314621.0
+  },
+  {
+   "fecha": "2026-06-22",
+   "cierre": 507.33,
+   "apertura": 515.59,
+   "minimo": 503.68,
+   "maximo": 516.07,
+   "volumen": 1122977.0,
+   "monto_usd": 570041703.0
+  },
+  {
+   "fecha": "2026-06-23",
+   "cierre": 513.22,
+   "apertura": 519.07,
+   "minimo": 509.48,
+   "maximo": 519.63,
+   "volumen": 790758.0,
+   "monto_usd": 406196515.0
+  },
+  {
+   "fecha": "2026-06-24",
+   "cierre": 503.01,
+   "apertura": 515.14,
+   "minimo": 502.77,
+   "maximo": 517.1298,
+   "volumen": 1222611.0,
+   "monto_usd": 618121406.0
+  },
+  {
+   "fecha": "2026-06-25",
+   "cierre": 499.33,
+   "apertura": 501.0,
+   "minimo": 498.75,
+   "maximo": 512.435,
+   "volumen": 775307.0,
+   "monto_usd": 389648347.0
+  },
+  {
+   "fecha": "2026-06-26",
+   "cierre": 500.03,
+   "apertura": 501.75,
+   "minimo": 498.13,
+   "maximo": 507.2799,
+   "volumen": 1584491.0,
+   "monto_usd": 795016082.0
+  },
+  {
+   "fecha": "2026-06-29",
+   "cierre": 496.02,
+   "apertura": 502.0,
+   "minimo": 493.84,
+   "maximo": 503.81,
+   "volumen": 1149509.0,
+   "monto_usd": 570757622.0
+  },
+  {
+   "fecha": "2026-06-30",
+   "cierre": 509.31,
+   "apertura": 499.76,
+   "minimo": 495.1,
+   "maximo": 509.57,
+   "volumen": 1293486.0,
+   "monto_usd": 654449896.0
+  },
+  {
+   "fecha": "2026-07-01",
+   "cierre": 519.95,
+   "apertura": 514.44,
+   "minimo": 511.08,
+   "maximo": 525.31,
+   "volumen": 902805.0,
+   "monto_usd": 469443097.0
+  },
+  {
+   "fecha": "2026-07-02",
+   "cierre": 549.01,
+   "apertura": 527.89,
+   "minimo": 527.89,
+   "maximo": 549.01,
+   "volumen": 1741918.0,
+   "monto_usd": 947124752.0
+  },
+  {
+   "fecha": "2026-07-06",
+   "cierre": 547.75,
+   "apertura": 547.0,
+   "minimo": 537.3702,
+   "maximo": 548.5098,
+   "volumen": 917811.0,
+   "monto_usd": 500658918.0
+  },
+  {
+   "fecha": "2026-07-07",
+   "cierre": 549.04,
+   "apertura": 551.04,
+   "minimo": 544.275,
+   "maximo": 552.625,
+   "volumen": 702946.0,
+   "monto_usd": 385040930.0
+  },
+  {
+   "fecha": "2026-07-08",
+   "cierre": 545.11,
+   "apertura": 546.04,
+   "minimo": 539.0,
+   "maximo": 548.15,
+   "volumen": 955393.0,
+   "monto_usd": 520018830.0
+  },
+  {
+   "fecha": "2026-07-09",
+   "cierre": 532.23,
+   "apertura": 537.55,
+   "minimo": 528.02,
+   "maximo": 539.65,
+   "volumen": 938269.0,
+   "monto_usd": 498801357.0
+  },
+  {
+   "fecha": "2026-07-10",
+   "cierre": 539.63,
+   "apertura": 534.67,
+   "minimo": 529.935,
+   "maximo": 541.08,
+   "volumen": 455886.0,
+   "monto_usd": 244923244.0
+  },
+  {
+   "fecha": "2026-07-13",
+   "cierre": 541.82,
+   "apertura": 540.52,
+   "minimo": 536.85,
+   "maximo": 545.54,
+   "volumen": 633639.0,
+   "monto_usd": 342445104.0
+  },
+  {
+   "fecha": "2026-07-14",
+   "cierre": 528.67,
+   "apertura": 536.88,
+   "minimo": 527.94,
+   "maximo": 544.11,
+   "volumen": 773506.0,
+   "monto_usd": 412169739.0
+  },
+  {
+   "fecha": "2026-07-15",
+   "cierre": 525.22,
+   "apertura": 531.88,
+   "minimo": 524.87,
+   "maximo": 535.92,
+   "volumen": 824641.0,
+   "monto_usd": 435289035.0
+  },
+  {
+   "fecha": "2026-07-16",
+   "cierre": 518.65,
+   "apertura": 525.81,
+   "minimo": 517.16,
+   "maximo": 529.44,
+   "volumen": 1270191.0,
+   "monto_usd": 661326351.0
+  },
+  {
+   "fecha": "2026-07-17",
+   "cierre": 521.57,
+   "apertura": 525.07,
+   "minimo": 520.66,
+   "maximo": 538.96,
+   "volumen": 1047626.0,
+   "monto_usd": 551801227.0
+  },
+  {
+   "fecha": "2026-07-20",
+   "cierre": 523.96,
+   "apertura": 523.48,
+   "minimo": 522.745,
+   "maximo": 533.065,
+   "volumen": 1032049.0,
+   "monto_usd": 544929165.0
+  },
+  {
+   "fecha": "2026-07-21",
+   "cierre": 512.29,
+   "apertura": 490.0,
+   "minimo": 479.02,
+   "maximo": 514.14,
+   "volumen": 2446952.0,
+   "monto_usd": 1240831381.0
+  },
+  {
+   "fecha": "2026-07-22",
+   "cierre": 525.28,
+   "apertura": 523.09,
+   "minimo": 518.465,
+   "maximo": 535.64,
+   "volumen": 1056525.0,
+   "monto_usd": 557076617.0
+  },
+  {
+   "fecha": "2026-07-23",
+   "cierre": 533.48,
+   "apertura": 537.19,
+   "minimo": 526.36,
+   "maximo": 546.76,
+   "volumen": 1084013.0,
+   "monto_usd": 580152217.0
+  },
+  {
+   "fecha": "2026-07-24",
+   "cierre": 542.24,
+   "apertura": 535.5,
+   "minimo": 534.4474,
+   "maximo": 544.67,
+   "volumen": 655186.0,
+   "monto_usd": 354597894.0
+  },
+  {
+   "fecha": "2026-07-27",
+   "cierre": 547.58,
+   "apertura": 542.44,
+   "minimo": 542.22,
+   "maximo": 552.0,
+   "volumen": 680276.0,
+   "monto_usd": 372921046.0
+  },
+  {
+   "fecha": "2026-07-28",
+   "cierre": 549.22,
+   "apertura": 558.0,
+   "minimo": 548.58,
+   "maximo": 565.42,
+   "volumen": 944461.0,
+   "monto_usd": 522478254.0
+  },
+  {
+   "fecha": "2026-07-29",
+   "cierre": 535.05,
+   "apertura": 554.35,
+   "minimo": 534.24,
+   "maximo": 554.9325,
+   "volumen": 760952.0,
+   "monto_usd": 410995794.0
+  },
+  {
+   "fecha": "2026-07-30",
+   "cierre": 534.85,
+   "apertura": 529.07,
+   "minimo": 519.77,
+   "maximo": 535.03,
+   "volumen": 774928.0,
+   "monto_usd": 410253347.0
+  },
+  {
+   "fecha": "2026-07-31",
+   "cierre": 542.48,
+   "apertura": 534.85,
+   "minimo": 530.0801,
+   "maximo": 545.22,
+   "volumen": 852894.0,
+   "monto_usd": 461531198.0
+  },
+  {
+   "fecha": "2026-08-03",
+   "cierre": 548.47,
+   "apertura": 546.02,
+   "minimo": 543.53,
+   "maximo": 557.6099,
+   "volumen": 673029.0,
+   "monto_usd": 369007340.0
+  },
+  {
+   "fecha": "2026-08-04",
+   "cierre": 551.55,
+   "apertura": 547.77,
+   "minimo": 541.0896,
+   "maximo": 555.0,
+   "volumen": 753095.0,
+   "monto_usd": 414846075.0
+  },
+  {
+   "fecha": "2026-08-05",
+   "cierre": 557.47,
+   "apertura": 555.88,
+   "minimo": 549.77,
+   "maximo": 557.57,
+   "volumen": 628222.0,
+   "monto_usd": 348793190.0
+  },
+  {
+   "fecha": "2026-08-06",
+   "cierre": 567.74,
+   "apertura": 563.81,
+   "minimo": 559.0,
+   "maximo": 568.68,
+   "volumen": 604025.0,
+   "monto_usd": 341657103.0
+  },
+  {
+   "fecha": "2026-08-07",
+   "cierre": 571.58,
+   "apertura": 566.8,
+   "minimo": 560.54,
+   "maximo": 572.75,
+   "volumen": 442997.0,
+   "monto_usd": 251929305.0
+  },
+  {
+   "fecha": "2026-08-10",
+   "cierre": 577.89,
+   "apertura": 575.0,
+   "minimo": 573.11,
+   "maximo": 581.59,
+   "volumen": 643270.0,
+   "monto_usd": 370857494.0
+  },
+  {
+   "fecha": "2026-08-11",
+   "cierre": 575.69,
+   "apertura": 575.94,
+   "minimo": 572.9801,
+   "maximo": 580.75,
+   "volumen": 430424.0,
+   "monto_usd": 247796888.0
+  },
+  {
+   "fecha": "2026-08-12",
+   "cierre": 577.32,
+   "apertura": 571.07,
+   "minimo": 569.51,
+   "maximo": 580.035,
+   "volumen": 626627.0,
+   "monto_usd": 361203287.0
+  },
+  {
+   "fecha": "2026-08-13",
+   "cierre": 574.74,
+   "apertura": 578.72,
+   "minimo": 571.92,
+   "maximo": 579.94,
+   "volumen": 409576.0,
+   "monto_usd": 235475462.0
+  },
+  {
+   "fecha": "2026-08-14",
+   "cierre": 585.87,
+   "apertura": 579.36,
+   "minimo": 574.4396,
+   "maximo": 586.36,
+   "volumen": 599413.0,
+   "monto_usd": 350454934.0
+  },
+  {
+   "fecha": "2026-08-17",
+   "cierre": 570.2,
+   "apertura": 581.85,
+   "minimo": 569.245,
+   "maximo": 584.9627,
+   "volumen": 660153.0,
+   "monto_usd": 379058380.0
+  },
+  {
+   "fecha": "2026-08-18",
+   "cierre": 589.14,
+   "apertura": 579.07,
+   "minimo": 576.2,
+   "maximo": 594.51,
+   "volumen": 764077.0,
+   "monto_usd": 450449354.0
+  },
+  {
+   "fecha": "2026-08-19",
+   "cierre": 582.84,
+   "apertura": 583.35,
+   "minimo": 578.85,
+   "maximo": 591.545,
+   "volumen": 671754.0,
+   "monto_usd": 393292797.0
+  },
+  {
+   "fecha": "2026-08-20",
+   "cierre": 563.86,
+   "apertura": 580.74,
+   "minimo": 563.425,
+   "maximo": 586.0,
+   "volumen": 1236277.0,
+   "monto_usd": 701769287.0
+  },
+  {
+   "fecha": "2026-08-21",
+   "cierre": 551.03,
+   "apertura": 566.14,
+   "minimo": 550.18,
+   "maximo": 567.505,
+   "volumen": 926938.0,
+   "monto_usd": 513379260.0
+  },
+  {
+   "fecha": "2026-08-24",
+   "cierre": 549.28,
+   "apertura": 553.0,
+   "minimo": 546.5,
+   "maximo": 553.0,
+   "volumen": 440972.0,
+   "monto_usd": 242295303.0
+  },
+  {
+   "fecha": "2026-08-25",
+   "cierre": 542.52,
+   "apertura": 547.82,
+   "minimo": 540.04,
+   "maximo": 549.79,
+   "volumen": 554207.0,
+   "monto_usd": 301035684.0
+  },
+  {
+   "fecha": "2026-08-26",
+   "cierre": 549.95,
+   "apertura": 543.08,
+   "minimo": 543.08,
+   "maximo": 553.61,
+   "volumen": 561369.0,
+   "monto_usd": 309086918.0
+  },
+  {
+   "fecha": "2026-08-27",
+   "cierre": 545.13,
+   "apertura": 547.06,
+   "minimo": 542.74,
+   "maximo": 548.305,
+   "volumen": 814433.0,
+   "monto_usd": 444147966.0
+  },
+  {
+   "fecha": "2026-08-28",
+   "cierre": 545.57,
+   "apertura": 547.37,
+   "minimo": 542.785,
+   "maximo": 547.675,
+   "volumen": 392947.0,
+   "monto_usd": 214299480.0
+  },
+  {
+   "fecha": "2026-08-31",
+   "cierre": 539.7,
+   "apertura": 539.63,
+   "minimo": 537.0,
+   "maximo": 541.2993,
+   "volumen": 764942.0,
+   "monto_usd": 412660756.0
+  },
+  {
+   "fecha": "2026-09-01",
+   "cierre": 532.91,
+   "apertura": 543.1,
+   "minimo": 530.13,
+   "maximo": 549.77,
+   "volumen": 499420.0,
+   "monto_usd": 267119932.0
+  },
+  {
+   "fecha": "2026-09-02",
+   "cierre": 523.82,
+   "apertura": 534.84,
+   "minimo": 523.72,
+   "maximo": 535.86,
+   "volumen": 759551.0,
+   "monto_usd": 399239845.0
+  },
+  {
+   "fecha": "2026-09-03",
+   "cierre": 528.24,
+   "apertura": 529.2,
+   "minimo": 521.66,
+   "maximo": 534.7,
+   "volumen": 874208.0,
+   "monto_usd": 461369326.0
+  },
+  {
+   "fecha": "2026-09-04",
+   "cierre": 514.98,
+   "apertura": 525.56,
+   "minimo": 512.54,
+   "maximo": 525.56,
+   "volumen": 914005.0,
+   "monto_usd": 472056406.0
+  },
+  {
+   "fecha": "2026-09-08",
+   "cierre": 518.58,
+   "apertura": 516.0,
+   "minimo": 515.06,
+   "maximo": 523.67,
+   "volumen": 1207786.0,
+   "monto_usd": 626874390.0
+  },
+  {
+   "fecha": "2026-09-09",
+   "cierre": 515.57,
+   "apertura": 521.67,
+   "minimo": 515.51,
+   "maximo": 526.94,
+   "volumen": 698830.0,
+   "monto_usd": 361814206.0
+  },
+  {
+   "fecha": "2026-09-10",
+   "cierre": 518.95,
+   "apertura": 517.05,
+   "minimo": 516.0001,
+   "maximo": 523.38,
+   "volumen": 934212.0,
+   "monto_usd": 484881821.0
+  },
+  {
+   "fecha": "2026-09-11",
+   "cierre": 518.97,
+   "apertura": 522.0,
+   "minimo": 515.245,
+   "maximo": 523.0137,
+   "volumen": 588207.0,
+   "monto_usd": 305284249.0
+  },
+  {
+   "fecha": "2026-09-14",
+   "cierre": 527.39,
+   "apertura": 524.37,
+   "minimo": 521.01,
+   "maximo": 534.3,
+   "volumen": 887280.0,
+   "monto_usd": 468907169.0
+  },
+  {
+   "fecha": "2026-09-15",
+   "cierre": 531.25,
+   "apertura": 529.31,
+   "minimo": 524.36,
+   "maximo": 536.6199,
+   "volumen": 771510.0,
+   "monto_usd": 409940748.0
+  },
+  {
+   "fecha": "2026-09-16",
+   "cierre": 530.78,
+   "apertura": 530.0,
+   "minimo": 527.23,
+   "maximo": 534.4,
+   "volumen": 538082.0,
+   "monto_usd": 285516803.0
+  },
+  {
+   "fecha": "2026-09-17",
+   "cierre": 524.0,
+   "apertura": 530.21,
+   "minimo": 518.335,
+   "maximo": 534.86,
+   "volumen": 1100080.0,
+   "monto_usd": 577277072.0
+  },
+  {
+   "fecha": "2026-09-18",
+   "cierre": 527.39,
+   "apertura": 523.68,
+   "minimo": 519.9,
+   "maximo": 528.27,
+   "volumen": 1259162.0,
+   "monto_usd": 662374760.0
+  },
+  {
+   "fecha": "2026-09-21",
+   "cierre": 526.66,
+   "apertura": 524.49,
+   "minimo": 517.47,
+   "maximo": 527.03,
+   "volumen": 1077597.0,
+   "monto_usd": 565299113.0
+  },
+  {
+   "fecha": "2026-09-22",
+   "cierre": 509.86,
+   "apertura": 527.15,
+   "minimo": 505.7505,
+   "maximo": 529.0,
+   "volumen": 1001784.0,
+   "monto_usd": 511172287.0
+  },
+  {
+   "fecha": "2026-09-23",
+   "cierre": 514.42,
+   "apertura": 510.46,
+   "minimo": 510.07,
+   "maximo": 520.8,
+   "volumen": 851995.0,
+   "monto_usd": 438863666.0
+  },
+  {
+   "fecha": "2026-09-24",
+   "cierre": 508.98,
+   "apertura": 514.65,
+   "minimo": 508.43,
+   "maximo": 518.81,
+   "volumen": 537121.0,
+   "monto_usd": 275303690.0
+  },
+  {
+   "fecha": "2026-09-25",
+   "cierre": 510.52,
+   "apertura": 509.1,
+   "minimo": 507.01,
+   "maximo": 513.225,
+   "volumen": 535551.0,
+   "monto_usd": 273140817.0
+  },
+  {
+   "fecha": "2026-09-28",
+   "cierre": 505.8,
+   "apertura": 509.05,
+   "minimo": 503.94,
+   "maximo": 513.84,
+   "volumen": 557518.0,
+   "monto_usd": 283115232.0
+  },
+  {
+   "fecha": "2026-09-29",
+   "cierre": 504.61,
+   "apertura": 503.22,
+   "minimo": 502.1,
+   "maximo": 508.75,
+   "volumen": 694166.0,
+   "monto_usd": 349368927.0
+  },
+  {
+   "fecha": "2026-09-30",
+   "cierre": 483.48,
+   "apertura": 483.0,
+   "minimo": 479.9,
+   "maximo": 488.4599,
+   "volumen": 1476256.0,
+   "monto_usd": 714773098.0
+  },
+  {
+   "fecha": "2026-10-01",
+   "cierre": 482.0,
+   "apertura": 483.51,
+   "minimo": 481.4,
+   "maximo": 486.82,
+   "volumen": 1041922.0,
+   "monto_usd": 503541853.0
+  },
+  {
+   "fecha": "2026-10-02",
+   "cierre": 478.0,
+   "apertura": 478.94,
+   "minimo": 470.06,
+   "maximo": 481.86,
+   "volumen": 2683713.0,
+   "monto_usd": 1282356392.0
+  },
+  {
+   "fecha": "2026-10-05",
+   "cierre": 476.11,
+   "apertura": 479.98,
+   "minimo": 473.9508,
+   "maximo": 480.66,
+   "volumen": 1201030.0,
+   "monto_usd": 573007439.0
+  },
+  {
+   "fecha": "2026-10-06",
+   "cierre": 483.11,
+   "apertura": 476.39,
+   "minimo": 474.0001,
+   "maximo": 485.7,
+   "volumen": 1010795.0,
+   "monto_usd": 486185884.0
+  },
+  {
+   "fecha": "2026-10-07",
+   "cierre": 473.46,
+   "apertura": 484.58,
+   "minimo": 472.97,
+   "maximo": 485.56,
+   "volumen": 716878.0,
+   "monto_usd": 341290390.0
+  },
+  {
+   "fecha": "2026-10-08",
+   "cierre": 484.48,
+   "apertura": 474.82,
+   "minimo": 471.355,
+   "maximo": 486.935,
+   "volumen": 1087570.0,
+   "monto_usd": 524805367.0
+  },
+  {
+   "fecha": "2026-10-09",
+   "cierre": 480.72,
+   "apertura": 480.04,
+   "minimo": 478.36,
+   "maximo": 484.135,
+   "volumen": 613472.0,
+   "monto_usd": 294960240.0
+  },
+  {
+   "fecha": "2026-10-12",
+   "cierre": 485.0,
+   "apertura": 482.69,
+   "minimo": 480.5,
+   "maximo": 486.63,
+   "volumen": 573695.0,
+   "monto_usd": 277876483.0
+  },
+  {
+   "fecha": "2026-10-13",
+   "cierre": 481.38,
+   "apertura": 486.79,
+   "minimo": 479.0,
+   "maximo": 487.26,
+   "volumen": 823419.0,
+   "monto_usd": 396937670.0
+  },
+  {
+   "fecha": "2026-10-14",
+   "cierre": 495.69,
+   "apertura": 485.6,
+   "minimo": 483.24,
+   "maximo": 499.26,
+   "volumen": 1219434.0,
+   "monto_usd": 602710786.0
+  },
+  {
+   "fecha": "2026-10-15",
+   "cierre": 499.63,
+   "apertura": 505.61,
+   "minimo": 496.59,
+   "maximo": 508.09,
+   "volumen": 1332375.0,
+   "monto_usd": 666462024.0
+  },
+  {
+   "fecha": "2026-10-16",
+   "cierre": 519.86,
+   "apertura": 505.97,
+   "minimo": 503.75,
+   "maximo": 520.57,
+   "volumen": 1323239.0,
+   "monto_usd": 682332192.0
+  },
+  {
+   "fecha": "2026-10-19",
+   "cierre": 510.65,
+   "apertura": 511.0,
+   "minimo": 508.5,
+   "maximo": 517.12,
+   "volumen": 1024799.0,
+   "monto_usd": 525169093.0
+  },
+  {
+   "fecha": "2026-10-20",
+   "cierre": 534.0,
+   "apertura": 523.64,
+   "minimo": 523.64,
+   "maximo": 550.89,
+   "volumen": 2082642.0,
+   "monto_usd": 1120147262.0
+  },
+  {
+   "fecha": "2026-10-21",
+   "cierre": 539.31,
+   "apertura": 537.2,
+   "minimo": 535.0,
+   "maximo": 544.33,
+   "volumen": 1188788.0,
+   "monto_usd": 641411741.0
+  },
+  {
+   "fecha": "2026-10-22",
+   "cierre": 552.35,
+   "apertura": 544.7,
+   "minimo": 542.5,
+   "maximo": 556.56,
+   "volumen": 1062403.0,
+   "monto_usd": 586100221.0
+  },
+  {
+   "fecha": "2026-10-23",
+   "cierre": 551.44,
+   "apertura": 546.59,
+   "minimo": 541.3501,
+   "maximo": 553.5,
+   "volumen": 819050.0,
+   "monto_usd": 450172789.0
+  },
+  {
+   "fecha": "2026-10-26",
+   "cierre": 565.41,
+   "apertura": 553.86,
+   "minimo": 553.86,
+   "maximo": 566.48,
+   "volumen": 791815.0,
+   "monto_usd": 445492558.0
+  },
+  {
+   "fecha": "2026-10-27",
+   "cierre": 551.23,
+   "apertura": 562.8,
+   "minimo": 550.36,
+   "maximo": 566.5599,
+   "volumen": 901430.0,
+   "monto_usd": 500221936.0
+  }
+ ],
+ "fuente": "Refinitiv, 2026-10-26_precios_noc.xlsx",
+ "fecha_archivo": "2026-10-26"
+}

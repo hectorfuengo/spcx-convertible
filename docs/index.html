@@ -1,17 +1,198 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SPCX Convertible</title>
-  <style>
-    body { font-family: system-ui, sans-serif; max-width: 720px; margin: 3rem auto; padding: 0 1rem; line-height: 1.5; }
-    code { background: #eee; padding: 0 .3em; border-radius: 3px; }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SPCX Convertible</title>
+<style>
+  :root { --bg:#f6f7f9; --card:#fff; --ink:#14181f; --mut:#5d6675; --line:#e2e5ea; --acc:#1f4fd8; --pos:#0b7a4b; --neg:#b3261e; --warn:#8a5a00; --warnbg:#fff4d6; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#0f1218; --card:#171b23; --ink:#eceff4; --mut:#9aa4b5; --line:#2a303b; --acc:#7da2ff; --pos:#4cc790; --neg:#ff8a80; --warn:#f3c56b; --warnbg:#2b2412; } }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; }
+  header { padding:28px 16px 12px; max-width:1100px; margin:0 auto; }
+  h1 { margin:0 0 4px; font-size:26px; }
+  .sub { color:var(--mut); margin:0; }
+  nav { position:sticky; top:0; background:var(--bg); border-bottom:1px solid var(--line); z-index:5; }
+  nav div { max-width:1100px; margin:0 auto; padding:8px 16px; display:flex; gap:16px; overflow-x:auto; white-space:nowrap; }
+  nav a { color:var(--mut); text-decoration:none; font-weight:600; font-size:14px; }
+  nav a:hover { color:var(--acc); }
+  main { max-width:1100px; margin:0 auto; padding:8px 16px 48px; }
+  section { margin-top:28px; }
+  h2 { font-size:19px; margin:0 0 12px; }
+  .grid { display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:14px 16px; }
+  .kpi .l { color:var(--mut); font-size:13px; }
+  .kpi .v { font-size:26px; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+  .kpi .n { color:var(--mut); font-size:12.5px; margin-top:2px; }
+  .neg { color:var(--neg); } .pos { color:var(--pos); }
+  table { border-collapse:collapse; width:100%; font-variant-numeric:tabular-nums; }
+  th,td { padding:7px 10px; text-align:right; border-bottom:1px solid var(--line); font-size:14px; }
+  th:first-child,td:first-child { text-align:left; }
+  th { color:var(--mut); font-weight:600; font-size:13px; }
+  .scroll { overflow-x:auto; }
+  .bar { display:flex; height:46px; border-radius:8px; overflow:hidden; margin:10px 0 6px; font-weight:600; color:#fff; }
+  .bar div { display:flex; align-items:center; justify-content:center; font-size:14px; padding:0 8px; white-space:nowrap; }
+  .b1 { background:#3d5a99; } .b2 { background:#c27a1a; }
+  .tag { display:inline-block; padding:1px 8px; border-radius:99px; font-size:12px; font-weight:600; border:1px solid var(--line); color:var(--mut); }
+  .tag.dato { color:var(--pos); border-color:var(--pos); } .tag.sup { color:var(--warn); border-color:var(--warn); } .tag.calc { color:var(--acc); border-color:var(--acc); }
+  .warn { background:var(--warnbg); color:var(--warn); border-radius:8px; padding:10px 14px; margin:6px 0; font-size:14px; }
+  .two { display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); }
+  .ch { position:relative; height:280px; }
+  .mut { color:var(--mut); font-size:13px; }
+  .wide { grid-column:1/-1; } td.nw { white-space:nowrap; }
+  td.cell { text-align:center; }
+  td.base { outline:2px solid var(--acc); outline-offset:-2px; font-weight:700; }
+  footer { color:var(--mut); font-size:12.5px; max-width:1100px; margin:0 auto; padding:0 16px 40px; }
+</style>
 </head>
 <body>
-  <h1>SPCX Convertible</h1>
-  <p>Sitio de prueba. Si ves esta página en GitHub Pages, la publicación funciona.</p>
-  <p>Aquí se construirán el resumen ejecutivo, mercado, valuación del convertible, cobertura y escenarios.</p>
+<header>
+  <h1>Convertible de SPCX</h1>
+  <p class="sub" id="sub">Cargando datos…</p>
+</header>
+<nav><div>
+  <a href="#resumen">Resumen</a><a href="#valuacion">Valuación</a><a href="#sens">Sensibilidades</a><a href="#mercado">Mercado</a>
+  <a href="#deuda">Deuda y caja</a><a href="#supuestos">Supuestos</a><a href="#validacion">Validación</a>
+</div></nav>
+<main id="app"></main>
+<footer>Avance académico (EGADE). Datos de LSEG/Refinitiv; cálculos en Python (<code>src/</code>). Los supuestos del equipo no son recomendaciones de inversión.</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+const n = (x, d = 1) => x == null ? "—" : Number(x).toLocaleString("es-MX", { minimumFractionDigits: d, maximumFractionDigits: d });
+const pct = (x, d = 2) => x == null ? "—" : n(x * 100, d) + "%";
+const usd = (x, d = 1) => x == null ? "—" : "$" + n(x, d);
+const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const tag = (estado) => {
+  const c = /dato/.test(estado) ? "dato" : /supuesto/.test(estado) ? "sup" : "calc";
+  return `<span class="tag ${c}">${esc(estado)}</span>`;
+};
+const get = (f) => fetch("data/" + f).then((r) => { if (!r.ok) throw new Error(f + ": " + r.status); return r.json(); });
+
+Promise.all(["valuacion.json", "resumen_mercado.json", "precios_spcx.json", "treasuries.json", "bonos.json"].map(get))
+  .then(([v, res, px, ust, bonos]) => render(v, res, px, ust, bonos))
+  .catch((e) => { $("#sub").textContent = "No se pudieron cargar los datos: " + e.message; });
+
+function render(v, res, px, ust, bonos) {
+  const b = v.base, S = b.S;
+  $("#sub").innerHTML = `Valuación al ${esc(v.fecha_valuacion)} · bono de 1,000 USD · prima ${pct(b.prima, 0)} · plazo ${b.plazo} años`;
+  const neg = b.cupon_equilibrio < 0;
+  const deuda = res.deuda_total_musd, caja = res.caja_e_inversiones_cp_musd, ef = res.efectivo_musd, dn = res.deuda_neta_musd;
+  const m = v.validacion_molson_coors;
+
+  $("#app").innerHTML = `
+  <section id="resumen"><h2>Resumen</h2>
+    <div class="grid">
+      <div class="card kpi"><div class="l">Precio SPCX</div><div class="v">${usd(S, 2)}</div><div class="n">Cierre ${esc(res.precio_referencia_spcx.fecha)}</div></div>
+      <div class="card kpi"><div class="l">Valor de la opción por bono</div><div class="v">${usd(b.opcion_por_bono)}</div><div class="n">${n(b.acciones_por_bono, 2)} acciones a ${usd(b.precio_conversion, 2)}</div></div>
+      <div class="card kpi"><div class="l">Cupón de equilibrio</div><div class="v ${neg ? "neg" : ""}">${pct(b.cupon_equilibrio)}</div><div class="n">${neg ? "Negativo: ni con cupón 0% baja de la par" : "Cupón que iguala el valor a la par"}</div></div>
+      <div class="card kpi"><div class="l">Valor con cupón 0%</div><div class="v">${usd(b.valor_con_cupon_cero)}</div><div class="n">Bono simple + opción</div></div>
+      <div class="card kpi"><div class="l">Prima para cupón 0%</div><div class="v">${b.prima_para_cupon_cero == null ? "—" : pct(b.prima_para_cupon_cero, 1)}</div><div class="n">Prima que lleva el valor a la par sin cupón</div></div>
+    </div>
+    ${v.avisos.map((a) => `<div class="warn">${esc(a)}</div>`).join("")}
+  </section>
+
+  <section id="valuacion"><h2>Valuación base</h2>
+    <div class="card">
+      <div class="mut">Valor del convertible = bono simple + opción de conversión. Para valer 1,000 USD, el bono simple debe valer:</div>
+      <div class="bar"><div class="b1" style="flex:${b.bono_simple_necesario}">Bono simple ${usd(b.bono_simple_necesario)}</div><div class="b2" style="flex:${b.opcion_por_bono}">Opción ${usd(b.opcion_por_bono)}</div></div>
+      <div class="scroll"><table>
+        <tr><th>Paso</th><th>Valor</th></tr>
+        <tr><td>Precio de conversión = ${usd(S, 2)} × (1 + ${pct(b.prima, 0)})</td><td>${usd(b.precio_conversion, 2)}</td></tr>
+        <tr><td>Acciones por bono = 1,000 / precio de conversión</td><td>${n(b.acciones_por_bono, 3)}</td></tr>
+        <tr><td>Call Black-Scholes por acción (σ ${pct(b.sigma, 1)}, r ${pct(b.r)}, T ${b.plazo})</td><td>${usd(b.call_por_accion, 2)}</td></tr>
+        <tr><td>Opción por bono = call × acciones</td><td>${usd(b.opcion_por_bono)}</td></tr>
+        <tr><td>Bono simple necesario = 1,000 − opción</td><td>${usd(b.bono_simple_necesario)}</td></tr>
+        <tr><td>Cupón de equilibrio (descuento ${pct(b.ytm)}, pagos semestrales)</td><td class="${neg ? "neg" : ""}">${pct(b.cupon_equilibrio)}</td></tr>
+      </table></div>
+      <p class="mut">Un cupón negativo no se puede emitir: el piso práctico es 0%. Con cupón 0% el convertible valdría ${usd(b.valor_con_cupon_cero)}, así que habría que subir la prima (a cerca de ${b.prima_para_cupon_cero == null ? "—" : pct(b.prima_para_cupon_cero, 1)}) o aceptar un precio de emisión mayor a la par.</p>
+    </div>
+  </section>
+
+  <section id="sens"><h2>Sensibilidades</h2>
+    <div class="two">
+      <div class="card"><b>Cupón de equilibrio</b> <span class="mut">(prima × volatilidad)</span>
+        <div class="scroll"><table id="t-sens"></table></div>
+        <p class="mut">${esc(v.sensibilidad_prima_vol.nota_vols)}</p></div>
+      <div class="card"><b>Tasa de descuento del bono simple</b> <span class="mut">(prima ${pct(b.prima, 0)}, σ ${pct(b.sigma, 1)})</span>
+        <div class="scroll"><table id="t-tasa"></table></div>
+        <p class="mut">La tasa base es el yield de los bonos de SPCX interpolado a 6 años. Una tasa más alta baja el valor del bono simple y sube el cupón de equilibrio.</p></div>
+    </div>
+  </section>
+
+  <section id="mercado"><h2>Mercado</h2>
+    <div class="two">
+      <div class="card"><b>Precio de SPCX</b> <span class="mut">(${px.n_dias} días desde ${esc(px.desde)})</span><div class="ch"><canvas id="c-px"></canvas></div></div>
+      <div class="card"><b>Volatilidad</b> <span class="mut">(implícita vs realizada)</span><div class="ch"><canvas id="c-vol"></canvas></div>
+        <p class="mut">SPCX tiene pocos días de historia, por lo que su volatilidad realizada es poco confiable. Comparables con 2 años de datos.</p></div>
+      <div class="card"><b>Curva UST y bonos de SPCX</b> <span class="mut">(rendimiento %, por plazo en años)</span><div class="ch"><canvas id="c-curva"></canvas></div></div>
+      <div class="card wide"><b>Bonos de SPCX</b> <span class="mut">(${bonos.bonos_unicos} emisiones únicas; los duplicados Reg S se eliminan)</span>
+        <div class="scroll"><table id="t-bonos"></table></div></div>
+    </div>
+  </section>
+
+  <section id="deuda"><h2>Deuda y caja</h2>
+    <div class="grid">
+      <div class="card kpi"><div class="l">Deuda total</div><div class="v">${n(deuda.valor, 0)}</div><div class="n">M USD · ${esc(deuda.fecha)}</div></div>
+      <div class="card kpi"><div class="l">Efectivo</div><div class="v">${n(ef.valor, 0)}</div><div class="n">M USD</div></div>
+      <div class="card kpi"><div class="l">Caja e inversiones CP</div><div class="v">${n(caja.valor, 0)}</div><div class="n">M USD</div></div>
+      <div class="card kpi"><div class="l">Deuda neta</div><div class="v ${dn.valor < 0 ? "pos" : ""}">${n(dn.valor, 0)}</div><div class="n">M USD · negativa = más caja que deuda</div></div>
+    </div>
+  </section>
+
+  <section id="supuestos"><h2>Supuestos y fuentes</h2>
+    <div class="card scroll"><table>
+      <tr><th>Supuesto</th><th>Valor</th><th>Estado</th><th style="text-align:left">Fuente</th></tr>
+      ${v.supuestos.map((s) => `<tr><td>${esc(s.nombre)}</td><td>${s.valor <= 1 && s.nombre !== "plazo_anios" ? pct(s.valor, 2) : n(s.valor, 2)}</td><td>${tag(s.estado)}</td><td style="text-align:left">${esc(s.fuente)}${s.nota ? `<div class="mut">${esc(s.nota)}</div>` : ""}</td></tr>`).join("")}
+    </table></div>
+  </section>
+
+  <section id="validacion"><h2>Validación contra el caso Molson Coors</h2>
+    <div class="card"><p class="mut">${esc(m.descripcion)}</p>
+      <div class="scroll"><table>
+        <tr><th></th><th>Nuestro código</th><th>PDF del caso</th></tr>
+        <tr><td>Opción por bono</td><td>${usd(m.opcion_por_bono)}</td><td>${usd(m.pdf.opcion_por_bono)}</td></tr>
+        <tr><td>Bono simple</td><td>${usd(m.bono_simple_necesario)}</td><td>${usd(m.pdf.bono_simple)}</td></tr>
+        <tr><td>Cupón de equilibrio</td><td>${pct(m.cupon_equilibrio)}</td><td>${pct(m.pdf.cupon_equilibrio)}</td></tr>
+      </table></div></div>
+  </section>`;
+
+  const sv = v.sensibilidad_prima_vol;
+  const rows = sv.primas.map((p) => `<tr><td>Prima ${pct(p, 0)}</td>${sv.vols.map((s) => {
+    const c = sv.celdas.find((x) => x.prima === p && x.sigma === s);
+    const base = Math.abs(p - b.prima) < 1e-9 && Math.abs(s - b.sigma) < 1e-4;
+    return `<td class="cell ${base ? "base" : ""} ${c.cupon_equilibrio < 0 ? "neg" : ""}">${pct(c.cupon_equilibrio)}</td>`;
+  }).join("")}</tr>`).join("");
+  $("#t-sens").innerHTML = `<tr><th></th>${sv.vols.map((s) => `<th style="text-align:center">σ ${pct(s, 1)}</th>`).join("")}</tr>${rows}`;
+  $("#t-tasa").innerHTML = `<tr><th>Tasa de descuento</th><th>Valor con cupón 0%</th><th>Cupón de equilibrio</th></tr>` +
+    v.sensibilidad_tasa_descuento.map((c) => `<tr><td>${pct(c.ytm)}</td><td>${usd(c.valor_con_cupon_cero)}</td><td class="${c.cupon_equilibrio < 0 ? "neg" : ""}">${pct(c.cupon_equilibrio)}</td></tr>`).join("");
+
+  const act = bonos.bonos.slice().sort((x, y) => x.plazo_anios - y.plazo_anios);
+  $("#t-bonos").innerHTML = `<tr><th>Bono</th><th>Años</th><th>Precio</th><th>Yield %</th><th>OAS pb</th></tr>` +
+    act.map((x) => `<tr><td class="nw">${esc(x.descripcion.split("/").pop().replace(/\s'\d\d$/,"").trim())}</td><td>${n(x.plazo_anios, 1)}</td><td>${n(x.precio_ultimo, 2)}</td><td>${n(x.yield_pct, 2)}</td><td>${n(x.oas_pb, 0)}</td></tr>`).join("");
+
+  if (typeof Chart === "undefined") { document.querySelectorAll(".ch").forEach((e) => (e.innerHTML = '<p class="mut">No se pudo cargar la librería de gráficas.</p>')); return; }
+  Chart.defaults.color = css("--mut"); Chart.defaults.borderColor = css("--line");
+  const acc = css("--acc"), oro = "#c27a1a";
+  new Chart($("#c-px"), { type: "line",
+    data: { labels: px.datos.map((d) => d.fecha), datasets: [{ data: px.datos.map((d) => d.cierre), borderColor: acc, pointRadius: 0, borderWidth: 2, tension: 0.1 }] },
+    options: { maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { ticks: { maxTicksLimit: 6 } } } } });
+
+  const vo = v.volatilidades;
+  const etq = ["IV opciones (base)", "SPCX realizada 60d", "SPCX realizada total", ...Object.keys(vo.comparables_realizada_total)];
+  const val = [vo.implicita_base, vo.realizada_spcx_60d, vo.realizada_spcx_total, ...Object.values(vo.comparables_realizada_total)].map((x) => +(x * 100).toFixed(1));
+  new Chart($("#c-vol"), { type: "bar",
+    data: { labels: etq, datasets: [{ data: val, backgroundColor: val.map((_, i) => (i === 0 ? oro : i < 3 ? acc : "#8892a6")) }] },
+    options: { indexAxis: "y", maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { title: { display: true, text: "% anualizado" } } } } });
+
+  new Chart($("#c-curva"), { type: "scatter",
+    data: { datasets: [
+      { label: "UST", data: ust.puntos.map((p) => ({ x: p.anios, y: p.yield_pct })), borderColor: acc, backgroundColor: acc, showLine: true, pointRadius: 2, borderWidth: 2 },
+      { label: "Bonos SPCX", data: act.filter((x) => x.yield_pct != null).map((x) => ({ x: x.plazo_anios, y: x.yield_pct })), backgroundColor: oro, pointRadius: 5 } ] },
+    options: { maintainAspectRatio: false, scales: { x: { type: "linear", title: { display: true, text: "Años" } }, y: { title: { display: true, text: "Rendimiento %" } } } } });
+}
+</script>
 </body>
 </html>

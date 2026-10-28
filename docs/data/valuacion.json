@@ -1,0 +1,288 @@
+{
+ "fecha_valuacion": "2026-10-26",
+ "modelo": "Bono simple + opcion de conversion (Black-Scholes europeo, sin dividendos). Valores por bono de 1,000 USD.",
+ "supuestos": [
+  {
+   "nombre": "precio_accion",
+   "valor": 146.9,
+   "fuente": "Refinitiv, cierre",
+   "fecha": "2026-10-26",
+   "estado": "dato de mercado",
+   "nota": ""
+  },
+  {
+   "nombre": "prima_conversion",
+   "valor": 0.25,
+   "fuente": "Tomada del caso Molson Coors (25%)",
+   "fecha": "2026-10-26",
+   "estado": "supuesto del equipo",
+   "nota": ""
+  },
+  {
+   "nombre": "plazo_anios",
+   "valor": 6.0,
+   "fuente": "Tomado del caso Molson Coors (6 anios)",
+   "fecha": "2026-10-26",
+   "estado": "supuesto del equipo",
+   "nota": ""
+  },
+  {
+   "nombre": "tasa_libre_riesgo",
+   "valor": 0.0490275,
+   "fuente": "UST a 6 anios, interpolado lineal entre 5Y y 7Y",
+   "fecha": "2026-10-26",
+   "estado": "calculado",
+   "nota": ""
+  },
+  {
+   "nombre": "tasa_descuento_bono_simple",
+   "valor": 0.0719509713132695,
+   "fuente": "Yield de bonos SPCX a 6 anios (interpolado, bonos con >= 1,000 M vigentes)",
+   "fecha": "2026-10-26",
+   "estado": "calculado",
+   "nota": "Supone yield semestral. Es deuda senior sin garantia de SPCX, no de un convertible."
+  },
+  {
+   "nombre": "volatilidad",
+   "valor": 0.5265000000000001,
+   "fuente": "IV de cierre de opciones SPCX, promedio call y put, strike 150, vencimiento 2028-12",
+   "fecha": "2026-10-27",
+   "estado": "supuesto del equipo",
+   "nota": "El dato de mercado llega a 2.1 anios; se extrapola a 6. Leido de pantalla de Refinitiv."
+  },
+  {
+   "nombre": "dividendos",
+   "valor": 0.0,
+   "fuente": "Sin dividendos",
+   "fecha": "2026-10-26",
+   "estado": "supuesto del equipo",
+   "nota": ""
+  }
+ ],
+ "base": {
+  "prima": 0.25,
+  "sigma": 0.5265000000000001,
+  "r": 0.0490275,
+  "ytm": 0.0719509713132695,
+  "plazo": 6.0,
+  "S": 146.9,
+  "precio_conversion": 183.625,
+  "acciones_por_bono": 5.4458815520762425,
+  "call_por_accion": 73.3567361178831,
+  "opcion_por_bono": 399.4920959449046,
+  "bono_simple_necesario": 600.5079040550954,
+  "cupon_equilibrio": -0.01120644708454537,
+  "valor_con_cupon_cero": 1053.8362917002041,
+  "prima_para_cupon_cero": 0.37383871539679786
+ },
+ "sensibilidad_prima_vol": {
+  "primas": [
+   0.2,
+   0.25,
+   0.3
+  ],
+  "vols": [
+   0.45,
+   0.5265,
+   0.6,
+   0.7268
+  ],
+  "celdas": [
+   {
+    "prima": 0.2,
+    "sigma": 0.45,
+    "precio_conversion": 176.28,
+    "acciones_por_bono": 5.672793283412752,
+    "call_por_accion": 66.26144041008533,
+    "opcion_por_bono": 375.8874541075864,
+    "bono_simple_necesario": 624.1125458924137,
+    "cupon_equilibrio": -0.0062929554352208475,
+    "valor_con_cupon_cero": 1030.2316498628861
+   },
+   {
+    "prima": 0.2,
+    "sigma": 0.5265,
+    "precio_conversion": 176.28,
+    "acciones_por_bono": 5.672793283412752,
+    "call_por_accion": 74.90552217820812,
+    "opcion_por_bono": 424.92354310306393,
+    "bono_simple_necesario": 575.0764568969361,
+    "cupon_equilibrio": -0.01650020261377777,
+    "valor_con_cupon_cero": 1079.2677388583636
+   },
+   {
+    "prima": 0.2,
+    "sigma": 0.6,
+    "precio_conversion": 176.28,
+    "acciones_por_bono": 5.672793283412752,
+    "call_por_accion": 82.74272944097328,
+    "opcion_por_bono": 469.3823998239918,
+    "bono_simple_necesario": 530.6176001760082,
+    "cupon_equilibrio": -0.025754662933164377,
+    "valor_con_cupon_cero": 1123.7265955792914
+   },
+   {
+    "prima": 0.2,
+    "sigma": 0.7268,
+    "precio_conversion": 176.28,
+    "acciones_por_bono": 5.672793283412752,
+    "call_por_accion": 95.0822965187121,
+    "opcion_por_bono": 539.3822130628097,
+    "bono_simple_necesario": 460.6177869371903,
+    "cupon_equilibrio": -0.04032567401537632,
+    "valor_con_cupon_cero": 1193.7264088181093
+   },
+   {
+    "prima": 0.25,
+    "sigma": 0.45,
+    "precio_conversion": 183.625,
+    "acciones_por_bono": 5.4458815520762425,
+    "call_por_accion": 64.51117916548512,
+    "opcion_por_bono": 351.32024052000065,
+    "bono_simple_necesario": 648.6797594799993,
+    "cupon_equilibrio": -0.0011790969135916816,
+    "valor_con_cupon_cero": 1005.6644362753003
+   },
+   {
+    "prima": 0.25,
+    "sigma": 0.5265,
+    "precio_conversion": 183.625,
+    "acciones_por_bono": 5.4458815520762425,
+    "call_por_accion": 73.35673611788309,
+    "opcion_por_bono": 399.4920959449045,
+    "bono_simple_necesario": 600.5079040550954,
+    "cupon_equilibrio": -0.01120644708454537,
+    "valor_con_cupon_cero": 1053.8362917002041
+   },
+   {
+    "prima": 0.25,
+    "sigma": 0.6,
+    "precio_conversion": 183.625,
+    "acciones_por_bono": 5.4458815520762425,
+    "call_por_accion": 81.37134032143076,
+    "opcion_por_bono": 443.1386811241975,
+    "bono_simple_necesario": 556.8613188758025,
+    "cupon_equilibrio": -0.020291826700894265,
+    "valor_con_cupon_cero": 1097.482876879497
+   },
+   {
+    "prima": 0.25,
+    "sigma": 0.7268,
+    "precio_conversion": 183.625,
+    "acciones_por_bono": 5.4458815520762425,
+    "call_por_accion": 93.983408596313,
+    "opcion_por_bono": 511.8225110759047,
+    "bono_simple_necesario": 488.1774889240953,
+    "cupon_equilibrio": -0.034588905522814656,
+    "valor_con_cupon_cero": 1166.1667068312045
+   },
+   {
+    "prima": 0.3,
+    "sigma": 0.45,
+    "precio_conversion": 190.97000000000003,
+    "acciones_por_bono": 5.236424569304078,
+    "call_por_accion": 62.83132848154452,
+    "opcion_por_bono": 329.0115121827748,
+    "bono_simple_necesario": 670.9884878172252,
+    "cupon_equilibrio": 0.0034646401592882963,
+    "valor_con_cupon_cero": 983.3557079380745
+   },
+   {
+    "prima": 0.3,
+    "sigma": 0.5265,
+    "precio_conversion": 190.97000000000003,
+    "acciones_por_bono": 5.236424569304078,
+    "call_por_accion": 71.86488504439926,
+    "opcion_por_bono": 376.31504971670546,
+    "bono_simple_necesario": 623.6849502832945,
+    "cupon_equilibrio": -0.006381962820682351,
+    "valor_con_cupon_cero": 1030.659245472005
+   },
+   {
+    "prima": 0.3,
+    "sigma": 0.6,
+    "precio_conversion": 190.97000000000003,
+    "acciones_por_bono": 5.236424569304078,
+    "call_por_accion": 80.04692104544867,
+    "opcion_por_bono": 419.1596640595311,
+    "bono_simple_necesario": 580.8403359404689,
+    "cupon_equilibrio": -0.015300405906702095,
+    "valor_con_cupon_cero": 1073.5038598148308
+   },
+   {
+    "prima": 0.3,
+    "sigma": 0.7268,
+    "precio_conversion": 190.97000000000003,
+    "acciones_por_bono": 5.236424569304078,
+    "call_por_accion": 92.91871304290758,
+    "opcion_por_bono": 486.56183192599656,
+    "bono_simple_necesario": 513.4381680740034,
+    "cupon_equilibrio": -0.02933069669614597,
+    "valor_con_cupon_cero": 1140.906027681296
+   }
+  ],
+  "nota_vols": "45% y 60% son escenarios; 52.7% es la IV base; la ultima es la volatilidad realizada de SPCX a 60 dias."
+ },
+ "sensibilidad_tasa_descuento": [
+  {
+   "ytm": 0.0569509713132695,
+   "precio_conversion": 183.625,
+   "acciones_por_bono": 5.4458815520762425,
+   "call_por_accion": 73.3567361178831,
+   "opcion_por_bono": 399.4920959449046,
+   "bono_simple_necesario": 600.5079040550954,
+   "cupon_equilibrio": -0.022587918613589834,
+   "valor_con_cupon_cero": 1113.4500991687682
+  },
+  {
+   "ytm": 0.0719509713132695,
+   "precio_conversion": 183.625,
+   "acciones_por_bono": 5.4458815520762425,
+   "call_por_accion": 73.3567361178831,
+   "opcion_por_bono": 399.4920959449046,
+   "bono_simple_necesario": 600.5079040550954,
+   "cupon_equilibrio": -0.01120644708454537,
+   "valor_con_cupon_cero": 1053.8362917002041
+  },
+  {
+   "ytm": 0.0869509713132695,
+   "precio_conversion": 183.625,
+   "acciones_por_bono": 5.4458815520762425,
+   "call_por_accion": 73.3567361178831,
+   "opcion_por_bono": 399.4920959449046,
+   "bono_simple_necesario": 600.5079040550954,
+   "cupon_equilibrio": 9.188298185546038e-05,
+   "valor_con_cupon_cero": 999.577401447468
+  }
+ ],
+ "volatilidades": {
+  "implicita_base": 0.5265000000000001,
+  "realizada_spcx_total": 0.8030460345513295,
+  "realizada_spcx_60d": 0.7268050944895346,
+  "dias_spcx": 94,
+  "comparables_realizada_total": {
+   "RKLB": 0.9100374777453337,
+   "KTOS": 0.6270605183564627,
+   "AVAV": 0.6678714841625208,
+   "BA": 0.36193927640845414,
+   "NOC": 0.28102276705763213
+  }
+ },
+ "validacion_molson_coors": {
+  "descripcion": "Mismo codigo con los supuestos del caso (S=87.61, prima 25%, r=4.46%, vol 23%, 6 anios, descuento 5.75%)",
+  "opcion_por_bono": 191.51674585843432,
+  "bono_simple_necesario": 808.4832541415657,
+  "cupon_equilibrio": 0.019306226117393296,
+  "pdf": {
+   "opcion_por_bono": 191.5,
+   "bono_simple": 808.5,
+   "cupon_equilibrio": 0.0193
+  }
+ },
+ "avisos": [
+  "Con la volatilidad implicita de mercado, la opcion vale tanto que el cupon de equilibrio sale negativo: un convertible de cupon 0% ya valdria mas que la par. En la practica el cupon minimo es 0% y se sube la prima.",
+  "La volatilidad realizada de SPCX (desde el 12-jun-2026) es mayor que la implicita; hay pocos dias de historia.",
+  "El precio de la accion es el cierre del 26-oct; las IV se leyeron el 27-oct con la accion en 148.58.",
+  "Modelo simplificado: opcion europea, sin dividendos, sin riesgo de credito ni clausulas de rescate."
+ ]
+}

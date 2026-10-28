@@ -1,0 +1,143 @@
+{
+ "fecha_valuacion": "2026-10-26",
+ "generado_desde": {
+  "bonos": "2026-10-26_bonos.xlsx",
+  "calendario-vencimientos": "2026-10-26_calendario-vencimientos.xlsx",
+  "financieros_anual": "2026-10-26_financieros_anual.xlsx",
+  "financieros_as-reported": "2026-10-26_financieros_as-reported.xlsx",
+  "financieros_trimestral": "2026-10-26_financieros_trimestral.xlsx",
+  "peers": "2026-10-26_peers.xlsx",
+  "peers_balance": "2026-10-26_peers_balance.xlsx",
+  "precios_avav": "2026-10-26_precios_avav.xlsx",
+  "precios_ba": "2026-10-26_precios_ba.xlsx",
+  "precios_ktos": "2026-10-26_precios_ktos.xlsx",
+  "precios_noc": "2026-10-26_precios_noc.xlsx",
+  "precios_rklb": "2026-10-26_precios_rklb.xlsx",
+  "precios_spcx": "2026-10-26_precios_spcx.xlsx",
+  "treasuries": "2026-10-26_treasuries.xlsx"
+ },
+ "volatilidad_realizada": {
+  "valor": {
+   "spcx": {
+    "vol_realizada_total": 0.8030460345513295,
+    "vol_realizada_60d": 0.7268050944895346,
+    "n_dias": 94,
+    "desde": "2026-06-12",
+    "hasta": "2026-10-26",
+    "historia_declarada": "2 Years",
+    "fecha_archivo": "2026-10-26"
+   },
+   "rklb": {
+    "vol_realizada_total": 0.9100374777453337,
+    "vol_realizada_60d": 0.6109586685154464,
+    "n_dias": 501,
+    "desde": "2024-10-28",
+    "hasta": "2026-10-27",
+    "historia_declarada": "2 Years",
+    "fecha_archivo": "2026-10-26"
+   },
+   "ktos": {
+    "vol_realizada_total": 0.6270605183564627,
+    "vol_realizada_60d": 0.45048432251778,
+    "n_dias": 501,
+    "desde": "2024-10-28",
+    "hasta": "2026-10-27",
+    "historia_declarada": "2 Years",
+    "fecha_archivo": "2026-10-26"
+   },
+   "avav": {
+    "vol_realizada_total": 0.6678714841625208,
+    "vol_realizada_60d": 0.514641398224974,
+    "n_dias": 501,
+    "desde": "2024-10-28",
+    "hasta": "2026-10-27",
+    "historia_declarada": "2 Years",
+    "fecha_archivo": "2026-10-26"
+   },
+   "ba": {
+    "vol_realizada_total": 0.36193927640845414,
+    "vol_realizada_60d": 0.35100720163085425,
+    "n_dias": 501,
+    "desde": "2024-10-28",
+    "hasta": "2026-10-27",
+    "historia_declarada": "2 Years",
+    "fecha_archivo": "2026-10-26"
+   },
+   "noc": {
+    "vol_realizada_total": 0.28102276705763213,
+    "vol_realizada_60d": 0.2798305289824956,
+    "n_dias": 501,
+    "desde": "2024-10-28",
+    "hasta": "2026-10-27",
+    "historia_declarada": "2 Years",
+    "fecha_archivo": "2026-10-26"
+   }
+  },
+  "fuente": "calculado de precios historicos (Refinitiv)",
+  "fecha": "2026-10-26",
+  "estado": "calculado",
+  "nota": "Desv. estandar anualizada (x raiz de 252) de rendimientos log diarios. Fraccion: 0.80 = 80%. Con poca historia es poco confiable; revisar n_dias y desde."
+ },
+ "precio_referencia_spcx": {
+  "valor": 146.9,
+  "fuente": "Refinitiv, 2026-10-26_precios_spcx.xlsx",
+  "fecha": "2026-10-26",
+  "estado": "dato",
+  "nota": "Ultimo cierre disponible en el exporte."
+ },
+ "ust_6y_pct": {
+  "valor": 4.90275,
+  "fuente": "interpolacion lineal 5Y-7Y, Refinitiv 2026-10-26_treasuries.xlsx",
+  "fecha": "2026-10-26",
+  "estado": "calculado",
+  "nota": "Tasa libre de riesgo a 6 anios."
+ },
+ "yield_bonos_spcx_6y_pct": {
+  "valor": 7.195097131326949,
+  "fuente": "interpolacion lineal entre bonos SPCX con >= 1,000 millones vigentes, Refinitiv 2026-10-26_bonos.xlsx",
+  "fecha": "2026-10-26",
+  "estado": "calculado",
+  "nota": "Excluye los bonos 2027 y 2030 (saldo residual, sin precio confiable). Candidata a tasa de descuento del bono simple."
+ },
+ "oas_bonos_spcx_6y_pb": {
+  "valor": 233.36601476196992,
+  "fuente": "interpolacion lineal, Refinitiv 2026-10-26_bonos.xlsx",
+  "fecha": "2026-10-26",
+  "estado": "calculado"
+ },
+ "spread_bonos_vs_ust_6y_pb": {
+  "valor": 229.23471313269488,
+  "fuente": "yield bonos SPCX 6Y menos UST 6Y",
+  "fecha": "2026-10-26",
+  "estado": "calculado"
+ },
+ "deuda_total_musd": {
+  "valor": 38844.0,
+  "fuente": "Refinitiv, 2026-10-26_financieros_trimestral.xlsx",
+  "fecha": "2026-09-30",
+  "estado": "dato",
+  "nota": "Fin de periodo; millones de USD."
+ },
+ "caja_e_inversiones_cp_musd": {
+  "valor": 89855.0,
+  "fuente": "Refinitiv, 2026-10-26_financieros_trimestral.xlsx",
+  "fecha": "2026-09-30",
+  "estado": "dato",
+  "nota": "Fin de periodo; millones de USD."
+ },
+ "efectivo_musd": {
+  "valor": 51294.0,
+  "fuente": "Refinitiv, 2026-10-26_financieros_trimestral.xlsx",
+  "fecha": "2026-09-30",
+  "estado": "dato",
+  "nota": "Fin de periodo; millones de USD."
+ },
+ "deuda_neta_musd": {
+  "valor": -51011.0,
+  "fuente": "Refinitiv, 2026-10-26_financieros_trimestral.xlsx",
+  "fecha": "2026-09-30",
+  "estado": "calculado",
+  "nota": "Deuda total menos caja e inversiones de corto plazo; negativo = caja neta."
+ },
+ "avisos": []
+}

@@ -1,0 +1,1053 @@
+{
+ "nota": "Solo incluye bonos (no prestamos). 'Call' marca la fecha desde la que el bono puede rescatarse; no es un pago y no se suma a los totales. 'monto_usd' es el monto del evento, no el saldo.",
+ "eventos": [
+  {
+   "fecha": "2027-01-15",
+   "evento": "Coupon",
+   "bono": "SPCX 5.350 07/15/31 '31",
+   "monto_usd": 207015278.0
+  },
+  {
+   "fecha": "2027-01-15",
+   "evento": "Coupon",
+   "bono": "SPCX 5.650 07/15/33 '33",
+   "monto_usd": 187391667.0
+  },
+  {
+   "fecha": "2027-01-15",
+   "evento": "Coupon",
+   "bono": "SPCX 5.875 07/15/36 '36",
+   "monto_usd": 194854167.0
+  },
+  {
+   "fecha": "2027-01-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.600 07/15/46 '46",
+   "monto_usd": 91208334.0
+  },
+  {
+   "fecha": "2027-01-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 128659028.0
+  },
+  {
+   "fecha": "2027-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 5.350 07/15/31 '31",
+   "monto_usd": 187250000.0
+  },
+  {
+   "fecha": "2027-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 5.650 07/15/33 '33",
+   "monto_usd": 169500001.0
+  },
+  {
+   "fecha": "2027-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 5.875 07/15/36 '36",
+   "monto_usd": 176250000.0
+  },
+  {
+   "fecha": "2027-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.600 07/15/46 '46",
+   "monto_usd": 82500001.0
+  },
+  {
+   "fecha": "2027-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2028-01-18",
+   "evento": "Coupon",
+   "bono": "SPCX 5.350 07/15/31 '31",
+   "monto_usd": 187250000.0
+  },
+  {
+   "fecha": "2028-01-18",
+   "evento": "Coupon",
+   "bono": "SPCX 5.650 07/15/33 '33",
+   "monto_usd": 169500001.0
+  },
+  {
+   "fecha": "2028-01-18",
+   "evento": "Coupon",
+   "bono": "SPCX 5.875 07/15/36 '36",
+   "monto_usd": 176250000.0
+  },
+  {
+   "fecha": "2028-01-18",
+   "evento": "Coupon",
+   "bono": "SPCX 6.600 07/15/46 '46",
+   "monto_usd": 82500001.0
+  },
+  {
+   "fecha": "2028-01-18",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2028-07-17",
+   "evento": "Coupon",
+   "bono": "SPCX 5.350 07/15/31 '31",
+   "monto_usd": 187250000.0
+  },
+  {
+   "fecha": "2028-07-17",
+   "evento": "Coupon",
+   "bono": "SPCX 5.650 07/15/33 '33",
+   "monto_usd": 169500001.0
+  },
+  {
+   "fecha": "2028-07-17",
+   "evento": "Coupon",
+   "bono": "SPCX 5.875 07/15/36 '36",
+   "monto_usd": 176250000.0
+  },
+  {
+   "fecha": "2028-07-17",
+   "evento": "Coupon",
+   "bono": "SPCX 6.600 07/15/46 '46",
+   "monto_usd": 82500001.0
+  },
+  {
+   "fecha": "2028-07-17",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2029-01-16",
+   "evento": "Coupon",
+   "bono": "SPCX 5.350 07/15/31 '31",
+   "monto_usd": 187250000.0
+  },
+  {
+   "fecha": "2029-01-16",
+   "evento": "Coupon",
+   "bono": "SPCX 5.650 07/15/33 '33",
+   "monto_usd": 169500001.0
+  },
+  {
+   "fecha": "2029-01-16",
+   "evento": "Coupon",
+   "bono": "SPCX 5.875 07/15/36 '36",
+   "monto_usd": 176250000.0
+  },
+  {
+   "fecha": "2029-01-16",
+   "evento": "Coupon",
+   "bono": "SPCX 6.600 07/15/46 '46",
+   "monto_usd": 82500001.0
+  },
+  {
+   "fecha": "2029-01-16",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2029-07-16",
+   "evento": "Coupon",
+   "bono": "SPCX 5.350 07/15/31 '31",
+   "monto_usd": 187250000.0
+  },
+  {
+   "fecha": "2029-07-16",
+   "evento": "Coupon",
+   "bono": "SPCX 5.650 07/15/33 '33",
+   "monto_usd": 169500001.0
+  },
+  {
+   "fecha": "2029-07-16",
+   "evento": "Coupon",
+   "bono": "SPCX 5.875 07/15/36 '36",
+   "monto_usd": 176250000.0
+  },
+  {
+   "fecha": "2029-07-16",
+   "evento": "Coupon",
+   "bono": "SPCX 6.600 07/15/46 '46",
+   "monto_usd": 82500001.0
+  },
+  {
+   "fecha": "2029-07-16",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2030-01-15",
+   "evento": "Coupon",
+   "bono": "SPCX 5.350 07/15/31 '31",
+   "monto_usd": 187250000.0
+  },
+  {
+   "fecha": "2030-01-15",
+   "evento": "Coupon",
+   "bono": "SPCX 5.650 07/15/33 '33",
+   "monto_usd": 169500001.0
+  },
+  {
+   "fecha": "2030-01-15",
+   "evento": "Coupon",
+   "bono": "SPCX 5.875 07/15/36 '36",
+   "monto_usd": 176250000.0
+  },
+  {
+   "fecha": "2030-01-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.600 07/15/46 '46",
+   "monto_usd": 82500001.0
+  },
+  {
+   "fecha": "2030-01-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2030-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 5.350 07/15/31 '31",
+   "monto_usd": 187250000.0
+  },
+  {
+   "fecha": "2030-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 5.650 07/15/33 '33",
+   "monto_usd": 169500001.0
+  },
+  {
+   "fecha": "2030-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 5.875 07/15/36 '36",
+   "monto_usd": 176250000.0
+  },
+  {
+   "fecha": "2030-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.600 07/15/46 '46",
+   "monto_usd": 82500001.0
+  },
+  {
+   "fecha": "2030-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2031-01-15",
+   "evento": "Coupon",
+   "bono": "SPCX 5.350 07/15/31 '31",
+   "monto_usd": 187250000.0
+  },
+  {
+   "fecha": "2031-01-15",
+   "evento": "Coupon",
+   "bono": "SPCX 5.650 07/15/33 '33",
+   "monto_usd": 169500001.0
+  },
+  {
+   "fecha": "2031-01-15",
+   "evento": "Coupon",
+   "bono": "SPCX 5.875 07/15/36 '36",
+   "monto_usd": 176250000.0
+  },
+  {
+   "fecha": "2031-01-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.600 07/15/46 '46",
+   "monto_usd": 82500001.0
+  },
+  {
+   "fecha": "2031-01-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2031-06-15",
+   "evento": "Call",
+   "bono": "SPCX 5.350 07/15/31 '31",
+   "monto_usd": 7000000000.0
+  },
+  {
+   "fecha": "2031-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 5.350 07/15/31 '31",
+   "monto_usd": 187250000.0
+  },
+  {
+   "fecha": "2031-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 5.650 07/15/33 '33",
+   "monto_usd": 169500001.0
+  },
+  {
+   "fecha": "2031-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 5.875 07/15/36 '36",
+   "monto_usd": 176250000.0
+  },
+  {
+   "fecha": "2031-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.600 07/15/46 '46",
+   "monto_usd": 82500001.0
+  },
+  {
+   "fecha": "2031-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2031-07-15",
+   "evento": "Principal",
+   "bono": "SPCX 5.350 07/15/31 '31",
+   "monto_usd": 7000000000.0
+  },
+  {
+   "fecha": "2032-01-15",
+   "evento": "Coupon",
+   "bono": "SPCX 5.650 07/15/33 '33",
+   "monto_usd": 169500001.0
+  },
+  {
+   "fecha": "2032-01-15",
+   "evento": "Coupon",
+   "bono": "SPCX 5.875 07/15/36 '36",
+   "monto_usd": 176250000.0
+  },
+  {
+   "fecha": "2032-01-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.600 07/15/46 '46",
+   "monto_usd": 82500001.0
+  },
+  {
+   "fecha": "2032-01-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2032-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 5.650 07/15/33 '33",
+   "monto_usd": 169500001.0
+  },
+  {
+   "fecha": "2032-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 5.875 07/15/36 '36",
+   "monto_usd": 176250000.0
+  },
+  {
+   "fecha": "2032-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.600 07/15/46 '46",
+   "monto_usd": 82500001.0
+  },
+  {
+   "fecha": "2032-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2033-01-18",
+   "evento": "Coupon",
+   "bono": "SPCX 5.650 07/15/33 '33",
+   "monto_usd": 169500001.0
+  },
+  {
+   "fecha": "2033-01-18",
+   "evento": "Coupon",
+   "bono": "SPCX 5.875 07/15/36 '36",
+   "monto_usd": 176250000.0
+  },
+  {
+   "fecha": "2033-01-18",
+   "evento": "Coupon",
+   "bono": "SPCX 6.600 07/15/46 '46",
+   "monto_usd": 82500001.0
+  },
+  {
+   "fecha": "2033-01-18",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2033-05-15",
+   "evento": "Call",
+   "bono": "SPCX 5.650 07/15/33 '33",
+   "monto_usd": 6000000000.0
+  },
+  {
+   "fecha": "2033-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 5.650 07/15/33 '33",
+   "monto_usd": 169500001.0
+  },
+  {
+   "fecha": "2033-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 5.875 07/15/36 '36",
+   "monto_usd": 176250000.0
+  },
+  {
+   "fecha": "2033-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.600 07/15/46 '46",
+   "monto_usd": 82500001.0
+  },
+  {
+   "fecha": "2033-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2033-07-15",
+   "evento": "Principal",
+   "bono": "SPCX 5.650 07/15/33 '33",
+   "monto_usd": 6000000000.0
+  },
+  {
+   "fecha": "2034-01-17",
+   "evento": "Coupon",
+   "bono": "SPCX 5.875 07/15/36 '36",
+   "monto_usd": 176250000.0
+  },
+  {
+   "fecha": "2034-01-17",
+   "evento": "Coupon",
+   "bono": "SPCX 6.600 07/15/46 '46",
+   "monto_usd": 82500001.0
+  },
+  {
+   "fecha": "2034-01-17",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2034-07-17",
+   "evento": "Coupon",
+   "bono": "SPCX 5.875 07/15/36 '36",
+   "monto_usd": 176250000.0
+  },
+  {
+   "fecha": "2034-07-17",
+   "evento": "Coupon",
+   "bono": "SPCX 6.600 07/15/46 '46",
+   "monto_usd": 82500001.0
+  },
+  {
+   "fecha": "2034-07-17",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2035-01-16",
+   "evento": "Coupon",
+   "bono": "SPCX 5.875 07/15/36 '36",
+   "monto_usd": 176250000.0
+  },
+  {
+   "fecha": "2035-01-16",
+   "evento": "Coupon",
+   "bono": "SPCX 6.600 07/15/46 '46",
+   "monto_usd": 82500001.0
+  },
+  {
+   "fecha": "2035-01-16",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2035-07-16",
+   "evento": "Coupon",
+   "bono": "SPCX 5.875 07/15/36 '36",
+   "monto_usd": 176250000.0
+  },
+  {
+   "fecha": "2035-07-16",
+   "evento": "Coupon",
+   "bono": "SPCX 6.600 07/15/46 '46",
+   "monto_usd": 82500001.0
+  },
+  {
+   "fecha": "2035-07-16",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2036-01-15",
+   "evento": "Coupon",
+   "bono": "SPCX 5.875 07/15/36 '36",
+   "monto_usd": 176250000.0
+  },
+  {
+   "fecha": "2036-01-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.600 07/15/46 '46",
+   "monto_usd": 82500001.0
+  },
+  {
+   "fecha": "2036-01-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2036-04-15",
+   "evento": "Call",
+   "bono": "SPCX 5.875 07/15/36 '36",
+   "monto_usd": 6000000000.0
+  },
+  {
+   "fecha": "2036-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 5.875 07/15/36 '36",
+   "monto_usd": 176250000.0
+  },
+  {
+   "fecha": "2036-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.600 07/15/46 '46",
+   "monto_usd": 82500001.0
+  },
+  {
+   "fecha": "2036-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2036-07-15",
+   "evento": "Principal",
+   "bono": "SPCX 5.875 07/15/36 '36",
+   "monto_usd": 6000000000.0
+  },
+  {
+   "fecha": "2037-01-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.600 07/15/46 '46",
+   "monto_usd": 82500001.0
+  },
+  {
+   "fecha": "2037-01-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2037-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.600 07/15/46 '46",
+   "monto_usd": 82500001.0
+  },
+  {
+   "fecha": "2037-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2038-01-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.600 07/15/46 '46",
+   "monto_usd": 82500001.0
+  },
+  {
+   "fecha": "2038-01-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2038-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.600 07/15/46 '46",
+   "monto_usd": 82500001.0
+  },
+  {
+   "fecha": "2038-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2039-01-18",
+   "evento": "Coupon",
+   "bono": "SPCX 6.600 07/15/46 '46",
+   "monto_usd": 82500001.0
+  },
+  {
+   "fecha": "2039-01-18",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2039-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.600 07/15/46 '46",
+   "monto_usd": 82500001.0
+  },
+  {
+   "fecha": "2039-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2040-01-17",
+   "evento": "Coupon",
+   "bono": "SPCX 6.600 07/15/46 '46",
+   "monto_usd": 82500001.0
+  },
+  {
+   "fecha": "2040-01-17",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2040-07-16",
+   "evento": "Coupon",
+   "bono": "SPCX 6.600 07/15/46 '46",
+   "monto_usd": 82500001.0
+  },
+  {
+   "fecha": "2040-07-16",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2041-01-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.600 07/15/46 '46",
+   "monto_usd": 82500001.0
+  },
+  {
+   "fecha": "2041-01-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2041-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.600 07/15/46 '46",
+   "monto_usd": 82500001.0
+  },
+  {
+   "fecha": "2041-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2042-01-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.600 07/15/46 '46",
+   "monto_usd": 82500001.0
+  },
+  {
+   "fecha": "2042-01-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2042-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.600 07/15/46 '46",
+   "monto_usd": 82500001.0
+  },
+  {
+   "fecha": "2042-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2043-01-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.600 07/15/46 '46",
+   "monto_usd": 82500001.0
+  },
+  {
+   "fecha": "2043-01-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2043-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.600 07/15/46 '46",
+   "monto_usd": 82500001.0
+  },
+  {
+   "fecha": "2043-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2044-01-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.600 07/15/46 '46",
+   "monto_usd": 82500001.0
+  },
+  {
+   "fecha": "2044-01-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2044-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.600 07/15/46 '46",
+   "monto_usd": 82500001.0
+  },
+  {
+   "fecha": "2044-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2045-01-17",
+   "evento": "Coupon",
+   "bono": "SPCX 6.600 07/15/46 '46",
+   "monto_usd": 82500001.0
+  },
+  {
+   "fecha": "2045-01-17",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2045-07-17",
+   "evento": "Coupon",
+   "bono": "SPCX 6.600 07/15/46 '46",
+   "monto_usd": 82500001.0
+  },
+  {
+   "fecha": "2045-07-17",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2046-01-15",
+   "evento": "Call",
+   "bono": "SPCX 6.600 07/15/46 '46",
+   "monto_usd": 2500000000.0
+  },
+  {
+   "fecha": "2046-01-16",
+   "evento": "Coupon",
+   "bono": "SPCX 6.600 07/15/46 '46",
+   "monto_usd": 82500001.0
+  },
+  {
+   "fecha": "2046-01-16",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2046-07-16",
+   "evento": "Coupon",
+   "bono": "SPCX 6.600 07/15/46 '46",
+   "monto_usd": 82500001.0
+  },
+  {
+   "fecha": "2046-07-16",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2046-07-16",
+   "evento": "Principal",
+   "bono": "SPCX 6.600 07/15/46 '46",
+   "monto_usd": 2500000000.0
+  },
+  {
+   "fecha": "2047-01-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2047-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2048-01-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2048-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2049-01-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2049-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2050-01-18",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2050-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2051-01-17",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2051-07-17",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2052-01-16",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2052-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2053-01-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2053-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2054-01-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2054-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2055-01-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2055-07-15",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2056-01-15",
+   "evento": "Call",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 3500000000.0
+  },
+  {
+   "fecha": "2056-01-18",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2056-07-17",
+   "evento": "Coupon",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 116375000.0
+  },
+  {
+   "fecha": "2056-07-17",
+   "evento": "Principal",
+   "bono": "SPCX 6.650 07/15/56 '56",
+   "monto_usd": 3500000000.0
+  }
+ ],
+ "pagos_por_anio_usd": {
+  "2027": {
+   "Coupon": 1541003476.0,
+   "Principal": 0.0
+  },
+  "2028": {
+   "Coupon": 1463750004.0,
+   "Principal": 0.0
+  },
+  "2029": {
+   "Coupon": 1463750004.0,
+   "Principal": 0.0
+  },
+  "2030": {
+   "Coupon": 1463750004.0,
+   "Principal": 0.0
+  },
+  "2031": {
+   "Coupon": 1463750004.0,
+   "Principal": 7000000000.0
+  },
+  "2032": {
+   "Coupon": 1089250004.0,
+   "Principal": 0.0
+  },
+  "2033": {
+   "Coupon": 1089250004.0,
+   "Principal": 6000000000.0
+  },
+  "2034": {
+   "Coupon": 750250002.0,
+   "Principal": 0.0
+  },
+  "2035": {
+   "Coupon": 750250002.0,
+   "Principal": 0.0
+  },
+  "2036": {
+   "Coupon": 750250002.0,
+   "Principal": 6000000000.0
+  },
+  "2037": {
+   "Coupon": 397750002.0,
+   "Principal": 0.0
+  },
+  "2038": {
+   "Coupon": 397750002.0,
+   "Principal": 0.0
+  },
+  "2039": {
+   "Coupon": 397750002.0,
+   "Principal": 0.0
+  },
+  "2040": {
+   "Coupon": 397750002.0,
+   "Principal": 0.0
+  },
+  "2041": {
+   "Coupon": 397750002.0,
+   "Principal": 0.0
+  },
+  "2042": {
+   "Coupon": 397750002.0,
+   "Principal": 0.0
+  },
+  "2043": {
+   "Coupon": 397750002.0,
+   "Principal": 0.0
+  },
+  "2044": {
+   "Coupon": 397750002.0,
+   "Principal": 0.0
+  },
+  "2045": {
+   "Coupon": 397750002.0,
+   "Principal": 0.0
+  },
+  "2046": {
+   "Coupon": 397750002.0,
+   "Principal": 2500000000.0
+  },
+  "2047": {
+   "Coupon": 232750000.0,
+   "Principal": 0.0
+  },
+  "2048": {
+   "Coupon": 232750000.0,
+   "Principal": 0.0
+  },
+  "2049": {
+   "Coupon": 232750000.0,
+   "Principal": 0.0
+  },
+  "2050": {
+   "Coupon": 232750000.0,
+   "Principal": 0.0
+  },
+  "2051": {
+   "Coupon": 232750000.0,
+   "Principal": 0.0
+  },
+  "2052": {
+   "Coupon": 232750000.0,
+   "Principal": 0.0
+  },
+  "2053": {
+   "Coupon": 232750000.0,
+   "Principal": 0.0
+  },
+  "2054": {
+   "Coupon": 232750000.0,
+   "Principal": 0.0
+  },
+  "2055": {
+   "Coupon": 232750000.0,
+   "Principal": 0.0
+  },
+  "2056": {
+   "Coupon": 232750000.0,
+   "Principal": 3500000000.0
+  }
+ },
+ "fuente": "Refinitiv, 2026-10-26_calendario-vencimientos.xlsx",
+ "fecha_archivo": "2026-10-26"
+}

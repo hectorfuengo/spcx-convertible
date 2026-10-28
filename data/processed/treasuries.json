@@ -1,0 +1,78 @@
+{
+ "descripcion": "0#USBMK= Realtime Bid Yield",
+ "puntos": [
+  {
+   "plazo": "1M",
+   "anios": 0.08333333333333333,
+   "yield_pct": 4.038
+  },
+  {
+   "plazo": "1M7D",
+   "anios": 0.10249828884325804,
+   "yield_pct": 4.0212
+  },
+  {
+   "plazo": "2M",
+   "anios": 0.16666666666666666,
+   "yield_pct": 4.1203
+  },
+  {
+   "plazo": "3M",
+   "anios": 0.25,
+   "yield_pct": 4.1632
+  },
+  {
+   "plazo": "4M",
+   "anios": 0.3333333333333333,
+   "yield_pct": 4.2514
+  },
+  {
+   "plazo": "6M",
+   "anios": 0.5,
+   "yield_pct": 4.3473
+  },
+  {
+   "plazo": "1Y",
+   "anios": 1.0,
+   "yield_pct": 4.4516
+  },
+  {
+   "plazo": "2Y",
+   "anios": 2.0,
+   "yield_pct": 4.7551
+  },
+  {
+   "plazo": "3Y",
+   "anios": 3.0,
+   "yield_pct": 4.8212
+  },
+  {
+   "plazo": "5Y",
+   "anios": 5.0,
+   "yield_pct": 4.8661
+  },
+  {
+   "plazo": "7Y",
+   "anios": 7.0,
+   "yield_pct": 4.9394
+  },
+  {
+   "plazo": "10Y",
+   "anios": 10.0,
+   "yield_pct": 5.0342
+  },
+  {
+   "plazo": "20Y",
+   "anios": 20.0,
+   "yield_pct": 5.4041
+  },
+  {
+   "plazo": "30Y",
+   "anios": 30.0,
+   "yield_pct": 5.3556
+  }
+ ],
+ "fuente": "Refinitiv, 2026-10-26_treasuries.xlsx",
+ "fecha_archivo": "2026-10-26",
+ "nota": "Yield bid en tiempo real al momento de la descarga; el archivo no trae hora."
+}

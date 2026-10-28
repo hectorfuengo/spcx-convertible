@@ -1,0 +1,2921 @@
+{
+ "fuente": "Refinitiv, 2026-10-26_financieros_as-reported.xlsx",
+ "fecha_archivo": "2026-10-26",
+ "unidades": "millones de USD",
+ "hojas": {
+  "Income Statement": {
+   "exportado": "2026-10-27",
+   "periodos": [
+    "2025-03-31",
+    "2025-06-30",
+    "2025-09-30",
+    "2026-03-31",
+    "2026-06-30",
+    "2026-09-30"
+   ],
+   "conceptos": [
+    {
+     "seccion": "Field Name",
+     "concepto": "Products",
+     "valores": {
+      "2025-03-31": 352.0,
+      "2025-06-30": 403.0,
+      "2025-09-30": 430.0,
+      "2026-03-31": 380.0,
+      "2026-06-30": 461.0,
+      "2026-09-30": 771.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Services",
+     "valores": {
+      "2025-03-31": 3715.0,
+      "2025-06-30": 3668.0,
+      "2025-09-30": 5146.0,
+      "2026-03-31": 4314.0,
+      "2026-06-30": 7353.0,
+      "2026-09-30": 13804.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Revenue",
+     "valores": {
+      "2025-03-31": 4067.0,
+      "2025-06-30": 4071.0,
+      "2025-09-30": 5576.0,
+      "2026-03-31": 4694.0,
+      "2026-06-30": 7814.0,
+      "2026-09-30": 14575.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Total Revenue",
+     "valores": {
+      "2025-03-31": 4067.0,
+      "2025-06-30": 4071.0,
+      "2025-09-30": 5576.0,
+      "2026-03-31": 4694.0,
+      "2026-06-30": 7814.0,
+      "2026-09-30": 14575.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Stock-Based Compensation in Cost of Revenue",
+     "valores": {
+      "2025-03-31": 39.0,
+      "2025-06-30": 65.0,
+      "2025-09-30": 71.0,
+      "2026-03-31": 76.0,
+      "2026-06-30": 117.0,
+      "2026-09-30": 122.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Acquisition Cost of Group Companies",
+     "valores": {
+      "2025-03-31": null,
+      "2025-06-30": null,
+      "2025-09-30": null,
+      "2026-03-31": null,
+      "2026-06-30": null,
+      "2026-09-30": 6.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Cost of revenue - Balancing value",
+     "valores": {
+      "2025-03-31": 1923.0,
+      "2025-06-30": 2217.0,
+      "2025-09-30": 2634.0,
+      "2026-03-31": 2312.0,
+      "2026-06-30": 3378.0,
+      "2026-09-30": 5350.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Cost of revenue",
+     "valores": {
+      "2025-03-31": 1962.0,
+      "2025-06-30": 2282.0,
+      "2025-09-30": 2705.0,
+      "2026-03-31": 2388.0,
+      "2026-06-30": 3495.0,
+      "2026-09-30": 5478.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Stock-Based Compensation in Research & Development Expense",
+     "valores": {
+      "2025-03-31": 75.0,
+      "2025-06-30": 193.0,
+      "2025-09-30": 167.0,
+      "2026-03-31": 362.0,
+      "2026-06-30": 369.0,
+      "2026-09-30": 394.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Acquisition Cost of Group Companies",
+     "valores": {
+      "2025-03-31": null,
+      "2025-06-30": null,
+      "2025-09-30": null,
+      "2026-03-31": null,
+      "2026-06-30": null,
+      "2026-09-30": 1022.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Research and development - Balancing value",
+     "valores": {
+      "2025-03-31": 1482.0,
+      "2025-06-30": 1765.0,
+      "2025-09-30": 2124.0,
+      "2026-03-31": 3152.0,
+      "2026-06-30": 3179.0,
+      "2026-09-30": 3180.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Research and development",
+     "valores": {
+      "2025-03-31": 1557.0,
+      "2025-06-30": 1958.0,
+      "2025-09-30": 2291.0,
+      "2026-03-31": 3514.0,
+      "2026-06-30": 3548.0,
+      "2026-09-30": 4596.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Stock-Based Compensation in Selling, General & Administrative Expenses",
+     "valores": {
+      "2025-03-31": 118.0,
+      "2025-06-30": 205.0,
+      "2025-09-30": 112.0,
+      "2026-03-31": 201.0,
+      "2026-06-30": 345.0,
+      "2026-09-30": 630.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Acquisition Cost of Group Companies",
+     "valores": {
+      "2025-03-31": null,
+      "2025-06-30": null,
+      "2025-09-30": null,
+      "2026-03-31": null,
+      "2026-06-30": null,
+      "2026-09-30": 189.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Legal Provisions & Litigation Expenses",
+     "valores": {
+      "2025-03-31": null,
+      "2025-06-30": null,
+      "2025-09-30": null,
+      "2026-03-31": null,
+      "2026-06-30": -64.0,
+      "2026-09-30": null
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Selling general and administrative - Balancing value",
+     "valores": {
+      "2025-03-31": 375.0,
+      "2025-06-30": 401.0,
+      "2025-09-30": 463.0,
+      "2026-03-31": 545.0,
+      "2026-06-30": 631.0,
+      "2026-09-30": 888.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Selling, general, and administrative",
+     "valores": {
+      "2025-03-31": 493.0,
+      "2025-06-30": 606.0,
+      "2025-09-30": 575.0,
+      "2026-03-31": 746.0,
+      "2026-06-30": 912.0,
+      "2026-09-30": 1707.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Restructuring charges (credits)",
+     "valores": {
+      "2025-03-31": 4.0,
+      "2025-06-30": 190.0,
+      "2025-09-30": 278.0,
+      "2026-03-31": -11.0,
+      "2026-06-30": 2.0,
+      "2026-09-30": 3.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Impairment - Fixed Assets",
+     "valores": {
+      "2025-03-31": 24.0,
+      "2025-06-30": 5.0,
+      "2025-09-30": 0.0,
+      "2026-03-31": 0.0,
+      "2026-06-30": 0.0,
+      "2026-09-30": 0.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Total costs and expenses",
+     "valores": {
+      "2025-03-31": 4040.0,
+      "2025-06-30": 5041.0,
+      "2025-09-30": 5849.0,
+      "2026-03-31": 6637.0,
+      "2026-06-30": 7957.0,
+      "2026-09-30": 11784.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Income (loss) from operations",
+     "valores": {
+      "2025-03-31": 27.0,
+      "2025-06-30": -970.0,
+      "2025-09-30": -273.0,
+      "2026-03-31": -1943.0,
+      "2026-06-30": -143.0,
+      "2026-09-30": 2791.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Interest Expense on Financial Lease Liabilities",
+     "valores": {
+      "2025-03-31": -85.0,
+      "2025-06-30": -82.0,
+      "2025-09-30": -77.0,
+      "2026-03-31": -68.0,
+      "2026-06-30": -64.0,
+      "2026-09-30": -58.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Interest Capitalized",
+     "valores": {
+      "2025-03-31": null,
+      "2025-06-30": 22.0,
+      "2025-09-30": 74.0,
+      "2026-03-31": 7.0,
+      "2026-06-30": 13.0,
+      "2026-09-30": 119.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Interest expense - Gross",
+     "valores": {
+      "2025-03-31": -362.0,
+      "2025-06-30": -351.0,
+      "2025-09-30": -511.0,
+      "2026-03-31": -603.0,
+      "2026-06-30": -578.0,
+      "2026-09-30": -736.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Interest expense",
+     "valores": {
+      "2025-03-31": -447.0,
+      "2025-06-30": -411.0,
+      "2025-09-30": -514.0,
+      "2026-03-31": -664.0,
+      "2026-06-30": -629.0,
+      "2026-09-30": -675.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Interest income",
+     "valores": {
+      "2025-03-31": 117.0,
+      "2025-06-30": 98.0,
+      "2025-09-30": 155.0,
+      "2026-03-31": 213.0,
+      "2026-06-30": 340.0,
+      "2026-09-30": 873.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Unrealized gain(loss) net",
+     "valores": {
+      "2025-03-31": null,
+      "2025-06-30": null,
+      "2025-09-30": null,
+      "2026-03-31": null,
+      "2026-06-30": null,
+      "2026-09-30": 561.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Other income (expense) net - Balancing value",
+     "valores": {
+      "2025-03-31": null,
+      "2025-06-30": null,
+      "2025-09-30": null,
+      "2026-03-31": -350.0,
+      "2026-06-30": -68.0,
+      "2026-09-30": 464.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "loss on extinguishment of debt",
+     "valores": {
+      "2025-03-31": null,
+      "2025-06-30": null,
+      "2025-09-30": null,
+      "2026-03-31": null,
+      "2026-06-30": -18.0,
+      "2026-09-30": 0.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "loss on extinguishment of debt",
+     "valores": {
+      "2025-03-31": null,
+      "2025-06-30": null,
+      "2025-09-30": null,
+      "2026-03-31": -1526.0,
+      "2026-06-30": 0.0,
+      "2026-09-30": 0.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Other income (expense), net",
+     "valores": {
+      "2025-03-31": -211.0,
+      "2025-06-30": 413.0,
+      "2025-09-30": 140.0,
+      "2026-03-31": -1876.0,
+      "2026-06-30": -86.0,
+      "2026-09-30": 1025.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Non-Operating Income/Expense - Total",
+     "valores": {
+      "2025-03-31": -541.0,
+      "2025-06-30": 100.0,
+      "2025-09-30": -219.0,
+      "2026-03-31": -2327.0,
+      "2026-06-30": -375.0,
+      "2026-09-30": 1223.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Income (loss) before income taxes",
+     "valores": {
+      "2025-03-31": -514.0,
+      "2025-06-30": -870.0,
+      "2025-09-30": -492.0,
+      "2026-03-31": -4270.0,
+      "2026-06-30": -518.0,
+      "2026-09-30": 4014.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Provision for (benefit from) income taxes",
+     "valores": {
+      "2025-03-31": 14.0,
+      "2025-06-30": 138.0,
+      "2025-09-30": 562.0,
+      "2026-03-31": 6.0,
+      "2026-06-30": 23.0,
+      "2026-09-30": -390.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Income Taxes - Total",
+     "valores": {
+      "2025-03-31": 14.0,
+      "2025-06-30": 138.0,
+      "2025-09-30": 562.0,
+      "2026-03-31": 6.0,
+      "2026-06-30": 23.0,
+      "2026-09-30": -390.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Net Income - including After-Tax Adjustments",
+     "valores": {
+      "2025-03-31": -528.0,
+      "2025-06-30": -1008.0,
+      "2025-09-30": -1054.0,
+      "2026-03-31": -4276.0,
+      "2026-06-30": -541.0,
+      "2026-09-30": 4404.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Net income (loss)",
+     "valores": {
+      "2025-03-31": null,
+      "2025-06-30": null,
+      "2025-09-30": -1054.0,
+      "2026-03-31": null,
+      "2026-06-30": null,
+      "2026-09-30": 4404.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Deemed dividend",
+     "valores": {
+      "2025-03-31": 0.0,
+      "2025-06-30": 0.0,
+      "2025-09-30": null,
+      "2026-03-31": -671.0,
+      "2026-06-30": 0.0,
+      "2026-09-30": 0.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Preferred Dividends, Distributions & Earnings Adjustments - Total",
+     "valores": {
+      "2025-03-31": 0.0,
+      "2025-06-30": 0.0,
+      "2025-09-30": null,
+      "2026-03-31": -671.0,
+      "2026-06-30": 0.0,
+      "2026-09-30": 0.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Net income (loss) attributable to shareholders",
+     "valores": {
+      "2025-03-31": -528.0,
+      "2025-06-30": -1008.0,
+      "2025-09-30": -1054.0,
+      "2026-03-31": -4947.0,
+      "2026-06-30": -541.0,
+      "2026-09-30": 4404.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Other Comprehensive Income - Starting Line",
+     "valores": {
+      "2025-03-31": -528.0,
+      "2025-06-30": -1008.0,
+      "2025-09-30": -1054.0,
+      "2026-03-31": -4276.0,
+      "2026-06-30": -541.0,
+      "2026-09-30": 4404.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Change in foreign currency translation adjustments, net of tax",
+     "valores": {
+      "2025-03-31": 257.0,
+      "2025-06-30": 538.0,
+      "2025-09-30": -3.0,
+      "2026-03-31": -140.0,
+      "2026-06-30": -38.0,
+      "2026-09-30": -29.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Unrealized gains (losses) on marketable securities, net of tax",
+     "valores": {
+      "2025-03-31": 2.0,
+      "2025-06-30": -2.0,
+      "2025-09-30": 0.0,
+      "2026-03-31": -3.0,
+      "2026-06-30": 2.0,
+      "2026-09-30": -26.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Other comprehensive income (loss)",
+     "valores": {
+      "2025-03-31": 259.0,
+      "2025-06-30": 536.0,
+      "2025-09-30": -3.0,
+      "2026-03-31": -143.0,
+      "2026-06-30": -36.0,
+      "2026-09-30": -55.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Comprehensive income (loss)",
+     "valores": {
+      "2025-03-31": -269.0,
+      "2025-06-30": -472.0,
+      "2025-09-30": -1057.0,
+      "2026-03-31": -4419.0,
+      "2026-06-30": -577.0,
+      "2026-09-30": 4349.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Operating lease expense",
+     "valores": {
+      "2025-03-31": 120.0,
+      "2025-06-30": 134.0,
+      "2025-09-30": 115.0,
+      "2026-03-31": 107.0,
+      "2026-06-30": 126.0,
+      "2026-09-30": 129.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Short-Term Lease Cost",
+     "valores": {
+      "2025-03-31": 29.0,
+      "2025-06-30": 46.0,
+      "2025-09-30": 94.0,
+      "2026-03-31": 113.0,
+      "2026-06-30": 147.0,
+      "2026-09-30": 162.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Variable Operating Lease Expenses - US GAAP",
+     "valores": {
+      "2025-03-31": 23.0,
+      "2025-06-30": 23.0,
+      "2025-09-30": 37.0,
+      "2026-03-31": 31.0,
+      "2026-06-30": 24.0,
+      "2026-09-30": 60.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Depreciation of Lease Right-of-Use Assets - Supplemental",
+     "valores": {
+      "2025-03-31": 84.0,
+      "2025-06-30": 85.0,
+      "2025-09-30": 82.0,
+      "2026-03-31": 79.0,
+      "2026-06-30": 79.0,
+      "2026-09-30": 79.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Interest Expense on Financial Lease Liabilities - Supplemental",
+     "valores": {
+      "2025-03-31": 85.0,
+      "2025-06-30": 82.0,
+      "2025-09-30": 77.0,
+      "2026-03-31": 68.0,
+      "2026-06-30": 64.0,
+      "2026-09-30": 58.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Lease Expense - Total",
+     "valores": {
+      "2025-03-31": 341.0,
+      "2025-06-30": 370.0,
+      "2025-09-30": 405.0,
+      "2026-03-31": 398.0,
+      "2026-06-30": 440.0,
+      "2026-09-30": 488.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Amortization of Other Intangibles excluding Goodwill - Supplemental",
+     "valores": {
+      "2025-03-31": 206.0,
+      "2025-06-30": 216.0,
+      "2025-09-30": 219.0,
+      "2026-03-31": 113.0,
+      "2026-06-30": 113.0,
+      "2026-09-30": 293.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Depreciation - Supplemental",
+     "valores": {
+      "2025-03-31": 1237.0,
+      "2025-06-30": 1310.0,
+      "2025-09-30": 1595.0,
+      "2026-03-31": 2329.0,
+      "2026-06-30": 2735.0,
+      "2026-09-30": 3351.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Depreciation & Amortization - Total",
+     "valores": {
+      "2025-03-31": 1527.0,
+      "2025-06-30": 1611.0,
+      "2025-09-30": 1896.0,
+      "2026-03-31": 2521.0,
+      "2026-06-30": 2927.0,
+      "2026-09-30": 3723.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Depreciation - Total",
+     "valores": {
+      "2025-03-31": 1321.0,
+      "2025-06-30": 1395.0,
+      "2025-09-30": 1677.0,
+      "2026-03-31": 2408.0,
+      "2026-06-30": 2814.0,
+      "2026-09-30": 3430.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Amortization of Intangible Assets excluding Goodwill - Total",
+     "valores": {
+      "2025-03-31": 206.0,
+      "2025-06-30": 216.0,
+      "2025-09-30": 219.0,
+      "2026-03-31": 113.0,
+      "2026-06-30": 113.0,
+      "2026-09-30": 293.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Basic (in shares)",
+     "valores": {
+      "2025-03-31": 13075.87,
+      "2025-06-30": 13075.87,
+      "2025-09-30": 2941.0,
+      "2026-03-31": 13075.87,
+      "2026-06-30": 13176.0,
+      "2026-09-30": 11942.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Diluted (in shares)",
+     "valores": {
+      "2025-03-31": 13075.87,
+      "2025-06-30": 13075.87,
+      "2025-09-30": 2941.0,
+      "2026-03-31": 13075.87,
+      "2026-06-30": 13176.0,
+      "2026-09-30": 12475.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Net income (loss) attributable to shareholders - diluted",
+     "valores": {
+      "2025-03-31": -528.0,
+      "2025-06-30": -1008.0,
+      "2025-09-30": -1054.0,
+      "2026-03-31": -4947.0,
+      "2026-06-30": -541.0,
+      "2026-09-30": 4404.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Diluted (in USD per share)",
+     "valores": {
+      "2025-03-31": -0.04,
+      "2025-06-30": -0.08,
+      "2025-09-30": -0.36,
+      "2026-03-31": -0.38,
+      "2026-06-30": -0.04,
+      "2026-09-30": 0.35
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Basic (in USD per share)",
+     "valores": {
+      "2025-03-31": -0.04,
+      "2025-06-30": -0.08,
+      "2025-09-30": -0.36,
+      "2026-03-31": -0.38,
+      "2026-06-30": -0.04,
+      "2026-09-30": 0.37
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Non-GAAP Adjusted EBITDA",
+     "valores": {
+      "2025-03-31": 1730.0,
+      "2025-06-30": 1214.0,
+      "2025-09-30": 2169.0,
+      "2026-03-31": 1127.0,
+      "2026-06-30": 3538.0,
+      "2026-09-30": 8809.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "gain from observable price changes",
+     "valores": {
+      "2025-03-31": null,
+      "2025-06-30": null,
+      "2025-09-30": null,
+      "2026-03-31": null,
+      "2026-06-30": 70.0,
+      "2026-09-30": null
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Acquisition Cost of Group Companies",
+     "valores": {
+      "2025-03-31": null,
+      "2025-06-30": null,
+      "2025-09-30": null,
+      "2026-03-31": null,
+      "2026-06-30": null,
+      "2026-09-30": -8.0
+     }
+    }
+   ]
+  },
+  "Balance Sheet": {
+   "exportado": "2026-10-27",
+   "periodos": [
+    "2026-03-31",
+    "2026-06-30",
+    "2026-09-30"
+   ],
+   "conceptos": [
+    {
+     "seccion": "Field Name",
+     "concepto": "Cash and cash equivalents",
+     "valores": {
+      "2026-03-31": 15852.0,
+      "2026-06-30": 93522.0,
+      "2026-09-30": 51294.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Cash",
+     "valores": {
+      "2026-03-31": 7181.0,
+      "2026-06-30": 23886.0,
+      "2026-09-30": 26058.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Cash and cash equivalents",
+     "valores": {
+      "2026-03-31": 6950.0,
+      "2026-06-30": 65625.0,
+      "2026-09-30": 21635.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Government securities",
+     "valores": {
+      "2026-03-31": 1721.0,
+      "2026-06-30": 4011.0,
+      "2026-09-30": 3601.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Marketable securities",
+     "valores": {
+      "2026-03-31": 7823.0,
+      "2026-06-30": 6487.0,
+      "2026-09-30": 38561.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Accounts receivable",
+     "valores": {
+      "2026-03-31": 1833.0,
+      "2026-06-30": 3596.0,
+      "2026-09-30": 4772.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Accounts receivable - Gross",
+     "valores": {
+      "2026-03-31": 1880.0,
+      "2026-06-30": 3646.0,
+      "2026-09-30": 4839.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Provision - Accounts receivable",
+     "valores": {
+      "2026-03-31": -47.0,
+      "2026-06-30": -50.0,
+      "2026-09-30": -67.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Inventory",
+     "valores": {
+      "2026-03-31": 2588.0,
+      "2026-06-30": 2718.0,
+      "2026-09-30": 2891.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Raw Materials",
+     "valores": {
+      "2026-03-31": 1054.0,
+      "2026-06-30": 1122.0,
+      "2026-09-30": 1102.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Work-in-progress",
+     "valores": {
+      "2026-03-31": 835.0,
+      "2026-06-30": 875.0,
+      "2026-09-30": 887.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Finished Goods",
+     "valores": {
+      "2026-03-31": 699.0,
+      "2026-06-30": 721.0,
+      "2026-09-30": 902.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Prepaid expenses and other current assets",
+     "valores": {
+      "2026-03-31": 1636.0,
+      "2026-06-30": 1724.0,
+      "2026-09-30": 3457.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Tax related assets",
+     "valores": {
+      "2026-03-31": 690.0,
+      "2026-06-30": 561.0,
+      "2026-09-30": 634.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Rebates and credits",
+     "valores": {
+      "2026-03-31": 109.0,
+      "2026-06-30": 178.0,
+      "2026-09-30": 341.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Unbilled receivables",
+     "valores": {
+      "2026-03-31": 275.0,
+      "2026-06-30": 192.0,
+      "2026-09-30": 815.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Restricted Cash",
+     "valores": {
+      "2026-03-31": 67.0,
+      "2026-06-30": 210.0,
+      "2026-09-30": 555.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Other",
+     "valores": {
+      "2026-03-31": 495.0,
+      "2026-06-30": 583.0,
+      "2026-09-30": 1112.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Total Current Assets",
+     "valores": {
+      "2026-03-31": 29732.0,
+      "2026-06-30": 108047.0,
+      "2026-09-30": 100975.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Property, plant, and equipment, net",
+     "valores": {
+      "2026-03-31": 53879.0,
+      "2026-06-30": 65736.0,
+      "2026-09-30": 89483.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Servers and networking equipment",
+     "valores": {
+      "2026-03-31": 23850.0,
+      "2026-06-30": 34771.0,
+      "2026-09-30": 43206.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Satellites",
+     "valores": {
+      "2026-03-31": 12893.0,
+      "2026-06-30": 13788.0,
+      "2026-09-30": 14738.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Machinery and equipment",
+     "valores": {
+      "2026-03-31": 8020.0,
+      "2026-06-30": 9453.0,
+      "2026-09-30": 11014.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Data center infrastructure",
+     "valores": {
+      "2026-03-31": 2965.0,
+      "2026-06-30": 3991.0,
+      "2026-09-30": 6333.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Launch sites",
+     "valores": {
+      "2026-03-31": 2479.0,
+      "2026-06-30": 3118.0,
+      "2026-09-30": 3175.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Land, buildings and improvements",
+     "valores": {
+      "2026-03-31": 2018.0,
+      "2026-06-30": 2958.0,
+      "2026-09-30": 5167.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Flight vehicle hardware",
+     "valores": {
+      "2026-03-31": 1459.0,
+      "2026-06-30": 1557.0,
+      "2026-09-30": 1625.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Leasehold Improvements",
+     "valores": {
+      "2026-03-31": 842.0,
+      "2026-06-30": 881.0,
+      "2026-09-30": 1002.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Construction in Progress",
+     "valores": {
+      "2026-03-31": 14045.0,
+      "2026-06-30": 12554.0,
+      "2026-09-30": 23745.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Accumulated depreciation",
+     "valores": {
+      "2026-03-31": -14692.0,
+      "2026-06-30": -17335.0,
+      "2026-09-30": -20522.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Finance lease right-of-use assets",
+     "valores": {
+      "2026-03-31": 1182.0,
+      "2026-06-30": 1118.0,
+      "2026-09-30": 1040.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Intangible assets, net",
+     "valores": {
+      "2026-03-31": 1432.0,
+      "2026-06-30": 1318.0,
+      "2026-09-30": 6354.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Brands - Gross",
+     "valores": {
+      "2026-03-31": 735.0,
+      "2026-06-30": 733.0,
+      "2026-09-30": 932.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Brands - Accumulated Amortization",
+     "valores": {
+      "2026-03-31": -367.0,
+      "2026-06-30": -403.0,
+      "2026-09-30": -449.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "User base - Gross",
+     "valores": {
+      "2026-03-31": 1277.0,
+      "2026-06-30": 1273.0,
+      "2026-09-30": 1270.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "User base - Accumulated Amortization",
+     "valores": {
+      "2026-03-31": -486.0,
+      "2026-06-30": -519.0,
+      "2026-09-30": -554.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Existing technology - Gross",
+     "valores": {
+      "2026-03-31": 27.0,
+      "2026-06-30": 27.0,
+      "2026-09-30": 4459.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Existing technology - Accumulated Amortization",
+     "valores": {
+      "2026-03-31": -17.0,
+      "2026-06-30": -19.0,
+      "2026-09-30": -167.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Advertising customer relationships - Gross",
+     "valores": {
+      "2026-03-31": 745.0,
+      "2026-06-30": 742.0,
+      "2026-09-30": 1441.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Advertising customer relationships - Accumulated Amortization",
+     "valores": {
+      "2026-03-31": -510.0,
+      "2026-06-30": -545.0,
+      "2026-09-30": -605.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Acquired workforce - Gross",
+     "valores": {
+      "2026-03-31": 11.0,
+      "2026-06-30": 12.0,
+      "2026-09-30": 12.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Acquired workforce - Accumulated Amortization",
+     "valores": {
+      "2026-03-31": -2.0,
+      "2026-06-30": -4.0,
+      "2026-09-30": -6.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Intangible indefinite-lived assets",
+     "valores": {
+      "2026-03-31": 19.0,
+      "2026-06-30": 21.0,
+      "2026-09-30": 21.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Digital assets",
+     "valores": {
+      "2026-03-31": 1293.0,
+      "2026-06-30": 1098.0,
+      "2026-09-30": 1573.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Goodwill",
+     "valores": {
+      "2026-03-31": 11681.0,
+      "2026-06-30": 11645.0,
+      "2026-09-30": 48423.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Deferred tax assets",
+     "valores": {
+      "2026-03-31": 213.0,
+      "2026-06-30": 354.0,
+      "2026-09-30": 388.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Other assets",
+     "valores": {
+      "2026-03-31": 2682.0,
+      "2026-06-30": 3454.0,
+      "2026-09-30": 5809.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Restricted Cash",
+     "valores": {
+      "2026-03-31": 689.0,
+      "2026-06-30": 620.0,
+      "2026-09-30": 1537.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Other assets - Balancing value",
+     "valores": {
+      "2026-03-31": 1993.0,
+      "2026-06-30": 2834.0,
+      "2026-09-30": 4272.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Total Non-Current Assets",
+     "valores": {
+      "2026-03-31": 72362.0,
+      "2026-06-30": 84723.0,
+      "2026-09-30": 153070.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Total Assets",
+     "valores": {
+      "2026-03-31": 102094.0,
+      "2026-06-30": 192770.0,
+      "2026-09-30": 254045.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Accounts payable",
+     "valores": {
+      "2026-03-31": 10002.0,
+      "2026-06-30": 8243.0,
+      "2026-09-30": 13259.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Deferred revenue, current",
+     "valores": {
+      "2026-03-31": 7207.0,
+      "2026-06-30": 7977.0,
+      "2026-09-30": 10784.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Debt and finance leases",
+     "valores": {
+      "2026-03-31": 1538.0,
+      "2026-06-30": 2525.0,
+      "2026-09-30": 2698.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Accrued expenses and other current liabilities",
+     "valores": {
+      "2026-03-31": 5689.0,
+      "2026-06-30": 2377.0,
+      "2026-09-30": 5997.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Accrued infrastructure purchases",
+     "valores": {
+      "2026-03-31": 2669.0,
+      "2026-06-30": null,
+      "2026-09-30": 1863.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Tax related liabilities",
+     "valores": {
+      "2026-03-31": 601.0,
+      "2026-06-30": 529.0,
+      "2026-09-30": 642.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Operating lease liabilities, current",
+     "valores": {
+      "2026-03-31": 338.0,
+      "2026-06-30": 344.0,
+      "2026-09-30": 374.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Accrued interest",
+     "valores": {
+      "2026-03-31": 68.0,
+      "2026-06-30": 20.0,
+      "2026-09-30": 387.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Restructuring liabilities",
+     "valores": {
+      "2026-03-31": 220.0,
+      "2026-06-30": 177.0,
+      "2026-09-30": 249.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Payroll & employee benefit accruals",
+     "valores": {
+      "2026-03-31": 436.0,
+      "2026-06-30": 452.0,
+      "2026-09-30": 518.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Other Current Liabilities",
+     "valores": {
+      "2026-03-31": 1357.0,
+      "2026-06-30": 855.0,
+      "2026-09-30": 1964.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Total Current Liabilities",
+     "valores": {
+      "2026-03-31": 24436.0,
+      "2026-06-30": 21122.0,
+      "2026-09-30": 32738.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Deferred revenue, net of current",
+     "valores": {
+      "2026-03-31": 6029.0,
+      "2026-06-30": 6309.0,
+      "2026-09-30": 6736.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Debt and finance leases",
+     "valores": {
+      "2026-03-31": 28727.0,
+      "2026-06-30": 36839.0,
+      "2026-09-30": 36146.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Other liabilities",
+     "valores": {
+      "2026-03-31": null,
+      "2026-06-30": 1276.0,
+      "2026-09-30": 1657.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Other liabilities",
+     "valores": {
+      "2026-03-31": 1320.0,
+      "2026-06-30": null,
+      "2026-09-30": null
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Total Non-Current Liabilities",
+     "valores": {
+      "2026-03-31": 36076.0,
+      "2026-06-30": 44424.0,
+      "2026-09-30": 44539.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Total liabilities",
+     "valores": {
+      "2026-03-31": 60512.0,
+      "2026-06-30": 65546.0,
+      "2026-09-30": 77277.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Redeemable convertible preferred stock",
+     "valores": {
+      "2026-03-31": 7049.0,
+      "2026-06-30": 0.0,
+      "2026-09-30": 0.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Class A common stock",
+     "valores": {
+      "2026-03-31": 3.0,
+      "2026-06-30": 7.0,
+      "2026-09-30": 8.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Class B common stock",
+     "valores": {
+      "2026-03-31": 3.0,
+      "2026-06-30": 6.0,
+      "2026-09-30": 5.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Class C common stock",
+     "valores": {
+      "2026-03-31": null,
+      "2026-06-30": null,
+      "2026-09-30": 0.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Additional paid-in capital",
+     "valores": {
+      "2026-03-31": 74083.0,
+      "2026-06-30": 167344.0,
+      "2026-09-30": 212539.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Accumulated deficit",
+     "valores": {
+      "2026-03-31": -41311.0,
+      "2026-06-30": -41852.0,
+      "2026-09-30": -37448.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Accumulated other comprehensive income",
+     "valores": {
+      "2026-03-31": 1755.0,
+      "2026-06-30": 1719.0,
+      "2026-09-30": 1664.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Shareholders' Equity - Total",
+     "valores": {
+      "2026-03-31": 41582.0,
+      "2026-06-30": 127224.0,
+      "2026-09-30": 176768.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Total Equity",
+     "valores": {
+      "2026-03-31": 41582.0,
+      "2026-06-30": 127224.0,
+      "2026-09-30": 176768.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Total Liabilities & Equity",
+     "valores": {
+      "2026-03-31": 102094.0,
+      "2026-06-30": 192770.0,
+      "2026-09-30": 254045.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Common Shares - Treasury - Total",
+     "valores": {
+      "2026-03-31": 0.0,
+      "2026-06-30": 0.0,
+      "2026-09-30": 0.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Common Shares - Outstanding - Total",
+     "valores": {
+      "2026-03-31": 13075.87,
+      "2026-06-30": 13176.0,
+      "2026-09-30": 13579.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Common Shares - Issued - Total",
+     "valores": {
+      "2026-03-31": 13075.87,
+      "2026-06-30": 13176.0,
+      "2026-09-30": 13579.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Revolving Line of Credit - Total Principal Amount",
+     "valores": {
+      "2026-03-31": 250.0,
+      "2026-06-30": 250.0,
+      "2026-09-30": 250.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Debt - Long-Term - Maturities - within 1 Year",
+     "valores": {
+      "2026-03-31": 801.0,
+      "2026-06-30": 944.0,
+      "2026-09-30": 495.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Debt - Long-Term - Maturities - Year 2",
+     "valores": {
+      "2026-03-31": 21540.0,
+      "2026-06-30": 2402.0,
+      "2026-09-30": 2425.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Debt - Long-Term - Maturities - Year 3",
+     "valores": {
+      "2026-03-31": 1938.0,
+      "2026-06-30": 2867.0,
+      "2026-09-30": 2867.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Debt - Long-Term - Maturities - Year 4",
+     "valores": {
+      "2026-03-31": 2393.0,
+      "2026-06-30": 3422.0,
+      "2026-09-30": 3422.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Debt - Long-Term - Maturities - Year 5",
+     "valores": {
+      "2026-03-31": 2460.0,
+      "2026-06-30": 3597.0,
+      "2026-09-30": 3597.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Debt - Long-Term - Maturities - Remaining",
+     "valores": {
+      "2026-03-31": 0.0,
+      "2026-06-30": 25201.0,
+      "2026-09-30": 25200.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Total Indefinite-lived Intangible Assets (excl Goodwill) - Net - Supplemental",
+     "valores": {
+      "2026-03-31": 19.0,
+      "2026-06-30": 21.0,
+      "2026-09-30": 21.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Operating Lease Liabilities - Long-Term",
+     "valores": {
+      "2026-03-31": 1136.0,
+      "2026-06-30": 1136.0,
+      "2026-09-30": 1136.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Common Shares - Authorized - Issue Specific-Class A",
+     "valores": {
+      "2026-03-31": 36132.15,
+      "2026-06-30": 36132.0,
+      "2026-09-30": 36132.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Common Shares - Outstanding - Issue Specific-Class A",
+     "valores": {
+      "2026-03-31": 7380.2,
+      "2026-06-30": 7607.0,
+      "2026-09-30": 8240.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Common Shares - Outstanding - Issue Specific - Current",
+     "valores": {
+      "2026-03-31": null,
+      "2026-06-30": 7696.29,
+      "2026-09-30": 8246.54
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Common Shares - Issued - Issue Specific-Class A",
+     "valores": {
+      "2026-03-31": 7380.2,
+      "2026-06-30": 7607.0,
+      "2026-09-30": 8240.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Common Shares - Issued - Issue Specific - Current Date",
+     "valores": {
+      "2026-03-31": null,
+      "2026-06-30": 20260728.0,
+      "2026-09-30": 20261015.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Asset Allocation Factor - Issue Specific",
+     "valores": {
+      "2026-03-31": 0.56,
+      "2026-06-30": 0.58,
+      "2026-09-30": 0.61
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Common Shares - Treasury - Issue Specific",
+     "valores": {
+      "2026-03-31": 0.0,
+      "2026-06-30": 0.0,
+      "2026-09-30": 0.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Common Shares - Issued - Issue Specific - Current Date",
+     "valores": {
+      "2026-03-31": null,
+      "2026-06-30": 20260728.0,
+      "2026-09-30": 20261015.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Common Shares - Authorized - Issue Specific-Class B",
+     "valores": {
+      "2026-03-31": 6125.0,
+      "2026-06-30": 6125.0,
+      "2026-09-30": 6125.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Common Shares - Outstanding - Issue Specific-Class B",
+     "valores": {
+      "2026-03-31": 5695.67,
+      "2026-06-30": 5569.0,
+      "2026-09-30": 5339.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Common Shares - Outstanding - Issue Specific - Current",
+     "valores": {
+      "2026-03-31": null,
+      "2026-06-30": 5485.49,
+      "2026-09-30": 5334.52
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Common Shares - Issued - Issue Specific-Class B",
+     "valores": {
+      "2026-03-31": 5695.67,
+      "2026-06-30": 5569.0,
+      "2026-09-30": 5339.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Common Shares - Treasury - Issue Specific",
+     "valores": {
+      "2026-03-31": 0.0,
+      "2026-06-30": 0.0,
+      "2026-09-30": 0.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Asset Allocation Factor - Issue Specific",
+     "valores": {
+      "2026-03-31": 0.44,
+      "2026-06-30": 0.42,
+      "2026-09-30": 0.39
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Employees - As of Date",
+     "valores": {
+      "2026-03-31": 20260430.0,
+      "2026-06-30": null,
+      "2026-09-30": null
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Employees - Full-Time/Full-Time Equivalents - Period End",
+     "valores": {
+      "2026-03-31": 22000.0,
+      "2026-06-30": null,
+      "2026-09-30": null
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Employees - Full-Time/Full-Time Equivalents - Current Date",
+     "valores": {
+      "2026-03-31": 22621.0,
+      "2026-06-30": null,
+      "2026-09-30": null
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Order Backlog",
+     "valores": {
+      "2026-03-31": 27621.0,
+      "2026-06-30": 47461.0,
+      "2026-09-30": 62959.0
+     }
+    }
+   ]
+  },
+  "Cash Flow": {
+   "exportado": "2026-10-27",
+   "periodos": [
+    "2025-03-31",
+    "2025-06-30",
+    "2025-09-30",
+    "2026-03-31",
+    "2026-06-30",
+    "2026-09-30"
+   ],
+   "conceptos": [
+    {
+     "seccion": "Field Name",
+     "concepto": "Net loss",
+     "valores": {
+      "2025-03-31": -528.0,
+      "2025-06-30": -1008.0,
+      "2025-09-30": -1054.0,
+      "2026-03-31": -4276.0,
+      "2026-06-30": -541.0,
+      "2026-09-30": 4404.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Depreciation and amortization",
+     "valores": {
+      "2025-03-31": 1443.0,
+      "2025-06-30": 1527.0,
+      "2025-09-30": 1814.0,
+      "2026-03-31": 2442.0,
+      "2026-06-30": 2848.0,
+      "2026-09-30": 3644.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Share-based compensation",
+     "valores": {
+      "2025-03-31": 232.0,
+      "2025-06-30": 462.0,
+      "2025-09-30": 350.0,
+      "2026-03-31": 639.0,
+      "2026-06-30": 831.0,
+      "2026-09-30": 2363.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Deferred income taxes",
+     "valores": {
+      "2025-03-31": null,
+      "2025-06-30": 120.0,
+      "2025-09-30": 503.0,
+      "2026-03-31": null,
+      "2026-06-30": -9.0,
+      "2026-09-30": -446.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Unrealized (gain) loss on digital assets",
+     "valores": {
+      "2025-03-31": 188.0,
+      "2025-06-30": -440.0,
+      "2025-09-30": -137.0,
+      "2026-03-31": 344.0,
+      "2026-06-30": 195.0,
+      "2026-09-30": -475.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Impairment and loss on disposal of fixed assets, net",
+     "valores": {
+      "2025-03-31": 32.0,
+      "2025-06-30": 22.0,
+      "2025-09-30": -54.0,
+      "2026-03-31": 5.0,
+      "2026-06-30": 35.0,
+      "2026-09-30": -40.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Financial Assets - Unrealized Gain/Loss - Cash Flow - to Reconcile",
+     "valores": {
+      "2025-03-31": null,
+      "2025-06-30": null,
+      "2025-09-30": null,
+      "2026-03-31": null,
+      "2026-06-30": null,
+      "2026-09-30": -532.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Amortization of debt discount and issuance costs",
+     "valores": {
+      "2025-03-31": 18.0,
+      "2025-06-30": -18.0,
+      "2025-09-30": null,
+      "2026-03-31": 19.0,
+      "2026-06-30": -19.0,
+      "2026-09-30": null
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Loss on debt extinguishment",
+     "valores": {
+      "2025-03-31": 0.0,
+      "2025-06-30": 0.0,
+      "2025-09-30": 0.0,
+      "2026-03-31": 1526.0,
+      "2026-06-30": 19.0,
+      "2026-09-30": 0.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Other",
+     "valores": {
+      "2025-03-31": 31.0,
+      "2025-06-30": 95.0,
+      "2025-09-30": 67.0,
+      "2026-03-31": -26.0,
+      "2026-06-30": -46.0,
+      "2026-09-30": -182.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Accounts receivable",
+     "valores": {
+      "2025-03-31": -197.0,
+      "2025-06-30": -273.0,
+      "2025-09-30": -464.0,
+      "2026-03-31": -218.0,
+      "2026-06-30": -1785.0,
+      "2026-09-30": -879.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Inventory",
+     "valores": {
+      "2025-03-31": -322.0,
+      "2025-06-30": -38.0,
+      "2025-09-30": -18.0,
+      "2026-03-31": -384.0,
+      "2026-06-30": -443.0,
+      "2026-09-30": -554.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Prepaid expenses and other assets",
+     "valores": {
+      "2025-03-31": -88.0,
+      "2025-06-30": -2037.0,
+      "2025-09-30": 1698.0,
+      "2026-03-31": -74.0,
+      "2026-06-30": 176.0,
+      "2026-09-30": -1407.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Accounts payable",
+     "valores": {
+      "2025-03-31": 93.0,
+      "2025-06-30": 216.0,
+      "2025-09-30": 359.0,
+      "2026-03-31": -528.0,
+      "2026-06-30": 440.0,
+      "2026-09-30": -882.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Deferred revenue",
+     "valores": {
+      "2025-03-31": -34.0,
+      "2025-06-30": 714.0,
+      "2025-09-30": -276.0,
+      "2026-03-31": 1119.0,
+      "2026-06-30": 1050.0,
+      "2026-09-30": 2753.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Operating lease liabilities, net",
+     "valores": {
+      "2025-03-31": -1.0,
+      "2025-06-30": 1.0,
+      "2025-09-30": null,
+      "2026-03-31": -5.0,
+      "2026-06-30": 5.0,
+      "2026-09-30": null
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Other liabilities",
+     "valores": {
+      "2025-03-31": -140.0,
+      "2025-06-30": 281.0,
+      "2025-09-30": 981.0,
+      "2026-03-31": 464.0,
+      "2026-06-30": -337.0,
+      "2026-09-30": 1864.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Net cash provided by operating activities",
+     "valores": {
+      "2025-03-31": 727.0,
+      "2025-06-30": -376.0,
+      "2025-09-30": 3769.0,
+      "2026-03-31": 1047.0,
+      "2026-06-30": 2419.0,
+      "2026-09-30": 9631.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Purchases of marketable securities",
+     "valores": {
+      "2025-03-31": -312.0,
+      "2025-06-30": -289.0,
+      "2025-09-30": 0.0,
+      "2026-03-31": -7801.0,
+      "2026-06-30": -5829.0,
+      "2026-09-30": -33204.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Purchases of property, plant, and equipment",
+     "valores": {
+      "2025-03-31": -4140.0,
+      "2025-06-30": -2825.0,
+      "2025-09-30": -6881.0,
+      "2026-03-31": -10107.0,
+      "2026-06-30": -18369.0,
+      "2026-09-30": -19593.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Capitalized interest",
+     "valores": {
+      "2025-03-31": 0.0,
+      "2025-06-30": -22.0,
+      "2025-09-30": -74.0,
+      "2026-03-31": -7.0,
+      "2026-06-30": -13.0,
+      "2026-09-30": 0.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Proceeds from product rebates",
+     "valores": {
+      "2025-03-31": 0.0,
+      "2025-06-30": 0.0,
+      "2025-09-30": 0.0,
+      "2026-03-31": 1195.0,
+      "2026-06-30": 0.0,
+      "2026-09-30": 177.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Maturities of marketable securities",
+     "valores": {
+      "2025-03-31": 289.0,
+      "2025-06-30": 254.0,
+      "2025-09-30": 5.0,
+      "2026-03-31": 0.0,
+      "2026-06-30": 7248.0,
+      "2026-09-30": 1910.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Proceeds from sales of marketable securities",
+     "valores": {
+      "2025-03-31": null,
+      "2025-06-30": 1173.0,
+      "2025-09-30": 0.0,
+      "2026-03-31": null,
+      "2026-06-30": null,
+      "2026-09-30": 77.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Investments in unconsolidated affiliates",
+     "valores": {
+      "2025-03-31": null,
+      "2025-06-30": -86.0,
+      "2025-09-30": 86.0,
+      "2026-03-31": null,
+      "2026-06-30": null,
+      "2026-09-30": null
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Cash received from acquisition of businesses",
+     "valores": {
+      "2025-03-31": null,
+      "2025-06-30": null,
+      "2025-09-30": null,
+      "2026-03-31": null,
+      "2026-06-30": null,
+      "2026-09-30": 514.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Payments for intangible assets",
+     "valores": {
+      "2025-03-31": null,
+      "2025-06-30": null,
+      "2025-09-30": null,
+      "2026-03-31": null,
+      "2026-06-30": -856.0,
+      "2026-09-30": -10.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Other investing activities, net",
+     "valores": {
+      "2025-03-31": -7.0,
+      "2025-06-30": -67.0,
+      "2025-09-30": -101.0,
+      "2026-03-31": -4.0,
+      "2026-06-30": 56.0,
+      "2026-09-30": 5.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Net cash used in investing activities",
+     "valores": {
+      "2025-03-31": -4170.0,
+      "2025-06-30": -1862.0,
+      "2025-09-30": -6965.0,
+      "2026-03-31": -16724.0,
+      "2026-06-30": -17763.0,
+      "2026-09-30": -50124.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Principal repayments on finance leases",
+     "valores": {
+      "2025-03-31": -66.0,
+      "2025-06-30": -71.0,
+      "2025-09-30": -76.0,
+      "2026-03-31": -82.0,
+      "2026-06-30": -91.0,
+      "2026-09-30": -97.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Proceeds from debt and other financing obligations",
+     "valores": {
+      "2025-03-31": 4744.0,
+      "2025-06-30": 6199.0,
+      "2025-09-30": 4.0,
+      "2026-03-31": 22694.0,
+      "2026-06-30": 29118.0,
+      "2026-09-30": 22.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Payment of debt issuance costs",
+     "valores": {
+      "2025-03-31": -3.0,
+      "2025-06-30": -58.0,
+      "2025-09-30": -5.0,
+      "2026-03-31": -23.0,
+      "2026-06-30": -101.0,
+      "2026-09-30": 0.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Repayments on debt and other financing obligations",
+     "valores": {
+      "2025-03-31": -4745.0,
+      "2025-06-30": -1245.0,
+      "2025-09-30": -24.0,
+      "2026-03-31": -18295.0,
+      "2026-06-30": -21101.0,
+      "2026-09-30": -449.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Payment of debt extinguishment premium",
+     "valores": {
+      "2025-03-31": 0.0,
+      "2025-06-30": 0.0,
+      "2025-09-30": 0.0,
+      "2026-03-31": -1153.0,
+      "2026-06-30": 0.0,
+      "2026-09-30": 0.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Proceeds from issuance of capital stock, net of issuance costs",
+     "valores": {
+      "2025-03-31": null,
+      "2025-06-30": 5047.0,
+      "2025-09-30": 252.0,
+      "2026-03-31": null,
+      "2026-06-30": 8319.0,
+      "2026-09-30": 0.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Stock - Common - Issued/Repurchased - Net - Cash Flow",
+     "valores": {
+      "2025-03-31": null,
+      "2025-06-30": -899.0,
+      "2025-09-30": null,
+      "2026-03-31": null,
+      "2026-06-30": null,
+      "2026-09-30": null
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Proceeds from issuance of capital stock, net of issuance costs",
+     "valores": {
+      "2025-03-31": 899.0,
+      "2025-06-30": null,
+      "2025-09-30": 0.0,
+      "2026-03-31": 8319.0,
+      "2026-06-30": 77356.0,
+      "2026-09-30": 0.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Proceeds from employee equity award plans",
+     "valores": {
+      "2025-03-31": 33.0,
+      "2025-06-30": 122.0,
+      "2025-09-30": 51.0,
+      "2026-03-31": 111.0,
+      "2026-06-30": 205.0,
+      "2026-09-30": 52.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Payments for repurchase of common and redeemable convertible preferred stock",
+     "valores": {
+      "2025-03-31": -508.0,
+      "2025-06-30": -12.0,
+      "2025-09-30": -5.0,
+      "2026-03-31": -4346.0,
+      "2026-06-30": -80.0,
+      "2026-09-30": 0.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Taxes paid related to net share settlement of equity awards",
+     "valores": {
+      "2025-03-31": 0.0,
+      "2025-06-30": -238.0,
+      "2025-09-30": 44.0,
+      "2026-03-31": -100.0,
+      "2026-06-30": -459.0,
+      "2026-09-30": 0.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Net cash provided by financing activities",
+     "valores": {
+      "2025-03-31": 354.0,
+      "2025-06-30": 8845.0,
+      "2025-09-30": 241.0,
+      "2026-03-31": 7125.0,
+      "2026-06-30": 93166.0,
+      "2026-09-30": -472.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Effect of exchange rate changes on cash and cash equivalents",
+     "valores": {
+      "2025-03-31": 70.0,
+      "2025-06-30": 5.0,
+      "2025-09-30": -6.0,
+      "2026-03-31": 36.0,
+      "2026-06-30": -78.0,
+      "2026-09-30": -1.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Cash and cash equivalents at beginning",
+     "valores": {
+      "2025-03-31": 11501.0,
+      "2025-06-30": 8482.0,
+      "2025-09-30": 15094.0,
+      "2026-03-31": 25124.0,
+      "2026-06-30": 16608.0,
+      "2026-09-30": 94352.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Cash and cash equivalents at end",
+     "valores": {
+      "2025-03-31": 8482.0,
+      "2025-06-30": 15094.0,
+      "2025-09-30": 12133.0,
+      "2026-03-31": 16608.0,
+      "2026-06-30": 94352.0,
+      "2026-09-30": 53386.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Net change in cash and cash equivalents and restricted cash",
+     "valores": {
+      "2025-03-31": -3019.0,
+      "2025-06-30": 6612.0,
+      "2025-09-30": -2961.0,
+      "2026-03-31": -8516.0,
+      "2026-06-30": 77744.0,
+      "2026-09-30": -40966.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Interest, net of interest capitalized",
+     "valores": {
+      "2025-03-31": -382.0,
+      "2025-06-30": -221.0,
+      "2025-09-30": -92.0,
+      "2026-03-31": -990.0,
+      "2026-06-30": -677.0,
+      "2026-09-30": -411.0
+     }
+    },
+    {
+     "seccion": "Field Name",
+     "concepto": "Income taxes, net",
+     "valores": {
+      "2025-03-31": -7.0,
+      "2025-06-30": -23.0,
+      "2025-09-30": -26.0,
+      "2026-03-31": -8.0,
+      "2026-06-30": -27.0,
+      "2026-09-30": -31.0
+     }
+    }
+   ]
+  },
+  "Financial Summary": {
+   "exportado": "2026-10-27",
+   "periodos": [
+    "2025-03-31",
+    "2025-06-30",
+    "2025-09-30",
+    "2026-03-31",
+    "2026-06-30",
+    "2026-09-30"
+   ],
+   "conceptos": [
+    {
+     "seccion": "Selected Income Statement Items",
+     "concepto": "Revenue from Business Activities - Total",
+     "valores": {
+      "2025-03-31": 4067.0,
+      "2025-06-30": 4071.0,
+      "2025-09-30": 5576.0,
+      "2026-03-31": 4694.0,
+      "2026-06-30": 7814.0,
+      "2026-09-30": 14575.0
+     }
+    },
+    {
+     "seccion": "Selected Income Statement Items",
+     "concepto": "Gross Profit - Industrials/Property - Total",
+     "valores": {
+      "2025-03-31": 2105.0,
+      "2025-06-30": 1789.0,
+      "2025-09-30": 2871.0,
+      "2026-03-31": 2306.0,
+      "2026-06-30": 4319.0,
+      "2026-09-30": 9103.0
+     }
+    },
+    {
+     "seccion": "Selected Income Statement Items",
+     "concepto": "Operating Profit before Non-Recurring Income/Expense",
+     "valores": {
+      "2025-03-31": 55.0,
+      "2025-06-30": -775.0,
+      "2025-09-30": 5.0,
+      "2026-03-31": -1954.0,
+      "2026-06-30": -205.0,
+      "2026-09-30": 4011.0
+     }
+    },
+    {
+     "seccion": "Selected Income Statement Items",
+     "concepto": "Earnings before Interest, Taxes, Depreciation & Amortization (EBITDA)",
+     "valores": {
+      "2025-03-31": 1582.0,
+      "2025-06-30": 836.0,
+      "2025-09-30": 1901.0,
+      "2026-03-31": 567.0,
+      "2026-06-30": 2722.0,
+      "2026-09-30": 7734.0
+     }
+    },
+    {
+     "seccion": "Selected Income Statement Items",
+     "concepto": "Income before Discontinued Operations & Extraordinary Items",
+     "valores": {
+      "2025-03-31": -528.0,
+      "2025-06-30": -1008.0,
+      "2025-09-30": -1054.0,
+      "2026-03-31": -4276.0,
+      "2026-06-30": -541.0,
+      "2026-09-30": 4404.0
+     }
+    },
+    {
+     "seccion": "Selected Balance Sheet Items",
+     "concepto": "Cash & Cash Equivalents",
+     "valores": {
+      "2025-03-31": null,
+      "2025-06-30": null,
+      "2025-09-30": null,
+      "2026-03-31": 15852.0,
+      "2026-06-30": 93522.0,
+      "2026-09-30": 51294.0
+     }
+    },
+    {
+     "seccion": "Selected Balance Sheet Items",
+     "concepto": "Cash & Short-Term Investments",
+     "valores": {
+      "2025-03-31": null,
+      "2025-06-30": null,
+      "2025-09-30": null,
+      "2026-03-31": 23675.0,
+      "2026-06-30": 100009.0,
+      "2026-09-30": 89855.0
+     }
+    },
+    {
+     "seccion": "Selected Balance Sheet Items",
+     "concepto": "Total Assets",
+     "valores": {
+      "2025-03-31": null,
+      "2025-06-30": null,
+      "2025-09-30": null,
+      "2026-03-31": 102094.0,
+      "2026-06-30": 192770.0,
+      "2026-09-30": 254045.0
+     }
+    },
+    {
+     "seccion": "Selected Balance Sheet Items",
+     "concepto": "Debt - Total",
+     "valores": {
+      "2025-03-31": null,
+      "2025-06-30": null,
+      "2025-09-30": null,
+      "2026-03-31": 30265.0,
+      "2026-06-30": 39364.0,
+      "2026-09-30": 38844.0
+     }
+    },
+    {
+     "seccion": "Selected Balance Sheet Items",
+     "concepto": "Common Equity - Total",
+     "valores": {
+      "2025-03-31": null,
+      "2025-06-30": null,
+      "2025-09-30": null,
+      "2026-03-31": 34533.0,
+      "2026-06-30": 127224.0,
+      "2026-09-30": 176768.0
+     }
+    },
+    {
+     "seccion": "Selected Cash Flow Items",
+     "concepto": "Net Cash Flow from Operating Activities",
+     "valores": {
+      "2025-03-31": 727.0,
+      "2025-06-30": -376.0,
+      "2025-09-30": 3769.0,
+      "2026-03-31": 1047.0,
+      "2026-06-30": 2419.0,
+      "2026-09-30": 9631.0
+     }
+    },
+    {
+     "seccion": "Selected Cash Flow Items",
+     "concepto": "Depreciation, Depletion & Amortization including Impairment - Cash Flow - to Reconcile",
+     "valores": {
+      "2025-03-31": 1475.0,
+      "2025-06-30": 1549.0,
+      "2025-09-30": 1760.0,
+      "2026-03-31": 2447.0,
+      "2026-06-30": 2883.0,
+      "2026-09-30": 3604.0
+     }
+    },
+    {
+     "seccion": "Selected Cash Flow Items",
+     "concepto": "Capital Expenditures - Net - Cash Flow",
+     "valores": {
+      "2025-03-31": 4140.0,
+      "2025-06-30": 2825.0,
+      "2025-09-30": 6881.0,
+      "2026-03-31": 10107.0,
+      "2026-06-30": 19225.0,
+      "2026-09-30": 19603.0
+     }
+    },
+    {
+     "seccion": "Selected Cash Flow Items",
+     "concepto": "Net Change in Cash - Total",
+     "valores": {
+      "2025-03-31": -3019.0,
+      "2025-06-30": 6612.0,
+      "2025-09-30": -2961.0,
+      "2026-03-31": -8516.0,
+      "2026-06-30": 77744.0,
+      "2026-09-30": -40966.0
+     }
+    },
+    {
+     "seccion": "Selected Cash Flow Items",
+     "concepto": "Free Cash Flow Net of Dividends",
+     "valores": {
+      "2025-03-31": -3413.0,
+      "2025-06-30": -3201.0,
+      "2025-09-30": -3112.0,
+      "2026-03-31": -9060.0,
+      "2026-06-30": -16806.0,
+      "2026-09-30": -9972.0
+     }
+    },
+    {
+     "seccion": "Selected Per Share Data",
+     "concepto": "Dividend Yield - Common Stock - Net - Issue Specific - %, TTM",
+     "valores": {
+      "2025-03-31": null,
+      "2025-06-30": null,
+      "2025-09-30": null,
+      "2026-03-31": null,
+      "2026-06-30": 0.0,
+      "2026-09-30": 0.0
+     }
+    },
+    {
+     "seccion": "Selected Per Share Data",
+     "concepto": "EPS - Diluted - excluding Extraordinary Items Applicable to Common - Total",
+     "valores": {
+      "2025-03-31": -0.04,
+      "2025-06-30": -0.08,
+      "2025-09-30": -0.36,
+      "2026-03-31": -0.38,
+      "2026-06-30": -0.04,
+      "2026-09-30": 0.35
+     }
+    },
+    {
+     "seccion": "Selected Per Share Data",
+     "concepto": "Shares used to calculate Diluted EPS - Total",
+     "valores": {
+      "2025-03-31": 13075.87,
+      "2025-06-30": 13075.87,
+      "2025-09-30": 2941.0,
+      "2026-03-31": 13075.87,
+      "2026-06-30": 13176.0,
+      "2026-09-30": 12475.0
+     }
+    },
+    {
+     "seccion": "Company Reported Non-GAAP Measures",
+     "concepto": "Non-GAAP Adjusted EBITDA - Company Reported",
+     "valores": {
+      "2025-03-31": 1730.0,
+      "2025-06-30": 1214.0,
+      "2025-09-30": 2169.0,
+      "2026-03-31": 1127.0,
+      "2026-06-30": 3538.0,
+      "2026-09-30": 8809.0
+     }
+    },
+    {
+     "seccion": "Profitability / Return",
+     "concepto": "Gross Profit Margin - %",
+     "valores": {
+      "2025-03-31": 51.76,
+      "2025-06-30": 43.94,
+      "2025-09-30": 51.49,
+      "2026-03-31": 49.13,
+      "2026-06-30": 55.27,
+      "2026-09-30": 62.46
+     }
+    },
+    {
+     "seccion": "Profitability / Return",
+     "concepto": "EBITDA Margin - %",
+     "valores": {
+      "2025-03-31": 38.9,
+      "2025-06-30": 20.54,
+      "2025-09-30": 34.09,
+      "2026-03-31": 12.08,
+      "2026-06-30": 34.83,
+      "2026-09-30": 53.06
+     }
+    },
+    {
+     "seccion": "Profitability / Return",
+     "concepto": "Operating Margin - %",
+     "valores": {
+      "2025-03-31": 1.35,
+      "2025-06-30": -19.04,
+      "2025-09-30": 0.09,
+      "2026-03-31": -41.63,
+      "2026-06-30": -2.62,
+      "2026-09-30": 27.52
+     }
+    },
+    {
+     "seccion": "Profitability / Return",
+     "concepto": "Income before Tax Margin - %",
+     "valores": {
+      "2025-03-31": -12.64,
+      "2025-06-30": -21.37,
+      "2025-09-30": -8.82,
+      "2026-03-31": -90.97,
+      "2026-06-30": -6.63,
+      "2026-09-30": 27.54
+     }
+    },
+    {
+     "seccion": "Profitability / Return",
+     "concepto": "Income Tax Rate - %",
+     "valores": {
+      "2025-03-31": null,
+      "2025-06-30": null,
+      "2025-09-30": null,
+      "2026-03-31": null,
+      "2026-06-30": null,
+      "2026-09-30": -9.72
+     }
+    },
+    {
+     "seccion": "Profitability / Return",
+     "concepto": "Net Margin - %",
+     "valores": {
+      "2025-03-31": -12.98,
+      "2025-06-30": -24.76,
+      "2025-09-30": -18.9,
+      "2026-03-31": -91.1,
+      "2026-06-30": -6.92,
+      "2026-09-30": 30.22
+     }
+    },
+    {
+     "seccion": "Growth",
+     "concepto": "Revenue from Business Activities - Total",
+     "valores": {
+      "2025-03-31": 4067.0,
+      "2025-06-30": 4071.0,
+      "2025-09-30": 5576.0,
+      "2026-03-31": 4694.0,
+      "2026-06-30": 7814.0,
+      "2026-09-30": 14575.0
+     }
+    },
+    {
+     "seccion": "Growth",
+     "concepto": "Operating Profit before Non-Recurring Income/Expense",
+     "valores": {
+      "2025-03-31": 55.0,
+      "2025-06-30": -775.0,
+      "2025-09-30": 5.0,
+      "2026-03-31": -1954.0,
+      "2026-06-30": -205.0,
+      "2026-09-30": 4011.0
+     }
+    },
+    {
+     "seccion": "Growth",
+     "concepto": "Earnings before Interest, Taxes, Depreciation & Amortization (EBITDA)",
+     "valores": {
+      "2025-03-31": 1582.0,
+      "2025-06-30": 836.0,
+      "2025-09-30": 1901.0,
+      "2026-03-31": 567.0,
+      "2026-06-30": 2722.0,
+      "2026-09-30": 7734.0
+     }
+    },
+    {
+     "seccion": "Growth",
+     "concepto": "Income before Discontinued Operations & Extraordinary Items",
+     "valores": {
+      "2025-03-31": -528.0,
+      "2025-06-30": -1008.0,
+      "2025-09-30": -1054.0,
+      "2026-03-31": -4276.0,
+      "2026-06-30": -541.0,
+      "2026-09-30": 4404.0
+     }
+    },
+    {
+     "seccion": "Growth",
+     "concepto": "EPS - Diluted - excluding Extraordinary Items Applicable to Common - Total",
+     "valores": {
+      "2025-03-31": -0.04,
+      "2025-06-30": -0.08,
+      "2025-09-30": -0.36,
+      "2026-03-31": -0.38,
+      "2026-06-30": -0.04,
+      "2026-09-30": 0.35
+     }
+    },
+    {
+     "seccion": "Growth",
+     "concepto": "Common Shares - Outstanding - Total",
+     "valores": {
+      "2025-03-31": null,
+      "2025-06-30": null,
+      "2025-09-30": null,
+      "2026-03-31": 13075.87,
+      "2026-06-30": 13176.0,
+      "2026-09-30": 13579.0
+     }
+    },
+    {
+     "seccion": "Financial Strength / Leverage",
+     "concepto": "Total Debt Percentage of Total Assets",
+     "valores": {
+      "2025-03-31": null,
+      "2025-06-30": null,
+      "2025-09-30": null,
+      "2026-03-31": 29.64,
+      "2026-06-30": 20.42,
+      "2026-09-30": 15.29
+     }
+    },
+    {
+     "seccion": "Financial Strength / Leverage",
+     "concepto": "Total Debt Percentage of Total Capital",
+     "valores": {
+      "2025-03-31": null,
+      "2025-06-30": null,
+      "2025-09-30": null,
+      "2026-03-31": 42.12,
+      "2026-06-30": 23.63,
+      "2026-09-30": 18.02
+     }
+    },
+    {
+     "seccion": "Financial Strength / Leverage",
+     "concepto": "Total Debt Percentage of Total Equity",
+     "valores": {
+      "2025-03-31": null,
+      "2025-06-30": null,
+      "2025-09-30": null,
+      "2026-03-31": 72.78,
+      "2026-06-30": 30.94,
+      "2026-09-30": 21.97
+     }
+    },
+    {
+     "seccion": "Financial Strength / Leverage",
+     "concepto": "Interest Coverage Ratio",
+     "valores": {
+      "2025-03-31": 0.12,
+      "2025-06-30": -1.89,
+      "2025-09-30": 0.01,
+      "2026-03-31": -2.94,
+      "2026-06-30": -0.33,
+      "2026-09-30": 5.94
+     }
+    },
+    {
+     "seccion": "Financial Strength / Leverage",
+     "concepto": "Earnings Retention Rate",
+     "valores": {
+      "2025-03-31": null,
+      "2025-06-30": null,
+      "2025-09-30": null,
+      "2026-03-31": null,
+      "2026-06-30": null,
+      "2026-09-30": 1.0
+     }
+    },
+    {
+     "seccion": "Financial Strength / Leverage",
+     "concepto": "Dividend Payout Ratio - %",
+     "valores": {
+      "2025-03-31": null,
+      "2025-06-30": null,
+      "2025-09-30": null,
+      "2026-03-31": null,
+      "2026-06-30": null,
+      "2026-09-30": 0.0
+     }
+    },
+    {
+     "seccion": "Enterprise Value Breakdown",
+     "concepto": "Market Capitalization",
+     "valores": {
+      "2025-03-31": null,
+      "2025-06-30": null,
+      "2025-09-30": null,
+      "2026-03-31": null,
+      "2026-06-30": 2248380.66,
+      "2026-09-30": 2047595.87
+     }
+    },
+    {
+     "seccion": "Enterprise Value Breakdown",
+     "concepto": "Debt - Total",
+     "valores": {
+      "2025-03-31": null,
+      "2025-06-30": null,
+      "2025-09-30": null,
+      "2026-03-31": 30265.0,
+      "2026-06-30": 39364.0,
+      "2026-09-30": 38844.0
+     }
+    },
+    {
+     "seccion": "Enterprise Value Breakdown",
+     "concepto": "Preferred Shareholders Equity",
+     "valores": {
+      "2025-03-31": null,
+      "2025-06-30": null,
+      "2025-09-30": null,
+      "2026-03-31": 7049.0,
+      "2026-06-30": 0.0,
+      "2026-09-30": 0.0
+     }
+    },
+    {
+     "seccion": "Enterprise Value Breakdown",
+     "concepto": "Cash & Short Term Investments - Total",
+     "valores": {
+      "2025-03-31": null,
+      "2025-06-30": null,
+      "2025-09-30": null,
+      "2026-03-31": 23675.0,
+      "2026-06-30": 100009.0,
+      "2026-09-30": 89855.0
+     }
+    },
+    {
+     "seccion": "Enterprise Value Breakdown",
+     "concepto": "Enterprise Value",
+     "valores": {
+      "2025-03-31": null,
+      "2025-06-30": null,
+      "2025-09-30": null,
+      "2026-03-31": null,
+      "2026-06-30": 2187735.66,
+      "2026-09-30": 1996584.87
+     }
+    },
+    {
+     "seccion": "Dupont / Earning Power",
+     "concepto": "Income before Tax Margin - %, TTM",
+     "valores": {
+      "2025-03-31": null,
+      "2025-06-30": null,
+      "2025-09-30": null,
+      "2026-03-31": -41.32,
+      "2026-06-30": -33.08,
+      "2026-09-30": -9.73
+     }
+    },
+    {
+     "seccion": "Liquidity",
+     "concepto": "Current Ratio",
+     "valores": {
+      "2025-03-31": null,
+      "2025-06-30": null,
+      "2025-09-30": null,
+      "2026-03-31": 1.22,
+      "2026-06-30": 5.12,
+      "2026-09-30": 3.08
+     }
+    },
+    {
+     "seccion": "Liquidity",
+     "concepto": "Quick Ratio",
+     "valores": {
+      "2025-03-31": null,
+      "2025-06-30": null,
+      "2025-09-30": null,
+      "2026-03-31": 1.11,
+      "2026-06-30": 4.99,
+      "2026-09-30": 3.0
+     }
+    },
+    {
+     "seccion": "Liquidity",
+     "concepto": "Working Capital to Total Assets",
+     "valores": {
+      "2025-03-31": null,
+      "2025-06-30": null,
+      "2025-09-30": null,
+      "2026-03-31": 0.05,
+      "2026-06-30": 0.45,
+      "2026-09-30": 0.27
+     }
+    }
+   ]
+  }
+ }
+}
