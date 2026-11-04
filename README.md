@@ -9,7 +9,7 @@ Dashboard de valuación de un bono convertible de SPCX: datos de LSEG/Refinitiv,
 | `data/raw/` | Exportes de Refinitiv tal cual, con la fecha en el nombre (`2026-10-21_bonos.csv`). **No se suben a GitHub** (licencia LSEG). |
 | `data/inputs.csv` | Supuestos y datos, cada uno con fuente, fecha y estado (dato / supuesto del caso / supuesto del equipo). |
 | `data/processed/` | Archivos JSON que consume el sitio (los genera Python). |
-| `src/` | Cálculos en Python: `bs.py` (Black-Scholes), `bono.py` (bono simple y cupón de equilibrio), `ingesta.py` (exportes → JSON), `valuacion.py` (valuación del convertible). |
+| `src/` | Cálculos en Python: `bs.py` (Black-Scholes), `bono.py` (bono simple y cupón de equilibrio), `ingesta.py` (exportes → JSON), `valuacion.py` (valuación del convertible), `cobertura.py` (note hedge, warrants y escenarios). |
 | `tests/` | Pruebas de los cálculos. |
 | `notebooks/` | Notebooks de Colab con resultados parciales. |
 | `docs/` | El sitio web (`index.html`) y los JSON que lee (`docs/data/`). |
@@ -27,8 +27,9 @@ pytest
 1. Exportar desde Refinitiv a Excel, sin editar, con la fecha al inicio del nombre (`2026-10-26_bonos.xlsx`).
 2. Guardar en `data/raw/` (solo local, no se sube).
 3. Correr `python3 -m src.ingesta` (usa el archivo más reciente de cada tema). Genera `data/processed/*.json`; `resumen_mercado.json` trae los valores clave con fuente, fecha y estado.
-4. Correr `python3 -m src.valuacion`: calcula la valuación (prima 25%, plazo 6 años por defecto; `--prima`, `--plazo`) con `data/opciones_iv.csv` y escribe `data/processed/valuacion.json`. También copia a `docs/data/` los JSON que lee el sitio.
-5. Revisar, hacer commit de `data/processed/`, `docs/data/` y `data/opciones_iv.csv`, y push. GitHub Pages publica `docs/`.
+4. Correr `python3 -m src.valuacion`: calcula la valuación (prima 25%, plazo 6 años por defecto; `--prima`, `--plazo`) con `data/opciones_iv.csv` y `data/opciones_tradingview.csv`, y escribe `data/processed/valuacion.json`.
+5. Correr `python3 -m src.cobertura` (`--emision` en millones de USD, `--prima-warrant`): note hedge, warrants y escenarios al vencimiento. Escribe `data/processed/cobertura.json`. Ambos pasos copian a `docs/data/` los JSON que lee el sitio.
+6. Revisar, hacer commit de `data/processed/`, `docs/data/` y `data/opciones_iv.csv`, y push. GitHub Pages publica `docs/`.
 
 Opciones: `--raw`, `--out`, `--fecha YYYY-MM-DD` (fecha de valuación).
 
@@ -38,6 +39,6 @@ Los exportes de LSEG/Refinitiv están sujetos a su licencia y por eso `data/raw/
 
 ## Pendientes
 
-- Exportes faltantes: cadena de opciones y superficie de volatilidad, calificaciones y CDS de SPCX, precios de comparables a 5 años.
+- Pendientes de datos: CDS de SPCX; superficie de volatilidad completa (las IV actuales se transcribieron de pantalla); la cuenta de LSEG no permite exportar derivados.
 - Confirmar que la licencia de LSEG permite publicar cifras derivadas en `data/processed/`.
 - Menús y gráficas del sitio.

@@ -1,6 +1,6 @@
 {
  "fecha_valuacion": "2026-10-26",
- "modelo": "Bono simple + opcion de conversion (Black-Scholes europeo, sin dividendos). Valores por bono de 1,000 USD.",
+ "modelo": "Bono simple + opción de conversión (Black-Scholes europeo, sin dividendos). Valores por bono de 1,000 USD.",
  "supuestos": [
   {
    "nombre": "precio_accion",
@@ -21,7 +21,7 @@
   {
    "nombre": "plazo_anios",
    "valor": 6.0,
-   "fuente": "Tomado del caso Molson Coors (6 anios)",
+   "fuente": "Tomado del caso Molson Coors (6 años)",
    "fecha": "2026-10-26",
    "estado": "supuesto del equipo",
    "nota": ""
@@ -29,7 +29,7 @@
   {
    "nombre": "tasa_libre_riesgo",
    "valor": 0.0490275,
-   "fuente": "UST a 6 anios, interpolado lineal entre 5Y y 7Y",
+   "fuente": "UST a 6 años, interpolado lineal entre 5Y y 7Y",
    "fecha": "2026-10-26",
    "estado": "calculado",
    "nota": ""
@@ -37,10 +37,10 @@
   {
    "nombre": "tasa_descuento_bono_simple",
    "valor": 0.0719509713132695,
-   "fuente": "Yield de bonos SPCX a 6 anios (interpolado, bonos con >= 1,000 M vigentes)",
+   "fuente": "Yield de bonos SPCX a 6 años (interpolado, bonos con >= 1,000 M vigentes)",
    "fecha": "2026-10-26",
    "estado": "calculado",
-   "nota": "Supone yield semestral. Es deuda senior sin garantia de SPCX, no de un convertible."
+   "nota": "Supone yield semestral. Es deuda senior sin garantía de SPCX, no de un convertible."
   },
   {
    "nombre": "volatilidad",
@@ -48,7 +48,7 @@
    "fuente": "IV de cierre de opciones SPCX, promedio call y put, strike 150, vencimiento 2028-12",
    "fecha": "2026-10-27",
    "estado": "supuesto del equipo",
-   "nota": "El dato de mercado llega a 2.1 anios; se extrapola a 6. Leido de pantalla de Refinitiv."
+   "nota": "El dato de mercado llega a 2.1 años; se extrapola a 6. Leído de pantalla de Refinitiv y contrastado con precios de TradingView."
   },
   {
    "nombre": "dividendos",
@@ -221,7 +221,7 @@
     "valor_con_cupon_cero": 1140.906027681296
    }
   ],
-  "nota_vols": "45% y 60% son escenarios; 52.7% es la IV base; la ultima es la volatilidad realizada de SPCX a 60 dias."
+  "nota_vols": "45% y 60% son escenarios; 52.7% es la IV base; la última es la volatilidad realizada de SPCX a 60 días."
  },
  "sensibilidad_tasa_descuento": [
   {
@@ -268,8 +268,407 @@
    "NOC": 0.28102276705763213
   }
  },
+ "evidencia_volatilidad": {
+  "refinitiv": [
+   {
+    "vencimiento": "2027-07",
+    "strike": 150.0,
+    "tipo": "put",
+    "iv_cierre": 0.5053
+   },
+   {
+    "vencimiento": "2027-07",
+    "strike": 150.0,
+    "tipo": "call",
+    "iv_cierre": 0.5164
+   },
+   {
+    "vencimiento": "2027-12",
+    "strike": 150.0,
+    "tipo": "put",
+    "iv_cierre": 0.5106
+   },
+   {
+    "vencimiento": "2027-12",
+    "strike": 150.0,
+    "tipo": "call",
+    "iv_cierre": 0.5217
+   },
+   {
+    "vencimiento": "2028-01",
+    "strike": 150.0,
+    "tipo": "put",
+    "iv_cierre": 0.5103
+   },
+   {
+    "vencimiento": "2028-01",
+    "strike": 150.0,
+    "tipo": "call",
+    "iv_cierre": 0.522
+   },
+   {
+    "vencimiento": "2028-06",
+    "strike": 150.0,
+    "tipo": "put",
+    "iv_cierre": 0.5151
+   },
+   {
+    "vencimiento": "2028-06",
+    "strike": 150.0,
+    "tipo": "call",
+    "iv_cierre": 0.5307999999999999
+   },
+   {
+    "vencimiento": "2028-12",
+    "strike": 150.0,
+    "tipo": "put",
+    "iv_cierre": 0.5177
+   },
+   {
+    "vencimiento": "2028-12",
+    "strike": 150.0,
+    "tipo": "call",
+    "iv_cierre": 0.5353
+   }
+  ],
+  "tradingview": [
+   {
+    "vencimiento": "2029-01-19",
+    "strike": 115.0,
+    "tipo": "put",
+    "punto_medio": 23.275,
+    "iv_recalculada": 0.5616588285180177,
+    "iv_tradingview": 0.48450000000000004,
+    "delta": null,
+    "tasa_usada": 0.04769225479452054
+   },
+   {
+    "vencimiento": "2029-01-19",
+    "strike": 120.0,
+    "tipo": "put",
+    "punto_medio": 25.575000000000003,
+    "iv_recalculada": 0.5604658843753583,
+    "iv_tradingview": 0.4725,
+    "delta": null,
+    "tasa_usada": 0.04769225479452054
+   },
+   {
+    "vencimiento": "2029-01-19",
+    "strike": 125.0,
+    "tipo": "put",
+    "punto_medio": 27.975,
+    "iv_recalculada": 0.559520187333819,
+    "iv_tradingview": 0.4667,
+    "delta": null,
+    "tasa_usada": 0.04769225479452054
+   },
+   {
+    "vencimiento": "2029-01-19",
+    "strike": 130.0,
+    "tipo": "put",
+    "punto_medio": 30.450000000000003,
+    "iv_recalculada": 0.5584831739135484,
+    "iv_tradingview": 0.4746,
+    "delta": null,
+    "tasa_usada": 0.04769225479452054
+   },
+   {
+    "vencimiento": "2029-01-19",
+    "strike": 135.0,
+    "tipo": "put",
+    "punto_medio": 33.075,
+    "iv_recalculada": 0.5584806224724913,
+    "iv_tradingview": 0.4697,
+    "delta": null,
+    "tasa_usada": 0.04769225479452054
+   },
+   {
+    "vencimiento": "2029-01-19",
+    "strike": 140.0,
+    "tipo": "put",
+    "punto_medio": 35.65,
+    "iv_recalculada": 0.5567016323639074,
+    "iv_tradingview": 0.465,
+    "delta": null,
+    "tasa_usada": 0.04769225479452054
+   },
+   {
+    "vencimiento": "2029-01-19",
+    "strike": 145.0,
+    "tipo": "call",
+    "punto_medio": 47.25,
+    "iv_recalculada": 0.5294747447081836,
+    "iv_tradingview": 0.5835,
+    "delta": 0.67,
+    "tasa_usada": 0.04769225479452054
+   },
+   {
+    "vencimiento": "2029-01-19",
+    "strike": 150.0,
+    "tipo": "call",
+    "punto_medio": 45.400000000000006,
+    "iv_recalculada": 0.5274245539363672,
+    "iv_tradingview": 0.5807,
+    "delta": 0.65,
+    "tasa_usada": 0.04769225479452054
+   },
+   {
+    "vencimiento": "2029-01-19",
+    "strike": 155.0,
+    "tipo": "call",
+    "punto_medio": 43.75,
+    "iv_recalculada": 0.5271097839629896,
+    "iv_tradingview": 0.578,
+    "delta": 0.64,
+    "tasa_usada": 0.04769225479452054
+   },
+   {
+    "vencimiento": "2029-01-19",
+    "strike": 160.0,
+    "tipo": "call",
+    "punto_medio": 42.0,
+    "iv_recalculada": 0.5246524032840122,
+    "iv_tradingview": 0.5758,
+    "delta": 0.62,
+    "tasa_usada": 0.04769225479452054
+   },
+   {
+    "vencimiento": "2029-01-19",
+    "strike": 180.0,
+    "tipo": "call",
+    "punto_medio": 35.85,
+    "iv_recalculada": 0.5180912903759051,
+    "iv_tradingview": 0.5668,
+    "delta": 0.56,
+    "tasa_usada": 0.04769225479452054
+   },
+   {
+    "vencimiento": "2029-01-19",
+    "strike": 185.0,
+    "tipo": "call",
+    "punto_medio": 34.625,
+    "iv_recalculada": 0.5185595769350739,
+    "iv_tradingview": 0.5645,
+    "delta": 0.55,
+    "tasa_usada": 0.04769225479452054
+   },
+   {
+    "vencimiento": "2029-01-19",
+    "strike": 190.0,
+    "tipo": "call",
+    "punto_medio": 33.1,
+    "iv_recalculada": 0.5147790634590089,
+    "iv_tradingview": 0.5621,
+    "delta": 0.54,
+    "tasa_usada": 0.04769225479452054
+   },
+   {
+    "vencimiento": "2029-01-19",
+    "strike": 195.0,
+    "tipo": "call",
+    "punto_medio": 32.075,
+    "iv_recalculada": 0.5164207462817211,
+    "iv_tradingview": 0.5594,
+    "delta": 0.52,
+    "tasa_usada": 0.04769225479452054
+   },
+   {
+    "vencimiento": "2029-01-19",
+    "strike": 200.0,
+    "tipo": "call",
+    "punto_medio": 30.775,
+    "iv_recalculada": 0.5141915074756637,
+    "iv_tradingview": 0.5564,
+    "delta": 0.51,
+    "tasa_usada": 0.04769225479452054
+   },
+   {
+    "vencimiento": "2029-01-19",
+    "strike": 205.0,
+    "tipo": "call",
+    "punto_medio": 29.425,
+    "iv_recalculada": 0.5108278176963247,
+    "iv_tradingview": 0.5534,
+    "delta": 0.49,
+    "tasa_usada": 0.04769225479452054
+   },
+   {
+    "vencimiento": "2029-01-19",
+    "strike": 210.0,
+    "tipo": "call",
+    "punto_medio": 28.425,
+    "iv_recalculada": 0.5111178933905973,
+    "iv_tradingview": 0.5507,
+    "delta": 0.48,
+    "tasa_usada": 0.04769225479452054
+   },
+   {
+    "vencimiento": "2029-01-19",
+    "strike": 215.0,
+    "tipo": "call",
+    "punto_medio": 27.325,
+    "iv_recalculada": 0.5097136828594617,
+    "iv_tradingview": 0.5481,
+    "delta": 0.47,
+    "tasa_usada": 0.04769225479452054
+   },
+   {
+    "vencimiento": "2029-01-19",
+    "strike": 220.0,
+    "tipo": "call",
+    "punto_medio": 26.4,
+    "iv_recalculada": 0.5099171858717426,
+    "iv_tradingview": 0.5458,
+    "delta": 0.46,
+    "tasa_usada": 0.04769225479452054
+   },
+   {
+    "vencimiento": "2029-01-19",
+    "strike": 225.0,
+    "tipo": "call",
+    "punto_medio": 25.375,
+    "iv_recalculada": 0.5084649732116118,
+    "iv_tradingview": 0.5438000000000001,
+    "delta": 0.44,
+    "tasa_usada": 0.04769225479452054
+   },
+   {
+    "vencimiento": "2028-12-15",
+    "strike": 180.0,
+    "tipo": "call",
+    "punto_medio": 34.849999999999994,
+    "iv_recalculada": 0.5199776232514899,
+    "iv_tradingview": 0.5637,
+    "delta": 0.56,
+    "tasa_usada": 0.04762887123287671
+   },
+   {
+    "vencimiento": "2028-12-15",
+    "strike": 185.0,
+    "tipo": "call",
+    "punto_medio": 33.625,
+    "iv_recalculada": 0.5204761606750785,
+    "iv_tradingview": 0.5618,
+    "delta": 0.54,
+    "tasa_usada": 0.04762887123287671
+   },
+   {
+    "vencimiento": "2028-12-15",
+    "strike": 190.0,
+    "tipo": "call",
+    "punto_medio": 32.3,
+    "iv_recalculada": 0.5190818564599988,
+    "iv_tradingview": 0.5597,
+    "delta": 0.53,
+    "tasa_usada": 0.04762887123287671
+   },
+   {
+    "vencimiento": "2028-12-15",
+    "strike": 195.0,
+    "tipo": "call",
+    "punto_medio": 31.05,
+    "iv_recalculada": 0.517988992583383,
+    "iv_tradingview": 0.5577000000000001,
+    "delta": 0.51,
+    "tasa_usada": 0.04762887123287671
+   },
+   {
+    "vencimiento": "2028-12-15",
+    "strike": 200.0,
+    "tipo": "call",
+    "punto_medio": 29.75,
+    "iv_recalculada": 0.5156942898214835,
+    "iv_tradingview": 0.5558,
+    "delta": 0.5,
+    "tasa_usada": 0.04762887123287671
+   },
+   {
+    "vencimiento": "2028-12-15",
+    "strike": 205.0,
+    "tipo": "call",
+    "punto_medio": 28.65,
+    "iv_recalculada": 0.515273324196472,
+    "iv_tradingview": 0.5543,
+    "delta": 0.49,
+    "tasa_usada": 0.04762887123287671
+   },
+   {
+    "vencimiento": "2028-12-15",
+    "strike": 210.0,
+    "tipo": "call",
+    "punto_medio": 27.625,
+    "iv_recalculada": 0.5152217876178565,
+    "iv_tradingview": 0.5529,
+    "delta": 0.47,
+    "tasa_usada": 0.04762887123287671
+   },
+   {
+    "vencimiento": "2028-12-15",
+    "strike": 215.0,
+    "tipo": "call",
+    "punto_medio": 26.525,
+    "iv_recalculada": 0.5137345443009546,
+    "iv_tradingview": 0.5517,
+    "delta": 0.46,
+    "tasa_usada": 0.04762887123287671
+   },
+   {
+    "vencimiento": "2028-12-15",
+    "strike": 220.0,
+    "tipo": "call",
+    "punto_medio": 25.6,
+    "iv_recalculada": 0.5138847147644753,
+    "iv_tradingview": 0.5505,
+    "delta": 0.45,
+    "tasa_usada": 0.04762887123287671
+   },
+   {
+    "vencimiento": "2028-12-15",
+    "strike": 225.0,
+    "tipo": "call",
+    "punto_medio": 24.575,
+    "iv_recalculada": 0.5123325473427469,
+    "iv_tradingview": 0.5494,
+    "delta": 0.44,
+    "tasa_usada": 0.04762887123287671
+   }
+  ],
+  "resumen": {
+   "iv_recalculada_min": 0.5084649732116118,
+   "iv_recalculada_max": 0.5616588285180177,
+   "iv_tradingview_min": 0.465,
+   "iv_tradingview_max": 0.5835
+  },
+  "nota": "La IV que muestra TradingView no coincide con la recalculada con Black-Scholes europeo sobre el punto medio de bid y ask (posible modelo americano, otra tasa o costo de préstamo de acciones). Los precios bid y ask son consistentes entre sí.",
+  "fuente": "TradingView Options chain (leído de pantalla, 3-nov-2026) y Refinitiv Derivatives (27-oct-2026)"
+ },
+ "calificaciones": {
+  "emisor": [
+   {
+    "agencia": "Moody's",
+    "calificacion": "Baa1",
+    "perspectiva": "estable",
+    "fecha": "2026-06-19"
+   },
+   {
+    "agencia": "Fitch",
+    "calificacion": "BBB+",
+    "perspectiva": "estable",
+    "fecha": "2026-06-19"
+   },
+   {
+    "agencia": "S&P",
+    "calificacion": "BBB",
+    "perspectiva": "estable",
+    "fecha": "2026-06-19"
+   }
+  ],
+  "fuente": "Euronews, 19-jun-2026 (primera calificación de las tres agencias). Moody's coincide con Refinitiv (peers_balance).",
+  "estado": "dato (fuente periodistica)",
+  "nota": "No se encontró si la calificación de S&P es de emisor o de emisión. CDS: no disponible."
+ },
  "validacion_molson_coors": {
-  "descripcion": "Mismo codigo con los supuestos del caso (S=87.61, prima 25%, r=4.46%, vol 23%, 6 anios, descuento 5.75%)",
+  "descripcion": "Mismo código con los supuestos del caso (S=87.61, prima 25%, r=4.46%, vol 23%, 6 años, descuento 5.75%)",
   "opcion_por_bono": 191.51674585843432,
   "bono_simple_necesario": 808.4832541415657,
   "cupon_equilibrio": 0.019306226117393296,
@@ -280,9 +679,9 @@
   }
  },
  "avisos": [
-  "Con la volatilidad implicita de mercado, la opcion vale tanto que el cupon de equilibrio sale negativo: un convertible de cupon 0% ya valdria mas que la par. En la practica el cupon minimo es 0% y se sube la prima.",
-  "La volatilidad realizada de SPCX (desde el 12-jun-2026) es mayor que la implicita; hay pocos dias de historia.",
-  "El precio de la accion es el cierre del 26-oct; las IV se leyeron el 27-oct con la accion en 148.58.",
-  "Modelo simplificado: opcion europea, sin dividendos, sin riesgo de credito ni clausulas de rescate."
+  "Con la volatilidad implícita de mercado, la opción vale tanto que el cupón de equilibrio sale negativo: un convertible de cupón 0% ya valdría más que la par. En la práctica el cupón mínimo es 0% y se sube la prima.",
+  "La volatilidad realizada de SPCX (desde el 12-jun-2026) es mayor que la implícita; hay pocos días de historia.",
+  "El precio de la acción es el cierre del 26-oct; las IV de Refinitiv se leyeron el 27-oct con la acción en 148.58 y las de TradingView el 3-nov con la acción en 141.31.",
+  "Modelo simplificado: opción europea, sin dividendos, sin riesgo de crédito ni cláusulas de rescate."
  ]
 }

@@ -51,7 +51,7 @@
   <p class="sub" id="sub">Cargando datos…</p>
 </header>
 <nav><div>
-  <a href="#resumen">Resumen</a><a href="#valuacion">Valuación</a><a href="#sens">Sensibilidades</a><a href="#mercado">Mercado</a>
+  <a href="#resumen">Resumen</a><a href="#valuacion">Valuación</a><a href="#sens">Sensibilidades</a><a href="#vol">Volatilidad</a><a href="#cobertura">Cobertura</a><a href="#escenarios">Escenarios</a><a href="#mercado">Mercado</a>
   <a href="#deuda">Deuda y caja</a><a href="#supuestos">Supuestos</a><a href="#validacion">Validación</a>
 </div></nav>
 <main id="app"></main>
@@ -71,16 +71,17 @@ const tag = (estado) => {
 };
 const get = (f) => fetch("data/" + f).then((r) => { if (!r.ok) throw new Error(f + ": " + r.status); return r.json(); });
 
-Promise.all(["valuacion.json", "resumen_mercado.json", "precios_spcx.json", "treasuries.json", "bonos.json"].map(get))
-  .then(([v, res, px, ust, bonos]) => render(v, res, px, ust, bonos))
+Promise.all(["valuacion.json", "resumen_mercado.json", "precios_spcx.json", "treasuries.json", "bonos.json", "cobertura.json"].map(get))
+  .then(([v, res, px, ust, bonos, cob]) => render(v, res, px, ust, bonos, cob))
   .catch((e) => { $("#sub").textContent = "No se pudieron cargar los datos: " + e.message; });
 
-function render(v, res, px, ust, bonos) {
+function render(v, res, px, ust, bonos, cob) {
   const b = v.base, S = b.S;
   $("#sub").innerHTML = `Valuación al ${esc(v.fecha_valuacion)} · bono de 1,000 USD · prima ${pct(b.prima, 0)} · plazo ${b.plazo} años`;
   const neg = b.cupon_equilibrio < 0;
   const deuda = res.deuda_total_musd, caja = res.caja_e_inversiones_cp_musd, ef = res.efectivo_musd, dn = res.deuda_neta_musd;
   const m = v.validacion_molson_coors;
+  const ev = v.evidencia_volatilidad, cb = cob.base, cal = v.calificaciones;
 
   $("#app").innerHTML = `
   <section id="resumen"><h2>Resumen</h2>
@@ -122,6 +123,59 @@ function render(v, res, px, ust, bonos) {
     </div>
   </section>
 
+
+  <section id="vol"><h2>Volatilidad: evidencia de mercado</h2>
+    <div class="two">
+      <div class="card"><b>IV por strike</b> <span class="mut">(recalculada con precios bid/ask)</span><div class="ch"><canvas id="c-iv"></canvas></div>
+        <p class="mut">Puntos llenos: IV recalculada con Black-Scholes europeo sobre el punto medio de bid y ask. Puntos huecos: la IV que muestra TradingView.</p></div>
+      <div class="card"><b>Resumen</b>
+        <div class="scroll"><table>
+          <tr><th>Fuente</th><th>IV</th></tr>
+          <tr><td>Base elegida (Refinitiv, dic-2028, strike 150, promedio call y put)</td><td>${pct(b.sigma, 1)}</td></tr>
+          <tr><td>Recalculada con precios de TradingView (rango)</td><td>${pct(ev.resumen.iv_recalculada_min, 1)} a ${pct(ev.resumen.iv_recalculada_max, 1)}</td></tr>
+          <tr><td>Mostrada por TradingView (rango)</td><td>${pct(ev.resumen.iv_tradingview_min, 1)} a ${pct(ev.resumen.iv_tradingview_max, 1)}</td></tr>
+          <tr><td>Realizada de SPCX, 60 días</td><td>${pct(v.volatilidades.realizada_spcx_60d, 1)}</td></tr>
+        </table></div>
+        <p class="mut">${esc(ev.nota)}</p>
+        <p class="mut">Fuentes: ${esc(ev.fuente)}. Datos transcritos de pantalla; solo las cifras usadas.</p>
+        <div class="scroll"><table>
+          <tr><th>Refinitiv (27-oct)</th><th>Tipo</th><th>Strike</th><th>IV de cierre</th></tr>
+          ${ev.refinitiv.map((x) => `<tr><td>${esc(x.vencimiento)}</td><td>${esc(x.tipo)}</td><td>${n(x.strike, 0)}</td><td>${pct(x.iv_cierre, 2)}</td></tr>`).join("")}
+        </table></div></div>
+    </div>
+  </section>
+
+  <section id="cobertura"><h2>Cobertura: note hedge y warrants</h2>
+    <div class="grid">
+      <div class="card kpi"><div class="l">Costo del note hedge</div><div class="v">${n(cb.costo_note_hedge_musd, 1)}</div><div class="n">M USD · call a ${usd(cb.precio_conversion, 2)}</div></div>
+      <div class="card kpi"><div class="l">Ingreso por warrants</div><div class="v">${n(cb.ingreso_warrants_musd, 1)}</div><div class="n">M USD · call a ${usd(cb.strike_warrants, 2)}</div></div>
+      <div class="card kpi"><div class="l">Costo neto</div><div class="v">${n(cb.costo_neto_musd, 1)}</div><div class="n">M USD · ${pct(cb.costo_neto_pct_emision, 1)} de la emisión</div></div>
+      <div class="card kpi"><div class="l">Acciones subyacentes</div><div class="v">${n(cb.acciones_subyacentes_millones, 2)}</div><div class="n">M · ${pct(cb.dilucion_conversion_total_pct, 3)} de ${n(cb.acciones_circulacion_millones, 0)} M en circulación</div></div>
+    </div>
+    <div class="two" style="margin-top:12px">
+      <div class="card"><b>Estructura</b>
+        <div class="scroll"><table>
+          <tr><th>Concepto</th><th>Valor</th></tr>
+          <tr><td>Emisión</td><td>${n(cb.emision_musd, 0)} M USD (${n(cb.bonos_millones, 2)} M de bonos)</td></tr>
+          <tr><td>Precio de conversión (prima ${pct(cb.prima, 0)})</td><td>${usd(cb.precio_conversion, 2)}</td></tr>
+          <tr><td>Strike de los warrants (prima ${pct(cb.prima_warrant, 0)})</td><td>${usd(cb.strike_warrants, 2)}</td></tr>
+          <tr><td>Call del note hedge por acción</td><td>${usd(cb.call_note_hedge_por_accion, 2)}</td></tr>
+          <tr><td>Call de los warrants por acción</td><td>${usd(cb.call_warrant_por_accion, 2)}</td></tr>
+          <tr><td>Volatilidad usada en ambos</td><td>${pct(cb.sigma, 1)}</td></tr>
+        </table></div>
+        <p class="mut">${cob.avisos.map(esc).join(" ")}</p></div>
+      <div class="card"><b>Costo neto (M USD)</b> <span class="mut">(volatilidad × prima de los warrants)</span>
+        <div class="scroll"><table id="t-cob-sens"></table></div>
+        <p class="mut">${esc(cob.modelo)}</p></div>
+    </div>
+  </section>
+
+  <section id="escenarios"><h2>Escenarios al vencimiento</h2>
+    <div class="card"><div class="ch" style="height:300px"><canvas id="c-esc"></canvas></div>
+      <p class="mut">Costo para el emisor por encima de la par (M USD), sin cobertura y con cobertura, según el precio de SPCX al vencimiento. No incluye el costo neto inicial de la cobertura (${n(cb.costo_neto_musd, 1)} M USD).</p>
+      <div class="scroll"><table id="t-esc"></table></div></div>
+  </section>
+
   <section id="mercado"><h2>Mercado</h2>
     <div class="two">
       <div class="card"><b>Precio de SPCX</b> <span class="mut">(${px.n_dias} días desde ${esc(px.desde)})</span><div class="ch"><canvas id="c-px"></canvas></div></div>
@@ -140,12 +194,18 @@ function render(v, res, px, ust, bonos) {
       <div class="card kpi"><div class="l">Caja e inversiones CP</div><div class="v">${n(caja.valor, 0)}</div><div class="n">M USD</div></div>
       <div class="card kpi"><div class="l">Deuda neta</div><div class="v ${dn.valor < 0 ? "pos" : ""}">${n(dn.valor, 0)}</div><div class="n">M USD · negativa = más caja que deuda</div></div>
     </div>
+    <div class="card" style="margin-top:12px"><b>Calificaciones de SPCX</b> ${tag("dato (fuente periodística)")}
+      <div class="scroll"><table>
+        <tr><th>Agencia</th><th>Calificación</th><th>Perspectiva</th><th>Fecha</th></tr>
+        ${cal.emisor.map((c) => `<tr><td>${esc(c.agencia)}</td><td>${esc(c.calificacion)}</td><td>${esc(c.perspectiva)}</td><td>${esc(c.fecha)}</td></tr>`).join("")}
+      </table></div>
+      <p class="mut">${esc(cal.fuente)} ${esc(cal.nota)}</p></div>
   </section>
 
   <section id="supuestos"><h2>Supuestos y fuentes</h2>
     <div class="card scroll"><table>
       <tr><th>Supuesto</th><th>Valor</th><th>Estado</th><th style="text-align:left">Fuente</th></tr>
-      ${v.supuestos.map((s) => `<tr><td>${esc(s.nombre)}</td><td>${s.valor <= 1 && s.nombre !== "plazo_anios" ? pct(s.valor, 2) : n(s.valor, 2)}</td><td>${tag(s.estado)}</td><td style="text-align:left">${esc(s.fuente)}${s.nota ? `<div class="mut">${esc(s.nota)}</div>` : ""}</td></tr>`).join("")}
+      ${v.supuestos.concat(cob.supuestos.filter((x) => !["prima_conversion", "volatilidad"].includes(x.nombre))).map((s) => `<tr><td>${esc(s.nombre)}</td><td>${s.valor <= 1 && !["plazo_anios", "dividendos"].includes(s.nombre) ? pct(s.valor, 2) : n(s.valor, 2)}</td><td>${tag(s.estado)}</td><td style="text-align:left">${esc(s.fuente)}${s.nota ? `<div class="mut">${esc(s.nota)}</div>` : ""}</td></tr>`).join("")}
     </table></div>
   </section>
 
@@ -192,6 +252,33 @@ function render(v, res, px, ust, bonos) {
       { label: "UST", data: ust.puntos.map((p) => ({ x: p.anios, y: p.yield_pct })), borderColor: acc, backgroundColor: acc, showLine: true, pointRadius: 2, borderWidth: 2 },
       { label: "Bonos SPCX", data: act.filter((x) => x.yield_pct != null).map((x) => ({ x: x.plazo_anios, y: x.yield_pct })), backgroundColor: oro, pointRadius: 5 } ] },
     options: { maintainAspectRatio: false, scales: { x: { type: "linear", title: { display: true, text: "Años" } }, y: { title: { display: true, text: "Rendimiento %" } } } } });
+  // sensibilidad de la cobertura y escenarios
+  const sg = [...new Set(cob.sensibilidad_costo_neto.map((c) => c.sigma))], pw = [...new Set(cob.sensibilidad_costo_neto.map((c) => c.prima_warrant))];
+  $("#t-cob-sens").innerHTML = `<tr><th></th>${pw.map((p) => `<th style="text-align:center">Warrants +${pct(p, 0)}</th>`).join("")}</tr>` +
+    sg.map((s) => `<tr><td>σ ${pct(s, 1)}</td>${pw.map((p) => {
+      const c = cob.sensibilidad_costo_neto.find((x) => x.sigma === s && x.prima_warrant === p);
+      const base = Math.abs(s - cb.sigma) < 1e-4 && Math.abs(p - cb.prima_warrant) < 1e-9;
+      return `<td class="cell ${base ? "base" : ""}">${n(c.costo_neto_musd, 1)}</td>`;
+    }).join("")}</tr>`).join("");
+  $("#t-esc").innerHTML = `<tr><th>Precio SPCX</th><th>vs hoy</th><th>Valor por bono</th><th>Costo sin cobertura (M)</th><th>Costo con cobertura (M)</th><th>Acciones nuevas con cobertura (M)</th><th>Dilución con cobertura</th></tr>` +
+    cob.escenarios.map((e) => `<tr><td>${usd(e.precio_vencimiento, 2)}</td><td>${pct(e.variacion_vs_hoy, 0)}</td><td>${usd(e.valor_por_bono, 0)}</td><td>${n(e.costo_sin_cobertura_musd, 1)}</td><td>${n(e.costo_neto_vencimiento_musd, 1)}</td><td>${n(e.acciones_nuevas_con_cobertura_millones, 3)}</td><td>${pct(e.dilucion_con_cobertura_pct, 4)}</td></tr>`).join("");
+
+  new Chart($("#c-esc"), { type: "line",
+    data: { labels: cob.escenarios.map((e) => "$" + n(e.precio_vencimiento, 0)),
+      datasets: [
+        { label: "Sin cobertura", data: cob.escenarios.map((e) => e.costo_sin_cobertura_musd), borderColor: oro, backgroundColor: oro, pointRadius: 3, tension: 0 },
+        { label: "Con cobertura", data: cob.escenarios.map((e) => e.costo_neto_vencimiento_musd), borderColor: acc, backgroundColor: acc, pointRadius: 3, tension: 0 } ] },
+    options: { maintainAspectRatio: false, scales: { x: { title: { display: true, text: "Precio de SPCX al vencimiento" } }, y: { title: { display: true, text: "M USD" } } } } });
+
+  const serie = (venc, tipo, campo) => ev.tradingview.filter((x) => x.vencimiento === venc && x.tipo === tipo && x[campo] != null).map((x) => ({ x: x.strike, y: +(x[campo] * 100).toFixed(2) }));
+  new Chart($("#c-iv"), { type: "scatter",
+    data: { datasets: [
+      { label: "Calls ene-2029, recalculada", data: serie("2029-01-19", "call", "iv_recalculada"), backgroundColor: acc, pointRadius: 4 },
+      { label: "Calls dic-2028, recalculada", data: serie("2028-12-15", "call", "iv_recalculada"), backgroundColor: oro, pointRadius: 4 },
+      { label: "Puts ene-2029, recalculada", data: serie("2029-01-19", "put", "iv_recalculada"), backgroundColor: "#6b8f71", pointRadius: 4 },
+      { label: "Calls ene-2029, TradingView", data: serie("2029-01-19", "call", "iv_tradingview"), borderColor: acc, backgroundColor: "transparent", pointRadius: 4, pointStyle: "rectRot" },
+      { label: "Puts ene-2029, TradingView", data: serie("2029-01-19", "put", "iv_tradingview"), borderColor: "#6b8f71", backgroundColor: "transparent", pointRadius: 4, pointStyle: "rectRot" } ] },
+    options: { maintainAspectRatio: false, scales: { x: { type: "linear", title: { display: true, text: "Strike" } }, y: { min: 40, max: 65, title: { display: true, text: "IV %" } } } } });
 }
 </script>
 </body>
