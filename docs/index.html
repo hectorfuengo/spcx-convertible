@@ -51,7 +51,7 @@
   <p class="sub" id="sub">Cargando datos…</p>
 </header>
 <nav><div>
-  <a href="#resumen">Resumen</a><a href="#valuacion">Valuación</a><a href="#sens">Sensibilidades</a><a href="#vol">Volatilidad</a><a href="#cobertura">Cobertura</a><a href="#escenarios">Escenarios</a><a href="#mercado">Mercado</a>
+  <a href="#resumen">Resumen</a><a href="#valuacion">Valuación</a><a href="#sens">Sensibilidades</a><a href="#vol">Volatilidad</a><a href="#cobertura">Cobertura</a><a href="#escenarios">Escenarios</a><a href="#griegas">Griegas</a><a href="#mercado">Mercado</a>
   <a href="#deuda">Deuda y caja</a><a href="#razones">Razones financieras</a><a href="#estructura">Estructura de deuda</a><a href="#comparables">Comparables</a><a href="#supuestos">Supuestos</a><a href="#validacion">Validación</a>
 </div></nav>
 <main id="app"></main>
@@ -71,11 +71,12 @@ const tag = (estado) => {
 };
 const get = (f) => fetch("data/" + f).then((r) => { if (!r.ok) throw new Error(f + ": " + r.status); return r.json(); });
 
-Promise.all(["valuacion.json", "resumen_mercado.json", "precios_spcx.json", "treasuries.json", "bonos.json", "cobertura.json", "analisis.json"].map(get))
-  .then(([v, res, px, ust, bonos, cob, an]) => render(v, res, px, ust, bonos, cob, an))
+Promise.all(["valuacion.json", "resumen_mercado.json", "precios_spcx.json", "treasuries.json", "bonos.json", "cobertura.json", "analisis.json", "griegas.json"].map(get))
+  .then(([v, res, px, ust, bonos, cob, an, gr]) => render(v, res, px, ust, bonos, cob, an, gr))
   .catch((e) => { $("#sub").textContent = "No se pudieron cargar los datos: " + e.message; });
 
-function render(v, res, px, ust, bonos, cob, an) {
+function render(v, res, px, ust, bonos, cob, an, gr) {
+  const gc = gr.convertible, gp = gc.posiciones, gx = gc.por_bono;
   const b = v.base, S = b.S;
   const rz = an.razones, ed = an.deuda, cp = an.comparables;
   const per = rz.anual.concat(rz.trimestral);
@@ -189,6 +190,33 @@ function render(v, res, px, ust, bonos, cob, an) {
     <div class="card"><div class="ch" style="height:300px"><canvas id="c-esc"></canvas></div>
       <p class="mut">Costo para el emisor por encima de la par (M USD), sin cobertura y con cobertura, según el precio de SPCX al vencimiento. No incluye el costo neto inicial de la cobertura (${n(cb.costo_neto_musd, 1)} M USD).</p>
       <div class="scroll"><table id="t-esc"></table></div></div>
+  </section>
+
+  <section id="griegas"><h2>Griegas</h2>
+    <div class="grid">
+      <div class="card kpi"><div class="l">Delta de la opción (por acción)</div><div class="v">${n(gc.por_accion.opcion_conversion.delta, 3)}</div><div class="n">strike ${usd(gc.parametros.X, 2)}, plazo ${gc.parametros.plazo} años</div></div>
+      <div class="card kpi"><div class="l">Delta por bono</div><div class="v">${n(gx.delta, 2)}</div><div class="n">acciones equivalentes (de ${n(gc.parametros.acciones_millones / gc.parametros.bonos_millones, 2)})</div></div>
+      <div class="card kpi"><div class="l">Vega por bono</div><div class="v">${usd(gx.vega, 2)}</div><div class="n">USD por punto de volatilidad</div></div>
+      <div class="card kpi"><div class="l">Theta por bono</div><div class="v ${gx.theta < 0 ? "neg" : ""}">${usd(gx.theta, 3)}</div><div class="n">USD por día calendario</div></div>
+      <div class="card kpi"><div class="l">Rho por bono</div><div class="v">${usd(gx.rho, 2)}</div><div class="n">USD por punto de tasa</div></div>
+    </div>
+    <div class="card" style="margin-top:12px"><b>Posición del emisor</b> ${tag("calculado")} <span class="mut">(emisión de ${n(gc.parametros.emision_musd, 0)} M; larga +, corta −; montos en millones)</span>
+      <div class="scroll"><table>
+        <tr><th></th><th>Delta (M acciones)</th><th>Delta (M USD)</th><th>Gamma (M acc. por USD)</th><th>Vega (M USD por punto)</th><th>Theta (M USD por día)</th><th>Rho (M USD por punto)</th></tr>
+        ${[["Opción de conversión vendida", "opcion_conversion_vendida"], ["Note hedge comprado", "note_hedge_comprado"], ["Warrants vendidos", "warrants_vendidos"], ["Emisor con cobertura", "emisor_con_cobertura"], ["Emisor sin cobertura", "emisor_sin_cobertura"]].map(([t, k]) => `<tr${k === "emisor_con_cobertura" ? ' style="font-weight:700"' : ""}><td class="nw">${t}</td><td>${n(gp[k].delta_acciones_m, 3)}</td><td>${n(gp[k].delta_usd_m, 1)}</td><td>${n(gp[k].gamma_acciones_m_por_usd, 4)}</td><td>${n(gp[k].vega_musd_por_punto, 2)}</td><td>${n(gp[k].theta_musd_por_dia, 3)}</td><td>${n(gp[k].rho_musd_por_punto, 2)}</td></tr>`).join("")}
+      </table></div>
+      <p class="mut">El note hedge cancela exactamente la opción de conversión; lo que queda es la exposición de los warrants vendidos.</p></div>
+    <div class="two" style="margin-top:12px">
+      <div class="card"><b>Delta del emisor según el precio de SPCX</b> <span class="mut">(M de acciones)</span><div class="ch"><canvas id="c-gdelta"></canvas></div></div>
+      <div class="card"><b>Vega por strike, calls ene-2029</b> <span class="mut">(USD por punto de vol.)</span><div class="ch"><canvas id="c-gvega"></canvas></div></div>
+    </div>
+    <div class="card" style="margin-top:12px"><b>Opciones listadas: LSEG vs cálculo propio</b> ${tag("dato / calculado")} <span class="mut">(capturas del ${esc(gr.fecha_captura)}; vacío = LSEG no las mostró)</span>
+      <div class="scroll" style="max-height:440px"><table>
+        <tr><th>Venc.</th><th>Tipo</th><th>Strike</th><th>Punto medio</th><th>IV LSEG</th><th>IV del precio</th><th>Delta LSEG</th><th>Delta propia</th><th>Gamma LSEG</th><th>Gamma propia</th><th>Vega LSEG</th><th>Vega propia</th><th>Theta LSEG</th><th>Theta propia</th></tr>
+        ${gr.opciones.map((o) => `<tr><td class="nw">${esc(o.vencimiento)}</td><td>${esc(o.tipo)}</td><td>${n(o.strike, 0)}</td><td>${n(o.punto_medio, 2)}</td><td>${o.iv_lseg == null ? "—" : pct(o.iv_lseg, 1)}</td><td>${o.iv_punto_medio == null ? "—" : pct(o.iv_punto_medio, 1)}</td>${["delta", "gamma", "vega", "theta"].map((k) => `<td>${o.lseg ? n(o.lseg[k], 4) : "—"}</td><td>${o.propias ? n(o.propias[k], 4) : "—"}</td>`).join("")}</tr>`).join("")}
+      </table></div>
+      <p class="mut">Diferencia media propia vs LSEG: ${Object.entries(gr.diferencias).map(([c, d]) => `${esc(c)}: delta ${pct(d.delta.media, 1)}, vega ${pct(d.vega.media, 1)}, theta ${pct(d.theta.media, 1)}`).join(" · ")}.</p></div>
+    ${gr.avisos.map((a) => `<div class="warn">${esc(a)}</div>`).join("")}
   </section>
 
   <section id="mercado"><h2>Mercado</h2>
@@ -317,6 +345,18 @@ function render(v, res, px, ust, bonos, cob, an) {
         { label: "Principal de bonos", data: mv.map((m) => m.principal_bonos_musd), backgroundColor: acc, stack: "a" },
         { label: "Facilidades de crédito (monto)", data: mv.map((m) => m.facilidades_musd), backgroundColor: oro, stack: "a" } ] },
     options: { maintainAspectRatio: false, scales: { x: { stacked: true }, y: { stacked: true, title: { display: true, text: "M USD" } } } } });
+  new Chart($("#c-gdelta"), { type: "line",
+    data: { labels: gc.curva_precio.map((c) => "$" + n(c.precio, 0)),
+      datasets: [
+        { label: "Sin cobertura", data: gc.curva_precio.map((c) => c.delta_sin_cobertura), borderColor: oro, backgroundColor: oro, pointRadius: 3, tension: 0 },
+        { label: "Con cobertura", data: gc.curva_precio.map((c) => c.delta_con_cobertura), borderColor: acc, backgroundColor: acc, pointRadius: 3, tension: 0 } ] },
+    options: { maintainAspectRatio: false, scales: { x: { title: { display: true, text: "Precio de SPCX" } }, y: { title: { display: true, text: "M de acciones" } } } } });
+  const gv = (venc, quien) => gr.opciones.filter((o) => o.tipo === "call" && o.vencimiento === venc && (quien === "lseg" ? o.lseg : o.propias)).map((o) => ({ x: o.strike, y: quien === "lseg" ? o.lseg.vega : o.propias.vega }));
+  new Chart($("#c-gvega"), { type: "scatter",
+    data: { datasets: [
+      { label: "LSEG", data: gv("2029-01-19", "lseg"), backgroundColor: oro, pointRadius: 4 },
+      { label: "Cálculo propio", data: gv("2029-01-19", "propia"), backgroundColor: acc, pointRadius: 3 } ] },
+    options: { maintainAspectRatio: false, scales: { x: { type: "linear", title: { display: true, text: "Strike" } }, y: { title: { display: true, text: "Vega" } } } } });
   // sensibilidad de la cobertura y escenarios
   const sg = [...new Set(cob.sensibilidad_costo_neto.map((c) => c.sigma))], pw = [...new Set(cob.sensibilidad_costo_neto.map((c) => c.prima_warrant))];
   $("#t-cob-sens").innerHTML = `<tr><th></th>${pw.map((p) => `<th style="text-align:center">Warrants +${pct(p, 0)}</th>`).join("")}</tr>` +

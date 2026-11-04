@@ -1,0 +1,1938 @@
+{
+ "fecha_captura": "2026-11-03",
+ "unidades": {
+  "delta": "por acción",
+  "gamma": "delta por 1 USD",
+  "vega": "USD por 1 punto de volatilidad",
+  "theta": "USD por día calendario",
+  "rho": "USD por 1 punto de tasa"
+ },
+ "opciones": [
+  {
+   "vencimiento": "2029-01-19",
+   "tipo": "call",
+   "strike": 115.0,
+   "bid": 58.9,
+   "ask": 61.15,
+   "punto_medio": 60.025,
+   "volumen": 7.0,
+   "interes_abierto": 217.0,
+   "iv_lseg": 0.552133,
+   "iv_punto_medio": 0.5440275797000959,
+   "tasa_usada": 0.04769225479452054,
+   "lseg": {
+    "delta": 0.7822,
+    "gamma": 0.0026,
+    "vega": 0.6348,
+    "theta": -0.0278
+   },
+   "propias": {
+    "delta": 0.7852524875561264,
+    "gamma": 0.0025153208226159286,
+    "vega": 0.613905296192771,
+    "theta": -0.027565939379181593,
+    "rho": 1.1166195425615344
+   },
+   "dif": {
+    "delta": 0.0030524875561264153,
+    "gamma": -8.467917738407124e-05,
+    "vega": -0.02089470380722902,
+    "theta": 0.00023406062081840484
+   },
+   "origen_griegas": "LSEG y cálculo propio",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "19:57",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2029-01-19",
+   "tipo": "call",
+   "strike": 120.0,
+   "bid": 56.5,
+   "ask": 58.35,
+   "punto_medio": 57.425,
+   "volumen": 7.0,
+   "interes_abierto": 540.0,
+   "iv_lseg": 0.542849,
+   "iv_punto_medio": 0.537249446202712,
+   "tasa_usada": 0.04769225479452054,
+   "lseg": {
+    "delta": 0.7662,
+    "gamma": 0.0027,
+    "vega": 0.6532,
+    "theta": -0.0281
+   },
+   "propias": {
+    "delta": 0.7694214283716296,
+    "gamma": 0.0026642166705096873,
+    "vega": 0.6393120241163079,
+    "theta": -0.02813237391203098,
+    "rho": 1.1277435917253562
+   },
+   "dif": {
+    "delta": 0.003221428371629642,
+    "gamma": -3.578332949031281e-05,
+    "vega": -0.01388797588369206,
+    "theta": -3.237391203098072e-05
+   },
+   "origen_griegas": "LSEG y cálculo propio",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "19:57",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2029-01-19",
+   "tipo": "call",
+   "strike": 125.0,
+   "bid": 53.35,
+   "ask": 56.8,
+   "punto_medio": 55.075,
+   "volumen": 4.0,
+   "interes_abierto": 403.0,
+   "iv_lseg": 0.537783,
+   "iv_punto_medio": 0.5333358759415313,
+   "tasa_usada": 0.04769225479452054,
+   "lseg": {
+    "delta": 0.75,
+    "gamma": 0.0028,
+    "vega": 0.6712,
+    "theta": -0.0285
+   },
+   "propias": {
+    "delta": 0.7534206100816663,
+    "gamma": 0.0027899256348561455,
+    "vega": 0.6632297304051862,
+    "theta": -0.028747760912064386,
+    "rho": 1.131107584421275
+   },
+   "dif": {
+    "delta": 0.0034206100816662754,
+    "gamma": -1.0074365143854496e-05,
+    "vega": -0.007970269594813839,
+    "theta": -0.00024776091206438547
+   },
+   "origen_griegas": "LSEG y cálculo propio",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "19:57",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2029-01-19",
+   "tipo": "call",
+   "strike": 130.0,
+   "bid": 52.55,
+   "ask": 54.05,
+   "punto_medio": 53.3,
+   "volumen": 53.0,
+   "interes_abierto": 1350.0,
+   "iv_lseg": 0.541327,
+   "iv_punto_medio": 0.5367598017568813,
+   "tasa_usada": 0.04769225479452054,
+   "lseg": {
+    "delta": 0.7344,
+    "gamma": 0.0029,
+    "vega": 0.6881,
+    "theta": -0.0292
+   },
+   "propias": {
+    "delta": 0.7380568337370859,
+    "gamma": 0.0028609171009238528,
+    "vega": 0.6845879522604109,
+    "theta": -0.029554597466509708,
+    "rho": 1.1219468767685594
+   },
+   "dif": {
+    "delta": 0.0036568337370858073,
+    "gamma": -3.9082899076147044e-05,
+    "vega": -0.0035120477395891303,
+    "theta": -0.0003545974665097075
+   },
+   "origen_griegas": "LSEG y cálculo propio",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "19:57",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2029-01-19",
+   "tipo": "call",
+   "strike": 135.0,
+   "bid": 50.3,
+   "ask": 51.8,
+   "punto_medio": 51.05,
+   "volumen": 34.0,
+   "interes_abierto": 859.0,
+   "iv_lseg": 0.5379659999999999,
+   "iv_punto_medio": 0.5320390622179844,
+   "tasa_usada": 0.04769225479452054,
+   "lseg": {
+    "delta": 0.7181,
+    "gamma": 0.003,
+    "vega": 0.7061,
+    "theta": -0.0296
+   },
+   "propias": {
+    "delta": 0.7221300235171195,
+    "gamma": 0.002965130982369886,
+    "vega": 0.7051199470140541,
+    "theta": -0.03008187203736005,
+    "rho": 1.1195999766469975
+   },
+   "dif": {
+    "delta": 0.004030023517119563,
+    "gamma": -3.4869017630114255e-05,
+    "vega": -0.000980052985945834,
+    "theta": -0.0004818720373600503
+   },
+   "origen_griegas": "LSEG y cálculo propio",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "19:57",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2029-01-19",
+   "tipo": "call",
+   "strike": 140.0,
+   "bid": 48.75,
+   "ask": 49.95,
+   "punto_medio": 49.35,
+   "volumen": 331.0,
+   "interes_abierto": 1666.0,
+   "iv_lseg": 0.542372,
+   "iv_punto_medio": 0.5340288102849482,
+   "tasa_usada": 0.04769225479452054,
+   "lseg": {
+    "delta": 0.7029,
+    "gamma": 0.0031,
+    "vega": 0.7227,
+    "theta": -0.0303
+   },
+   "propias": {
+    "delta": 0.7074176913601422,
+    "gamma": 0.0030142524914827237,
+    "vega": 0.7226719173823335,
+    "theta": -0.030789466819252244,
+    "rho": 1.1071060812662383
+   },
+   "dif": {
+    "delta": 0.00451769136014224,
+    "gamma": -8.57475085172762e-05,
+    "vega": -2.8082617666513876e-05,
+    "theta": -0.0004894668192522433
+   },
+   "origen_griegas": "LSEG y cálculo propio",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "19:57",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2029-01-19",
+   "tipo": "call",
+   "strike": 145.0,
+   "bid": 46.5,
+   "ask": 48.0,
+   "punto_medio": 47.25,
+   "volumen": 73.0,
+   "interes_abierto": 1294.0,
+   "iv_lseg": 0.536314,
+   "iv_punto_medio": 0.5294747447081836,
+   "tasa_usada": 0.04769225479452054,
+   "lseg": {
+    "delta": 0.6867,
+    "gamma": 0.0032,
+    "vega": 0.7404,
+    "theta": -0.0306
+   },
+   "propias": {
+    "delta": 0.6911037444462683,
+    "gamma": 0.0031238699482028427,
+    "vega": 0.7405874842121217,
+    "theta": -0.031098926490286647,
+    "rho": 1.1046994583216756
+   },
+   "dif": {
+    "delta": 0.004403744446268343,
+    "gamma": -7.613005179715748e-05,
+    "vega": 0.00018748421212178012,
+    "theta": -0.0004989264902866483
+   },
+   "origen_griegas": "LSEG y cálculo propio",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "19:57",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2029-01-19",
+   "tipo": "call",
+   "strike": 150.0,
+   "bid": 44.7,
+   "ask": 46.1,
+   "punto_medio": 45.400000000000006,
+   "volumen": 55.0,
+   "interes_abierto": 7055.0,
+   "iv_lseg": 0.532103,
+   "iv_punto_medio": 0.5274245539363672,
+   "tasa_usada": 0.04769225479452054,
+   "lseg": {
+    "delta": 0.6709,
+    "gamma": 0.0032,
+    "vega": 0.7575,
+    "theta": -0.0309
+   },
+   "propias": {
+    "delta": 0.6750202109842971,
+    "gamma": 0.003217069939324988,
+    "vega": 0.7566943638504559,
+    "theta": -0.031401013563784046,
+    "rho": 1.0987217793996158
+   },
+   "dif": {
+    "delta": 0.004120210984297046,
+    "gamma": 1.7069939324987782e-05,
+    "vega": -0.0008056361495440978,
+    "theta": -0.0005010135637840453
+   },
+   "origen_griegas": "LSEG y cálculo propio",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "19:57",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2029-01-19",
+   "tipo": "call",
+   "strike": 155.0,
+   "bid": 43.0,
+   "ask": 44.5,
+   "punto_medio": 43.75,
+   "volumen": 44.0,
+   "interes_abierto": 872.0,
+   "iv_lseg": 0.530656,
+   "iv_punto_medio": 0.5271097839629896,
+   "tasa_usada": 0.04769225479452054,
+   "lseg": {
+    "delta": 0.6556,
+    "gamma": 0.0033,
+    "vega": 0.7741,
+    "theta": -0.0313
+   },
+   "propias": {
+    "delta": 0.6595991958628078,
+    "gamma": 0.003285626010669541,
+    "vega": 0.7707179895813728,
+    "theta": -0.03173517765641743,
+    "rho": 1.0887967647562833
+   },
+   "dif": {
+    "delta": 0.003999195862807836,
+    "gamma": -1.4373989330458952e-05,
+    "vega": -0.0033820104186271793,
+    "theta": -0.0004351776564174292
+   },
+   "origen_griegas": "LSEG y cálculo propio",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "19:57",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2029-01-19",
+   "tipo": "call",
+   "strike": 160.0,
+   "bid": 41.25,
+   "ask": 42.75,
+   "punto_medio": 42.0,
+   "volumen": 107.0,
+   "interes_abierto": 1474.0,
+   "iv_lseg": 0.528005,
+   "iv_punto_medio": 0.5246524032840122,
+   "tasa_usada": 0.04769225479452054,
+   "lseg": {
+    "delta": 0.6398,
+    "gamma": 0.0034,
+    "vega": 0.7911,
+    "theta": -0.0317
+   },
+   "propias": {
+    "delta": 0.6439611116128814,
+    "gamma": 0.003357083633280636,
+    "vega": 0.7835459767440368,
+    "theta": -0.03196918809825133,
+    "rho": 1.0788532295272129
+   },
+   "dif": {
+    "delta": 0.004161111612881352,
+    "gamma": -4.291636671936369e-05,
+    "vega": -0.007554023255963216,
+    "theta": -0.0002691880982513342
+   },
+   "origen_griegas": "LSEG y cálculo propio",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "19:57",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2029-01-19",
+   "tipo": "call",
+   "strike": 165.0,
+   "bid": 39.5,
+   "ask": 40.9,
+   "punto_medio": 40.2,
+   "volumen": 48.0,
+   "interes_abierto": 492.0,
+   "iv_lseg": 0.524845,
+   "iv_punto_medio": 0.5208107241382702,
+   "tasa_usada": 0.04769225479452054,
+   "lseg": {
+    "delta": 0.6236,
+    "gamma": 0.0034,
+    "vega": 0.8084,
+    "theta": -0.0321
+   },
+   "propias": {
+    "delta": 0.6282293990528967,
+    "gamma": 0.0034269181090461785,
+    "vega": 0.7950584904618033,
+    "theta": -0.032127003584578685,
+    "rho": 1.068201796490366
+   },
+   "dif": {
+    "delta": 0.00462939905289661,
+    "gamma": 2.6918109046178678e-05,
+    "vega": -0.013341509538196683,
+    "theta": -2.7003584578688677e-05
+   },
+   "origen_griegas": "LSEG y cálculo propio",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "19:57",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2029-01-19",
+   "tipo": "call",
+   "strike": 170.0,
+   "bid": 38.5,
+   "ask": 39.45,
+   "punto_medio": 38.975,
+   "volumen": 32.0,
+   "interes_abierto": 578.0,
+   "iv_lseg": 0.528786,
+   "iv_punto_medio": 0.5234206636140325,
+   "tasa_usada": 0.04769225479452054,
+   "lseg": {
+    "delta": 0.6099,
+    "gamma": 0.0035,
+    "vega": 0.8236,
+    "theta": -0.0327
+   },
+   "propias": {
+    "delta": 0.6150961582351178,
+    "gamma": 0.0034379820189719876,
+    "vega": 0.8036146370879652,
+    "theta": -0.032503995722366584,
+    "rho": 1.0517892456384097
+   },
+   "dif": {
+    "delta": 0.005196158235117765,
+    "gamma": -6.201798102801245e-05,
+    "vega": -0.019985362912034788,
+    "theta": 0.00019600427763341588
+   },
+   "origen_griegas": "LSEG y cálculo propio",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "19:57",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2029-01-19",
+   "tipo": "call",
+   "strike": 175.0,
+   "bid": 36.8,
+   "ask": 37.95,
+   "punto_medio": 37.375,
+   "volumen": 9.0,
+   "interes_abierto": 1136.0,
+   "iv_lseg": 0.528113,
+   "iv_punto_medio": 0.5206238434027385,
+   "tasa_usada": 0.04769225479452054,
+   "lseg": {
+    "delta": 0.5946,
+    "gamma": 0.0035,
+    "vega": 0.8401,
+    "theta": -0.0331
+   },
+   "propias": {
+    "delta": 0.600679386731907,
+    "gamma": 0.0034779178680027275,
+    "vega": 0.8119148207056555,
+    "theta": -0.032661502292117506,
+    "rho": 1.0381885461270997
+   },
+   "dif": {
+    "delta": 0.006079386731906999,
+    "gamma": -2.208213199727258e-05,
+    "vega": -0.028185179294344498,
+    "theta": 0.0004384977078824917
+   },
+   "origen_griegas": "LSEG y cálculo propio",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "19:57",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2029-01-19",
+   "tipo": "call",
+   "strike": 180.0,
+   "bid": 35.2,
+   "ask": 36.5,
+   "punto_medio": 35.85,
+   "volumen": 3.0,
+   "interes_abierto": 610.0,
+   "iv_lseg": 0.524429,
+   "iv_punto_medio": 0.5180912903759051,
+   "tasa_usada": 0.04769225479452054,
+   "lseg": {
+    "delta": 0.5795,
+    "gamma": 0.0036,
+    "vega": 0.7909,
+    "theta": -0.0313
+   },
+   "propias": {
+    "delta": 0.5852308103350263,
+    "gamma": 0.0035352990192309085,
+    "vega": 0.8195531828390892,
+    "theta": -0.032649919590049925,
+    "rho": 1.0255883777519086
+   },
+   "dif": {
+    "delta": 0.005730810335026315,
+    "gamma": -6.470098076909138e-05,
+    "vega": 0.02865318283908913,
+    "theta": -0.0013499195900499236
+   },
+   "origen_griegas": "LSEG y cálculo propio",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "19:57",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2029-01-19",
+   "tipo": "call",
+   "strike": 185.0,
+   "bid": 33.75,
+   "ask": 35.5,
+   "punto_medio": 34.625,
+   "volumen": 9.0,
+   "interes_abierto": 438.0,
+   "iv_lseg": 0.523023,
+   "iv_punto_medio": 0.5185595769350739,
+   "tasa_usada": 0.04769225479452054,
+   "lseg": {
+    "delta": 0.5658,
+    "gamma": 0.0036,
+    "vega": 0.8055,
+    "theta": -0.0316
+   },
+   "propias": {
+    "delta": 0.5708617863936281,
+    "gamma": 0.0035705326827516607,
+    "vega": 0.8255019229767813,
+    "theta": -0.032685650872185376,
+    "rho": 1.0111036503616009
+   },
+   "dif": {
+    "delta": 0.005061786393628087,
+    "gamma": -2.946731724833918e-05,
+    "vega": 0.020001922976781272,
+    "theta": -0.001085650872185373
+   },
+   "origen_griegas": "LSEG y cálculo propio",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "19:57",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2029-01-19",
+   "tipo": "call",
+   "strike": 190.0,
+   "bid": 32.5,
+   "ask": 33.7,
+   "punto_medio": 33.1,
+   "volumen": 3.0,
+   "interes_abierto": 534.0,
+   "iv_lseg": 0.51801,
+   "iv_punto_medio": 0.5147790634590089,
+   "tasa_usada": 0.04769225479452054,
+   "lseg": {
+    "delta": 0.5503,
+    "gamma": 0.0036,
+    "vega": 0.8214,
+    "theta": -0.0317
+   },
+   "propias": {
+    "delta": 0.5549589645295813,
+    "gamma": 0.0036282099390595288,
+    "vega": 0.830796850576773,
+    "theta": -0.03251801473276952,
+    "rho": 0.9973321865798097
+   },
+   "dif": {
+    "delta": 0.004658964529581255,
+    "gamma": 2.820993905952888e-05,
+    "vega": 0.009396850576772975,
+    "theta": -0.0008180147327695175
+   },
+   "origen_griegas": "LSEG y cálculo propio",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "19:57",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2029-01-19",
+   "tipo": "call",
+   "strike": 195.0,
+   "bid": 31.75,
+   "ask": 32.4,
+   "punto_medio": 32.075,
+   "volumen": 14.0,
+   "interes_abierto": 306.0,
+   "iv_lseg": 0.519158,
+   "iv_punto_medio": 0.5164207462817211,
+   "tasa_usada": 0.04769225479452054,
+   "lseg": {
+    "delta": 0.5377,
+    "gamma": 0.0036,
+    "vega": 0.8351,
+    "theta": -0.0322
+   },
+   "propias": {
+    "delta": 0.5421979645668196,
+    "gamma": 0.003634458917840525,
+    "vega": 0.834072118869478,
+    "theta": -0.0325858119348194,
+    "rho": 0.9809927018735917
+   },
+   "dif": {
+    "delta": 0.004497964566819612,
+    "gamma": 3.445891784052517e-05,
+    "vega": -0.0010278811305219904,
+    "theta": -0.00038581193481940224
+   },
+   "origen_griegas": "LSEG y cálculo propio",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "19:57",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2029-01-19",
+   "tipo": "call",
+   "strike": 200.0,
+   "bid": 30.25,
+   "ask": 31.3,
+   "punto_medio": 30.775,
+   "volumen": 102.0,
+   "interes_abierto": 2771.0,
+   "iv_lseg": 0.51703,
+   "iv_punto_medio": 0.5141915074756637,
+   "tasa_usada": 0.04769225479452054,
+   "lseg": {
+    "delta": 0.5233,
+    "gamma": 0.0037,
+    "vega": 0.8502,
+    "theta": -0.0324
+   },
+   "propias": {
+    "delta": 0.5280322564625934,
+    "gamma": 0.0036609034286127734,
+    "vega": 0.8366971796001959,
+    "theta": -0.03246707262072965,
+    "rho": 0.9652547481659424
+   },
+   "dif": {
+    "delta": 0.004732256462593454,
+    "gamma": -3.909657138722678e-05,
+    "vega": -0.013502820399804105,
+    "theta": -6.707262072964959e-05
+   },
+   "origen_griegas": "LSEG y cálculo propio",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "19:57",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2029-01-19",
+   "tipo": "call",
+   "strike": 205.0,
+   "bid": 28.75,
+   "ask": 30.1,
+   "punto_medio": 29.425,
+   "volumen": null,
+   "interes_abierto": 475.0,
+   "iv_lseg": 0.514397,
+   "iv_punto_medio": 0.5108278176963247,
+   "tasa_usada": 0.04769225479452054,
+   "lseg": {
+    "delta": 0.5085,
+    "gamma": 0.0037,
+    "vega": 0.8655,
+    "theta": -0.0327
+   },
+   "propias": {
+    "delta": 0.5137581684480114,
+    "gamma": 0.0036865585245142722,
+    "vega": 0.8382698553279966,
+    "theta": -0.032285584679206544,
+    "rho": 0.9491221377021537
+   },
+   "dif": {
+    "delta": 0.005258168448011413,
+    "gamma": -1.3441475485727935e-05,
+    "vega": -0.027230144672003465,
+    "theta": 0.0004144153207934556
+   },
+   "origen_griegas": "LSEG y cálculo propio",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "19:57",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2029-01-19",
+   "tipo": "call",
+   "strike": 210.0,
+   "bid": 27.8,
+   "ask": 29.05,
+   "punto_medio": 28.425,
+   "volumen": 4.0,
+   "interes_abierto": 760.0,
+   "iv_lseg": 0.51583,
+   "iv_punto_medio": 0.5111178933905973,
+   "tasa_usada": 0.04769225479452054,
+   "lseg": {
+    "delta": 0.496,
+    "gamma": 0.0037,
+    "vega": 0.8792,
+    "theta": -0.0331
+   },
+   "propias": {
+    "delta": 0.5020459220512122,
+    "gamma": 0.0036784564074095315,
+    "vega": 0.8387576598211544,
+    "theta": -0.03227735153952331,
+    "rho": 0.9324956179611131
+   },
+   "dif": {
+    "delta": 0.006045922051212238,
+    "gamma": -2.154359259046862e-05,
+    "vega": -0.040442340178845626,
+    "theta": 0.0008226484604766868
+   },
+   "origen_griegas": "LSEG y cálculo propio",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "19:57",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2029-01-19",
+   "tipo": "call",
+   "strike": 215.0,
+   "bid": 26.65,
+   "ask": 28.0,
+   "punto_medio": 27.325,
+   "volumen": null,
+   "interes_abierto": 1061.0,
+   "iv_lseg": 0.516098,
+   "iv_punto_medio": 0.5097136828594617,
+   "tasa_usada": 0.04769225479452054,
+   "lseg": {
+    "delta": 0.4828,
+    "gamma": 0.0037,
+    "vega": 0.8933,
+    "theta": -0.0335
+   },
+   "propias": {
+    "delta": 0.489979932031675,
+    "gamma": 0.003675434863921166,
+    "vega": 0.8385041101749227,
+    "theta": -0.03218581146347451,
+    "rho": 0.9160021828820021
+   },
+   "dif": {
+    "delta": 0.007179932031674996,
+    "gamma": -2.456513607883423e-05,
+    "vega": -0.054795889825077326,
+    "theta": 0.0013141885365254916
+   },
+   "origen_griegas": "LSEG y cálculo propio",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "19:57",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2029-01-19",
+   "tipo": "call",
+   "strike": 220.0,
+   "bid": 25.8,
+   "ask": 27.0,
+   "punto_medio": 26.4,
+   "volumen": 106.0,
+   "interes_abierto": 589.0,
+   "iv_lseg": 0.516895,
+   "iv_punto_medio": 0.5099171858717426,
+   "tasa_usada": 0.04769225479452054,
+   "lseg": {
+    "delta": 0.4711,
+    "gamma": 0.0037,
+    "vega": 0.7724,
+    "theta": -0.0296
+   },
+   "propias": {
+    "delta": 0.47855183204833146,
+    "gamma": 0.003665619134406684,
+    "vega": 0.8375562025404326,
+    "theta": -0.03210029920483249,
+    "rho": 0.8996452590433534
+   },
+   "dif": {
+    "delta": 0.0074518320483314415,
+    "gamma": -3.4380865593316295e-05,
+    "vega": 0.06515620254043264,
+    "theta": -0.0025002992048324887
+   },
+   "origen_griegas": "LSEG y cálculo propio",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "19:57",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2029-01-19",
+   "tipo": "call",
+   "strike": 225.0,
+   "bid": 24.7,
+   "ask": 26.05,
+   "punto_medio": 25.375,
+   "volumen": 9.0,
+   "interes_abierto": 3542.0,
+   "iv_lseg": 0.5134960000000001,
+   "iv_punto_medio": 0.5084649732116118,
+   "tasa_usada": 0.04769225479452054,
+   "lseg": {
+    "delta": 0.4584,
+    "gamma": 0.0037,
+    "vega": 0.7851,
+    "theta": -0.0297
+   },
+   "propias": {
+    "delta": 0.46468677964425553,
+    "gamma": 0.003680738705629446,
+    "vega": 0.8354805464807784,
+    "theta": -0.03175754003266395,
+    "rho": 0.8825953878136603
+   },
+   "dif": {
+    "delta": 0.006286779644255558,
+    "gamma": -1.9261294370553992e-05,
+    "vega": 0.05038054648077839,
+    "theta": -0.002057540032663948
+   },
+   "origen_griegas": "LSEG y cálculo propio",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "19:57",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2028-12-15",
+   "tipo": "call",
+   "strike": 145.0,
+   "bid": 45.8,
+   "ask": 46.8,
+   "punto_medio": 46.3,
+   "volumen": 40.0,
+   "interes_abierto": 1956.0,
+   "iv_lseg": 0.53816,
+   "iv_punto_medio": 0.5315360083302307,
+   "tasa_usada": 0.04762887123287671,
+   "lseg": {
+    "delta": 0.6828,
+    "gamma": 0.0032,
+    "vega": 0.7281,
+    "theta": -0.0314
+   },
+   "propias": {
+    "delta": 0.687035621075881,
+    "gamma": 0.003200983432273004,
+    "vega": 0.7284961538821527,
+    "theta": -0.03192274241043326,
+    "rho": 1.0653003615801813
+   },
+   "dif": {
+    "delta": 0.004235621075881046,
+    "gamma": 9.834322730038238e-07,
+    "vega": 0.00039615388215274994,
+    "theta": -0.0005227424104332634
+   },
+   "origen_griegas": "LSEG y cálculo propio",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "20:01",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2028-12-15",
+   "tipo": "call",
+   "strike": 150.0,
+   "bid": 44.15,
+   "ask": 44.9,
+   "punto_medio": 44.525,
+   "volumen": 162.0,
+   "interes_abierto": 6359.0,
+   "iv_lseg": 0.535068,
+   "iv_punto_medio": 0.5306230619873035,
+   "tasa_usada": 0.04762887123287671,
+   "lseg": {
+    "delta": 0.6669,
+    "gamma": 0.0033,
+    "vega": 0.7446,
+    "theta": -0.0318
+   },
+   "propias": {
+    "delta": 0.6708391383735044,
+    "gamma": 0.003287893036557374,
+    "vega": 0.7439762661966897,
+    "theta": -0.03226561680206225,
+    "rho": 1.0576415139669362
+   },
+   "dif": {
+    "delta": 0.003939138373504347,
+    "gamma": -1.2106963442626035e-05,
+    "vega": -0.0006237338033103779,
+    "theta": -0.00046561680206224504
+   },
+   "origen_griegas": "LSEG y cálculo propio",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "20:01",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2028-12-15",
+   "tipo": "call",
+   "strike": 155.0,
+   "bid": 42.25,
+   "ask": 43.1,
+   "punto_medio": 42.675,
+   "volumen": 18.0,
+   "interes_abierto": 1726.0,
+   "iv_lseg": 0.531123,
+   "iv_punto_medio": 0.5277847650710981,
+   "tasa_usada": 0.04762887123287671,
+   "lseg": {
+    "delta": 0.6505,
+    "gamma": 0.0034,
+    "vega": 0.7615,
+    "theta": -0.0321
+   },
+   "propias": {
+    "delta": 0.654438274256463,
+    "gamma": 0.003375338302507991,
+    "vega": 0.7581320183313442,
+    "theta": -0.0325112095313045,
+    "rho": 1.0493839639093578
+   },
+   "dif": {
+    "delta": 0.003938274256462981,
+    "gamma": -2.4661697492008635e-05,
+    "vega": -0.0033679816686557063,
+    "theta": -0.00041120953130450305
+   },
+   "origen_griegas": "LSEG y cálculo propio",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "20:01",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2028-12-15",
+   "tipo": "call",
+   "strike": 160.0,
+   "bid": 40.5,
+   "ask": 41.4,
+   "punto_medio": 40.95,
+   "volumen": 46.0,
+   "interes_abierto": 1211.0,
+   "iv_lseg": 0.528951,
+   "iv_punto_medio": 0.5257460502319312,
+   "tasa_usada": 0.04762887123287671,
+   "lseg": {
+    "delta": 0.6345,
+    "gamma": 0.0035,
+    "vega": 0.7781,
+    "theta": -0.0325
+   },
+   "propias": {
+    "delta": 0.6385368220461665,
+    "gamma": 0.0034441470593315395,
+    "vega": 0.7704235534272519,
+    "theta": -0.03275792833961065,
+    "rho": 1.038459032944708
+   },
+   "dif": {
+    "delta": 0.0040368220461665105,
+    "gamma": -5.585294066846056e-05,
+    "vega": -0.00767644657274813,
+    "theta": -0.00025792833961064965
+   },
+   "origen_griegas": "LSEG y cálculo propio",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "20:01",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2028-12-15",
+   "tipo": "call",
+   "strike": 165.0,
+   "bid": 38.8,
+   "ask": 39.9,
+   "punto_medio": 39.349999999999994,
+   "volumen": 12.0,
+   "interes_abierto": 497.0,
+   "iv_lseg": 0.528442,
+   "iv_punto_medio": 0.5244999654950153,
+   "tasa_usada": 0.04762887123287671,
+   "lseg": {
+    "delta": 0.6188,
+    "gamma": 0.0035,
+    "vega": 0.7943,
+    "theta": -0.033
+   },
+   "propias": {
+    "delta": 0.6232915384743031,
+    "gamma": 0.0034943626876129943,
+    "vega": 0.7809041470493233,
+    "theta": -0.03301051455859534,
+    "rho": 1.0254285192194528
+   },
+   "dif": {
+    "delta": 0.004491538474303058,
+    "gamma": -5.637312387005763e-06,
+    "vega": -0.01339585295067669,
+    "theta": -1.0514558595339785e-05
+   },
+   "origen_griegas": "LSEG y cálculo propio",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "20:01",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2028-12-15",
+   "tipo": "call",
+   "strike": 170.0,
+   "bid": 37.4,
+   "ask": 38.4,
+   "punto_medio": 37.9,
+   "volumen": 46.0,
+   "interes_abierto": 994.0,
+   "iv_lseg": 0.529805,
+   "iv_punto_medio": 0.5243641376751778,
+   "tasa_usada": 0.04762887123287671,
+   "lseg": {
+    "delta": 0.6038,
+    "gamma": 0.0036,
+    "vega": 0.8099,
+    "theta": -0.0335
+   },
+   "propias": {
+    "delta": 0.6089527399976189,
+    "gamma": 0.0035242404488761807,
+    "vega": 0.7896124844419518,
+    "theta": -0.033286691335680345,
+    "rho": 1.0106433685898126
+   },
+   "dif": {
+    "delta": 0.005152739997618894,
+    "gamma": -7.575955112381922e-05,
+    "vega": -0.020287515558048197,
+    "theta": 0.00021330866431965717
+   },
+   "origen_griegas": "LSEG y cálculo propio",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "20:01",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2028-12-15",
+   "tipo": "call",
+   "strike": 175.0,
+   "bid": 35.95,
+   "ask": 36.75,
+   "punto_medio": 36.35,
+   "volumen": 865.0,
+   "interes_abierto": 1883.0,
+   "iv_lseg": 0.529904,
+   "iv_punto_medio": 0.5222073898864511,
+   "tasa_usada": 0.04762887123287671,
+   "lseg": {
+    "delta": 0.5884,
+    "gamma": 0.0036,
+    "vega": 0.826,
+    "theta": -0.034
+   },
+   "propias": {
+    "delta": 0.5944832915588935,
+    "gamma": 0.0035578147176335622,
+    "vega": 0.7972838140203057,
+    "theta": -0.03346609108458402,
+    "rho": 0.9962642775958233
+   },
+   "dif": {
+    "delta": 0.006083291558893422,
+    "gamma": -4.218528236643766e-05,
+    "vega": -0.028716185979694275,
+    "theta": 0.0005339089154159857
+   },
+   "origen_griegas": "LSEG y cálculo propio",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "20:01",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2028-12-15",
+   "tipo": "call",
+   "strike": 180.0,
+   "bid": 34.4,
+   "ask": 35.3,
+   "punto_medio": 34.849999999999994,
+   "volumen": 91.0,
+   "interes_abierto": 586.0,
+   "iv_lseg": 0.5257999999999999,
+   "iv_punto_medio": 0.5199776232514899,
+   "tasa_usada": 0.04762887123287671,
+   "lseg": {
+    "delta": 0.5731,
+    "gamma": 0.0037,
+    "vega": 0.7776,
+    "theta": -0.032
+   },
+   "propias": {
+    "delta": 0.5785351797760647,
+    "gamma": 0.003617824886100235,
+    "vega": 0.8044527596529971,
+    "theta": -0.033418912247228,
+    "rho": 0.9833859158511609
+   },
+   "dif": {
+    "delta": 0.005435179776064669,
+    "gamma": -8.217511389976536e-05,
+    "vega": 0.02685275965299716,
+    "theta": -0.0014189122472279964
+   },
+   "origen_griegas": "LSEG y cálculo propio",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "20:01",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2028-12-15",
+   "tipo": "call",
+   "strike": 185.0,
+   "bid": 33.15,
+   "ask": 34.1,
+   "punto_medio": 33.625,
+   "volumen": 42.0,
+   "interes_abierto": 271.0,
+   "iv_lseg": 0.524511,
+   "iv_punto_medio": 0.5204761606750785,
+   "tasa_usada": 0.04762887123287671,
+   "lseg": {
+    "delta": 0.5591,
+    "gamma": 0.0037,
+    "vega": 0.7918,
+    "theta": -0.0324
+   },
+   "propias": {
+    "delta": 0.5638986123758994,
+    "gamma": 0.0036510710638477904,
+    "vega": 0.8098550766103751,
+    "theta": -0.033443584538830944,
+    "rho": 0.9685293656367174
+   },
+   "dif": {
+    "delta": 0.004798612375899403,
+    "gamma": -4.892893615220974e-05,
+    "vega": 0.018055076610375198,
+    "theta": -0.0010435845388309453
+   },
+   "origen_griegas": "LSEG y cálculo propio",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "20:01",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2028-12-15",
+   "tipo": "call",
+   "strike": 190.0,
+   "bid": 31.8,
+   "ask": 32.8,
+   "punto_medio": 32.3,
+   "volumen": 511.0,
+   "interes_abierto": 531.0,
+   "iv_lseg": 0.522027,
+   "iv_punto_medio": 0.5190818564599988,
+   "tasa_usada": 0.04762887123287671,
+   "lseg": {
+    "delta": 0.5445,
+    "gamma": 0.0037,
+    "vega": 0.8065,
+    "theta": -0.0327
+   },
+   "propias": {
+    "delta": 0.5489064426874715,
+    "gamma": 0.0036882560517737134,
+    "vega": 0.8142287853102039,
+    "theta": -0.03336895388363306,
+    "rho": 0.953566760880289
+   },
+   "dif": {
+    "delta": 0.004406442687471479,
+    "gamma": -1.174394822628681e-05,
+    "vega": 0.007728785310203934,
+    "theta": -0.0006689538836330625
+   },
+   "origen_griegas": "LSEG y cálculo propio",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "20:01",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2028-12-15",
+   "tipo": "call",
+   "strike": 195.0,
+   "bid": 30.55,
+   "ask": 31.55,
+   "punto_medio": 31.05,
+   "volumen": 3.0,
+   "interes_abierto": 958.0,
+   "iv_lseg": 0.5205420000000001,
+   "iv_punto_medio": 0.517988992583383,
+   "tasa_usada": 0.04762887123287671,
+   "lseg": {
+    "delta": 0.5302,
+    "gamma": 0.0037,
+    "vega": 0.821,
+    "theta": -0.033
+   },
+   "propias": {
+    "delta": 0.5345830191762343,
+    "gamma": 0.0037128055418145308,
+    "vega": 0.817316755403634,
+    "theta": -0.03329777801190277,
+    "rho": 0.9378339992134076
+   },
+   "dif": {
+    "delta": 0.004383019176234293,
+    "gamma": 1.2805541814530589e-05,
+    "vega": -0.003683244596365931,
+    "theta": -0.000297778011902769
+   },
+   "origen_griegas": "LSEG y cálculo propio",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "20:01",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2028-12-15",
+   "tipo": "call",
+   "strike": 200.0,
+   "bid": 29.4,
+   "ask": 30.1,
+   "punto_medio": 29.75,
+   "volumen": 965.0,
+   "interes_abierto": 11581.0,
+   "iv_lseg": 0.51851,
+   "iv_punto_medio": 0.5156942898214835,
+   "tasa_usada": 0.04762887123287671,
+   "lseg": {
+    "delta": 0.5155,
+    "gamma": 0.0037,
+    "vega": 0.8357,
+    "theta": -0.0333
+   },
+   "propias": {
+    "delta": 0.5201859625129034,
+    "gamma": 0.003736631722426114,
+    "vega": 0.8193507495220658,
+    "theta": -0.033159857262293674,
+    "rho": 0.9218131132169411
+   },
+   "dif": {
+    "delta": 0.00468596251290343,
+    "gamma": 3.66317224261138e-05,
+    "vega": -0.01634925047793423,
+    "theta": 0.0001401427377063294
+   },
+   "origen_griegas": "LSEG y cálculo propio",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "20:01",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2028-12-15",
+   "tipo": "call",
+   "strike": 205.0,
+   "bid": 28.3,
+   "ask": 29.0,
+   "punto_medio": 28.65,
+   "volumen": 11.0,
+   "interes_abierto": 521.0,
+   "iv_lseg": 0.5189,
+   "iv_punto_medio": 0.515273324196472,
+   "tasa_usada": 0.04762887123287671,
+   "lseg": {
+    "delta": 0.5021,
+    "gamma": 0.0037,
+    "vega": 0.8495,
+    "theta": -0.0337
+   },
+   "propias": {
+    "delta": 0.5073601432280322,
+    "gamma": 0.0037379739032549404,
+    "vega": 0.8202615568238052,
+    "theta": -0.03310942107371157,
+    "rho": 0.9053114815807465
+   },
+   "dif": {
+    "delta": 0.005260143228032255,
+    "gamma": 3.79739032549402e-05,
+    "vega": -0.02923844317619484,
+    "theta": 0.0005905789262884292
+   },
+   "origen_griegas": "LSEG y cálculo propio",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "20:01",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2028-12-15",
+   "tipo": "call",
+   "strike": 210.0,
+   "bid": 27.2,
+   "ask": 28.05,
+   "punto_medio": 27.625,
+   "volumen": 1.0,
+   "interes_abierto": 1373.0,
+   "iv_lseg": 0.520145,
+   "iv_punto_medio": 0.5152217876178565,
+   "tasa_usada": 0.04762887123287671,
+   "lseg": {
+    "delta": 0.4893,
+    "gamma": 0.0037,
+    "vega": 0.863,
+    "theta": -0.0341
+   },
+   "propias": {
+    "delta": 0.4953646528368746,
+    "gamma": 0.0037294098169324877,
+    "vega": 0.8203458020626287,
+    "theta": -0.03307699368374383,
+    "rho": 0.8888679591294575
+   },
+   "dif": {
+    "delta": 0.006064652836874573,
+    "gamma": 2.9409816932487575e-05,
+    "vega": -0.04265419793737124,
+    "theta": 0.001023006316256167
+   },
+   "origen_griegas": "LSEG y cálculo propio",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "20:01",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2028-12-15",
+   "tipo": "call",
+   "strike": 215.0,
+   "bid": 26.15,
+   "ask": 26.9,
+   "punto_medio": 26.525,
+   "volumen": null,
+   "interes_abierto": 229.0,
+   "iv_lseg": 0.520497,
+   "iv_punto_medio": 0.5137345443009546,
+   "tasa_usada": 0.04762887123287671,
+   "lseg": {
+    "delta": 0.4759,
+    "gamma": 0.0038,
+    "vega": 0.8768,
+    "theta": -0.0345
+   },
+   "propias": {
+    "delta": 0.4831838664924166,
+    "gamma": 0.0037238276624706134,
+    "vega": 0.8196722394660861,
+    "theta": -0.03297231087854017,
+    "rho": 0.8725273390426258
+   },
+   "dif": {
+    "delta": 0.007283866492416635,
+    "gamma": -7.61723375293866e-05,
+    "vega": -0.057127760533913885,
+    "theta": 0.001527689121459834
+   },
+   "origen_griegas": "LSEG y cálculo propio",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "20:01",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2028-12-15",
+   "tipo": "call",
+   "strike": 220.0,
+   "bid": 25.2,
+   "ask": 26.0,
+   "punto_medio": 25.6,
+   "volumen": null,
+   "interes_abierto": 680.0,
+   "iv_lseg": 0.520148,
+   "iv_punto_medio": 0.5138847147644753,
+   "tasa_usada": 0.04762887123287671,
+   "lseg": {
+    "delta": 0.464,
+    "gamma": 0.0037,
+    "vega": 0.7584,
+    "theta": -0.0304
+   },
+   "propias": {
+    "delta": 0.47087454154595054,
+    "gamma": 0.0037196961970996658,
+    "vega": 0.8182138487227206,
+    "theta": -0.032803931656284646,
+    "rho": 0.8561664837906022
+   },
+   "dif": {
+    "delta": 0.006874541545950519,
+    "gamma": 1.9696197099665618e-05,
+    "vega": 0.059813848722720664,
+    "theta": -0.002403931656284646
+   },
+   "origen_griegas": "LSEG y cálculo propio",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "20:01",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2028-12-15",
+   "tipo": "call",
+   "strike": 225.0,
+   "bid": 24.2,
+   "ask": 24.95,
+   "punto_medio": 24.575,
+   "volumen": 3.0,
+   "interes_abierto": 450.0,
+   "iv_lseg": 0.5167649999999999,
+   "iv_punto_medio": 0.5123325473427469,
+   "tasa_usada": 0.04762887123287671,
+   "lseg": {
+    "delta": 0.4511,
+    "gamma": 0.0037,
+    "vega": 0.7708,
+    "theta": -0.0305
+   },
+   "propias": {
+    "delta": 0.4568502397318907,
+    "gamma": 0.003732075934988263,
+    "vega": 0.8155976869734063,
+    "theta": -0.03243228326783072,
+    "rho": 0.8390998835668085
+   },
+   "dif": {
+    "delta": 0.005750239731890705,
+    "gamma": 3.207593498826293e-05,
+    "vega": 0.04479768697340625,
+    "theta": -0.0019322832678307228
+   },
+   "origen_griegas": "LSEG y cálculo propio",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "20:01",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2029-01-19",
+   "tipo": "put",
+   "strike": 115.0,
+   "bid": 22.35,
+   "ask": 24.2,
+   "punto_medio": 23.275,
+   "volumen": 71.0,
+   "interes_abierto": 682.0,
+   "iv_lseg": null,
+   "iv_punto_medio": 0.5616588285180177,
+   "tasa_usada": 0.04769225479452054,
+   "lseg": null,
+   "propias": {
+    "delta": -0.21455679394825933,
+    "gamma": 0.002471384043194009,
+    "vega": 0.6135883668962179,
+    "theta": -0.01432315457279833,
+    "rho": -1.1864100988133
+   },
+   "dif": null,
+   "origen_griegas": "cálculo propio (LSEG no las mostró)",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "20:02",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2029-01-19",
+   "tipo": "put",
+   "strike": 120.0,
+   "bid": 24.6,
+   "ask": 26.55,
+   "punto_medio": 25.575000000000003,
+   "volumen": 155.0,
+   "interes_abierto": 2698.0,
+   "iv_lseg": null,
+   "iv_punto_medio": 0.5604658843753583,
+   "tasa_usada": 0.04769225479452054,
+   "lseg": null,
+   "propias": {
+    "delta": -0.2297780103829864,
+    "gamma": 0.00257545789117169,
+    "vega": 0.6380694106348873,
+    "theta": -0.014545345331031013,
+    "rho": -1.2849398346014687
+   },
+   "dif": null,
+   "origen_griegas": "cálculo propio (LSEG no las mostró)",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "20:02",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2029-01-19",
+   "tipo": "put",
+   "strike": 125.0,
+   "bid": 26.95,
+   "ask": 29.0,
+   "punto_medio": 27.975,
+   "volumen": 4.0,
+   "interes_abierto": 1079.0,
+   "iv_lseg": null,
+   "iv_punto_medio": 0.559520187333819,
+   "tasa_usada": 0.04769225479452054,
+   "lseg": null,
+   "propias": {
+    "delta": -0.24497654534022484,
+    "gamma": 0.0026721659519404876,
+    "vega": 0.6609117537588919,
+    "theta": -0.014704673075810817,
+    "rho": -1.3856123173314518
+   },
+   "dif": null,
+   "origen_griegas": "cálculo propio (LSEG no las mostró)",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "20:02",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2029-01-19",
+   "tipo": "put",
+   "strike": 130.0,
+   "bid": 29.8,
+   "ask": 31.1,
+   "punto_medio": 30.450000000000003,
+   "volumen": 22.0,
+   "interes_abierto": 914.0,
+   "iv_lseg": null,
+   "iv_punto_medio": 0.5584831739135484,
+   "tasa_usada": 0.04769225479452054,
+   "lseg": null,
+   "propias": {
+    "delta": -0.26013782302354926,
+    "gamma": 0.0027631896920213565,
+    "vega": 0.6821581659824897,
+    "theta": -0.014793196985163891,
+    "rho": -1.4878285266667919
+   },
+   "dif": null,
+   "origen_griegas": "cálculo propio (LSEG no las mostró)",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "20:02",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2029-01-19",
+   "tipo": "put",
+   "strike": 135.0,
+   "bid": 32.55,
+   "ask": 33.6,
+   "punto_medio": 33.075,
+   "volumen": 27.0,
+   "interes_abierto": 11868.0,
+   "iv_lseg": null,
+   "iv_punto_medio": 0.5584806224724913,
+   "tasa_usada": 0.04769225479452054,
+   "lseg": null,
+   "propias": {
+    "delta": -0.27508659464111873,
+    "gamma": 0.0028421482506552735,
+    "vega": 0.7016477320739759,
+    "theta": -0.014847630164075898,
+    "rho": -1.5927005272465502
+   },
+   "dif": null,
+   "origen_griegas": "cálculo propio (LSEG no las mostró)",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "20:02",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2029-01-19",
+   "tipo": "put",
+   "strike": 140.0,
+   "bid": 34.55,
+   "ask": 36.75,
+   "punto_medio": 35.65,
+   "volumen": 16.0,
+   "interes_abierto": 679.0,
+   "iv_lseg": null,
+   "iv_punto_medio": 0.5567016323639074,
+   "tasa_usada": 0.04769225479452054,
+   "lseg": null,
+   "propias": {
+    "delta": -0.29018240400984086,
+    "gamma": 0.002925400983951374,
+    "vega": 0.7199000222454086,
+    "theta": -0.01478397881598138,
+    "rho": -1.6969256387010827
+   },
+   "dif": null,
+   "origen_griegas": "cálculo propio (LSEG no las mostró)",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "20:02",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2029-01-19",
+   "tipo": "put",
+   "strike": 145.0,
+   "bid": 37.55,
+   "ask": 39.0,
+   "punto_medio": 38.275,
+   "volumen": 13.0,
+   "interes_abierto": 2180.0,
+   "iv_lseg": null,
+   "iv_punto_medio": 0.5546735284066133,
+   "tasa_usada": 0.04769225479452054,
+   "lseg": null,
+   "propias": {
+    "delta": -0.30526068273449214,
+    "gamma": 0.003004753996543511,
+    "vega": 0.7367338941041035,
+    "theta": -0.014650034780247642,
+    "rho": -1.8022027605037412
+   },
+   "dif": null,
+   "origen_griegas": "cálculo propio (LSEG no las mostró)",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "20:02",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2029-01-19",
+   "tipo": "put",
+   "strike": 150.0,
+   "bid": 40.15,
+   "ask": 41.85,
+   "punto_medio": 41.0,
+   "volumen": 9.0,
+   "interes_abierto": 3001.0,
+   "iv_lseg": null,
+   "iv_punto_medio": 0.5531120431214015,
+   "tasa_usada": 0.04769225479452054,
+   "lseg": null,
+   "propias": {
+    "delta": -0.3201621314188482,
+    "gamma": 0.0030757963915987244,
+    "vega": 0.7520296900685706,
+    "theta": -0.014471179156537749,
+    "rho": -1.9091404251771045
+   },
+   "dif": null,
+   "origen_griegas": "cálculo propio (LSEG no las mostró)",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "20:02",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2029-01-19",
+   "tipo": "put",
+   "strike": 155.0,
+   "bid": 42.75,
+   "ask": 44.85,
+   "punto_medio": 43.8,
+   "volumen": 4.0,
+   "interes_abierto": 167.0,
+   "iv_lseg": null,
+   "iv_punto_medio": 0.5516973979201902,
+   "tasa_usada": 0.04769225479452054,
+   "lseg": null,
+   "propias": {
+    "delta": -0.3349119976373144,
+    "gamma": 0.0031404932523746622,
+    "vega": 0.7658841631594526,
+    "theta": -0.014240132718982682,
+    "rho": -2.017264186958711
+   },
+   "dif": null,
+   "origen_griegas": "cálculo propio (LSEG no las mostró)",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "20:02",
+   "spot": 141.31
+  },
+  {
+   "vencimiento": "2029-01-19",
+   "tipo": "put",
+   "strike": 160.0,
+   "bid": 46.1,
+   "ask": 48.85,
+   "punto_medio": 47.475,
+   "volumen": 2.0,
+   "interes_abierto": 1183.0,
+   "iv_lseg": null,
+   "iv_punto_medio": 0.5607496375619387,
+   "tasa_usada": 0.04769225479452054,
+   "lseg": null,
+   "propias": {
+    "delta": -0.346490736462857,
+    "gamma": 0.003130118115964361,
+    "vega": 0.775879034598253,
+    "theta": -0.014321993524643181,
+    "rho": -2.13483796228522
+   },
+   "dif": null,
+   "origen_griegas": "cálculo propio (LSEG no las mostró)",
+   "fecha_captura": "2026-11-03",
+   "hora_aprox_mty": "20:02",
+   "spot": 141.31
+  }
+ ],
+ "diferencias": {
+  "call 2029-01-19": {
+   "delta": {
+    "media": 0.008376345755014924,
+    "max_abs": 0.01581794109176693,
+    "n": 23
+   },
+   "gamma": {
+    "media": -0.008853711773939054,
+    "max_abs": 0.03256891437848897,
+    "n": 23
+   },
+   "vega": {
+    "media": -0.004196411301377465,
+    "max_abs": 0.08435551856607026,
+    "n": 23
+   },
+   "theta": {
+    "media": 0.012036906065292058,
+    "max_abs": 0.08446956773082737,
+    "n": 23
+   }
+  },
+  "call 2028-12-15": {
+   "delta": {
+    "media": 0.009406631685757557,
+    "max_abs": 0.015305455962211889,
+    "n": 17
+   },
+   "gamma": {
+    "media": -0.004354894355817589,
+    "max_abs": 0.022209490243179864,
+    "n": 17
+   },
+   "vega": {
+    "media": -0.003553228976553785,
+    "max_abs": 0.07886847141708953,
+    "n": 17
+   },
+   "theta": {
+    "media": 0.010748930866893495,
+    "max_abs": 0.07907669921988969,
+    "n": 17
+   }
+  }
+ },
+ "convertible": {
+  "parametros": {
+   "S": 146.9,
+   "X": 183.625,
+   "Kw": 235.04000000000002,
+   "r": 0.0490275,
+   "sigma": 0.5265000000000001,
+   "plazo": 6.0,
+   "acciones_millones": 5.4458815520762425,
+   "emision_musd": 1000.0,
+   "bonos_millones": 1.0
+  },
+  "por_accion": {
+   "opcion_conversion": {
+    "delta": 0.7580045691215167,
+    "gamma": 0.00164832580302719,
+    "vega": 1.1236635019597065,
+    "theta": -0.01861049608980931,
+    "rho": 2.279648105164062
+   },
+   "warrant": {
+    "delta": 0.694442614142162,
+    "gamma": 0.0018504178474823747,
+    "vega": 1.2614296243935517,
+    "theta": -0.02027629577286656,
+    "rho": 2.2840146612447128
+   }
+  },
+  "por_bono": {
+   "delta": 4.128003099368369,
+   "gamma": 0.008976587082517033,
+   "vega": 6.119338336063753,
+   "theta": -0.10135055733047957,
+   "rho": 12.414693561138526
+  },
+  "posiciones": {
+   "opcion_conversion_vendida": {
+    "delta_acciones_m": -4.128003099368369,
+    "delta_usd_m": -606.4036552972135,
+    "gamma_acciones_m_por_usd": -0.008976587082517033,
+    "vega_musd_por_punto": -6.119338336063753,
+    "theta_musd_por_dia": 0.10135055733047957,
+    "rho_musd_por_punto": -12.414693561138526
+   },
+   "note_hedge_comprado": {
+    "delta_acciones_m": 4.128003099368369,
+    "delta_usd_m": 606.4036552972135,
+    "gamma_acciones_m_por_usd": 0.008976587082517033,
+    "vega_musd_por_punto": 6.119338336063753,
+    "theta_musd_por_dia": -0.10135055733047957,
+    "rho_musd_por_punto": 12.414693561138526
+   },
+   "warrants_vendidos": {
+    "delta_acciones_m": -3.7818522213324006,
+    "delta_usd_m": -555.5540913137297,
+    "gamma_acciones_m_por_usd": -0.010077156419236894,
+    "vega_musd_por_punto": -6.8695963207273065,
+    "theta_musd_por_dia": 0.11042230509389549,
+    "rho_musd_por_punto": -12.43847330834425
+   },
+   "emisor_con_cobertura": {
+    "delta_acciones_m": -3.7818522213324006,
+    "delta_usd_m": -555.5540913137297,
+    "gamma_acciones_m_por_usd": -0.010077156419236894,
+    "vega_musd_por_punto": -6.8695963207273065,
+    "theta_musd_por_dia": 0.11042230509389549,
+    "rho_musd_por_punto": -12.43847330834425
+   },
+   "emisor_sin_cobertura": {
+    "delta_acciones_m": -4.128003099368369,
+    "delta_usd_m": -606.4036552972135,
+    "gamma_acciones_m_por_usd": -0.008976587082517033,
+    "vega_musd_por_punto": -6.119338336063753,
+    "theta_musd_por_dia": 0.10135055733047957,
+    "rho_musd_por_punto": -12.414693561138526
+   }
+  },
+  "curva_precio": [
+   {
+    "precio": 50,
+    "delta_sin_cobertura": -2.4288645635559902,
+    "delta_con_cobertura": -2.0245750392540574,
+    "gamma_sin_cobertura": -0.0333834545728678,
+    "gamma_con_cobertura": -0.03193655830259108
+   },
+   {
+    "precio": 75,
+    "delta_sin_cobertura": -3.1089651449208353,
+    "delta_con_cobertura": -2.6951521493969244,
+    "gamma_sin_cobertura": -0.022106222552549716,
+    "gamma_con_cobertura": -0.022459881789184948
+   },
+   {
+    "precio": 100,
+    "delta_sin_cobertura": -3.572744006371044,
+    "delta_con_cobertura": -3.176444421599948,
+    "gamma_sin_cobertura": -0.01554053338365613,
+    "gamma_con_cobertura": -0.01647793182135995
+   },
+   {
+    "precio": 125,
+    "delta_sin_cobertura": -3.9061090902522038,
+    "delta_con_cobertura": -3.535752880506617,
+    "gamma_sin_cobertura": -0.011425365988198146,
+    "gamma_con_cobertura": -0.012522488206515919
+   },
+   {
+    "precio": 146.9,
+    "delta_sin_cobertura": -4.128003099368369,
+    "delta_con_cobertura": -3.7818522213324006,
+    "gamma_sin_cobertura": -0.008976587082517033,
+    "gamma_con_cobertura": -0.010077156419236894
+   },
+   {
+    "precio": 150,
+    "delta_sin_cobertura": -4.155384314224106,
+    "delta_con_cobertura": -3.8126380900740733,
+    "gamma_sin_cobertura": -0.008690861669057833,
+    "gamma_con_cobertura": -0.009786687271851665
+   },
+   {
+    "precio": 175,
+    "delta_sin_cobertura": -4.3475317810157215,
+    "delta_con_cobertura": -4.031468916139009,
+    "gamma_sin_cobertura": -0.006789549507580397,
+    "gamma_con_cobertura": -0.007822585419363318
+   },
+   {
+    "precio": 183.625,
+    "delta_sin_cobertura": -4.403799589603626,
+    "delta_con_cobertura": -4.0965286986104115,
+    "gamma_sin_cobertura": -0.006267684378963536,
+    "gamma_con_cobertura": -0.007273067190857345
+   },
+   {
+    "precio": 200,
+    "delta_sin_cobertura": -4.499254806541219,
+    "delta_con_cobertura": -4.207993731694532,
+    "gamma_sin_cobertura": -0.005419332274666367,
+    "gamma_con_cobertura": -0.006368871784461042
+   },
+   {
+    "precio": 235.04,
+    "delta_sin_cobertura": -4.663920874610788,
+    "delta_con_cobertura": -4.403799589603626,
+    "gamma_sin_cobertura": -0.004067936658316399,
+    "gamma_con_cobertura": -0.004896628421065262
+   },
+   {
+    "precio": 250,
+    "delta_sin_cobertura": -4.7214202299746555,
+    "delta_con_cobertura": -4.473327463326463,
+    "gamma_sin_cobertura": -0.003630467553280296,
+    "gamma_con_cobertura": -0.004410248039868613
+   },
+   {
+    "precio": 300,
+    "delta_sin_cobertura": -4.87405628208366,
+    "delta_con_cobertura": -4.661208695077552,
+    "gamma_sin_cobertura": -0.0025595071755019193,
+    "gamma_con_cobertura": -0.003194546177056522
+   },
+   {
+    "precio": 400,
+    "delta_sin_cobertura": -5.065280325103694,
+    "delta_con_cobertura": -4.904782722843695,
+    "gamma_sin_cobertura": -0.0014156987652364558,
+    "gamma_con_cobertura": -0.0018440280580902025
+   }
+  ],
+  "estado": "calculado"
+ },
+ "avisos": [
+  "Las griegas de las opciones listadas se leyeron de pantalla de LSEG Workspace el 3-nov-2026 (hora aproximada de Monterrey en la tabla); el resto del dashboard usa precios del 26-oct.",
+  "LSEG no mostró IV ni griegas para los puts de ene-2029 ni para los calls de 115–140 de dic-2028; las de los puts son cálculo propio con la IV que reproduce el punto medio de bid y ask.",
+  "El cálculo propio usa Black-Scholes europeo sin dividendos y la tasa de la curva UST al plazo de cada opción; las opciones listadas son americanas.",
+  "En LSEG, el vega salta de forma irregular en algunos strikes (por ejemplo 180 y 220 en ene-2029) sin que cambien otras griegas; no se corrigió. El cálculo propio es suave.",
+  "Las griegas del convertible usan la volatilidad base (52.65%) y los mismos supuestos de la valuación; son del emisor (signo: larga +, corta −)."
+ ],
+ "fuente": "LSEG Workspace (opciones listadas) y cálculo propio (Black-Scholes)"
+}

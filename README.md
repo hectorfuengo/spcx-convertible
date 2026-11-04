@@ -9,7 +9,7 @@ Dashboard de valuación de un bono convertible de SPCX: datos de LSEG/Refinitiv,
 | `data/raw/` | Exportes de Refinitiv tal cual, con la fecha en el nombre (`2026-10-21_bonos.csv`). **No se suben a GitHub** (licencia LSEG). |
 | `data/inputs.csv` | Supuestos y datos, cada uno con fuente, fecha y estado (dato / supuesto del caso / supuesto del equipo). |
 | `data/processed/` | Archivos JSON que consume el sitio (los genera Python). |
-| `src/` | Cálculos en Python: `bs.py` (Black-Scholes), `bono.py` (bono simple y cupón de equilibrio), `ingesta.py` (exportes → JSON), `valuacion.py` (valuación del convertible), `cobertura.py` (note hedge, warrants y escenarios), `analisis.py` (razones financieras, estructura de deuda y comparables). |
+| `src/` | Cálculos en Python: `bs.py` (Black-Scholes), `bono.py` (bono simple y cupón de equilibrio), `ingesta.py` (exportes → JSON), `valuacion.py` (valuación del convertible), `cobertura.py` (note hedge, warrants y escenarios), `analisis.py` (razones financieras, estructura de deuda y comparables), `griegas.py` (griegas de las opciones listadas y del convertible con su cobertura). |
 | `tests/` | Pruebas de los cálculos. |
 | `notebooks/` | Notebooks de Colab con resultados parciales. |
 | `docs/` | El sitio web (`index.html`) y los JSON que lee (`docs/data/`). |
@@ -30,6 +30,7 @@ pytest
 4. Correr `python3 -m src.valuacion`: calcula la valuación (prima 25%, plazo 6 años por defecto; `--prima`, `--plazo`) con `data/opciones_iv.csv` y `data/opciones_tradingview.csv`, y escribe `data/processed/valuacion.json`.
 5. Correr `python3 -m src.cobertura` (`--emision` en millones de USD, `--prima-warrant`): note hedge, warrants y escenarios al vencimiento. Escribe `data/processed/cobertura.json`. Ambos pasos copian a `docs/data/` los JSON que lee el sitio.
 6. Correr `python3 -m src.analisis`: razones financieras, estructura de deuda (muro de vencimientos) y comparables. Escribe `data/processed/analisis.json` y lo copia a `docs/data/`.
+7. Correr `python3 -m src.griegas`: lee `data/opciones_refinitiv_griegas.csv` (capturas de pantalla de LSEG, con fecha y fuente) y escribe `data/processed/griegas.json`, copiado a `docs/data/`.
 6. Revisar, hacer commit de `data/processed/`, `docs/data/` y `data/opciones_iv.csv`, y push. GitHub Pages publica `docs/`.
 
 Opciones: `--raw`, `--out`, `--fecha YYYY-MM-DD` (fecha de valuación).
