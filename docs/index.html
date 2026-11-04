@@ -52,7 +52,7 @@
 </header>
 <nav><div>
   <a href="#resumen">Resumen</a><a href="#valuacion">Valuación</a><a href="#sens">Sensibilidades</a><a href="#vol">Volatilidad</a><a href="#cobertura">Cobertura</a><a href="#escenarios">Escenarios</a><a href="#mercado">Mercado</a>
-  <a href="#deuda">Deuda y caja</a><a href="#supuestos">Supuestos</a><a href="#validacion">Validación</a>
+  <a href="#deuda">Deuda y caja</a><a href="#razones">Razones financieras</a><a href="#estructura">Estructura de deuda</a><a href="#comparables">Comparables</a><a href="#supuestos">Supuestos</a><a href="#validacion">Validación</a>
 </div></nav>
 <main id="app"></main>
 <footer>Avance académico (EGADE). Datos de LSEG/Refinitiv; cálculos en Python (<code>src/</code>). Los supuestos del equipo no son recomendaciones de inversión.</footer>
@@ -71,12 +71,27 @@ const tag = (estado) => {
 };
 const get = (f) => fetch("data/" + f).then((r) => { if (!r.ok) throw new Error(f + ": " + r.status); return r.json(); });
 
-Promise.all(["valuacion.json", "resumen_mercado.json", "precios_spcx.json", "treasuries.json", "bonos.json", "cobertura.json"].map(get))
-  .then(([v, res, px, ust, bonos, cob]) => render(v, res, px, ust, bonos, cob))
+Promise.all(["valuacion.json", "resumen_mercado.json", "precios_spcx.json", "treasuries.json", "bonos.json", "cobertura.json", "analisis.json"].map(get))
+  .then(([v, res, px, ust, bonos, cob, an]) => render(v, res, px, ust, bonos, cob, an))
   .catch((e) => { $("#sub").textContent = "No se pudieron cargar los datos: " + e.message; });
 
-function render(v, res, px, ust, bonos, cob) {
+function render(v, res, px, ust, bonos, cob, an) {
   const b = v.base, S = b.S;
+  const rz = an.razones, ed = an.deuda, cp = an.comparables;
+  const per = rz.anual.concat(rz.trimestral);
+  const etqP = (p, i) => i < rz.anual.length ? "FY " + p.periodo.slice(0, 4) : "T" + Math.ceil(+p.periodo.slice(5, 7) / 3) + " " + p.periodo.slice(0, 4);
+  const xv = (x, d = 2) => x == null ? "—" : n(x, d) + "x";
+  const filasRz = [
+    ["Deuda / activos", "deuda_sobre_activos", pct], ["Deuda / capital", "deuda_sobre_capital", pct], ["Pasivos / activos", "pasivos_sobre_activos", pct],
+    ["Deuda de largo plazo / deuda total", "deuda_largo_plazo_pct", pct], ["Razón circulante", "razon_circulante", xv],
+    ["Cobertura de intereses (EBIT / intereses)", "cobertura_intereses", xv], ["Deuda neta / EBITDA (trimestres: EBITDA x 4)", "deuda_neta_sobre_ebitda", xv],
+    ["Margen EBITDA", "margen_ebitda", pct], ["Margen EBIT", "margen_ebit", pct], ["Margen neto", "margen_neto", pct],
+    ["ROA del periodo", "roa_periodo", pct], ["ROE del periodo", "roe_periodo", pct]];
+  const ncc = (x) => x == null ? "" : x < 0 ? "neg" : "";
+  const filasCp = [["Deuda / capital (FY0)", "deuda_capital", pct], ["Margen neto (FY0)", "margen_neto", pct], ["ROE (TTM)", "roe", pct], ["Razón circulante", "razon_circulante", xv],
+    ["EBITDA / intereses (TTM)", "ebitda_sobre_intereses", xv], ["Deuda neta / EBITDA (FY1, estimado)", "deuda_neta_ebitda_fy1", xv], ["EV / EBITDA (FY0)", "ev_ebitda", xv],
+    ["P/E", "pe", xv], ["Beta 5 años", "beta_5a", (x) => n(x, 2)], ["Crec. ingresos 5 años", "crecimiento_ingresos_5a_pct", (x) => x == null ? "—" : n(x, 1) + "%"],
+    ["Volatilidad realizada", "vol_realizada", (x) => pct(x, 1)], ["Calificación del emisor", "calificacion_emisor", (x) => x ?? "—"]];
   $("#sub").innerHTML = `Valuación al ${esc(v.fecha_valuacion)} · bono de 1,000 USD · prima ${pct(b.prima, 0)} · plazo ${b.plazo} años`;
   const neg = b.cupon_equilibrio < 0;
   const deuda = res.deuda_total_musd, caja = res.caja_e_inversiones_cp_musd, ef = res.efectivo_musd, dn = res.deuda_neta_musd;
@@ -202,6 +217,48 @@ function render(v, res, px, ust, bonos, cob) {
       <p class="mut">${esc(cal.fuente)} ${esc(cal.nota)}</p></div>
   </section>
 
+  <section id="razones"><h2>Razones financieras de SPCX</h2>
+    <div class="card"><span class="mut">Calculadas a partir de los estados financieros de Refinitiv (millones de USD).</span> ${tag(rz.estado)}
+      <div class="scroll"><table>
+        <tr><th></th>${per.map((p, i) => `<th>${etqP(p, i)}</th>`).join("")}</tr>
+        ${filasRz.map(([t, k, f]) => `<tr><td>${esc(t)}</td>${per.map((p) => `<td class="${ncc(p.razones[k])}">${f(p.razones[k])}</td>`).join("")}</tr>`).join("")}
+      </table></div>
+      ${rz.notas.map((a) => `<div class="warn">${esc(a)}</div>`).join("")}
+      <p class="mut">${esc(rz.fuente)}</p></div>
+  </section>
+
+  <section id="estructura"><h2>Estructura de deuda y vencimientos</h2>
+    <div class="grid">
+      <div class="card kpi"><div class="l">Deuda total (${esc(ed.periodo)})</div><div class="v">${n(ed.balance.deuda_total, 0)}</div><div class="n">M USD · balance</div></div>
+      <div class="card kpi"><div class="l">Corto plazo</div><div class="v">${n(ed.balance.deuda_corto_plazo, 0)}</div><div class="n">M USD · ${pct(1 - ed.balance.largo_plazo_pct, 1)} del total</div></div>
+      <div class="card kpi"><div class="l">Largo plazo</div><div class="v">${n(ed.balance.deuda_largo_plazo, 0)}</div><div class="n">M USD · ${pct(ed.balance.largo_plazo_pct, 1)} del total</div></div>
+      <div class="card kpi"><div class="l">Bonos vigentes</div><div class="v">${n(ed.bonos_vigentes_total_musd, 0)}</div><div class="n">M USD · suma de los bonos listados</div></div>
+    </div>
+    <div class="card" style="margin-top:12px"><b>Muro de vencimientos</b> <span class="mut">(M USD por año: cupones y principal de bonos; facilidades de crédito por su monto, no por saldo dispuesto)</span>
+      <div class="ch" style="height:320px"><canvas id="c-muro"></canvas></div></div>
+    <div style="display:grid;gap:12px;margin-top:12px">
+      <div class="card"><b>Bonos</b> ${tag("dato")}<div class="scroll"><table>
+        <tr><th>Bono</th><th>Emisor</th><th>Vence</th><th>Vigente (M)</th><th>Emitido (M)</th><th>Yield %</th></tr>
+        ${ed.bonos.slice().sort((x, y) => x.vencimiento.localeCompare(y.vencimiento)).map((x) => `<tr><td class="nw">${esc(x.descripcion.split("/").pop().replace(/\s'\d\d$/, "").trim())}</td><td class="nw">${esc(x.emisor.replace("SPACE EXPLORATION TECHNOLOGIES CORP", "SPCX"))}</td><td class="nw">${esc(x.vencimiento)}</td><td>${n(x.vigente_musd, 0)}</td><td>${n(x.emitido_musd, 0)}</td><td>${n(x.yield_pct, 2)}</td></tr>`).join("")}
+      </table></div></div>
+      <div class="card"><b>Facilidades de crédito</b> ${tag("dato")}<div class="scroll"><table>
+        <tr><th>Prestatario</th><th>Tipo</th><th>Vence</th><th>Monto (M)</th></tr>
+        ${ed.facilidades.slice().sort((x, y) => (x.vencimiento || "9999").localeCompare(y.vencimiento || "9999")).map((x) => `<tr><td>${esc(x.prestatario)}</td><td class="nw">${esc(x.tipo)}</td><td class="nw">${esc(x.vencimiento || "sin fecha")}</td><td>${n(x.monto_musd, 0)}</td></tr>`).join("")}
+      </table></div></div>
+    </div>
+    ${ed.notas.map((a) => `<div class="warn">${esc(a)}</div>`).join("")}
+  </section>
+
+  <section id="comparables"><h2>Comparables</h2>
+    <div class="card"><span class="mut">Capitalización en miles de millones de USD. Fuente: ${esc(cp.fuente)}.</span> ${tag(cp.estado)}
+      <div class="scroll"><table>
+        <tr><th></th>${cp.filas.map((f) => `<th>${esc(f.ticker)}</th>`).join("")}</tr>
+        <tr><td>Capitalización (miles de M USD)</td>${cp.filas.map((f) => `<td>${n(f.cap_musd / 1000, 1)}</td>`).join("")}</tr>
+        ${filasCp.map(([t, k, f]) => `<tr><td>${esc(t)}</td>${cp.filas.map((x) => `<td class="${k === "calificacion_emisor" ? "" : ncc(x[k])}">${x[k] == null && k !== "calificacion_emisor" ? "—" : f(x[k])}</td>`).join("")}</tr>`).join("")}
+      </table></div>
+      ${cp.notas.map((a) => `<div class="warn">${esc(a)}</div>`).join("")}</div>
+  </section>
+
   <section id="supuestos"><h2>Supuestos y fuentes</h2>
     <div class="card scroll"><table>
       <tr><th>Supuesto</th><th>Valor</th><th>Estado</th><th style="text-align:left">Fuente</th></tr>
@@ -252,6 +309,14 @@ function render(v, res, px, ust, bonos, cob) {
       { label: "UST", data: ust.puntos.map((p) => ({ x: p.anios, y: p.yield_pct })), borderColor: acc, backgroundColor: acc, showLine: true, pointRadius: 2, borderWidth: 2 },
       { label: "Bonos SPCX", data: act.filter((x) => x.yield_pct != null).map((x) => ({ x: x.plazo_anios, y: x.yield_pct })), backgroundColor: oro, pointRadius: 5 } ] },
     options: { maintainAspectRatio: false, scales: { x: { type: "linear", title: { display: true, text: "Años" } }, y: { title: { display: true, text: "Rendimiento %" } } } } });
+  const mv = ed.muro_vencimientos;
+  new Chart($("#c-muro"), { type: "bar",
+    data: { labels: mv.map((m) => m.anio),
+      datasets: [
+        { label: "Cupones", data: mv.map((m) => m.cupones_musd), backgroundColor: "#8892a6", stack: "a" },
+        { label: "Principal de bonos", data: mv.map((m) => m.principal_bonos_musd), backgroundColor: acc, stack: "a" },
+        { label: "Facilidades de crédito (monto)", data: mv.map((m) => m.facilidades_musd), backgroundColor: oro, stack: "a" } ] },
+    options: { maintainAspectRatio: false, scales: { x: { stacked: true }, y: { stacked: true, title: { display: true, text: "M USD" } } } } });
   // sensibilidad de la cobertura y escenarios
   const sg = [...new Set(cob.sensibilidad_costo_neto.map((c) => c.sigma))], pw = [...new Set(cob.sensibilidad_costo_neto.map((c) => c.prima_warrant))];
   $("#t-cob-sens").innerHTML = `<tr><th></th>${pw.map((p) => `<th style="text-align:center">Warrants +${pct(p, 0)}</th>`).join("")}</tr>` +

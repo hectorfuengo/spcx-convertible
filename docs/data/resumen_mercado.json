@@ -10,6 +10,7 @@
   "peers_balance": "2026-10-26_peers_balance.xlsx",
   "precios_avav": "2026-10-26_precios_avav.xlsx",
   "precios_ba": "2026-10-26_precios_ba.xlsx",
+  "precios_gd": "2026-10-26_precios_gd.xlsx",
   "precios_ktos": "2026-10-26_precios_ktos.xlsx",
   "precios_noc": "2026-10-26_precios_noc.xlsx",
   "precios_rklb": "2026-10-26_precios_rklb.xlsx",
@@ -69,6 +70,15 @@
     "n_dias": 501,
     "desde": "2024-10-28",
     "hasta": "2026-10-27",
+    "historia_declarada": "2 Years",
+    "fecha_archivo": "2026-10-26"
+   },
+   "gd": {
+    "vol_realizada_total": 0.22598349983673438,
+    "vol_realizada_60d": 0.1896922647428754,
+    "n_dias": 501,
+    "desde": "2024-11-04",
+    "hasta": "2026-11-03",
     "historia_declarada": "2 Years",
     "fecha_archivo": "2026-10-26"
    }

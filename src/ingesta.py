@@ -26,7 +26,7 @@ import pandas as pd
 
 RAIZ = Path(__file__).resolve().parents[1]
 PATRON_ARCHIVO = re.compile(r"^(\d{4}-\d{2}-\d{2})_(.+)\.xlsx$")
-COMPARABLES = ["rklb", "ktos", "avav", "ba", "noc"]
+COMPARABLES = ["rklb", "ktos", "avav", "ba", "noc", "gd"]
 
 
 # --------------------------------------------------------------------------- utilidades
