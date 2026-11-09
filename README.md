@@ -31,6 +31,9 @@ pytest
 5. Correr `python3 -m src.cobertura` (`--emision` en millones de USD, `--prima-warrant`): note hedge, warrants y escenarios al vencimiento. Escribe `data/processed/cobertura.json`. Ambos pasos copian a `docs/data/` los JSON que lee el sitio.
 6. Correr `python3 -m src.analisis`: razones financieras, estructura de deuda (muro de vencimientos) y comparables. Escribe `data/processed/analisis.json` y lo copia a `docs/data/`.
 7. Correr `python3 -m src.griegas`: lee `data/opciones_refinitiv_griegas.csv` (capturas de pantalla de LSEG, con fecha y fuente) y escribe `data/processed/griegas.json`, copiado a `docs/data/`.
+8. Correr `python3 -m src.arboles`: árbol binomial CRR para las puts americanas de la tarea (SPCX, TSLA, MU, SPY, NQ); replica el R Markdown de la clase. Escribe `data/processed/arboles.json`.
+9. Correr `python3 -m src.competidores`: indicadores, precios base 100 y correlación de SPCX contra RKLB, AVAV, KTOS, NOC, GD y BA (corte 2026-10-26). Escribe `competidores.json`.
+10. Correr `python3 -m src.dashboard`: arma `docs/index.html` autocontenido desde `docs/index.src.html`, los JSON y las herramientas de la tarea en `docs/tools/` (árboles y GARCH). Los datos de la empresa están en `data/empresa.json`.
 6. Revisar, hacer commit de `data/processed/`, `docs/data/` y `data/opciones_iv.csv`, y push. GitHub Pages publica `docs/`.
 
 Opciones: `--raw`, `--out`, `--fecha YYYY-MM-DD` (fecha de valuación).

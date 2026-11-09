@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Árboles de decisión SPCX</title>
+<style>
+:root{--bg:#f6f5f1;--panel:#ffffff;--ink:#17191e;--muted:#5c6370;--line:#e2dfd6;--grid:#ebe8e0;--accent:#b4530a;--c1:#b4530a;--c2:#2563eb;--c3:#374151;--ok:#15803d;--bad:#b91c1c;--warn:#a16207;--soft:#f1efe8;--exer:#fde6d0;--cont:#dbeafe}
+@media (prefers-color-scheme:dark){:root{--bg:#0f1115;--panel:#171a21;--ink:#ece9e2;--muted:#9aa1ad;--line:#2a2f3a;--grid:#262b35;--accent:#f0883e;--c1:#f0883e;--c2:#6ea8fe;--c3:#cbd5e1;--ok:#4ade80;--bad:#f87171;--warn:#facc15;--soft:#1d2129;--exer:#4a2e17;--cont:#1b2a4a}}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:20px 16px 56px}
+header h1{font-size:26px;line-height:1.2;margin:0 0 4px;letter-spacing:-.01em}
+header p{margin:0;color:var(--muted)}
+.tag{display:inline-block;font-size:12px;font-weight:600;color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:1px 9px;margin-bottom:10px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px;margin-top:16px}
+.card h2{font-size:17px;margin:0 0 4px}.card .sub{color:var(--muted);margin:0 0 12px;font-size:14px}
+.grid{display:grid;gap:12px}.g2{grid-template-columns:repeat(2,minmax(0,1fr))}.g3{grid-template-columns:repeat(3,minmax(0,1fr))}.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:760px){.g2,.g3,.g4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.g2,.g3,.g4{grid-template-columns:1fr}}
+label{display:block;font-size:12.5px;color:var(--muted);margin-bottom:3px}
+input,select,textarea{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:7px 9px}
+textarea{font:12.5px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:1px}
+button{font:inherit;font-weight:600;border:1px solid var(--accent);background:var(--accent);color:#fff;border-radius:8px;padding:8px 14px;cursor:pointer}
+button.alt{background:transparent;color:var(--accent)}
+button:hover{filter:brightness(1.08)}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.kpi{background:var(--soft);border-radius:10px;padding:10px 12px}.kpi b{display:block;font-size:20px;line-height:1.2}.kpi span{font-size:12.5px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;font-size:13.5px;font-variant-numeric:tabular-nums}
+th,td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}th:first-child,td:first-child{text-align:left}
+th{color:var(--muted);font-weight:600;font-size:12.5px}.tw{overflow-x:auto}
+.note{font-size:13px;color:var(--muted)}.msg{border-left:3px solid var(--accent);background:var(--soft);padding:8px 12px;border-radius:0 8px 8px 0;margin-top:10px;font-size:14px}
+.msg.warn{border-color:var(--warn)}.msg.bad{border-color:var(--bad)}.msg.ok{border-color:var(--ok)}
+.pos{color:var(--ok)}.neg{color:var(--bad)}
+svg{width:100%;height:auto;display:block}svg .tk{font-size:11px;fill:var(--muted)}svg text{font-family:inherit}
+ul.read{margin:8px 0 0;padding-left:20px}ul.read li{margin:4px 0}
+footer{margin-top:24px;color:var(--muted);font-size:13px}
+
+</style></head><body>
+<div class="wrap">
+<header>
+  <span class="tag">SPCX · Derivados</span>
+  <h1>Árboles de decisión (binomial CRR) para SPCX</h1>
+  <p>Valuación de opciones americanas de SPCX con el árbol de Cox-Ross-Rubinstein (Hull cap. 13 y 21): en cada nodo se compara <b>ejercer ya</b> contra <b>esperar</b>. Incluye griegas, frontera de ejercicio, calibración contra la cadena del 20-nov y la estrategia de la semana.</p>
+</header>
+
+<section class="card">
+  <h2>1. Parámetros</h2>
+  <div class="grid g4">
+    <div><label for="S0">Precio de SPCX (S₀)</label><input id="S0" type="number" step="0.01" value="141.31"></div>
+    <div><label for="K">Strike (K)</label><input id="K" type="number" step="0.5" value="137.5"></div>
+    <div><label for="tipo">Tipo</label><select id="tipo"><option value="put">Put</option><option value="call">Call</option></select></div>
+    <div><label for="sig">Volatilidad σ (%)</label><input id="sig" type="number" step="0.5" value="61"></div>
+    <div><label for="r">Tasa libre de riesgo (%)</label><input id="r" type="number" step="0.01" value="3.97"></div>
+    <div><label for="q">Dividendos q (%)</label><input id="q" type="number" step="0.1" value="0"></div>
+    <div><label for="fval">Fecha de valuación</label><input id="fval" type="date" value="2026-11-03"></div>
+    <div><label for="fven">Vencimiento</label><input id="fven" type="date" value="2026-11-20"></div>
+    <div><label for="N">Pasos del árbol (precio)</label><input id="N" type="number" step="50" value="300"></div>
+    <div><label for="Nv">Pasos del dibujo (2–6)</label><input id="Nv" type="number" min="2" max="6" value="4"></div>
+  </div>
+  <div class="row"><button id="btnRun">Calcular</button></div>
+  <p class="note">Los valores por defecto son el cierre del 3-nov-2026 (SPCX 141.31, IV ATM ~61 %, SOFR 3.97 %). Actualízalos con tus datos de LSEG o TradingView.</p>
+</section>
+
+<section class="card">
+  <h2>2. Precio y griegas</h2>
+  <div class="grid g4" id="kpis"></div>
+  <div class="tw" style="margin-top:12px"><table id="tGr"></table></div>
+  <div id="decision" class="msg"></div>
+</section>
+
+<section class="card">
+  <h2>3. Árbol de decisión (dibujo con pocos pasos)</h2>
+  <p class="sub">Cada nodo muestra el precio de SPCX (S) y el valor de la opción (V). <span style="background:var(--exer);padding:0 6px;border-radius:4px">Naranja</span> = conviene <b>ejercer</b> en ese nodo; <span style="background:var(--cont);padding:0 6px;border-radius:4px">azul</span> = conviene <b>esperar</b>; los nodos finales son el valor intrínseco.</p>
+  <div id="tree"></div>
+  <p class="note" id="treeNote"></p>
+</section>
+
+<section class="card">
+  <h2>4. Frontera de ejercicio anticipado</h2>
+  <p class="sub">Precio crítico S*(t): si el precio de SPCX cae por debajo (put) o sube por encima (call) de esa línea, ejercer vale más que esperar.</p>
+  <div id="boundary"></div>
+  <p class="note" id="bNote"></p>
+</section>
+
+<section class="card">
+  <h2>5. Calibración con la cadena del 20-nov (cierre del 3-nov)</h2>
+  <p class="sub">Volatilidad implícita despejada con el árbol a partir del punto medio bid/ask. Si cambias S₀, r o la fecha, la tabla se recalcula.</p>
+  <div class="tw"><table id="tChain"></table></div>
+  <div id="skew"></div>
+</section>
+
+<section class="card">
+  <h2>6. Estrategia de la semana: bear put spread</h2>
+  <div class="grid g4">
+    <div><label for="kl">Put comprada (K larga)</label><input id="kl" type="number" step="0.5" value="137.5"></div>
+    <div><label for="ks">Put vendida (K corta)</label><input id="ks" type="number" step="0.5" value="117.5"></div>
+    <div><label for="deb">Débito pagado por acción</label><input id="deb" type="number" step="0.01" value="4.38"></div>
+    <div><label for="ns">Contratos</label><input id="ns" type="number" step="1" value="1"></div>
+  </div>
+  <div class="grid g4" id="kstr" style="margin-top:12px"></div>
+  <div id="payoff"></div>
+  <div id="stMsg" class="msg"></div>
+</section>
+<footer>Material educativo; no es recomendación de inversión. El modelo usa una sola σ (sin <i>skew</i>), no incluye comisiones ni <i>slippage</i>. La opción americana de la put se compara siempre contra su valor europeo (Black-Scholes). Para decisiones reales cotiza la cadena viva en tu broker.</footer>
+</div>
+
+<script>
+/* ===== Utilidades compartidas ===== */
+const $ = id => document.getElementById(id);
+const nf = (x, d = 2) => Number.isFinite(x) ? x.toLocaleString('es-MX', {minimumFractionDigits: d, maximumFractionDigits: d}) : '—';
+const pct = (x, d = 1) => Number.isFinite(x) ? (100 * x).toLocaleString('es-MX', {minimumFractionDigits: d, maximumFractionDigits: d}) + ' %' : '—';
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function randn(rng){let u=0;while(u===0)u=rng();const v=rng();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v)}
+function normcdf(x){const t=1/(1+0.2316419*Math.abs(x));const d=0.3989422804014327*Math.exp(-x*x/2);
+  const p=d*t*(0.319381530+t*(-0.356563782+t*(1.781477937+t*(-1.821255978+t*1.330274429))));return x>0?1-p:p}
+function mean(a){let s=0;for(const x of a)s+=x;return s/a.length}
+function varPop(a){const m=mean(a);let s=0;for(const x of a)s+=(x-m)*(x-m);return s/a.length}
+function pctile(sorted,p){const i=(sorted.length-1)*p,lo=Math.floor(i),hi=Math.ceil(i);return sorted[lo]+(sorted[hi]-sorted[lo])*(i-lo)}
+function addBizDays(d0,n){const d=new Date(d0);let k=0;while(k<n){d.setDate(d.getDate()+1);const w=d.getDay();if(w!==0&&w!==6)k++}return d}
+function bizDaysBetween(a,b){let k=0;const d=new Date(a);while(d<b){d.setDate(d.getDate()+1);const w=d.getDay();if(w!==0&&w!==6)k++}return k}
+function isoDate(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function parseDateStr(s){s=String(s).trim().replace(/^"|"$/g,'');
+  if(/^\d{9,10}$/.test(s))return new Date(+s*1000);
+  if(/^\d{12,13}$/.test(s))return new Date(+s);
+  let m=s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})/);if(m)return new Date(+m[3],+m[2]-1,+m[1]);
+  m=s.match(/^(\d{4})-(\d{2})-(\d{2})$/);if(m)return new Date(+m[1],+m[2]-1,+m[3]);
+  const t=Date.parse(s);return Number.isNaN(t)?null:new Date(t)}
+
+/* ===== CSV: acepta exportaciones de TradingView / LSEG / Yahoo (con o sin encabezado) ===== */
+function parseCSV(text){
+  const lines=text.split(/\r?\n/).map(s=>s.trim()).filter(Boolean);
+  if(!lines.length)return{dates:[],close:[]};
+  const sep=lines[0].includes('\t')?'\t':(lines[0].includes(';')?';':',');
+  const clean=s=>s.trim().replace(/^"|"$/g,'');
+  const head=lines[0].split(sep).map(s=>clean(s).toLowerCase());
+  const hasHeader=head.some(h=>/[a-z]/.test(h))&&Number.isNaN(parseFloat(head[head.length-1]));
+  let ci=-1,di=0,start=0;
+  if(hasHeader){start=1;ci=head.findIndex(h=>/^(close|cierre|adj close|último|ultimo|price|precio|last|px_last)$/.test(h));
+    di=head.findIndex(h=>/^(date|time|fecha|datetime|timestamp|exchange date)/.test(h));if(di<0)di=0}
+  const rows=[];
+  for(let i=start;i<lines.length;i++){
+    const c=lines[i].split(sep).map(clean);
+    let col=ci>=0?ci:(c.length>=5?4:c.length-1);
+    const val=parseFloat(String(c[col]).replace(/,/g,''));
+    if(!(val>0))continue;
+    rows.push({d:c.length>1?parseDateStr(c[di]):null,v:val});
+  }
+  const withDates=rows.filter(r=>r.d);
+  if(withDates.length===rows.length&&rows.length>1){rows.sort((a,b)=>a.d-b.d);return{dates:rows.map(r=>r.d),close:rows.map(r=>r.v)}}
+  const n=rows.length,end=new Date();const dates=[];let d=new Date(end);
+  for(let i=0;i<n;i++){dates.unshift(new Date(d));do{d.setDate(d.getDate()-1)}while(d.getDay()===0||d.getDay()===6)}
+  return{dates,close:rows.map(r=>r.v)}
+}
+function logret(close){const u=[];for(let i=1;i<close.length;i++)u.push(100*Math.log(close[i]/close[i-1]));return u}
+
+/* ===== GARCH(1,1), EWMA, verosimilitud (Hull 23) ===== */
+function varGarch(p,u,v0){const n=u.length,v=new Array(n);v[0]=v0;for(let t=1;t<n;t++)v[t]=p[0]+p[1]*u[t-1]*u[t-1]+p[2]*v[t-1];return v}
+function varEwma(u,lam){const n=u.length;const v0=varPop(u.slice(0,Math.min(30,n)));return varGarch([0,1-lam,lam],u,v0)}
+function loglik(v,u){let s=0;for(let i=0;i<u.length;i++)s+=-0.5*(Math.log(2*Math.PI)+Math.log(v[i])+u[i]*u[i]/v[i]);return s}
+function nelderMead(f,x0,iters=1500,step=0.1){
+  const n=x0.length;let pts=[x0.slice()];
+  for(let i=0;i<n;i++){const x=x0.slice();x[i]=x[i]!==0?x[i]*(1+step):step*0.1;pts.push(x)}
+  let vals=pts.map(f);
+  for(let it=0;it<iters;it++){
+    const idx=vals.map((v,i)=>i).sort((a,b)=>vals[a]-vals[b]);pts=idx.map(i=>pts[i]);vals=idx.map(i=>vals[i]);
+    if(Math.abs(vals[n]-vals[0])<1e-12*(1+Math.abs(vals[0])))break;
+    const c=new Array(n).fill(0);for(let i=0;i<n;i++)for(let j=0;j<n;j++)c[j]+=pts[i][j]/n;
+    const comb=(a,b,t)=>a.map((x,j)=>x+t*(b[j]-x));
+    const xr=comb(c,pts[n],-1),fr=f(xr);
+    if(fr<vals[0]){const xe=comb(c,pts[n],-2),fe=f(xe);if(fe<fr){pts[n]=xe;vals[n]=fe}else{pts[n]=xr;vals[n]=fr}}
+    else if(fr<vals[n-1]){pts[n]=xr;vals[n]=fr}
+    else{const xc=fr<vals[n]?comb(c,pts[n],-0.5):comb(c,pts[n],0.5),fc=f(xc);
+      if(fc<Math.min(fr,vals[n])){pts[n]=xc;vals[n]=fc}
+      else{for(let i=1;i<=n;i++){pts[i]=comb(pts[0],pts[i],0.5);vals[i]=f(pts[i])}}}
+  }
+  const b=vals.indexOf(Math.min(...vals));return{x:pts[b],f:vals[b]}
+}
+function fitGarch(u){
+  const v0=varPop(u);
+  const f=q=>{const om=q[0]*v0,al=q[1],be=q[2];
+    if(q[0]<=1e-6||al<1e-4||al>0.5||be<0.3||be>0.9998||al+be>0.9999)return 1e12;
+    return -loglik(varGarch([om,al,be],u,v0),u)};
+  let best=null;
+  for(const s of [[0.03,0.08,0.90],[0.10,0.12,0.80],[0.02,0.05,0.93],[0.30,0.20,0.60],[0.05,0.10,0.85]]){
+    const r=nelderMead(f,s,3000);if(!best||r.f<best.f)best=r}
+  const q=best.x;return[q[0]*v0,q[1],q[2]]
+}
+/* ===== Ljung-Box (p-valor con chi-cuadrada) ===== */
+function gammaP(a,x){if(x<=0)return 0;const gl=lgamma(a);
+  if(x<a+1){let s=1/a,t=s;for(let n=1;n<500;n++){t*=x/(a+n);s+=t;if(Math.abs(t)<Math.abs(s)*1e-14)break}return s*Math.exp(-x+a*Math.log(x)-gl)}
+  let b=x+1-a,c=1e300,d=1/b,h=d;for(let i=1;i<500;i++){const an=-i*(i-a);b+=2;d=an*d+b;if(Math.abs(d)<1e-300)d=1e-300;c=b+an/c;if(Math.abs(c)<1e-300)c=1e-300;d=1/d;const del=d*c;h*=del;if(Math.abs(del-1)<1e-14)break}
+  return 1-Math.exp(-x+a*Math.log(x)-gl)*h}
+function lgamma(z){const g=7,c=[0.99999999999980993,676.5203681218851,-1259.1392167224028,771.32342877765313,-176.61502916214059,12.507343278686905,-0.13857109526572012,9.9843695780195716e-6,1.5056327351493116e-7];
+  z-=1;let x=c[0];for(let i=1;i<g+2;i++)x+=c[i]/(z+i);const t=z+g+0.5;return 0.5*Math.log(2*Math.PI)+(z+0.5)*Math.log(t)-t+Math.log(x)}
+function ljungBoxP(x,lags=10){const n=x.length,m=mean(x);let den=0;for(const v of x)den+=(v-m)*(v-m);let Q=0;
+  for(let k=1;k<=lags;k++){let num=0;for(let t=k;t<n;t++)num+=(x[t]-m)*(x[t-k]-m);const r=num/den;Q+=r*r/(n-k)}
+  Q*=n*(n+2);return 1-gammaP(lags/2,Q/2)}
+
+/* ===== Gráficas SVG sin librerías ===== */
+function niceTicks(lo,hi,n=5){if(lo===hi){lo-=1;hi+=1}const span=hi-lo,raw=span/n,mag=Math.pow(10,Math.floor(Math.log10(raw)));
+  const r=raw/mag,st=(r<1.5?1:r<3?2:r<7?5:10)*mag;const a=Math.ceil(lo/st)*st,t=[];for(let v=a;v<=hi+st*1e-9;v+=st)t.push(+v.toFixed(10));return t}
+function chart(el,o){
+  const W=720,H=o.h||320,m={l:58,r:16,t:16,b:40};const S=o.series||[],B=o.bands||[],HL=o.hlines||[],VL=o.vlines||[];
+  let xs=[],ys=[];S.forEach(s=>{xs=xs.concat(s.x);ys=ys.concat(s.y)});B.forEach(b=>{xs=xs.concat(b.x);ys=ys.concat(b.lo,b.hi)});
+  HL.forEach(h=>ys.push(h.y));VL.forEach(v=>xs.push(v.x));ys=ys.filter(Number.isFinite);
+  let x0=Math.min(...xs),x1=Math.max(...xs),y0=Math.min(...ys),y1=Math.max(...ys);if(o.y0!==undefined)y0=Math.min(y0,o.y0);
+  const pad=(y1-y0)*0.06||1;y0-=pad;y1+=pad;
+  const X=v=>m.l+(v-x0)/(x1-x0||1)*(W-m.l-m.r),Y=v=>H-m.b-(v-y0)/(y1-y0||1)*(H-m.t-m.b);
+  let g='';
+  niceTicks(y0,y1,5).forEach(t=>{g+=`<line x1="${m.l}" x2="${W-m.r}" y1="${Y(t)}" y2="${Y(t)}" stroke="var(--grid)"/><text x="${m.l-8}" y="${Y(t)+4}" text-anchor="end" class="tk">${o.yFmt?o.yFmt(t):nf(t,0)}</text>`});
+  const xt=o.xType==='date'?niceDateTicks(x0,x1):niceTicks(x0,x1,6);
+  xt.forEach(t=>{g+=`<line x1="${X(t)}" x2="${X(t)}" y1="${m.t}" y2="${H-m.b}" stroke="var(--grid)"/><text x="${X(t)}" y="${H-m.b+16}" text-anchor="middle" class="tk">${o.xType==='date'?fmtDateTick(t,x1-x0):(o.xFmt?o.xFmt(t):nf(t,0))}</text>`});
+  B.forEach(b=>{let d='';b.x.forEach((x,i)=>d+=(i?'L':'M')+X(x)+','+Y(b.hi[i]));for(let i=b.x.length-1;i>=0;i--)d+='L'+X(b.x[i])+','+Y(b.lo[i]);g+=`<path d="${d}Z" fill="${b.color}" opacity="${b.opacity||0.2}"/>`});
+  HL.forEach(h=>{g+=`<line x1="${m.l}" x2="${W-m.r}" y1="${Y(h.y)}" y2="${Y(h.y)}" stroke="${h.color||'var(--muted)'}" stroke-dasharray="${h.dash||'4 4'}"/>`+(h.label?`<text x="${W-m.r-4}" y="${Y(h.y)-5}" text-anchor="end" class="tk" fill="${h.color||'var(--muted)'}">${h.label}</text>`:'')});
+  VL.forEach(v=>{g+=`<line x1="${X(v.x)}" x2="${X(v.x)}" y1="${m.t}" y2="${H-m.b}" stroke="${v.color||'var(--muted)'}" stroke-dasharray="${v.dash||'4 4'}"/>`+(v.label?`<text x="${X(v.x)+4}" y="${m.t+30}" class="tk" fill="${v.color||'var(--muted)'}">${v.label}</text>`:'')});
+  S.forEach(s=>{let d='',pen=false;s.x.forEach((x,i)=>{const y=s.y[i];if(!Number.isFinite(y)){pen=false;return}d+=(pen?'L':'M')+X(x).toFixed(1)+','+Y(y).toFixed(1);pen=true});
+    g+=`<path d="${d}" fill="none" stroke="${s.color}" stroke-width="${s.width||1.8}" ${s.dash?`stroke-dasharray="${s.dash}"`:''} stroke-linejoin="round"/>`});
+  let lg='',lx=m.l+8;[...B.map(b=>({name:b.name,color:b.color,box:1})),...S].forEach(s=>{if(!s.name)return;
+    lg+=s.box?`<rect x="${lx}" y="${m.t+2}" width="14" height="9" fill="${s.color}" opacity="0.5"/>`:`<rect x="${lx}" y="${m.t+6}" width="14" height="3" fill="${s.color}"/>`;
+    lg+=`<text x="${lx+18}" y="${m.t+11}" class="tk">${s.name}</text>`;lx+=26+s.name.length*6.2});
+  const yl=o.yTitle?`<text x="14" y="${(H-m.b+m.t)/2}" transform="rotate(-90 14 ${(H-m.b+m.t)/2})" text-anchor="middle" class="tk">${o.yTitle}</text>`:'';
+  const xl=o.xTitle?`<text x="${(W+m.l-m.r)/2}" y="${H-4}" text-anchor="middle" class="tk">${o.xTitle}</text>`:'';
+  el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${o.title||'gráfica'}">${g}${lg}${yl}${xl}</svg>`;
+}
+function niceDateTicks(x0,x1){const span=(x1-x0)/864e5,t=[];const d=new Date(x0);d.setHours(0,0,0,0);
+  if(span>400){d.setDate(1);d.setMonth(Math.ceil(d.getMonth()/3)*3);while(+d<=x1){t.push(+d);d.setMonth(d.getMonth()+3)}}
+  else if(span>90){d.setDate(1);d.setMonth(d.getMonth()+1);while(+d<=x1){t.push(+d);d.setMonth(d.getMonth()+1)}}
+  else{const step=Math.max(1,Math.round(span/6));while(+d<=x1){if(+d>=x0)t.push(+d);d.setDate(d.getDate()+step)}}return t}
+function fmtDateTick(t,span){const d=new Date(t);const M=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+  return span/864e5>90?M[d.getMonth()]+' '+String(d.getFullYear()).slice(2):d.getDate()+' '+M[d.getMonth()]}
+
+/* ===== Árbol CRR ===== */
+function crr(S0,K,r,sig,T,N,tipo,amer,q,wantBoundary){
+  const dt=T/N,u=Math.exp(sig*Math.sqrt(dt)),d=1/u,p=(Math.exp((r-q)*dt)-d)/(u-d),disc=Math.exp(-r*dt),sg=tipo==='call'?1:-1;
+  let V=new Float64Array(N+1);
+  for(let j=0;j<=N;j++)V[j]=Math.max(sg*(S0*Math.pow(u,N-j)*Math.pow(d,j)-K),0);
+  const lv=[];lv[N]=Array.from(V);const bnd=new Array(N+1).fill(NaN);
+  if(wantBoundary){const sN=[];for(let j=0;j<=N;j++){if(sg*(S0*Math.pow(u,N-j)*Math.pow(d,j)-K)>0)sN.push(S0*Math.pow(u,N-j)*Math.pow(d,j))}bnd[N]=tipo==='put'?(sN.length?Math.max(...sN):NaN):(sN.length?Math.min(...sN):NaN)}
+  for(let i=N-1;i>=0;i--){
+    const W=new Float64Array(i+1);let ex=[];
+    for(let k=0;k<=i;k++){
+      const cont=disc*(p*V[k]+(1-p)*V[k+1]);
+      if(amer){const S=S0*Math.pow(u,i-k)*Math.pow(d,k),im=Math.max(sg*(S-K),0);
+        if(im>cont+1e-12&&im>0){W[k]=im;if(wantBoundary)ex.push(S)}else W[k]=cont}
+      else W[k]=cont}
+    V=W;if(i<=2)lv[i]=Array.from(V);
+    if(wantBoundary)bnd[i]=ex.length?(tipo==='put'?Math.max(...ex):Math.min(...ex)):NaN;
+  }
+  return{price:V[0],lv,u,d,p,dt,bnd}
+}
+function treeGreeks(S0,K,r,sig,T,N,tipo,amer,q){
+  const a=crr(S0,K,r,sig,T,N,tipo,amer,q),u=a.u,d=a.d,f0=a.price,f1=a.lv[1],f2=a.lv[2];
+  const delta=(f1[0]-f1[1])/(S0*u-S0*d);
+  const gamma=((f2[0]-f2[1])/(S0*u*u-S0)-(f2[1]-f2[2])/(S0-S0*d*d))/(0.5*(S0*u*u-S0*d*d));
+  const theta=(f2[1]-f0)/(2*a.dt)/365;
+  const vega=crr(S0,K,r,sig+0.01,T,N,tipo,amer,q).price-f0,rho=crr(S0,K,r+0.01,sig,T,N,tipo,amer,q).price-f0;
+  return{price:f0,delta,gamma,theta,vega,rho}
+}
+function bs(S,K,r,sig,T,tipo,q){const d1=(Math.log(S/K)+(r-q+0.5*sig*sig)*T)/(sig*Math.sqrt(T)),d2=d1-sig*Math.sqrt(T);
+  return tipo==='call'?S*Math.exp(-q*T)*normcdf(d1)-K*Math.exp(-r*T)*normcdf(d2):K*Math.exp(-r*T)*normcdf(-d2)-S*Math.exp(-q*T)*normcdf(-d1)}
+function impVol(target,S,K,r,T,tipo,q,N=120){let lo=0.03,hi=3;const f=s=>crr(S,K,r,s,T,N,tipo,true,q).price-target;
+  if(f(lo)>0||f(hi)<0)return NaN;for(let i=0;i<40;i++){const m=(lo+hi)/2;if(f(m)<0)lo=m;else hi=m}return(lo+hi)/2}
+
+/* Cadena SPCX 20-nov-2026 (cierre 3-nov-2026): strike, call bid/ask, put bid/ask */
+const CHAIN=[[136,10.50,10.60,4.95,5.05],[137,9.90,10.00,5.35,5.45],[138,9.30,9.40,5.75,5.85],[139,8.75,8.80,6.15,6.25],[140,8.20,8.25,6.60,6.70],[141,7.65,7.75,7.10,7.20],
+  [142,7.15,7.25,7.55,7.65],[143,6.65,6.75,8.10,8.20],[144,6.20,6.30,8.60,8.70],[145,5.75,5.85,9.20,9.30],[146,5.35,5.40,9.75,9.85],[147,4.95,5.00,10.35,10.45]];
+
+function getP(){const T=Math.max((new Date($('fven').value)-new Date($('fval').value))/864e5,1)/365;
+  return{S0:+$('S0').value,K:+$('K').value,tipo:$('tipo').value,sig:+$('sig').value/100,r:+$('r').value/100,q:+$('q').value/100,T,N:Math.max(10,+$('N').value|0),Nv:Math.min(6,Math.max(2,+$('Nv').value|0)),dias:Math.round(T*365)}}
+
+function run(){
+  const P=getP(),{S0,K,tipo,sig,r,q,T,N,Nv,dias}=P;
+  const am=treeGreeks(S0,K,r,sig,T,N,tipo,true,q),eu=treeGreeks(S0,K,r,sig,T,N,tipo,false,q),b=bs(S0,K,r,sig,T,tipo,q);
+  $('kpis').innerHTML=[[nf(am.price),'Precio americana (árbol, N='+N+')'],[nf(eu.price),'Precio europea (árbol)'],[nf(b),'Black-Scholes europea'],[nf(am.price-eu.price,4),'Prima de ejercicio anticipado'],
+    [nf(Math.max(tipo==='call'?S0-K:K-S0,0)),'Valor intrínseco hoy'],[nf(am.price-Math.max(tipo==='call'?S0-K:K-S0,0)),'Valor extrínseco (tiempo)'],[dias+' días','Tiempo al vencimiento'],[nf(am.price*100,0)+' USD','Costo por contrato (100)']]
+    .map(([a,c])=>`<div class="kpi"><b>${a}</b><span>${c}</span></div>`).join('');
+  $('tGr').innerHTML=`<tr><th></th><th>Precio</th><th>Delta</th><th>Gamma</th><th>Theta/día</th><th>Vega (1 pto)</th><th>Rho (1 pto)</th></tr>`+
+    [['Americana',am],['Europea (árbol)',eu]].map(([n,g])=>`<tr><td>${n}</td><td>${nf(g.price,4)}</td><td>${nf(g.delta,4)}</td><td>${nf(g.gamma,5)}</td><td>${nf(g.theta,4)}</td><td>${nf(g.vega,4)}</td><td>${nf(g.rho,4)}</td></tr>`).join('');
+  /* frontera */
+  const bb=crr(S0,K,r,sig,T,N,tipo,true,q,true);
+  const step=Math.max(1,Math.floor(N/150));const xs=[],ys=[];
+  for(let i=0;i<=N;i+=step){xs.push(dias-i*bb.dt*365);ys.push(bb.bnd[i])}
+  const Sstar0=bb.bnd[0],has=ys.some(Number.isFinite);
+  const dec=$('decision');
+  if(tipo==='put'){
+    if(has&&Number.isFinite(Sstar0)){const ej=S0<=Sstar0;dec.className='msg '+(ej?'warn':'ok');dec.innerHTML=ej?`SPCX (${nf(S0)}) está <b>por debajo</b> del precio crítico de hoy (~${nf(Sstar0)}): ejercer ya vale más que esperar. Aun así, lo normal es <b>vender</b> la put mientras tenga valor extrínseco.`:`SPCX (${nf(S0)}) está <b>por encima</b> del precio crítico (~${nf(Sstar0)}): conviene <b>esperar</b>; no ejerzas. Si quieres salir, vende la opción.`}
+    else{dec.className='msg ok';dec.innerHTML=`Con estos parámetros ninguna zona del árbol hoy conviene ejercer: <b>esperar</b> vale más. Vende la put si quieres salir; no la ejerzas.`}
+  }else{dec.className='msg ok';dec.innerHTML=q>0?'Con dividendos puede convenir ejercer la call justo antes de un pago de dividendo.':'Call sobre acción sin dividendos: <b>nunca</b> conviene ejercer antes del vencimiento (la americana vale igual que la europea). Si quieres salir, <b>vende</b> la call.'}
+  chart($('boundary'),{series:[{name:'Precio crítico S*',color:'var(--c1)',x:xs,y:ys,width:2}],hlines:[{y:S0,color:'var(--c2)',label:'S₀ hoy'},{y:K,color:'var(--muted)',label:'Strike'}],xFmt:v=>nf(v,0),xTitle:'Días transcurridos desde la valuación (0 = hoy, derecha = vencimiento)',yFmt:v=>nf(v,0),title:'Frontera de ejercicio'});
+  $('bNote').textContent=has?(tipo==='put'?'Debajo de la línea naranja: ejercer. Encima: esperar.':'Encima de la línea naranja: ejercer. Debajo: esperar.'):'No hay región de ejercicio anticipado en el árbol con estos parámetros.';
+  /* dibujo */
+  drawTree(P);
+  chain(P);
+  strat(P);
+}
+function drawTree(P){
+  const {S0,K,tipo,sig,r,q,T,Nv}=P,dt=T/Nv,u=Math.exp(sig*Math.sqrt(dt)),d=1/u,pp=(Math.exp((r-q)*dt)-d)/(u-d),disc=Math.exp(-r*dt),sg=tipo==='call'?1:-1;
+  const nodes=[];for(let i=0;i<=Nv;i++){nodes[i]=[];for(let j=0;j<=i;j++){const S=S0*Math.pow(u,i-j)*Math.pow(d,j);nodes[i][j]={S,V:0,im:Math.max(sg*(S-K),0),ex:false}}}
+  for(let j=0;j<=Nv;j++)nodes[Nv][j].V=nodes[Nv][j].im;
+  for(let i=Nv-1;i>=0;i--)for(let j=0;j<=i;j++){const n=nodes[i][j],cont=disc*(pp*nodes[i+1][j].V+(1-pp)*nodes[i+1][j+1].V);n.cont=cont;
+    if(n.im>cont+1e-12&&n.im>0){n.V=n.im;n.ex=true}else n.V=cont}
+  const cw=150,sp=62,bw=112,bh=46,W=Nv*cw+bw+20,H=(Nv+1)*sp+16;let g='';
+  const X=i=>10+bw/2+i*cw,Y=(i,j)=>H/2+(j-i/2)*sp;
+  for(let i=0;i<Nv;i++)for(let j=0;j<=i;j++){g+=`<line x1="${X(i)}" y1="${Y(i,j)}" x2="${X(i+1)}" y2="${Y(i+1,j)}" stroke="var(--line)" stroke-width="1.4"/><line x1="${X(i)}" y1="${Y(i,j)}" x2="${X(i+1)}" y2="${Y(i+1,j+1)}" stroke="var(--line)" stroke-width="1.4"/>`}
+  for(let i=0;i<=Nv;i++)for(let j=0;j<=i;j++){const n=nodes[i][j],x=X(i)-bw/2,y=Y(i,j)-bh/2,fill=i===Nv?'var(--soft)':(n.ex?'var(--exer)':'var(--cont)');
+    const tt=i===Nv?`Final: valor intrínseco ${nf(n.im)}`:`Ejercer ya: ${nf(n.im)} | Esperar: ${nf(n.cont)} → ${n.ex?'EJERCER':'ESPERAR'}`;
+    g+=`<g><title>${tt}</title><rect x="${x}" y="${y}" width="${bw}" height="${bh}" rx="7" fill="${fill}" stroke="${n.ex?'var(--accent)':'var(--line)'}" stroke-width="${n.ex?1.8:1}"/>`+
+      `<text x="${X(i)}" y="${y+17}" text-anchor="middle" style="font-size:12.5px;fill:var(--ink);font-weight:600">S = ${nf(n.S)}</text>`+
+      `<text x="${X(i)}" y="${y+35}" text-anchor="middle" style="font-size:12px;fill:var(--ink)">V = ${nf(n.V)}${i<Nv?(n.ex?' · ejercer':' · esperar'):''}</text></g>`}
+  $('tree').innerHTML=`<div class="tw"><svg viewBox="0 0 ${W} ${H}" style="min-width:${Math.min(W,640)}px" role="img" aria-label="Árbol binomial">${g}</svg></div>`;
+  $('treeNote').innerHTML=`u = ${nf(u,4)}, d = ${nf(d,4)}, p = ${nf(pp,4)}, Δt = ${nf(dt*365,1)} días por paso. El dibujo usa solo ${Nv} pasos para que se lea; valor con ${Nv} pasos = <b>${nf(nodes[0][0].V,4)}</b> (el precio de la sección 2 usa más pasos y es el que debes usar). Pasa el cursor sobre un nodo para ver "ejercer" contra "esperar".`;
+}
+function chain(P){
+  const {S0,r,q,T}=P;let rows='',kk=[],ci=[],pi=[];
+  CHAIN.forEach(([k,cb,ca,pb,pa])=>{const cm=(cb+ca)/2,pm=(pb+pa)/2,ivc=impVol(cm,S0,k,r,T,'call',q),ivp=impVol(pm,S0,k,r,T,'put',q);
+    kk.push(k);ci.push(ivc);pi.push(ivp);
+    rows+=`<tr><td>${k}</td><td>${nf(cb)} / ${nf(ca)}</td><td>${nf(cm)}</td><td>${pct(ivc)}</td><td>${nf(pb)} / ${nf(pa)}</td><td>${nf(pm)}</td><td>${pct(ivp)}</td></tr>`});
+  $('tChain').innerHTML=`<tr><th>Strike</th><th>Call bid/ask</th><th>Call mid</th><th>IV call</th><th>Put bid/ask</th><th>Put mid</th><th>IV put</th></tr>`+rows;
+  chart($('skew'),{series:[{name:'IV calls',color:'var(--c1)',x:kk,y:ci},{name:'IV puts',color:'var(--c2)',x:kk,y:pi,dash:'5 3'}],h:240,xFmt:v=>nf(v,0),yFmt:v=>pct(v,1),xTitle:'Strike',title:'Volatilidad implícita por strike'});
+}
+function strat(P){
+  const {S0,sig,r,q,T}=P,kl=+$('kl').value,ks=+$('ks').value,deb=+$('deb').value,ns=Math.max(1,+$('ns').value|0);
+  const pl=crr(S0,kl,r,sig,T,200,'put',true,q).price,ps=crr(S0,ks,r,sig,T,200,'put',true,q).price,val=pl-ps;
+  const maxG=(kl-ks)-deb,maxL=deb,be=kl-deb;
+  const sd=sig*Math.sqrt(T),pBE=normcdf((Math.log(be/S0)+0.5*sd*sd)/sd);        // P(ST<BE), drift 0
+  const pFull=normcdf((Math.log(ks/S0)+0.5*sd*sd)/sd);
+  $('kstr').innerHTML=[[nf(deb*100*ns,0)+' USD','Pérdida máxima ('+ns+' contr.)'],[nf(maxG*100*ns,0)+' USD','Ganancia máxima'],[nf(be),'Punto de equilibrio'],[nf(maxG/maxL,2)+' : 1','Ganancia / pérdida'],
+    [pct(pBE,0),'Prob. de ganar (lognormal σ)'],[pct(pFull,0),'Prob. de ganancia máxima'],[nf(val),'Valor modelo del spread (σ única)'],[nf(val-deb),'Modelo − débito pagado']].map(([a,c])=>`<div class="kpi"><b>${a}</b><span>${c}</span></div>`).join('');
+  const xs=[],ys=[];for(let i=0;i<=120;i++){const s=S0*(0.6+0.8*i/120);xs.push(s);ys.push((Math.max(kl-s,0)-Math.max(ks-s,0)-deb)*100*ns)}
+  chart($('payoff'),{series:[{name:'P&L al vencimiento (USD)',color:'var(--c1)',x:xs,y:ys,width:2.2}],hlines:[{y:0,color:'var(--muted)',dash:'2 3'}],vlines:[{x:S0,color:'var(--c2)',label:'S₀'},{x:be,color:'var(--accent)',label:'Equilibrio'}],xFmt:v=>nf(v,0),yFmt:v=>nf(v,0),xTitle:'Precio de SPCX al vencimiento',title:'Payoff del bear put spread',h:280});
+  const mk=val-deb;$('stMsg').className='msg '+(mk>=0?'ok':'warn');
+  $('stMsg').innerHTML=`Con σ = ${pct(sig,0)} el árbol valúa el spread en ${nf(val)} frente a un débito de ${nf(deb)}: ${mk>=0?'pagas menos de lo que vale en el modelo (a tu favor)':'pagas más de lo que vale en el modelo'}. Para salir antes del vencimiento <b>vende</b> el spread; no lo dejes llegar al ejercicio. Es una apuesta bajista: gana si SPCX cierra por debajo de ${nf(be)}.`;
+}
+document.addEventListener('DOMContentLoaded',()=>{$('btnRun').onclick=run;['kl','ks','deb','ns'].forEach(i=>$(i).addEventListener('input',()=>strat(getP())));run()});
+
+</script></body></html>

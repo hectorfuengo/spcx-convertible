@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GARCH SPCX</title>
+<style>
+:root{--bg:#f6f5f1;--panel:#ffffff;--ink:#17191e;--muted:#5c6370;--line:#e2dfd6;--grid:#ebe8e0;--accent:#b4530a;--c1:#b4530a;--c2:#2563eb;--c3:#374151;--ok:#15803d;--bad:#b91c1c;--warn:#a16207;--soft:#f1efe8;--exer:#fde6d0;--cont:#dbeafe}
+@media (prefers-color-scheme:dark){:root{--bg:#0f1115;--panel:#171a21;--ink:#ece9e2;--muted:#9aa1ad;--line:#2a2f3a;--grid:#262b35;--accent:#f0883e;--c1:#f0883e;--c2:#6ea8fe;--c3:#cbd5e1;--ok:#4ade80;--bad:#f87171;--warn:#facc15;--soft:#1d2129;--exer:#4a2e17;--cont:#1b2a4a}}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:20px 16px 56px}
+header h1{font-size:26px;line-height:1.2;margin:0 0 4px;letter-spacing:-.01em}
+header p{margin:0;color:var(--muted)}
+.tag{display:inline-block;font-size:12px;font-weight:600;color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:1px 9px;margin-bottom:10px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px;margin-top:16px}
+.card h2{font-size:17px;margin:0 0 4px}.card .sub{color:var(--muted);margin:0 0 12px;font-size:14px}
+.grid{display:grid;gap:12px}.g2{grid-template-columns:repeat(2,minmax(0,1fr))}.g3{grid-template-columns:repeat(3,minmax(0,1fr))}.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:760px){.g2,.g3,.g4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.g2,.g3,.g4{grid-template-columns:1fr}}
+label{display:block;font-size:12.5px;color:var(--muted);margin-bottom:3px}
+input,select,textarea{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:7px 9px}
+textarea{font:12.5px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:1px}
+button{font:inherit;font-weight:600;border:1px solid var(--accent);background:var(--accent);color:#fff;border-radius:8px;padding:8px 14px;cursor:pointer}
+button.alt{background:transparent;color:var(--accent)}
+button:hover{filter:brightness(1.08)}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.kpi{background:var(--soft);border-radius:10px;padding:10px 12px}.kpi b{display:block;font-size:20px;line-height:1.2}.kpi span{font-size:12.5px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;font-size:13.5px;font-variant-numeric:tabular-nums}
+th,td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}th:first-child,td:first-child{text-align:left}
+th{color:var(--muted);font-weight:600;font-size:12.5px}.tw{overflow-x:auto}
+.note{font-size:13px;color:var(--muted)}.msg{border-left:3px solid var(--accent);background:var(--soft);padding:8px 12px;border-radius:0 8px 8px 0;margin-top:10px;font-size:14px}
+.msg.warn{border-color:var(--warn)}.msg.bad{border-color:var(--bad)}.msg.ok{border-color:var(--ok)}
+.pos{color:var(--ok)}.neg{color:var(--bad)}
+svg{width:100%;height:auto;display:block}svg .tk{font-size:11px;fill:var(--muted)}svg text{font-family:inherit}
+ul.read{margin:8px 0 0;padding-left:20px}ul.read li{margin:4px 0}
+footer{margin-top:24px;color:var(--muted);font-size:13px}
+
+</style></head><body>
+<div class="wrap">
+<header>
+  <span class="tag">SPCX · Derivados</span>
+  <h1>GARCH(1,1) para SPCX</h1>
+  <p>Volatilidad histórica, EWMA y GARCH (Hull cap. 23), pronóstico hasta el vencimiento, señal contra la volatilidad implícita y abanico de precios con Monte Carlo. Todo corre en tu navegador.</p>
+</header>
+
+<section class="card">
+  <h2>1. Datos de SPCX</h2>
+  <p class="sub">Pega precios de cierre diarios (CSV de TradingView: <i>Exportar datos del gráfico</i>; o de LSEG; o dos columnas <code>fecha,cierre</code>). Con menos de ~250 datos el GARCH de SPCX es poco estable.</p>
+  <textarea id="csv" rows="7" placeholder="time,open,high,low,close&#10;2026-06-15,150.2,153.0,148.1,151.9&#10;..."></textarea>
+  <div class="row">
+    <button id="btnRun">Calcular</button>
+    <button id="btnDemo" class="alt">Cargar demo simulado</button>
+    <label class="alt" style="margin:0"><input id="file" type="file" accept=".csv,.txt" style="display:none"><span class="btnlike" style="display:inline-block;border:1px solid var(--accent);color:var(--accent);border-radius:8px;padding:8px 14px;font-weight:600;cursor:pointer">Subir archivo .csv</span></label>
+  </div>
+  <div class="grid g4" style="margin-top:14px">
+    <div><label for="lam">λ EWMA</label><input id="lam" type="number" step="0.01" value="0.94"></div>
+    <div><label for="iv">Volatilidad implícita ATM (%)</label><input id="iv" type="number" step="0.5" value="61"></div>
+    <div><label for="hoy">Fecha de hoy</label><input id="hoy" type="date"></div>
+    <div><label for="venc">Vencimiento de la opción</label><input id="venc" type="date" value="2026-11-20"></div>
+    <div><label for="mu">Rendimiento esperado anual (%)</label><input id="mu" type="number" step="1" value="8"></div>
+    <div><label for="hfan">Días del abanico</label><input id="hfan" type="number" step="5" value="60"></div>
+    <div><label for="nsim">Trayectorias</label><input id="nsim" type="number" step="1000" value="5000"></div>
+    <div><label for="thr">Umbral de señal (%)</label><input id="thr" type="number" step="1" value="10"></div>
+  </div>
+  <div id="estado" class="msg" style="display:none"></div>
+</section>
+
+<div id="out" style="display:none">
+<section class="card">
+  <h2>2. Resultado</h2>
+  <div class="grid g4" id="kpis"></div>
+  <div id="senal" class="msg"></div>
+</section>
+
+<section class="card">
+  <h2>3. Volatilidad: histórica 30 días, EWMA y GARCH</h2>
+  <p class="sub">GARCH reacciona a los shocks y revierte hacia su nivel de largo plazo (línea punteada).</p>
+  <div id="ch1"></div>
+</section>
+
+<section class="card">
+  <h2>4. Parámetros y elección de modelo (Hull 23.3-23.5)</h2>
+  <div class="grid g2">
+    <div class="tw"><table id="tPar"></table></div>
+    <div class="tw"><table id="tMod"></table></div>
+  </div>
+  <p class="note" style="margin-top:8px">Menor AIC/BIC = mejor ajuste. Ljung-Box sobre u²/σ²: p &gt; 0,05 indica que el modelo capturó el <i>clustering</i> de volatilidad.</p>
+</section>
+
+<section class="card">
+  <h2>5. Pronóstico hasta el vencimiento (Hull 23.6)</h2>
+  <p class="sub">E[σ²ₙ₊ₖ] = V_L + (α+β)ᵏ (σ²ₙ − V_L). Para valorar una opción se usa la <b>volatilidad promedio</b> de los días que le quedan.</p>
+  <div id="ch2"></div>
+  <div class="tw" style="margin-top:10px"><table id="tTerm"></table></div>
+</section>
+
+<section class="card">
+  <h2>6. Monte Carlo con GARCH: abanico de precios</h2>
+  <p class="sub">Cada día uₜ = σₜ·zₜ y la varianza se actualiza con GARCH.</p>
+  <div id="ch3"></div>
+  <div class="grid g4" id="kmc" style="margin-top:10px"></div>
+</section>
+
+<section class="card">
+  <h2>7. Lectura</h2>
+  <ul class="read" id="lectura"></ul>
+</section>
+</div>
+
+<footer>Material educativo; no es recomendación de inversión. Limitaciones: GARCH(1,1) es simétrico y supone normalidad; SPCX tiene poca historia, por lo que los parámetros pueden ser inestables; no incluye back testing (necesita más de ~250 datos). Para MU, TSLA, SPY y MNQ usa el notebook de Colab.</footer>
+</div>
+
+<script>
+/* ===== Utilidades compartidas ===== */
+const $ = id => document.getElementById(id);
+const nf = (x, d = 2) => Number.isFinite(x) ? x.toLocaleString('es-MX', {minimumFractionDigits: d, maximumFractionDigits: d}) : '—';
+const pct = (x, d = 1) => Number.isFinite(x) ? (100 * x).toLocaleString('es-MX', {minimumFractionDigits: d, maximumFractionDigits: d}) + ' %' : '—';
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function randn(rng){let u=0;while(u===0)u=rng();const v=rng();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v)}
+function normcdf(x){const t=1/(1+0.2316419*Math.abs(x));const d=0.3989422804014327*Math.exp(-x*x/2);
+  const p=d*t*(0.319381530+t*(-0.356563782+t*(1.781477937+t*(-1.821255978+t*1.330274429))));return x>0?1-p:p}
+function mean(a){let s=0;for(const x of a)s+=x;return s/a.length}
+function varPop(a){const m=mean(a);let s=0;for(const x of a)s+=(x-m)*(x-m);return s/a.length}
+function pctile(sorted,p){const i=(sorted.length-1)*p,lo=Math.floor(i),hi=Math.ceil(i);return sorted[lo]+(sorted[hi]-sorted[lo])*(i-lo)}
+function addBizDays(d0,n){const d=new Date(d0);let k=0;while(k<n){d.setDate(d.getDate()+1);const w=d.getDay();if(w!==0&&w!==6)k++}return d}
+function bizDaysBetween(a,b){let k=0;const d=new Date(a);while(d<b){d.setDate(d.getDate()+1);const w=d.getDay();if(w!==0&&w!==6)k++}return k}
+function isoDate(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function parseDateStr(s){s=String(s).trim().replace(/^"|"$/g,'');
+  if(/^\d{9,10}$/.test(s))return new Date(+s*1000);
+  if(/^\d{12,13}$/.test(s))return new Date(+s);
+  let m=s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})/);if(m)return new Date(+m[3],+m[2]-1,+m[1]);
+  m=s.match(/^(\d{4})-(\d{2})-(\d{2})$/);if(m)return new Date(+m[1],+m[2]-1,+m[3]);
+  const t=Date.parse(s);return Number.isNaN(t)?null:new Date(t)}
+
+/* ===== CSV: acepta exportaciones de TradingView / LSEG / Yahoo (con o sin encabezado) ===== */
+function parseCSV(text){
+  const lines=text.split(/\r?\n/).map(s=>s.trim()).filter(Boolean);
+  if(!lines.length)return{dates:[],close:[]};
+  const sep=lines[0].includes('\t')?'\t':(lines[0].includes(';')?';':',');
+  const clean=s=>s.trim().replace(/^"|"$/g,'');
+  const head=lines[0].split(sep).map(s=>clean(s).toLowerCase());
+  const hasHeader=head.some(h=>/[a-z]/.test(h))&&Number.isNaN(parseFloat(head[head.length-1]));
+  let ci=-1,di=0,start=0;
+  if(hasHeader){start=1;ci=head.findIndex(h=>/^(close|cierre|adj close|último|ultimo|price|precio|last|px_last)$/.test(h));
+    di=head.findIndex(h=>/^(date|time|fecha|datetime|timestamp|exchange date)/.test(h));if(di<0)di=0}
+  const rows=[];
+  for(let i=start;i<lines.length;i++){
+    const c=lines[i].split(sep).map(clean);
+    let col=ci>=0?ci:(c.length>=5?4:c.length-1);
+    const val=parseFloat(String(c[col]).replace(/,/g,''));
+    if(!(val>0))continue;
+    rows.push({d:c.length>1?parseDateStr(c[di]):null,v:val});
+  }
+  const withDates=rows.filter(r=>r.d);
+  if(withDates.length===rows.length&&rows.length>1){rows.sort((a,b)=>a.d-b.d);return{dates:rows.map(r=>r.d),close:rows.map(r=>r.v)}}
+  const n=rows.length,end=new Date();const dates=[];let d=new Date(end);
+  for(let i=0;i<n;i++){dates.unshift(new Date(d));do{d.setDate(d.getDate()-1)}while(d.getDay()===0||d.getDay()===6)}
+  return{dates,close:rows.map(r=>r.v)}
+}
+function logret(close){const u=[];for(let i=1;i<close.length;i++)u.push(100*Math.log(close[i]/close[i-1]));return u}
+
+/* ===== GARCH(1,1), EWMA, verosimilitud (Hull 23) ===== */
+function varGarch(p,u,v0){const n=u.length,v=new Array(n);v[0]=v0;for(let t=1;t<n;t++)v[t]=p[0]+p[1]*u[t-1]*u[t-1]+p[2]*v[t-1];return v}
+function varEwma(u,lam){const n=u.length;const v0=varPop(u.slice(0,Math.min(30,n)));return varGarch([0,1-lam,lam],u,v0)}
+function loglik(v,u){let s=0;for(let i=0;i<u.length;i++)s+=-0.5*(Math.log(2*Math.PI)+Math.log(v[i])+u[i]*u[i]/v[i]);return s}
+function nelderMead(f,x0,iters=1500,step=0.1){
+  const n=x0.length;let pts=[x0.slice()];
+  for(let i=0;i<n;i++){const x=x0.slice();x[i]=x[i]!==0?x[i]*(1+step):step*0.1;pts.push(x)}
+  let vals=pts.map(f);
+  for(let it=0;it<iters;it++){
+    const idx=vals.map((v,i)=>i).sort((a,b)=>vals[a]-vals[b]);pts=idx.map(i=>pts[i]);vals=idx.map(i=>vals[i]);
+    if(Math.abs(vals[n]-vals[0])<1e-12*(1+Math.abs(vals[0])))break;
+    const c=new Array(n).fill(0);for(let i=0;i<n;i++)for(let j=0;j<n;j++)c[j]+=pts[i][j]/n;
+    const comb=(a,b,t)=>a.map((x,j)=>x+t*(b[j]-x));
+    const xr=comb(c,pts[n],-1),fr=f(xr);
+    if(fr<vals[0]){const xe=comb(c,pts[n],-2),fe=f(xe);if(fe<fr){pts[n]=xe;vals[n]=fe}else{pts[n]=xr;vals[n]=fr}}
+    else if(fr<vals[n-1]){pts[n]=xr;vals[n]=fr}
+    else{const xc=fr<vals[n]?comb(c,pts[n],-0.5):comb(c,pts[n],0.5),fc=f(xc);
+      if(fc<Math.min(fr,vals[n])){pts[n]=xc;vals[n]=fc}
+      else{for(let i=1;i<=n;i++){pts[i]=comb(pts[0],pts[i],0.5);vals[i]=f(pts[i])}}}
+  }
+  const b=vals.indexOf(Math.min(...vals));return{x:pts[b],f:vals[b]}
+}
+function fitGarch(u){
+  const v0=varPop(u);
+  const f=q=>{const om=q[0]*v0,al=q[1],be=q[2];
+    if(q[0]<=1e-6||al<1e-4||al>0.5||be<0.3||be>0.9998||al+be>0.9999)return 1e12;
+    return -loglik(varGarch([om,al,be],u,v0),u)};
+  let best=null;
+  for(const s of [[0.03,0.08,0.90],[0.10,0.12,0.80],[0.02,0.05,0.93],[0.30,0.20,0.60],[0.05,0.10,0.85]]){
+    const r=nelderMead(f,s,3000);if(!best||r.f<best.f)best=r}
+  const q=best.x;return[q[0]*v0,q[1],q[2]]
+}
+/* ===== Ljung-Box (p-valor con chi-cuadrada) ===== */
+function gammaP(a,x){if(x<=0)return 0;const gl=lgamma(a);
+  if(x<a+1){let s=1/a,t=s;for(let n=1;n<500;n++){t*=x/(a+n);s+=t;if(Math.abs(t)<Math.abs(s)*1e-14)break}return s*Math.exp(-x+a*Math.log(x)-gl)}
+  let b=x+1-a,c=1e300,d=1/b,h=d;for(let i=1;i<500;i++){const an=-i*(i-a);b+=2;d=an*d+b;if(Math.abs(d)<1e-300)d=1e-300;c=b+an/c;if(Math.abs(c)<1e-300)c=1e-300;d=1/d;const del=d*c;h*=del;if(Math.abs(del-1)<1e-14)break}
+  return 1-Math.exp(-x+a*Math.log(x)-gl)*h}
+function lgamma(z){const g=7,c=[0.99999999999980993,676.5203681218851,-1259.1392167224028,771.32342877765313,-176.61502916214059,12.507343278686905,-0.13857109526572012,9.9843695780195716e-6,1.5056327351493116e-7];
+  z-=1;let x=c[0];for(let i=1;i<g+2;i++)x+=c[i]/(z+i);const t=z+g+0.5;return 0.5*Math.log(2*Math.PI)+(z+0.5)*Math.log(t)-t+Math.log(x)}
+function ljungBoxP(x,lags=10){const n=x.length,m=mean(x);let den=0;for(const v of x)den+=(v-m)*(v-m);let Q=0;
+  for(let k=1;k<=lags;k++){let num=0;for(let t=k;t<n;t++)num+=(x[t]-m)*(x[t-k]-m);const r=num/den;Q+=r*r/(n-k)}
+  Q*=n*(n+2);return 1-gammaP(lags/2,Q/2)}
+
+/* ===== Gráficas SVG sin librerías ===== */
+function niceTicks(lo,hi,n=5){if(lo===hi){lo-=1;hi+=1}const span=hi-lo,raw=span/n,mag=Math.pow(10,Math.floor(Math.log10(raw)));
+  const r=raw/mag,st=(r<1.5?1:r<3?2:r<7?5:10)*mag;const a=Math.ceil(lo/st)*st,t=[];for(let v=a;v<=hi+st*1e-9;v+=st)t.push(+v.toFixed(10));return t}
+function chart(el,o){
+  const W=720,H=o.h||320,m={l:58,r:16,t:16,b:40};const S=o.series||[],B=o.bands||[],HL=o.hlines||[],VL=o.vlines||[];
+  let xs=[],ys=[];S.forEach(s=>{xs=xs.concat(s.x);ys=ys.concat(s.y)});B.forEach(b=>{xs=xs.concat(b.x);ys=ys.concat(b.lo,b.hi)});
+  HL.forEach(h=>ys.push(h.y));VL.forEach(v=>xs.push(v.x));ys=ys.filter(Number.isFinite);
+  let x0=Math.min(...xs),x1=Math.max(...xs),y0=Math.min(...ys),y1=Math.max(...ys);if(o.y0!==undefined)y0=Math.min(y0,o.y0);
+  const pad=(y1-y0)*0.06||1;y0-=pad;y1+=pad;
+  const X=v=>m.l+(v-x0)/(x1-x0||1)*(W-m.l-m.r),Y=v=>H-m.b-(v-y0)/(y1-y0||1)*(H-m.t-m.b);
+  let g='';
+  niceTicks(y0,y1,5).forEach(t=>{g+=`<line x1="${m.l}" x2="${W-m.r}" y1="${Y(t)}" y2="${Y(t)}" stroke="var(--grid)"/><text x="${m.l-8}" y="${Y(t)+4}" text-anchor="end" class="tk">${o.yFmt?o.yFmt(t):nf(t,0)}</text>`});
+  const xt=o.xType==='date'?niceDateTicks(x0,x1):niceTicks(x0,x1,6);
+  xt.forEach(t=>{g+=`<line x1="${X(t)}" x2="${X(t)}" y1="${m.t}" y2="${H-m.b}" stroke="var(--grid)"/><text x="${X(t)}" y="${H-m.b+16}" text-anchor="middle" class="tk">${o.xType==='date'?fmtDateTick(t,x1-x0):(o.xFmt?o.xFmt(t):nf(t,0))}</text>`});
+  B.forEach(b=>{let d='';b.x.forEach((x,i)=>d+=(i?'L':'M')+X(x)+','+Y(b.hi[i]));for(let i=b.x.length-1;i>=0;i--)d+='L'+X(b.x[i])+','+Y(b.lo[i]);g+=`<path d="${d}Z" fill="${b.color}" opacity="${b.opacity||0.2}"/>`});
+  HL.forEach(h=>{g+=`<line x1="${m.l}" x2="${W-m.r}" y1="${Y(h.y)}" y2="${Y(h.y)}" stroke="${h.color||'var(--muted)'}" stroke-dasharray="${h.dash||'4 4'}"/>`+(h.label?`<text x="${W-m.r-4}" y="${Y(h.y)-5}" text-anchor="end" class="tk" fill="${h.color||'var(--muted)'}">${h.label}</text>`:'')});
+  VL.forEach(v=>{g+=`<line x1="${X(v.x)}" x2="${X(v.x)}" y1="${m.t}" y2="${H-m.b}" stroke="${v.color||'var(--muted)'}" stroke-dasharray="${v.dash||'4 4'}"/>`+(v.label?`<text x="${X(v.x)+4}" y="${m.t+30}" class="tk" fill="${v.color||'var(--muted)'}">${v.label}</text>`:'')});
+  S.forEach(s=>{let d='',pen=false;s.x.forEach((x,i)=>{const y=s.y[i];if(!Number.isFinite(y)){pen=false;return}d+=(pen?'L':'M')+X(x).toFixed(1)+','+Y(y).toFixed(1);pen=true});
+    g+=`<path d="${d}" fill="none" stroke="${s.color}" stroke-width="${s.width||1.8}" ${s.dash?`stroke-dasharray="${s.dash}"`:''} stroke-linejoin="round"/>`});
+  let lg='',lx=m.l+8;[...B.map(b=>({name:b.name,color:b.color,box:1})),...S].forEach(s=>{if(!s.name)return;
+    lg+=s.box?`<rect x="${lx}" y="${m.t+2}" width="14" height="9" fill="${s.color}" opacity="0.5"/>`:`<rect x="${lx}" y="${m.t+6}" width="14" height="3" fill="${s.color}"/>`;
+    lg+=`<text x="${lx+18}" y="${m.t+11}" class="tk">${s.name}</text>`;lx+=26+s.name.length*6.2});
+  const yl=o.yTitle?`<text x="14" y="${(H-m.b+m.t)/2}" transform="rotate(-90 14 ${(H-m.b+m.t)/2})" text-anchor="middle" class="tk">${o.yTitle}</text>`:'';
+  const xl=o.xTitle?`<text x="${(W+m.l-m.r)/2}" y="${H-4}" text-anchor="middle" class="tk">${o.xTitle}</text>`:'';
+  el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${o.title||'gráfica'}">${g}${lg}${yl}${xl}</svg>`;
+}
+function niceDateTicks(x0,x1){const span=(x1-x0)/864e5,t=[];const d=new Date(x0);d.setHours(0,0,0,0);
+  if(span>400){d.setDate(1);d.setMonth(Math.ceil(d.getMonth()/3)*3);while(+d<=x1){t.push(+d);d.setMonth(d.getMonth()+3)}}
+  else if(span>90){d.setDate(1);d.setMonth(d.getMonth()+1);while(+d<=x1){t.push(+d);d.setMonth(d.getMonth()+1)}}
+  else{const step=Math.max(1,Math.round(span/6));while(+d<=x1){if(+d>=x0)t.push(+d);d.setDate(d.getDate()+step)}}return t}
+function fmtDateTick(t,span){const d=new Date(t);const M=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+  return span/864e5>90?M[d.getMonth()]+' '+String(d.getFullYear()).slice(2):d.getDate()+' '+M[d.getMonth()]}
+
+function demoCSV(){
+  const rng=mulberry32(7),n=400,vd=Math.pow(62/Math.sqrt(252),2),om=vd*0.03,al=0.08,be=0.89;let v=vd,s=[];
+  const u=[];for(let i=0;i<n;i++){const x=Math.sqrt(v)*randn(rng);u.push(x);v=om+al*x*x+be*v}
+  let p=[1];for(let i=0;i<n;i++)p.push(p[p.length-1]*Math.exp(u[i]/100));
+  const last=141.31;p=p.map(x=>x/p[p.length-1]*last);
+  const end=new Date();const d=[];let t=new Date(end);for(let i=0;i<=n;i++){d.unshift(isoDate(t));do{t.setDate(t.getDate()-1)}while(t.getDay()===0||t.getDay()===6)}
+  return 'date,close\n'+d.map((x,i)=>x+','+p[i].toFixed(2)).join('\n')
+}
+function analyze(){
+  const est=$('estado');est.style.display='block';
+  const {dates,close}=parseCSV($('csv').value);
+  if(close.length<40){est.className='msg bad';est.textContent='Necesito al menos 40 precios de cierre (tienes '+close.length+').';$('out').style.display='none';return}
+  const u=logret(close),ud=dates.slice(1),n=u.length,lam=+$('lam').value;
+  const iv=+$('iv').value/100,thr=+$('thr').value/100,mu=+$('mu').value/100;
+  const hoy=new Date($('hoy').value+'T00:00:00'),venc=new Date($('venc').value+'T00:00:00');
+  const H=Math.max(bizDaysBetween(hoy,venc),1);
+  const S0=close[close.length-1];
+  /* modelos */
+  const vE=varEwma(u,lam),p=fitGarch(u),v0=varPop(u),vG=varGarch(p,u,v0);
+  const [om,al,be]=p,pers=al+be,VL=om/(1-pers);
+  const vnextG=om+al*u[n-1]*u[n-1]+be*vG[n-1],vnextE=lam*vE[n-1]+(1-lam)*u[n-1]*u[n-1];
+  const ann=v=>Math.sqrt(252*v)/100;
+  const m=Math.min(252,n);let hs=u.slice(n-m);const volHist=Math.sqrt(252*(()=>{const mm=mean(hs);return hs.reduce((a,x)=>a+(x-mm)*(x-mm),0)/(hs.length-1)})())/100;
+  const vol30=u.map((_,i)=>{if(i<29)return NaN;const w=u.slice(i-29,i+1),mm=mean(w);return Math.sqrt(252*w.reduce((a,x)=>a+(x-mm)*(x-mm),0)/29)/100});
+  /* pronóstico */
+  const path=k=>VL+Math.pow(pers,k)*(vnextG-VL);
+  const volProm=d=>{let s=0;for(let k=0;k<d;k++)s+=path(k);return ann(s/d)};
+  const volH=volProm(H),ratio=volH/iv;
+  const halfLife=Math.log(0.5)/Math.log(pers);
+  /* comparación de modelos */
+  const grid=[];for(let l=0.80;l<=0.9951;l+=0.005)grid.push(l);
+  let bl=0.94,bll=-Infinity;grid.forEach(l=>{const ll=loglik(varEwma(u,l),u);if(ll>bll){bll=ll;bl=l}});
+  const vC=new Array(n).fill(v0),vEo=varEwma(u,bl);
+  const mods=[['Vol. constante',vC,1],['EWMA λ='+lam.toFixed(2),vE,0],['EWMA λ óptimo ('+bl.toFixed(3)+')',vEo,1],['GARCH(1,1)',vG,3]].map(([nm,v,k])=>{
+    const ll=loglik(v,u);return{nm,ll,aic:2*k-2*ll,bic:k*Math.log(n)-2*ll,lb:ljungBoxP(u.map((x,i)=>x*x/v[i]),10)}});
+  /* Monte Carlo */
+  const nsim=Math.max(500,+$('nsim').value|0),HF=Math.max(5,+$('hfan').value|0),rng=mulberry32(123);
+  const days=Array.from({length:HF+1},()=>new Float64Array(nsim));
+  for(let j=0;j<nsim;j++){let vv=vnextG,s=S0;days[0][j]=s;
+    for(let k=1;k<=HF;k++){const sg=Math.sqrt(vv),z=randn(rng);s*=Math.exp(mu/252-0.5*Math.pow(sg/100,2)+sg/100*z);days[k][j]=s;vv=om+al*Math.pow(sg*z,2)+be*vv}}
+  const q=[0.05,0.25,0.5,0.75,0.95],Q=q.map(()=>[]);
+  days.forEach(a=>{const so=Float64Array.from(a).sort();q.forEach((pp,i)=>Q[i].push(pctile(so,pp)))});
+  const r10=Array.from(days[Math.min(10,HF)],x=>x/S0-1).sort((a,b)=>a-b);
+  const var99=-pctile(r10,0.01),probUp=Array.from(days[HF]).filter(x=>x>S0).length/nsim;
+  /* ---- render ---- */
+  est.className='msg'+(n<250||pers<0.9?' warn':' ok');
+  est.innerHTML=`<b>${n+1} precios</b> (${isoDate(dates[0])} a ${isoDate(dates[dates.length-1])}), último cierre <b>${nf(S0)}</b>.`+
+    (n<250?` Solo hay ${n} rendimientos: GARCH(1,1) con tan pocos datos es poco estable.`:'')+
+    (pers<0.9?` La persistencia α+β=${nf(pers,3)} es baja: el modelo casi no tiene memoria y no es confiable; compara con EWMA o la implícita.`:'')+
+    (H<5?' Quedan muy pocos días al vencimiento.':'');
+  $('out').style.display='block';
+  const sgn=ratio>1+thr?'baratas':(ratio<1-thr?'caras':'justas');
+  $('kpis').innerHTML=[
+    [pct(volHist),'Vol. histórica anual ('+m+' días)'],[pct(ann(vnextE)),'Vol. hoy EWMA'],[pct(ann(vnextG)),'Vol. hoy GARCH'],[pct(ann(VL)),'Vol. de largo plazo (V_L)'],
+    [nf(pers,3),'Persistencia α+β'],[nf(halfLife,1)+' días','Vida media del shock'],[pct(volH),'σ GARCH promedio a '+H+' días hábiles'],[nf(ratio,2),'Razón σ GARCH / σ implícita']
+  ].map(([b,s])=>`<div class="kpi"><b>${b}</b><span>${s}</span></div>`).join('');
+  const txt={baratas:'Las opciones parecen <b>baratas</b>: GARCH espera más volatilidad que la que paga el mercado (a favor de comprar prima).',
+    caras:'Las opciones parecen <b>caras</b>: GARCH espera menos volatilidad que la implícita (a favor de vender prima, con riesgo acotado).',
+    justas:'Sin ventaja clara de volatilidad: GARCH y el mercado coinciden dentro del umbral.'}[sgn];
+  $('senal').className='msg '+(sgn==='justas'?'':'ok');$('senal').innerHTML=txt+(n<250||pers<0.9?' <b>Cautela:</b> con la poca historia de SPCX esta señal es débil.':'');
+  chart($('ch1'),{series:[
+    {name:'Histórica 30d',color:'var(--muted)',x:ud.map(Number),y:vol30,width:1.2},
+    {name:'EWMA',color:'var(--c3)',x:ud.map(Number),y:vE.map(ann),dash:'4 3',width:1.2},
+    {name:'GARCH(1,1)',color:'var(--c1)',x:ud.map(Number),y:vG.map(ann),width:2}],
+    hlines:[{y:ann(VL),color:'var(--c1)',dash:'2 4',label:'V_L'}],xType:'date',yFmt:v=>pct(v,0),title:'Volatilidad anualizada'});
+  $('tPar').innerHTML=`<tr><th>Parámetro</th><th>Valor</th></tr><tr><td>ω</td><td>${nf(om,4)}</td></tr><tr><td>α</td><td>${nf(al,4)}</td></tr><tr><td>β</td><td>${nf(be,4)}</td></tr><tr><td>α+β</td><td>${nf(pers,4)}</td></tr><tr><td>V_L (varianza diaria, %²)</td><td>${nf(VL,3)}</td></tr><tr><td>Mejor λ de EWMA</td><td>${nf(bl,3)}</td></tr>`;
+  $('tMod').innerHTML=`<tr><th>Modelo</th><th>LogLik</th><th>AIC</th><th>BIC</th><th>p L-B</th></tr>`+mods.map(r=>`<tr><td>${r.nm}</td><td>${nf(r.ll,1)}</td><td>${nf(r.aic,1)}</td><td>${nf(r.bic,1)}</td><td class="${r.lb<0.05?'neg':''}">${nf(r.lb,3)}</td></tr>`).join('');
+  const dd=Array.from({length:252},(_,k)=>k+1);
+  chart($('ch2'),{series:[{name:'Vol. esperada (día k)',color:'var(--c1)',x:dd,y:dd.map(k=>ann(path(k-1))),width:2}],
+    hlines:[{y:ann(VL),color:'var(--muted)',label:'V_L'},{y:iv,color:'var(--c2)',dash:'6 3',label:'Implícita'}],vlines:[{x:H,color:'var(--accent)',label:'Vence'}],
+    xTitle:'Días hábiles hacia adelante',yFmt:v=>pct(v,1),title:'Reversión de la volatilidad'});
+  const pl=[5,10,H,30,63,126,252].filter((x,i,a)=>a.indexOf(x)===i).sort((a,b)=>a-b);
+  $('tTerm').innerHTML=`<tr><th>Horizonte (días hábiles)</th>`+pl.map(d=>`<th>${d}${d===H?' (vence)':''}</th>`).join('')+`</tr><tr><td>Vol. promedio GARCH</td>`+pl.map(d=>`<td>${pct(volProm(d))}</td>`).join('')+'</tr>';
+  const xd=Array.from({length:HF+1},(_,k)=>k);
+  chart($('ch3'),{bands:[{name:'P5–P95',color:'var(--c1)',opacity:.18,x:xd,lo:Q[0],hi:Q[4]},{name:'P25–P75',color:'var(--c1)',opacity:.32,x:xd,lo:Q[1],hi:Q[3]}],
+    series:[{name:'Mediana',color:'var(--c1)',x:xd,y:Q[2],width:2}],hlines:[{y:S0,color:'var(--muted)',dash:'2 4',label:'Precio hoy'}],vlines:H<=HF?[{x:H,color:'var(--accent)',label:'Vence'}]:[],
+    xTitle:'Días hábiles',yFmt:v=>nf(v,0),title:'Abanico de precios'});
+  $('kmc').innerHTML=[[nf(Q[0][HF]),'P5 a '+HF+' días'],[nf(Q[2][HF]),'Mediana a '+HF+' días'],[nf(Q[4][HF]),'P95 a '+HF+' días'],[pct(probUp,0),'Prob. de que suba'],[pct(var99),'VaR 99% a 10 días']].map(([b,s])=>`<div class="kpi"><b>${b}</b><span>${s}</span></div>`).join('');
+  const L=[];
+  L.push(`La volatilidad actual de SPCX según GARCH es <b>${pct(ann(vnextG))}</b> y su nivel de largo plazo es <b>${pct(ann(VL))}</b>: el modelo espera que ${ann(vnextG)>ann(VL)?'baje':'suba'} hacia ese nivel con una vida media de ~${nf(halfLife,0)} días.`);
+  L.push(`Para el vencimiento (${H} días hábiles) GARCH da <b>${pct(volH)}</b> frente a <b>${pct(iv)}</b> implícita (razón ${nf(ratio,2)}): ${txt.replace(/<\/?b>/g,'')}`);
+  const bestA=mods.reduce((a,b)=>a.aic<b.aic?a:b);L.push(`Por AIC el mejor modelo es <b>${bestA.nm}</b>; ${mods[3].lb<0.05?'GARCH deja autocorrelación en u²/σ² (p de Ljung-Box bajo).':'GARCH captura el clustering de volatilidad (p de Ljung-Box > 0,05).'}`);
+  L.push(`El Monte Carlo (${nsim.toLocaleString('es-MX')} trayectorias, rendimiento esperado ${pct(mu,0)}) da un rango de ${nf(Q[0][HF])} a ${nf(Q[4][HF])} (P5–P95) a ${HF} días y un VaR 99% a 10 días de ${pct(var99)}.`);
+  if(n<250)L.push('<b>Advertencia:</b> con una historia tan corta, tómalo como referencia y contrástalo siempre con la volatilidad implícita y el árbol binomial.');
+  $('lectura').innerHTML=L.map(x=>'<li>'+x+'</li>').join('');
+}
+document.addEventListener('DOMContentLoaded',()=>{
+  $('hoy').value=isoDate(new Date());
+  $('btnRun').onclick=analyze;
+  $('btnDemo').onclick=()=>{$('csv').value=demoCSV();analyze();$('estado').innerHTML+=' <b>(DEMO simulado: no son precios reales de SPCX)</b>'};
+  $('file').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{$('csv').value=r.result;analyze()};r.readAsText(f)};
+});
+
+</script></body></html>

@@ -1,0 +1,63 @@
+{
+  "nombre": "Space Exploration Technologies Corp",
+  "ticker": "SPCX",
+  "bolsa": "Nasdaq (y Nasdaq Texas)",
+  "fecha_listado": "2026-06-12",
+  "sector": "Aeroespacial · Conectividad satelital · Inteligencia artificial",
+  "resumen": "SpaceX es un grupo con tres negocios: lanza cohetes reutilizables (Falcon y la nueva Starship), vende internet por satélite (Starlink) y, desde que absorbió a xAI en febrero de 2026, desarrolla inteligencia artificial (Grok) y opera la red social X. Starlink genera la mayor parte de los ingresos y de la utilidad operativa; el segmento de IA es el que más gasta (capex y pérdidas) y el de lanzamiento absorbe la inversión en Starship.",
+  "segmentos": [
+    {
+      "nombre": "Connectivity",
+      "que_hace": "Starlink: internet satelital para hogares, empresas, aviación y gobiernos.",
+      "ingresos_2025_musd": 11387,
+      "utilidad_operativa_2025_musd": 4423,
+      "dato": "10.3 millones de suscriptores en 164 países (31-mar-2026); ARPU de 99 USD/mes en 2023 a 66 en el 1T-2026."
+    },
+    {
+      "nombre": "Space",
+      "que_hace": "Lanzamiento (Falcon 9, Falcon Heavy, Starship), cápsula Dragon e I+D.",
+      "ingresos_2025_musd": 4086,
+      "utilidad_operativa_2025_musd": -657,
+      "dato": "Más de 80 % de la masa que se pone en órbita en el mundo cada año desde 2023; la mayor parte de la I+D del segmento (3,000 M en 2025) va a Starship."
+    },
+    {
+      "nombre": "AI",
+      "que_hace": "xAI (modelos Grok y centros de datos Colossus) y la red social X.",
+      "ingresos_2025_musd": 3201,
+      "utilidad_operativa_2025_musd": -6355,
+      "dato": "X tiene unos 550 millones de usuarios activos al mes; el capex de IA fue de 12,700 M en 2025."
+    }
+  ],
+  "q3_2026_aprox_musd": {
+    "AI": 7600,
+    "Connectivity": 5300,
+    "Space": 1800,
+    "nota": "Cifras aproximadas de prensa (redondeadas); el total (≈14,600 M) coincide con el ingreso del 3T-2026 de Refinitiv (14,575 M)."
+  },
+  "hitos": [
+    {"fecha": "2025-03", "texto": "xAI absorbe a X Holdings (Twitter): por eso aparecen préstamos de Twitter y xAI en la deuda de SPCX."},
+    {"fecha": "2026-02", "texto": "SpaceX absorbe a xAI y crea el segmento de IA; las cifras históricas se reexpresan (empresas bajo control común)."},
+    {"fecha": "2026-05-20", "texto": "Presenta el S-1 para listar acciones Clase A en Nasdaq (dos clases: 1 voto y 10 votos; Musk conserva el control)."},
+    {"fecha": "2026-06-12", "texto": "Primer día de cotización (primer cierre en Refinitiv: 160.95 USD)."},
+    {"fecha": "2026-06-19", "texto": "Primeras calificaciones de las tres agencias: Baa1 (Moody's), BBB+ (Fitch), BBB (S&P), todas con perspectiva estable."},
+    {"fecha": "2026-3T", "texto": "Ingresos del 3T de 14,575 M (Refinitiv), con AI como el segmento más grande del trimestre según la prensa; utilidad neta de 4,404 M."}
+  ],
+  "riesgos": [
+    "Ejecución de Starship: los retrasos frenan la actualización de satélites, el servicio directo a celulares y el cómputo de IA en órbita.",
+    "Pérdidas y capex del segmento de IA, además de litigios y regulación sobre Grok.",
+    "Dependencia de espectro: el acuerdo con EchoStar se espera que cierre en noviembre de 2027.",
+    "Concentración en gobierno de EE. UU. (11 de 12 misiones NSSL y las cinco misiones de la NASA a la ISS en 2025).",
+    "Deuda y necesidades de capital: 29,100 M de principal contra 15,900 M de caja al 31-mar-2026, con capex cercano a 10,000 M por trimestre.",
+    "Control del fundador (empresa controlada según las reglas de Nasdaq) y sin seguro de satélites ni lanzadores."
+  ],
+  "fuentes": [
+    {"titulo": "Vested Finance: Inside SpaceX's S-1", "url": "https://vestedfinance.com/blog/us-stocks/inside-spacexs-s-1-decoding-the-three-engine-bet-going-public-as-spcx/", "nota": "Segmentos 2025, hitos y riesgos del S-1 (fuente secundaria)."},
+    {"titulo": "InvestingLive: SpaceX Q3 results", "url": "https://investinglive.com/stocks/spacex-beats-q3-forecasts-across-all-three-segments-as-ai-revenue-tops-7-5-billion/", "nota": "Ingresos por segmento del 3T-2026 (aproximados)."},
+    {"titulo": "Refinitiv (LSEG)", "url": "", "nota": "Precios, estados financieros, deuda y comparables (exportes del 2026-10-26)."}
+  ],
+  "avisos": [
+    "Las cifras por segmento vienen de prensa que cita el S-1; verificar en el S-1 y el 10-Q antes de citarlas en el reporte.",
+    "La utilidad operativa por segmento suma -2,589 M en 2025, frente a un EBIT de -2,064 M en Refinitiv; la diferencia puede ser corporativo, eliminaciones o la fuente, y no se investigó."
+  ],
+  "estado": "dato (fuente periodística; verificar en S-1 / 10-Q)"
+}

@@ -1,0 +1,811 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SPCX · Derivados</title>
+<style>
+  :root { --bg:#f6f7f9; --card:#fff; --ink:#14181f; --mut:#5d6675; --line:#e2e5ea; --acc:#1f4fd8; --pos:#0b7a4b; --neg:#b3261e; --warn:#8a5a00; --warnbg:#fff4d6; --oro:#c27a1a; --hl:#eef3ff; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#0f1218; --card:#171b23; --ink:#eceff4; --mut:#9aa4b5; --line:#2a303b; --acc:#7da2ff; --pos:#4cc790; --neg:#ff8a80; --warn:#f3c56b; --warnbg:#2b2412; --hl:#1b2540; } }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; }
+  a { color:var(--acc); }
+  .wrap { max-width:1100px; margin:0 auto; padding:0 16px; }
+  /* ---------- encabezado (brief de la empresa) ---------- */
+  .hero { background:#1d3566; color:#fff; }
+  .hero .wrap { padding-top:22px; }
+  .hero-top { display:flex; justify-content:space-between; gap:12px 24px; flex-wrap:wrap; align-items:flex-start; }
+  .hero h1 { font:700 clamp(24px,4.4vw,34px)/1.1 Georgia,"Times New Roman",serif; margin:0; }
+  .hero h1 .tk { color:#e0bb62; }
+  .hero .sub { color:#c6d0e6; margin:6px 0 0; font-size:14px; }
+  .hero .meta { text-align:right; font-size:12.5px; color:#c6d0e6; line-height:1.45; max-width:430px; }
+  .hero .meta b { color:#fff; }
+  .hk { display:grid; grid-template-columns:minmax(0,1.9fr) minmax(0,1.1fr); margin-top:22px; }
+  .hk > div { padding-bottom:18px; }
+  .hk > div + div { border-left:1px solid rgba(255,255,255,.16); padding-left:20px; }
+  .hk h3, .risks h3 { margin:0 0 10px; font-size:11.5px; letter-spacing:.13em; text-transform:uppercase; color:#a9b8d8; font-weight:600; }
+  .kr { display:flex; flex-wrap:wrap; gap:14px 24px; }
+  .kr .l { font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:#a9b8d8; }
+  .kr .v { font-size:22px; font-weight:700; font-variant-numeric:tabular-nums; }
+  .kr .v small { font-size:12px; font-weight:500; color:#c6d0e6; }
+  .up { color:#6fdca8; } .dn { color:#ff9a8c; }
+  .goldline { height:3px; background:linear-gradient(90deg,#e0bb62,rgba(224,187,98,.15)); }
+  .risks { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .risks > div { padding:16px 20px 20px 0; font-size:13.5px; color:#dbe3f3; }
+  .risks > div + div { border-left:1px solid rgba(255,255,255,.16); padding-left:20px; }
+  .risks .lvl { font-size:19px; font-weight:700; letter-spacing:.02em; margin-bottom:6px; }
+  .lvl.alto { color:#ff9a8c; } .lvl.medio { color:#f0c25a; } .lvl.bajo { color:#6fdca8; }
+  .risks b { color:#fff; } .risks ul { margin:4px 0 0; padding-left:18px; } .risks li { margin:2px 0; }
+  @media (max-width:820px) {
+    .hk, .risks { grid-template-columns:1fr; }
+    .hk > div + div, .risks > div + div { border-left:0; padding-left:0; border-top:1px solid rgba(255,255,255,.16); }
+    .hero .meta { text-align:left; }
+    .risks > div { padding-right:0; }
+  }
+  /* ---------- pestañas ---------- */
+  nav.tabs { position:sticky; top:0; z-index:10; background:var(--bg); border-bottom:1px solid var(--line); }
+  nav.tabs .wrap { display:flex; gap:4px; overflow-x:auto; white-space:nowrap; padding-top:6px; }
+  nav.tabs button { font:600 14px system-ui,sans-serif; color:var(--mut); background:none; border:0; border-bottom:3px solid transparent; padding:9px 12px; cursor:pointer; }
+  nav.tabs button:hover { color:var(--acc); }
+  nav.tabs button[aria-selected="true"] { color:var(--ink); border-bottom-color:var(--oro); }
+  main.wrap { padding-top:8px; padding-bottom:48px; }
+  .pane[hidden] { display:none; }
+  section { margin-top:26px; }
+  h2 { font-size:19px; margin:0 0 12px; }
+  h3.s { font-size:15px; margin:0 0 6px; }
+  .grid { display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:14px 16px; }
+  .kpi .l { color:var(--mut); font-size:13px; }
+  .kpi .v { font-size:26px; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+  .kpi .n { color:var(--mut); font-size:12.5px; margin-top:2px; }
+  .neg { color:var(--neg); } .pos { color:var(--pos); }
+  table { border-collapse:collapse; width:100%; font-variant-numeric:tabular-nums; }
+  th,td { padding:7px 10px; text-align:right; border-bottom:1px solid var(--line); font-size:14px; }
+  th:first-child,td:first-child { text-align:left; }
+  th { color:var(--mut); font-weight:600; font-size:13px; }
+  tr.grp td { background:var(--bg); color:var(--mut); font-size:12px; letter-spacing:.06em; text-transform:uppercase; font-weight:700; }
+  td.hl, th.hl { background:var(--hl); }
+  .scroll { overflow-x:auto; }
+  .bar { display:flex; height:46px; border-radius:8px; overflow:hidden; margin:10px 0 6px; font-weight:600; color:#fff; }
+  .bar div { display:flex; align-items:center; justify-content:center; font-size:14px; padding:0 8px; white-space:nowrap; }
+  .b1 { background:#3d5a99; } .b2 { background:#c27a1a; }
+  .tag { display:inline-block; padding:1px 8px; border-radius:99px; font-size:12px; font-weight:600; border:1px solid var(--line); color:var(--mut); }
+  .tag.dato { color:var(--pos); border-color:var(--pos); } .tag.sup { color:var(--warn); border-color:var(--warn); } .tag.calc { color:var(--acc); border-color:var(--acc); }
+  .warn { background:var(--warnbg); color:var(--warn); border-radius:8px; padding:10px 14px; margin:6px 0; font-size:14px; }
+  .two { display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); }
+  .three { display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); }
+  .ch { position:relative; height:280px; }
+  .mut { color:var(--mut); font-size:13px; }
+  .wide { grid-column:1/-1; } td.nw { white-space:nowrap; }
+  td.cell { text-align:center; }
+  td.base { outline:2px solid var(--acc); outline-offset:-2px; font-weight:700; }
+  .read { margin:8px 0 0; padding-left:20px; } .read li { margin:5px 0; }
+  .interp { border-left:3px solid var(--oro); background:var(--bg); padding:8px 12px; border-radius:0 8px 8px 0; margin:12px 0 0; font-size:14px; }
+  .interp b.t { display:block; color:var(--oro); font-size:12px; letter-spacing:.08em; text-transform:uppercase; margin-bottom:2px; }
+  .seg { border-top:3px solid var(--oro); }
+  .seg h3 { margin:0; font-size:16px; } .seg .big { font-size:24px; font-weight:700; font-variant-numeric:tabular-nums; margin-top:6px; }
+  .co { display:flex; flex-direction:column; gap:8px; }
+  .co.spcx { border:2px solid var(--acc); } .co.ba { border-color:var(--oro); }
+  .co h3 { margin:0; font-size:16px; } .co .desc { font-size:13.5px; margin:0; } .co .why { font-size:12.5px; color:var(--mut); margin:0; }
+  .co .mini { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px 12px; margin-top:4px; }
+  .co .mini .l { font-size:11.5px; color:var(--mut); } .co .mini .v { font-size:15px; font-weight:700; font-variant-numeric:tabular-nums; }
+  .tl { list-style:none; margin:0; padding:0; } .tl li { display:grid; grid-template-columns:96px 1fr; gap:10px; padding:6px 0; border-bottom:1px solid var(--line); font-size:14px; }
+  .tl li:last-child { border-bottom:0; } .tl .d { color:var(--oro); font-weight:700; font-variant-numeric:tabular-nums; }
+  select { font:inherit; color:var(--ink); background:var(--bg); border:1px solid var(--line); border-radius:8px; padding:5px 9px; }
+  iframe.tool { width:100%; border:1px solid var(--line); border-radius:10px; background:var(--card); min-height:520px; display:block; }
+  details { margin:8px 0; } details summary { cursor:pointer; font-weight:600; }
+  details ul { margin:6px 0 0; padding-left:20px; } details li { margin:3px 0; }
+  .note-corr { font-size:12.5px; color:var(--warn); }
+  footer { color:var(--mut); font-size:12.5px; max-width:1100px; margin:0 auto; padding:0 16px 40px; }
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-top">
+      <div>
+        <h1><span class="tk">SPCX</span> — Space Exploration Technologies</h1>
+        <p class="sub" id="h-sub">Cargando datos…</p>
+      </div>
+      <div class="meta">
+        <b>Productos Derivados y Administración de Riesgos Corporativos</b><br>
+        EGADE Business School · Prof. Raymundo Díaz Robles<br>
+        Adrián Villarreal Beltrán · Héctor Guillermo Fuentes González<br>
+        <span id="h-fecha"></span>
+      </div>
+    </div>
+    <div class="hk">
+      <div><h3>Empresa</h3><div class="kr" id="h-emp"></div></div>
+      <div><h3>Mercado de deuda (EE. UU.)</h3><div class="kr" id="h-deuda"></div></div>
+    </div>
+  </div>
+  <div class="goldline"></div>
+  <div class="wrap"><div class="risks" id="h-risks"></div></div>
+</header>
+<nav class="tabs"><div class="wrap" id="tabs" role="tablist"></div></nav>
+<main class="wrap" id="app"></main>
+<footer>Avance académico (EGADE). Datos de LSEG/Refinitiv; cálculos en Python (<code>src/</code>). Los supuestos del equipo no son recomendaciones de inversión.</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>/*__DATA__*/</script>
+<script>/*__TOOLS__*/</script>
+<script>
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+const n = (x, d = 1) => x == null ? "—" : Number(x).toLocaleString("es-MX", { minimumFractionDigits: d, maximumFractionDigits: d });
+const pct = (x, d = 2) => x == null ? "—" : n(x * 100, d) + "%";
+const usd = (x, d = 1) => x == null ? "—" : "$" + n(x, d);
+const xv = (x, d = 2) => x == null ? "—" : n(x, d) + "x";
+const sgn = (x, d = 1) => x == null ? "—" : Math.abs(x) < 0.5 * 10 ** -d ? n(0, d) : (x > 0 ? "+" : "") + n(x, d);
+const bn = (musd, d = 1) => musd == null ? "—" : Math.abs(musd) >= 1e6 ? "$" + n(musd / 1e6, 3) + "T" : "$" + n(musd / 1e3, d) + "B";
+const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const tag = (estado) => {
+  const c = /dato/.test(estado) ? "dato" : /supuesto/.test(estado) ? "sup" : "calc";
+  return `<span class="tag ${c}">${esc(estado)}</span>`;
+};
+const FILES = ["valuacion", "resumen_mercado", "precios_spcx", "treasuries", "bonos", "cobertura", "analisis", "griegas", "empresa", "competidores", "arboles"];
+const get = (f) => (window.__DATA__ && window.__DATA__[f]) ? Promise.resolve(window.__DATA__[f])
+  : fetch("data/" + f + ".json").then((r) => { if (!r.ok) throw new Error(f + ": " + r.status); return r.json(); });
+
+Promise.all(FILES.map(get))
+  .then((arr) => { const d = {}; FILES.forEach((f, i) => (d[f] = arr[i])); render(d); })
+  .catch((e) => { $("#h-sub").textContent = "No se pudieron cargar los datos: " + e.message; });
+
+/* gráficas: una por canvas; se recrean al cambiar de activo */
+const CH = {};
+function mk(id, cfg) { if (CH[id]) CH[id].destroy(); const el = document.getElementById(id); if (!el) return; CH[id] = new Chart(el, cfg); return CH[id]; }
+
+/* herramientas de la tarea (HTML original en un iframe aislado) */
+function montarHerramienta(host, clave, alCargar) {
+  const f = document.createElement("iframe");
+  f.className = "tool"; f.title = clave; f.srcdoc = (window.__TOOLS__ || {})[clave] || "<p>Herramienta no disponible.</p>";
+  const ajustar = () => { try { f.style.height = (f.contentDocument.documentElement.scrollHeight + 6) + "px"; } catch (e) {} };
+  f.addEventListener("load", () => { ajustar(); if (alCargar) alCargar(f.contentWindow, f.contentDocument, ajustar); setTimeout(ajustar, 400); });
+  host.appendChild(f);
+  setInterval(() => { if (f.offsetParent) ajustar(); }, 700);
+}
+
+function render(D) {
+  const { valuacion: v, resumen_mercado: res, precios_spcx: px, treasuries: ust, bonos, cobertura: cob, analisis: an, griegas: gr, empresa: emp, competidores: cmp, arboles: arb } = D;
+  const gc = gr.convertible, gp = gc.posiciones, gx = gc.por_bono;
+  const b = v.base, S = b.S, rz = an.razones, ed = an.deuda, cp = an.comparables;
+  const per = rz.anual.concat(rz.trimestral);
+  const etqP = (p, i) => i < rz.anual.length ? "FY " + p.periodo.slice(0, 4) : "T" + Math.ceil(+p.periodo.slice(5, 7) / 3) + " " + p.periodo.slice(0, 4);
+  const deuda = res.deuda_total_musd, caja = res.caja_e_inversiones_cp_musd, ef = res.efectivo_musd, dn = res.deuda_neta_musd;
+  const m = v.validacion_molson_coors, ev = v.evidencia_volatilidad, cb = cob.base, cal = v.calificaciones;
+  const neg = b.cupon_equilibrio < 0;
+  const acc = css("--acc"), oro = "#c27a1a", gris = "#8892a6", verde = "#6b8f71";
+  const COLA = { SPCX: acc, TSLA: "#b3261e", MU: verde, SPY: "#8e5ea2", NQ: oro };
+  const COL = { SPCX: acc, RKLB: oro, AVAV: verde, KTOS: "#8e5ea2", NOC: gris, GD: "#3b9ab2", BA: "#b3261e" };
+  const filaSpcx = cmp.filas.find((f) => f.es_spcx), pares = cmp.filas.filter((f) => !f.es_spcx);
+  const ultPx = px.datos[px.datos.length - 1], retListado = ultPx.cierre / px.datos[0].cierre - 1;
+  const tri = rz.trimestral, ult = tri[tri.length - 1], ingresos9m = tri.reduce((s, p) => s + p.cifras.ingresos, 0);
+  const ustY = (pl) => ust.puntos.find((p) => p.plazo === pl)?.yield_pct;
+
+  /* ================= ENCABEZADO ================= */
+  $("#h-sub").textContent = emp.sector + " · " + emp.bolsa + " · Estados Unidos";
+  $("#h-fecha").innerHTML = `Datos de mercado al <b>${esc(res.fecha_valuacion)}</b> · opciones y GARCH hasta el <b>3-nov-2026</b>`;
+  const kr = (l, vv, sub) => `<div class="k"><div class="l">${l}</div><div class="v">${vv}${sub ? ` <small>${sub}</small>` : ""}</div></div>`;
+  $("#h-emp").innerHTML = [
+    kr("Último precio", usd(ultPx.cierre, 2), ultPx.fecha.slice(5)),
+    kr("Desde el listado", `<span class="${retListado < 0 ? "dn" : "up"}">${retListado > 0 ? "▲" : "▼"} ${pct(Math.abs(retListado), 1)}</span>`, "vs. 1er cierre"),
+    kr("Capitalización", bn(filaSpcx.cap_musd)), kr("P/E", xv(filaSpcx.pe, 1)), kr("Beta 5A", "n.d.", "historia corta"),
+    kr("Ingresos 9M-26", bn(ingresos9m)), kr("Margen neto 3T-26", `<span class="${ult.razones.margen_neto < 0 ? "dn" : "up"}">${pct(ult.razones.margen_neto, 1)}</span>`),
+    kr("Deuda / capital 3T-26", xv(ult.razones.deuda_sobre_capital, 2))].join("");
+  $("#h-deuda").innerHTML = [
+    kr("UST 2A", pct(ustY("2Y") / 100, 2)), kr("UST 6A", pct(res.ust_6y_pct.valor / 100, 2)), kr("UST 10A", pct(ustY("10Y") / 100, 2)),
+    kr("Yield bonos SPCX 6A", pct(res.yield_bonos_spcx_6y_pct.valor / 100, 2)), kr("Spread vs UST", n(res.spread_bonos_vs_ust_6y_pb.valor, 0), "pb"),
+    kr("Calificación", cal.emisor.map((c) => c.calificacion).join(" / "))].join("");
+  const bonosVig = ed.bonos_vigentes_total_musd;
+  $("#h-risks").innerHTML = `
+    <div><h3>Riesgo de tipo de cambio</h3><div class="lvl bajo">BAJO EN LA DEUDA</div>
+      Los bonos y préstamos listados están en USD y el emisor reporta en USD. La exposición viene de los <b>ingresos de Starlink</b> en 164 países (S-1), que no está cuantificada en nuestros datos: pendiente de verificar en el 10-K.</div>
+    <div><h3>Riesgo de tasa y refinanciamiento</h3><div class="lvl medio">MEDIO</div>
+      Deuda de <b>${bn(deuda.valor)}</b> (${pct(ed.balance.largo_plazo_pct, 0)} de largo plazo), de la cual <b>${bn(bonosVig)}</b> son bonos a tasa fija (cupones de ${n(Math.min(...ed.bonos.filter((x) => x.vigente_musd > 1000).map((x) => x.cupon_pct)), 2)}% a ${n(Math.max(...ed.bonos.filter((x) => x.vigente_musd > 1000).map((x) => x.cupon_pct)), 2)}%). El resto son préstamos (Term Loan B, revolventes y puente de 20,000 M a 2027) que probablemente son de tasa flotante: por confirmar.</div>
+    <div><h3>Instrumentos de cobertura propuestos</h3>
+      <ul><li><b>Convertible a 6 años</b> con prima de ${pct(b.prima, 0)} (bono simple + opción).</li>
+      <li><b>Call spread</b>: compra de calls (note hedge) y venta de warrants a +${pct(cb.prima_warrant, 0)}; costo neto ${n(cb.costo_neto_musd, 1)} M USD.</li>
+      <li><b>T-lock</b> para fijar la tasa del Tesoro durante la emisión (como Molson Coors).</li>
+      <li><b>Swaps de tasa</b> sobre los préstamos flotantes: se desarrollan en la sección de Boeing.</li></ul></div>`;
+
+  /* ================= TAB: EMPRESA ================= */
+  const segTot = emp.segmentos.reduce((s, x) => s + x.ingresos_2025_musd, 0);
+  const tEmpresa = `
+  <section><h2>Qué hace SPCX</h2>
+    <div class="card"><p style="margin:0">${esc(emp.resumen)}</p>
+      <p class="mut" style="margin:8px 0 0">Listado en ${esc(emp.bolsa)} desde el ${esc(emp.fecha_listado)}. ${tag(emp.estado)}</p></div>
+    <div class="grid" style="margin-top:12px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
+      ${emp.segmentos.map((s) => `<div class="card seg"><h3>${esc(s.nombre)}</h3><div class="mut">${esc(s.que_hace)}</div>
+        <div class="big">${n(s.ingresos_2025_musd, 0)} <small class="mut" style="font-size:13px;font-weight:400">M USD · ${pct(s.ingresos_2025_musd / segTot, 0)} del ingreso 2025</small></div>
+        <div class="${s.utilidad_operativa_2025_musd < 0 ? "neg" : "pos"}" style="font-weight:600">Utilidad operativa 2025: ${n(s.utilidad_operativa_2025_musd, 0)} M</div>
+        <div class="mut" style="margin-top:6px">${esc(s.dato)}</div></div>`).join("")}
+    </div>
+    ${emp.avisos.map((a) => `<div class="warn">${esc(a)}</div>`).join("")}
+  </section>
+  <section><h2>Desempeño económico</h2>
+    <div class="two">
+      <div class="card"><b>Ingreso y utilidad operativa por segmento, 2025</b> <span class="mut">(M USD)</span><div class="ch"><canvas id="c-seg"></canvas></div>
+        <p class="mut">Starlink genera toda la utilidad operativa; AI y Space la consumen. Fuente: S-1 vía prensa (secundaria).</p></div>
+      <div class="card"><b>Ingresos, EBITDA y utilidad neta por periodo</b> <span class="mut">(M USD, Refinitiv)</span><div class="ch"><canvas id="c-per"></canvas></div>
+        <p class="mut">El 3T-2026 ingresó ${n(ult.cifras.ingresos, 0)} M, casi el doble que el 2T. La prensa lo atribuye al segmento de IA (≈${n(emp.q3_2026_aprox_musd.AI / 1000, 1)}B de ${n(ult.cifras.ingresos / 1000, 1)}B). ${esc(emp.q3_2026_aprox_musd.nota)}</p></div>
+      <div class="card wide"><b>Precio de SPCX</b> <span class="mut">(${px.n_dias} días desde ${esc(px.desde)}; cierre en USD)</span><div class="ch"><canvas id="c-px"></canvas></div></div>
+    </div>
+    <div class="grid" style="margin-top:12px">
+      <div class="card kpi"><div class="l">Deuda total</div><div class="v">${n(deuda.valor, 0)}</div><div class="n">M USD · ${esc(deuda.fecha)}</div></div>
+      <div class="card kpi"><div class="l">Efectivo</div><div class="v">${n(ef.valor, 0)}</div><div class="n">M USD</div></div>
+      <div class="card kpi"><div class="l">Caja e inversiones CP</div><div class="v">${n(caja.valor, 0)}</div><div class="n">M USD</div></div>
+      <div class="card kpi"><div class="l">Deuda neta</div><div class="v ${dn.valor < 0 ? "pos" : ""}">${n(dn.valor, 0)}</div><div class="n">M USD · negativa = más caja que deuda</div></div>
+    </div>
+  </section>
+  <section><h2>Hitos y riesgos</h2>
+    <div class="two">
+      <div class="card"><b>Cronología</b><ul class="tl" style="margin-top:6px">${emp.hitos.map((h) => `<li><span class="d">${esc(h.fecha)}</span><span>${esc(h.texto)}</span></li>`).join("")}</ul></div>
+      <div class="card"><b>Riesgos que señala el S-1</b><ul class="read">${emp.riesgos.map((r) => `<li>${esc(r)}</li>`).join("")}</ul>
+        <p class="mut">Fuentes: ${emp.fuentes.map((f) => f.url ? `<a href="${esc(f.url)}" target="_blank" rel="noopener">${esc(f.titulo)}</a>` : esc(f.titulo)).join(" · ")}.</p></div>
+    </div>
+  </section>`;
+  const iEmpresa = () => {
+    Chart.defaults.color = css("--mut"); Chart.defaults.borderColor = css("--line");
+    mk("c-seg", { type: "bar", data: { labels: emp.segmentos.map((s) => s.nombre), datasets: [
+      { label: "Ingresos 2025", data: emp.segmentos.map((s) => s.ingresos_2025_musd), backgroundColor: acc },
+      { label: "Utilidad operativa 2025", data: emp.segmentos.map((s) => s.utilidad_operativa_2025_musd), backgroundColor: oro }] },
+      options: { maintainAspectRatio: false, scales: { y: { title: { display: true, text: "M USD" } } } } });
+    mk("c-per", { type: "bar", data: { labels: per.map(etqP), datasets: [
+      { label: "Ingresos", data: per.map((p) => p.cifras.ingresos), backgroundColor: acc },
+      { label: "EBITDA", data: per.map((p) => p.cifras.ebitda), backgroundColor: oro },
+      { label: "Utilidad neta", data: per.map((p) => p.cifras.utilidad_neta), backgroundColor: gris }] },
+      options: { maintainAspectRatio: false, scales: { y: { title: { display: true, text: "M USD" } } } } });
+    mk("c-px", { type: "line", data: { labels: px.datos.map((d) => d.fecha), datasets: [{ data: px.datos.map((d) => d.cierre), borderColor: acc, pointRadius: 0, borderWidth: 2, tension: 0.1 }] },
+      options: { maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { ticks: { maxTicksLimit: 6 } } } } });
+  };
+
+  /* ================= TAB: CONVERTIBLE ================= */
+  const tConv = `
+  <section><h2>Resumen</h2>
+    <div class="grid">
+      <div class="card kpi"><div class="l">Precio SPCX</div><div class="v">${usd(S, 2)}</div><div class="n">Cierre ${esc(res.precio_referencia_spcx.fecha)}</div></div>
+      <div class="card kpi"><div class="l">Valor de la opción por bono</div><div class="v">${usd(b.opcion_por_bono)}</div><div class="n">${n(b.acciones_por_bono, 2)} acciones a ${usd(b.precio_conversion, 2)}</div></div>
+      <div class="card kpi"><div class="l">Cupón de equilibrio</div><div class="v ${neg ? "neg" : ""}">${pct(b.cupon_equilibrio)}</div><div class="n">${neg ? "Negativo: ni con cupón 0% baja de la par" : "Cupón que iguala el valor a la par"}</div></div>
+      <div class="card kpi"><div class="l">Valor con cupón 0%</div><div class="v">${usd(b.valor_con_cupon_cero)}</div><div class="n">Bono simple + opción</div></div>
+      <div class="card kpi"><div class="l">Prima para cupón 0%</div><div class="v">${b.prima_para_cupon_cero == null ? "—" : pct(b.prima_para_cupon_cero, 1)}</div><div class="n">Prima que lleva el valor a la par sin cupón</div></div>
+    </div>
+    ${v.avisos.map((a) => `<div class="warn">${esc(a)}</div>`).join("")}
+  </section>
+  <section><h2>Valuación base</h2>
+    <div class="card">
+      <div class="mut">Valor del convertible = bono simple + opción de conversión. Para valer 1,000 USD, el bono simple debe valer:</div>
+      <div class="bar"><div class="b1" style="flex:${b.bono_simple_necesario}">Bono simple ${usd(b.bono_simple_necesario)}</div><div class="b2" style="flex:${b.opcion_por_bono}">Opción ${usd(b.opcion_por_bono)}</div></div>
+      <div class="scroll"><table>
+        <tr><th>Paso</th><th>Valor</th></tr>
+        <tr><td>Precio de conversión = ${usd(S, 2)} × (1 + ${pct(b.prima, 0)})</td><td>${usd(b.precio_conversion, 2)}</td></tr>
+        <tr><td>Acciones por bono = 1,000 / precio de conversión</td><td>${n(b.acciones_por_bono, 3)}</td></tr>
+        <tr><td>Call Black-Scholes por acción (σ ${pct(b.sigma, 1)}, r ${pct(b.r)}, T ${b.plazo})</td><td>${usd(b.call_por_accion, 2)}</td></tr>
+        <tr><td>Opción por bono = call × acciones</td><td>${usd(b.opcion_por_bono)}</td></tr>
+        <tr><td>Bono simple necesario = 1,000 − opción</td><td>${usd(b.bono_simple_necesario)}</td></tr>
+        <tr><td>Cupón de equilibrio (descuento ${pct(b.ytm)}, pagos semestrales)</td><td class="${neg ? "neg" : ""}">${pct(b.cupon_equilibrio)}</td></tr>
+      </table></div>
+      <p class="mut">Un cupón negativo no se puede emitir: el piso práctico es 0%. Con cupón 0% el convertible valdría ${usd(b.valor_con_cupon_cero)}, así que habría que subir la prima (a cerca de ${b.prima_para_cupon_cero == null ? "—" : pct(b.prima_para_cupon_cero, 1)}) o aceptar un precio de emisión mayor a la par.</p>
+    </div>
+  </section>
+  <section><h2>Sensibilidades</h2>
+    <div class="two">
+      <div class="card"><b>Cupón de equilibrio</b> <span class="mut">(prima × volatilidad)</span>
+        <div class="scroll"><table id="t-sens"></table></div>
+        <p class="mut">${esc(v.sensibilidad_prima_vol.nota_vols)}</p></div>
+      <div class="card"><b>Tasa de descuento del bono simple</b> <span class="mut">(prima ${pct(b.prima, 0)}, σ ${pct(b.sigma, 1)})</span>
+        <div class="scroll"><table id="t-tasa"></table></div>
+        <p class="mut">La tasa base es el yield de los bonos de SPCX interpolado a 6 años. Una tasa más alta baja el valor del bono simple y sube el cupón de equilibrio.</p></div>
+    </div>
+  </section>
+  <section><h2>Supuestos y fuentes</h2>
+    <div class="card scroll"><table>
+      <tr><th>Supuesto</th><th>Valor</th><th>Estado</th><th style="text-align:left">Fuente</th></tr>
+      ${v.supuestos.concat(cob.supuestos.filter((x) => !["prima_conversion", "volatilidad"].includes(x.nombre))).map((s) => `<tr><td>${esc(s.nombre)}</td><td>${s.valor <= 1 && !["plazo_anios", "dividendos"].includes(s.nombre) ? pct(s.valor, 2) : n(s.valor, 2)}</td><td>${tag(s.estado)}</td><td style="text-align:left">${esc(s.fuente)}${s.nota ? `<div class="mut">${esc(s.nota)}</div>` : ""}</td></tr>`).join("")}
+    </table></div>
+  </section>
+  <section><h2>Validación contra el caso Molson Coors</h2>
+    <div class="card"><p class="mut">${esc(m.descripcion)}</p>
+      <div class="scroll"><table>
+        <tr><th></th><th>Nuestro código</th><th>PDF del caso</th></tr>
+        <tr><td>Opción por bono</td><td>${usd(m.opcion_por_bono)}</td><td>${usd(m.pdf.opcion_por_bono)}</td></tr>
+        <tr><td>Bono simple</td><td>${usd(m.bono_simple_necesario)}</td><td>${usd(m.pdf.bono_simple)}</td></tr>
+        <tr><td>Cupón de equilibrio</td><td>${pct(m.cupon_equilibrio)}</td><td>${pct(m.pdf.cupon_equilibrio)}</td></tr>
+      </table></div></div>
+  </section>`;
+  const iConv = () => {
+    const sv = v.sensibilidad_prima_vol;
+    const rows = sv.primas.map((p) => `<tr><td>Prima ${pct(p, 0)}</td>${sv.vols.map((s) => {
+      const c = sv.celdas.find((x) => x.prima === p && x.sigma === s);
+      const base = Math.abs(p - b.prima) < 1e-9 && Math.abs(s - b.sigma) < 1e-4;
+      return `<td class="cell ${base ? "base" : ""} ${c.cupon_equilibrio < 0 ? "neg" : ""}">${pct(c.cupon_equilibrio)}</td>`;
+    }).join("")}</tr>`).join("");
+    $("#t-sens").innerHTML = `<tr><th></th>${sv.vols.map((s) => `<th style="text-align:center">σ ${pct(s, 1)}</th>`).join("")}</tr>${rows}`;
+    $("#t-tasa").innerHTML = `<tr><th>Tasa de descuento</th><th>Valor con cupón 0%</th><th>Cupón de equilibrio</th></tr>` +
+      v.sensibilidad_tasa_descuento.map((c) => `<tr><td>${pct(c.ytm)}</td><td>${usd(c.valor_con_cupon_cero)}</td><td class="${c.cupon_equilibrio < 0 ? "neg" : ""}">${pct(c.cupon_equilibrio)}</td></tr>`).join("");
+  };
+
+  /* ================= TAB: COBERTURA ================= */
+  const tCob = `
+  <section><h2>Cobertura: note hedge y warrants</h2>
+    <div class="grid">
+      <div class="card kpi"><div class="l">Costo del note hedge</div><div class="v">${n(cb.costo_note_hedge_musd, 1)}</div><div class="n">M USD · call a ${usd(cb.precio_conversion, 2)}</div></div>
+      <div class="card kpi"><div class="l">Ingreso por warrants</div><div class="v">${n(cb.ingreso_warrants_musd, 1)}</div><div class="n">M USD · call a ${usd(cb.strike_warrants, 2)}</div></div>
+      <div class="card kpi"><div class="l">Costo neto</div><div class="v">${n(cb.costo_neto_musd, 1)}</div><div class="n">M USD · ${pct(cb.costo_neto_pct_emision, 1)} de la emisión</div></div>
+      <div class="card kpi"><div class="l">Acciones subyacentes</div><div class="v">${n(cb.acciones_subyacentes_millones, 2)}</div><div class="n">M · ${pct(cb.dilucion_conversion_total_pct, 3)} de ${n(cb.acciones_circulacion_millones, 0)} M en circulación</div></div>
+    </div>
+    <div class="two" style="margin-top:12px">
+      <div class="card"><b>Estructura</b>
+        <div class="scroll"><table>
+          <tr><th>Concepto</th><th>Valor</th></tr>
+          <tr><td>Emisión</td><td>${n(cb.emision_musd, 0)} M USD (${n(cb.bonos_millones, 2)} M de bonos)</td></tr>
+          <tr><td>Precio de conversión (prima ${pct(cb.prima, 0)})</td><td>${usd(cb.precio_conversion, 2)}</td></tr>
+          <tr><td>Strike de los warrants (prima ${pct(cb.prima_warrant, 0)})</td><td>${usd(cb.strike_warrants, 2)}</td></tr>
+          <tr><td>Call del note hedge por acción</td><td>${usd(cb.call_note_hedge_por_accion, 2)}</td></tr>
+          <tr><td>Call de los warrants por acción</td><td>${usd(cb.call_warrant_por_accion, 2)}</td></tr>
+          <tr><td>Volatilidad usada en ambos</td><td>${pct(cb.sigma, 1)}</td></tr>
+        </table></div>
+        <p class="mut">${cob.avisos.map(esc).join(" ")}</p></div>
+      <div class="card"><b>Costo neto (M USD)</b> <span class="mut">(volatilidad × prima de los warrants)</span>
+        <div class="scroll"><table id="t-cob-sens"></table></div>
+        <p class="mut">${esc(cob.modelo)}</p></div>
+    </div>
+  </section>
+  <section><h2>Escenarios al vencimiento</h2>
+    <div class="card"><div class="ch" style="height:300px"><canvas id="c-esc"></canvas></div>
+      <p class="mut">Costo para el emisor por encima de la par (M USD), sin cobertura y con cobertura, según el precio de SPCX al vencimiento. No incluye el costo neto inicial de la cobertura (${n(cb.costo_neto_musd, 1)} M USD).</p>
+      <div class="scroll"><table id="t-esc"></table></div></div>
+  </section>`;
+  const iCob = () => {
+    const sg = [...new Set(cob.sensibilidad_costo_neto.map((c) => c.sigma))], pw = [...new Set(cob.sensibilidad_costo_neto.map((c) => c.prima_warrant))];
+    $("#t-cob-sens").innerHTML = `<tr><th></th>${pw.map((p) => `<th style="text-align:center">Warrants +${pct(p, 0)}</th>`).join("")}</tr>` +
+      sg.map((s) => `<tr><td>σ ${pct(s, 1)}</td>${pw.map((p) => {
+        const c = cob.sensibilidad_costo_neto.find((x) => x.sigma === s && x.prima_warrant === p);
+        const base = Math.abs(s - cb.sigma) < 1e-4 && Math.abs(p - cb.prima_warrant) < 1e-9;
+        return `<td class="cell ${base ? "base" : ""}">${n(c.costo_neto_musd, 1)}</td>`;
+      }).join("")}</tr>`).join("");
+    $("#t-esc").innerHTML = `<tr><th>Precio SPCX</th><th>vs hoy</th><th>Valor por bono</th><th>Costo sin cobertura (M)</th><th>Costo con cobertura (M)</th><th>Acciones nuevas con cobertura (M)</th><th>Dilución con cobertura</th></tr>` +
+      cob.escenarios.map((e) => `<tr><td>${usd(e.precio_vencimiento, 2)}</td><td>${pct(e.variacion_vs_hoy, 0)}</td><td>${usd(e.valor_por_bono, 0)}</td><td>${n(e.costo_sin_cobertura_musd, 1)}</td><td>${n(e.costo_neto_vencimiento_musd, 1)}</td><td>${n(e.acciones_nuevas_con_cobertura_millones, 3)}</td><td>${pct(e.dilucion_con_cobertura_pct, 4)}</td></tr>`).join("");
+    mk("c-esc", { type: "line", data: { labels: cob.escenarios.map((e) => "$" + n(e.precio_vencimiento, 0)), datasets: [
+      { label: "Sin cobertura", data: cob.escenarios.map((e) => e.costo_sin_cobertura_musd), borderColor: oro, backgroundColor: oro, pointRadius: 3, tension: 0 },
+      { label: "Con cobertura", data: cob.escenarios.map((e) => e.costo_neto_vencimiento_musd), borderColor: acc, backgroundColor: acc, pointRadius: 3, tension: 0 }] },
+      options: { maintainAspectRatio: false, scales: { x: { title: { display: true, text: "Precio de SPCX al vencimiento" } }, y: { title: { display: true, text: "M USD" } } } } });
+  };
+
+  /* ================= TAB: OPCIONES Y GRIEGAS ================= */
+  const tOpc = `
+  <section><h2>Volatilidad: evidencia de mercado</h2>
+    <div class="two">
+      <div class="card"><b>IV por strike</b> <span class="mut">(recalculada con precios bid/ask)</span><div class="ch"><canvas id="c-iv"></canvas></div>
+        <p class="mut">Puntos llenos: IV recalculada con Black-Scholes europeo sobre el punto medio de bid y ask. Puntos huecos: la IV que muestra TradingView.</p></div>
+      <div class="card"><b>Resumen</b>
+        <div class="scroll"><table>
+          <tr><th>Fuente</th><th>IV</th></tr>
+          <tr><td>Base elegida (Refinitiv, dic-2028, strike 150, promedio call y put)</td><td>${pct(b.sigma, 1)}</td></tr>
+          <tr><td>Recalculada con precios de TradingView (rango)</td><td>${pct(ev.resumen.iv_recalculada_min, 1)} a ${pct(ev.resumen.iv_recalculada_max, 1)}</td></tr>
+          <tr><td>Mostrada por TradingView (rango)</td><td>${pct(ev.resumen.iv_tradingview_min, 1)} a ${pct(ev.resumen.iv_tradingview_max, 1)}</td></tr>
+          <tr><td>Realizada de SPCX, 60 días</td><td>${pct(v.volatilidades.realizada_spcx_60d, 1)}</td></tr>
+        </table></div>
+        <p class="mut">${esc(ev.nota)}</p>
+        <p class="mut">Fuentes: ${esc(ev.fuente)}. Datos transcritos de pantalla; solo las cifras usadas.</p>
+        <div class="scroll"><table>
+          <tr><th>Refinitiv (27-oct)</th><th>Tipo</th><th>Strike</th><th>IV de cierre</th></tr>
+          ${ev.refinitiv.map((x) => `<tr><td>${esc(x.vencimiento)}</td><td>${esc(x.tipo)}</td><td>${n(x.strike, 0)}</td><td>${pct(x.iv_cierre, 2)}</td></tr>`).join("")}
+        </table></div></div>
+      <div class="card wide"><b>Volatilidad</b> <span class="mut">(implícita vs realizada, % anualizado)</span><div class="ch"><canvas id="c-vol"></canvas></div>
+        <p class="mut">SPCX tiene pocos días de historia, por lo que su volatilidad realizada es poco confiable. Comparables con 2 años de datos.</p></div>
+    </div>
+  </section>
+  <section><h2>Griegas</h2>
+    <div class="grid">
+      <div class="card kpi"><div class="l">Delta de la opción (por acción)</div><div class="v">${n(gc.por_accion.opcion_conversion.delta, 3)}</div><div class="n">strike ${usd(gc.parametros.X, 2)}, plazo ${gc.parametros.plazo} años</div></div>
+      <div class="card kpi"><div class="l">Delta por bono</div><div class="v">${n(gx.delta, 2)}</div><div class="n">acciones equivalentes (de ${n(gc.parametros.acciones_millones / gc.parametros.bonos_millones, 2)})</div></div>
+      <div class="card kpi"><div class="l">Vega por bono</div><div class="v">${usd(gx.vega, 2)}</div><div class="n">USD por punto de volatilidad</div></div>
+      <div class="card kpi"><div class="l">Theta por bono</div><div class="v ${gx.theta < 0 ? "neg" : ""}">${usd(gx.theta, 3)}</div><div class="n">USD por día calendario</div></div>
+      <div class="card kpi"><div class="l">Rho por bono</div><div class="v">${usd(gx.rho, 2)}</div><div class="n">USD por punto de tasa</div></div>
+    </div>
+    <div class="card" style="margin-top:12px"><b>Posición del emisor</b> ${tag("calculado")} <span class="mut">(emisión de ${n(gc.parametros.emision_musd, 0)} M; larga +, corta −; montos en millones)</span>
+      <div class="scroll"><table>
+        <tr><th></th><th>Delta (M acciones)</th><th>Delta (M USD)</th><th>Gamma (M acc. por USD)</th><th>Vega (M USD por punto)</th><th>Theta (M USD por día)</th><th>Rho (M USD por punto)</th></tr>
+        ${[["Opción de conversión vendida", "opcion_conversion_vendida"], ["Note hedge comprado", "note_hedge_comprado"], ["Warrants vendidos", "warrants_vendidos"], ["Emisor con cobertura", "emisor_con_cobertura"], ["Emisor sin cobertura", "emisor_sin_cobertura"]].map(([t, k]) => `<tr${k === "emisor_con_cobertura" ? ' style="font-weight:700"' : ""}><td class="nw">${t}</td><td>${n(gp[k].delta_acciones_m, 3)}</td><td>${n(gp[k].delta_usd_m, 1)}</td><td>${n(gp[k].gamma_acciones_m_por_usd, 4)}</td><td>${n(gp[k].vega_musd_por_punto, 2)}</td><td>${n(gp[k].theta_musd_por_dia, 3)}</td><td>${n(gp[k].rho_musd_por_punto, 2)}</td></tr>`).join("")}
+      </table></div>
+      <p class="mut">El note hedge cancela exactamente la opción de conversión; lo que queda es la exposición de los warrants vendidos.</p></div>
+    <div class="two" style="margin-top:12px">
+      <div class="card"><b>Delta del emisor según el precio de SPCX</b> <span class="mut">(M de acciones)</span><div class="ch"><canvas id="c-gdelta"></canvas></div></div>
+      <div class="card"><b>Vega por strike, calls ene-2029</b> <span class="mut">(USD por punto de vol.)</span><div class="ch"><canvas id="c-gvega"></canvas></div></div>
+    </div>
+    <div class="card" style="margin-top:12px"><b>Opciones listadas: LSEG vs cálculo propio</b> ${tag("dato / calculado")} <span class="mut">(capturas del ${esc(gr.fecha_captura)}; vacío = LSEG no las mostró)</span>
+      <div class="scroll" style="max-height:440px"><table>
+        <tr><th>Venc.</th><th>Tipo</th><th>Strike</th><th>Punto medio</th><th>IV LSEG</th><th>IV del precio</th><th>Delta LSEG</th><th>Delta propia</th><th>Gamma LSEG</th><th>Gamma propia</th><th>Vega LSEG</th><th>Vega propia</th><th>Theta LSEG</th><th>Theta propia</th></tr>
+        ${gr.opciones.map((o) => `<tr><td class="nw">${esc(o.vencimiento)}</td><td>${esc(o.tipo)}</td><td>${n(o.strike, 0)}</td><td>${n(o.punto_medio, 2)}</td><td>${o.iv_lseg == null ? "—" : pct(o.iv_lseg, 1)}</td><td>${o.iv_punto_medio == null ? "—" : pct(o.iv_punto_medio, 1)}</td>${["delta", "gamma", "vega", "theta"].map((k) => `<td>${o.lseg ? n(o.lseg[k], 4) : "—"}</td><td>${o.propias ? n(o.propias[k], 4) : "—"}</td>`).join("")}</tr>`).join("")}
+      </table></div>
+      <p class="mut">Diferencia media propia vs LSEG: ${Object.entries(gr.diferencias).map(([c, d]) => `${esc(c)}: delta ${pct(d.delta.media, 1)}, vega ${pct(d.vega.media, 1)}, theta ${pct(d.theta.media, 1)}`).join(" · ")}.</p></div>
+    ${gr.avisos.map((a) => `<div class="warn">${esc(a)}</div>`).join("")}
+  </section>`;
+  const iOpc = () => {
+    const vo = v.volatilidades;
+    const etq = ["IV opciones (base)", "SPCX realizada 60d", "SPCX realizada total", ...Object.keys(vo.comparables_realizada_total)];
+    const val = [vo.implicita_base, vo.realizada_spcx_60d, vo.realizada_spcx_total, ...Object.values(vo.comparables_realizada_total)].map((x) => +(x * 100).toFixed(1));
+    mk("c-vol", { type: "bar", data: { labels: etq, datasets: [{ data: val, backgroundColor: val.map((_, i) => (i === 0 ? oro : i < 3 ? acc : gris)) }] },
+      options: { maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { title: { display: true, text: "% anualizado" } } } } });
+    mk("c-gdelta", { type: "line", data: { labels: gc.curva_precio.map((c) => "$" + n(c.precio, 0)), datasets: [
+      { label: "Sin cobertura", data: gc.curva_precio.map((c) => c.delta_sin_cobertura), borderColor: oro, backgroundColor: oro, pointRadius: 3, tension: 0 },
+      { label: "Con cobertura", data: gc.curva_precio.map((c) => c.delta_con_cobertura), borderColor: acc, backgroundColor: acc, pointRadius: 3, tension: 0 }] },
+      options: { maintainAspectRatio: false, scales: { x: { title: { display: true, text: "Precio de SPCX" } }, y: { title: { display: true, text: "M de acciones" } } } } });
+    const gv = (venc, quien) => gr.opciones.filter((o) => o.tipo === "call" && o.vencimiento === venc && (quien === "lseg" ? o.lseg : o.propias)).map((o) => ({ x: o.strike, y: quien === "lseg" ? o.lseg.vega : o.propias.vega }));
+    mk("c-gvega", { type: "scatter", data: { datasets: [
+      { label: "LSEG", data: gv("2029-01-19", "lseg"), backgroundColor: oro, pointRadius: 4 },
+      { label: "Cálculo propio", data: gv("2029-01-19", "propia"), backgroundColor: acc, pointRadius: 3 }] },
+      options: { maintainAspectRatio: false, scales: { x: { type: "linear", title: { display: true, text: "Strike" } }, y: { title: { display: true, text: "Vega" } } } } });
+    const serie = (venc, tipo, campo) => ev.tradingview.filter((x) => x.vencimiento === venc && x.tipo === tipo && x[campo] != null).map((x) => ({ x: x.strike, y: +(x[campo] * 100).toFixed(2) }));
+    mk("c-iv", { type: "scatter", data: { datasets: [
+      { label: "Calls ene-2029, recalculada", data: serie("2029-01-19", "call", "iv_recalculada"), backgroundColor: acc, pointRadius: 4 },
+      { label: "Calls dic-2028, recalculada", data: serie("2028-12-15", "call", "iv_recalculada"), backgroundColor: oro, pointRadius: 4 },
+      { label: "Puts ene-2029, recalculada", data: serie("2029-01-19", "put", "iv_recalculada"), backgroundColor: verde, pointRadius: 4 },
+      { label: "Calls ene-2029, TradingView", data: serie("2029-01-19", "call", "iv_tradingview"), borderColor: acc, backgroundColor: "transparent", pointRadius: 4, pointStyle: "rectRot" },
+      { label: "Puts ene-2029, TradingView", data: serie("2029-01-19", "put", "iv_tradingview"), borderColor: verde, backgroundColor: "transparent", pointRadius: 4, pointStyle: "rectRot" }] },
+      options: { maintainAspectRatio: false, scales: { x: { type: "linear", title: { display: true, text: "Strike" } }, y: { min: 40, max: 65, title: { display: true, text: "IV %" } } } } });
+  };
+
+  /* ================= TAB: ÁRBOLES ================= */
+  const A = arb.activos, aS = A.find((a) => a.activo === "SPCX");
+  const rank = (xs) => xs.map((x) => xs.filter((y) => y < x).length + (xs.filter((y) => y === x).length - 1) / 2);
+  const corr = (a, c) => { const ma = a.reduce((s, x) => s + x, 0) / a.length, mc = c.reduce((s, x) => s + x, 0) / c.length;
+    return a.reduce((s, x, i) => s + (x - ma) * (c[i] - mc), 0) / Math.sqrt(a.reduce((s, x) => s + (x - ma) ** 2, 0) * c.reduce((s, x) => s + (x - mc) ** 2, 0)); };
+  const lista = (f, d = 3) => A.map((a) => `${a.activo} ${f(a).toFixed(d)}`).join(", ");
+  const vt = A.map((a) => a.valor_temporal_pct_spot * 100), vols = A.map((a) => a.iv_put * 100);
+  const iMin = vt.indexOf(Math.min(...vt)), iMax = vt.indexOf(Math.max(...vt)), rhoVT = corr(rank(vt), rank(vols));
+  const gmin = A.reduce((i, a, k) => (a.griegas_rel.gamma_x_S_100 < A[i].griegas_rel.gamma_x_S_100 ? k : i), 0);
+  const gmax = A.reduce((i, a, k) => (a.griegas_rel.gamma_x_S_100 > A[i].griegas_rel.gamma_x_S_100 ? k : i), 0);
+  const parMax = Math.max(...A.map((a) => Math.abs(a.paridad_obs - a.paridad_teo) / a.call_mid)) * 100;
+  const fin = (a) => a.convergencia[a.convergencia.length - 1];
+  const sel = (id) => `<select id="${id}">${A.map((a) => `<option value="${a.activo}">${a.activo}</option>`).join("")}</select>`;
+  const tArb = `
+  <section><h2>Árboles binomiales: put americana (CRR)</h2>
+    <div class="card"><p style="margin:0">Se valora una put americana at-the-money con el árbol de Cox-Ross-Rubinstein (Hull, cap. 13 y 21): en cada nodo se compara <b>ejercer ya</b> contra <b>esperar</b>. Abajo están los resultados de la tarea del 21-oct (cinco subyacentes, cadena a 30 días), la herramienta interactiva con la cadena de SPCX del 3-nov y las estrategias que se operaron en clase.</p>
+      <div class="warn" style="margin-top:10px">Fechas distintas: la tarea usa SPCX a ${usd(aS.S0, 2)} (21-oct, r = ${pct(arb.r, 2)}); la herramienta interactiva usa 141.31 (3-nov, r = 3.97 %); el convertible usa ${usd(S, 2)} (26-oct).</div></div>
+  </section>
+  <section><h2>Resultados de la tarea (21-oct-2026)</h2>
+    <div class="card"><span class="mut">Put ATM a 30 días; σ = IV implícita de la put con el árbol americano (N = 500); valores con N = 1,000. NQ es opción sobre el futuro (q = r), en puntos del índice.</span> ${tag(arb.estado)}
+      <div class="scroll"><table>
+        <tr><th>Activo</th><th>S₀</th><th>K</th><th>IV plataforma</th><th>IV put (árbol)</th><th>Put (punto medio)</th><th>Europea (BS)</th><th>Americana</th><th>Prima de ej. anticipado</th><th>Delta</th><th>Gamma</th><th>Theta/día</th><th>Vega</th><th>Rho</th></tr>
+        ${A.map((a) => `<tr${a.activo === "SPCX" ? ' style="font-weight:700"' : ""}><td>${a.activo}</td><td>${n(a.S0, a.S0 > 1000 ? 0 : 2)}</td><td>${n(a.K, 0)}</td><td>${pct(a.iv_plataforma, 1)}</td><td>${pct(a.iv_put, 1)}</td><td>${n(a.put_mid, 2)}</td><td>${n(fin(a).bs, 2)}</td><td>${n(fin(a).americana, 2)}</td><td>${pct(a.prima_ejercicio_pct, 2)}</td><td>${n(a.griegas.delta, 3)}</td><td>${n(a.griegas.gamma, 5)}</td><td>${n(a.griegas.theta, 3)}</td><td>${n(a.griegas.vega, 3)}</td><td>${n(a.griegas.rho, 3)}</td></tr>`).join("")}
+      </table></div>
+      <p class="mut">Calculado en Python (<code>src/arboles.py</code>); reproduce el reporte de R de la clase (precios, griegas y número de nodos de ejercicio).</p>
+      <div class="interp"><b class="t">Interpretación: volatilidad implícita</b>La IV de la plataforma menos la IV implícita de la put (puntos de vol.) es: ${A.map((a) => `${a.activo} ${sgn((a.iv_plataforma - a.iv_put) * 100, 1)}`).join(", ")}. Una diferencia cercana a 0 indica que la IV mostrada es consistente con los precios bid-ask; una grande indica que Black-Scholes con esa IV no reproduce el precio. Por eso la σ del árbol se calibra con los precios y no con la IV mostrada. La paridad put-call es razonablemente coherente: la diferencia máxima es ${n(parMax, 1)} % del precio de la call.</div>
+    </div>
+  </section>
+  <section><h2>Convergencia, valor y griegas por activo</h2>
+    <div class="card"><label class="mut">Activo: </label>${sel("ar-sel")}
+      <div class="three" style="margin-top:10px">
+        <div><b>Convergencia al aumentar los pasos</b><div class="ch"><canvas id="c-ar-conv"></canvas></div></div>
+        <div><b>Valor de la put según el precio del subyacente</b><div class="ch"><canvas id="c-ar-val"></canvas></div></div>
+        <div><b>Delta según el precio del subyacente</b><div class="ch"><canvas id="c-ar-delta"></canvas></div></div>
+      </div>
+      <div class="interp"><b class="t">Interpretación: convergencia</b>Con pocos pasos el precio oscila porque el árbol es muy grueso; a partir de unos cientos de pasos se estabiliza. La put europea del árbol converge a Black-Scholes (${A.map((a) => `${a.activo} ${n(fin(a).bs, 2)}`).join(", ")}), lo que valida la implementación (en NQ, a Black-76). La americana queda siempre por encima de la europea: con N = 1,000 vale ${A.map((a) => `${a.activo} ${n(fin(a).americana, 2)}`).join(", ")}.</div>
+      <div class="interp"><b class="t">Interpretación: valor de la put</b>Cuando el subyacente cae mucho (zona izquierda), la put americana se pega al valor intrínseco K − S: ahí es óptimo ejercer, y por eso queda por encima de la europea. El valor temporal de la put ATM (% del spot) va de ${n(vt[iMin], 2)} % en ${A[iMin].activo} (vol ${n(vols[iMin], 1)} %) a ${n(vt[iMax], 2)} % en ${A[iMax].activo} (vol ${n(vols[iMax], 1)} %): crece con la volatilidad (correlación de rangos entre ambos: ${n(rhoVT, 2)}).</div>
+      <div class="interp"><b class="t">Interpretación: griegas</b>
+        <b>Delta</b> (${lista((a) => a.griegas.delta)}): negativa porque la put gana cuando el subyacente baja; cerca de −0.5 indica una opción at-the-money. Va de casi 0 (muy fuera del dinero) a −1 (muy dentro, donde el ejercicio anticipado es óptimo); para cubrir una put comprada hay que comprar el subyacente en proporción a |Δ|.<br>
+        <b>Gamma</b> (${lista((a) => a.griegas.gamma, 5)}): positiva; en unidades relativas (gamma × S / 100) la más alta es la de ${A[gmax].activo} (vol ${n(vols[gmax], 1)} %) y la más baja la de ${A[gmin].activo} (vol ${n(vols[gmin], 1)} %): con menor volatilidad, la delta cambia más rápido al moverse el precio.<br>
+        <b>Theta</b> (${lista((a) => a.griegas.theta)} por día): negativa; el paso del tiempo erosiona la opción (${lista((a) => a.griegas_rel.theta_sobre_prima * 100, 2)} % de la prima por día).<br>
+        <b>Vega</b> (${lista((a) => a.griegas.vega)} por punto): positiva; comprar la put es apostar a que sube la volatilidad. <b>Rho</b> (${lista((a) => a.griegas.rho)} por punto): negativa; una tasa más alta reduce el valor de la put.</div>
+    </div>
+  </section>
+  <section><h2>Prima de ejercicio anticipado y frontera de ejercicio</h2>
+    <div class="two">
+      <div class="card"><b>Prima de ejercicio anticipado según la tasa</b> <span class="mut">(% de la put europea)</span><div class="ch"><canvas id="c-ar-r"></canvas></div>
+        <div class="interp"><b class="t">Interpretación</b>Con tasa 0 el ejercicio anticipado no aporta valor; conforme sube la tasa, cobrar el strike antes se vuelve más atractivo (el dinero recibido gana intereses) y la prima crece. Con r = ${pct(arb.r, 2)} y N = 1,000, la prima como % de la put europea es: ${A.map((a) => `${a.activo} ${n(a.prima_ejercicio_pct * 100, 2)} %`).join(", ")}.</div></div>
+      <div class="card"><b>Frontera de ejercicio óptimo</b> <span class="mut">(S/K por debajo de la cual conviene ejercer)</span><div class="ch"><canvas id="c-ar-fr"></canvas></div>
+        <div class="interp"><b class="t">Interpretación</b>Si el precio del subyacente cae por debajo de la curva, la regla del árbol es ejercer; por encima, mantener. La frontera sube hacia el strike conforme se acerca el vencimiento (queda menos valor temporal que perder) y se aleja del strike cuando la volatilidad es alta. En los árboles de 4 pasos hay ${A.map((a) => `${a.activo} ${a.nodos_ejercicio_4_pasos}`).join(", ")} nodos de ejercicio de 10 nodos de decisión: son pocos porque la opción vive solo 30 días.</div></div>
+    </div>
+    <div class="card" style="margin-top:12px"><b>Ejemplo de Hull: put americana de dos pasos</b> <span class="mut">(S₀ = ${arb.hull.S0}, K = ${arb.hull.K}, r = ${pct(arb.hull.r, 0)}, σ = ${pct(arb.hull.sigma, 0)}, ${arb.hull.T} años)</span>
+      <div class="interp"><b class="t">Interpretación</b>La put americana vale ${n(arb.hull.americana, 4)} y la europea ${n(arb.hull.europea, 4)}; la diferencia (${n(arb.hull.americana - arb.hull.europea, 4)}) es el valor de poder ejercer antes: en el nodo donde el precio baja a 37.04 al cabo de un año conviene cobrar el strike de inmediato (14.96 de ejercicio contra 12.42 de continuación).</div></div>
+  </section>
+  <section><h2>Árbol de decisión interactivo de SPCX (cierre del 3-nov)</h2>
+    <p class="mut">Cambia el precio, el strike, la volatilidad o la tasa y pulsa <b>Calcular</b>. Naranja = conviene ejercer en ese nodo; azul = esperar.</p>
+    <div id="host-arb"></div>
+  </section>
+  <section><h2>Estrategias operadas en clase</h2>
+    <div class="two">
+      <div class="card"><b>Clase 5 · 27-oct-2026</b> <span class="mut">Compras de opciones con árboles</span>
+        <div class="scroll"><table>
+          <tr><th>Activo</th><th>Estrategia</th><th>Patas</th><th>Pérdida máx.</th><th>Ganancia máx.</th><th>Equilibrio</th></tr>
+          <tr><td>TSLA</td><td>Bull call spread</td><td style="text-align:left">Compro call 405 (ask 18.35), vendo call 430 (bid 7.95)</td><td>$1,040</td><td>$1,460</td><td>415.40 (+1.9%)</td></tr>
+          <tr><td>SPCX</td><td>Bull call spread</td><td style="text-align:left">Compro call 150 (ask 7.50), vendo call 155 (bid 5.25)</td><td>$225</td><td>$275</td><td>152.25 (+2.5%)</td></tr>
+          <tr><td>SPY</td><td>Call larga</td><td style="text-align:left">Compro call 770 (ask 12.39)</td><td>$1,239</td><td>Sin tope</td><td>782.39 (+1.7%)</td></tr>
+          <tr><td>MU</td><td>Esperar</td><td style="text-align:left">No abrir hoy</td><td>n/a</td><td>n/a</td><td>n/a</td></tr>
+          <tr><td>MNQ</td><td>No operar</td><td style="text-align:left">n/a</td><td>n/a</td><td>n/a</td><td>n/a</td></tr>
+        </table></div>
+        <ul class="read">
+          <li><b>TSLA y SPCX:</b> son los spreads con mejor relación ganancia-pérdida (1.40 a 1 y 1.22 a 1) y buena liquidez en esos strikes; una call sola costaría casi el doble.</li>
+          <li><b>SPY:</b> el call spread 770/775 es mala idea (ganancia $203 por riesgo de $297). La call sola cuesta 1.6 % del precio, tiene los spreads más angostos y el menor costo de volatilidad.</li>
+          <li><b>MU:</b> fuera de horario subió 3.1 % (a 957.49), así que las primas ya estaban desactualizadas; revisar la cadena al abrir (el spread calculado era el 930/970).</li>
+          <li><b>MNQ:</b> volúmenes de 1 a 14 contratos y spreads bid-ask de 5 % a 24 %.</li></ul></div>
+      <div class="card"><b>Clase 6 · 3-nov-2026</b> <span class="mut">Plan final de la semana (vencimiento 20-nov)</span>
+        <div class="scroll"><table>
+          <tr><th>Activo</th><th>Decisión</th><th style="text-align:left">Detalle</th></tr>
+          <tr><td>SPY</td><td>Operar</td><td style="text-align:left;white-space:normal">Vende call 763, compra call 775. Crédito 4.62, probabilidad de ganar 73 %, P&amp;L esperado +155 USD, pérdida máxima 738 USD</td></tr>
+          <tr><td>SPCX</td><td>Opcional, pequeña</td><td style="text-align:left;white-space:normal">Compra put 137.5, vende put 117.5. Débito 4.38 (438 USD), probabilidad de ganar 44 %, P&amp;L esperado +209 USD, 1 contrato dentro del presupuesto</td></tr>
+          <tr><td>MU</td><td>No operar</td><td style="text-align:left;white-space:normal">Un contrato arriesga 2,728 USD</td></tr>
+          <tr><td>TSLA</td><td>No operar</td><td style="text-align:left;white-space:normal">Volatilidad justa y momentum neutral</td></tr>
+          <tr><td>MNQ</td><td>No operar</td><td style="text-align:left;white-space:normal">P&amp;L esperado negativo y cotizaciones ilíquidas</td></tr>
+        </table></div>
+        <ul class="read">
+          <li><b>MNQ con la IV corregida:</b> la razón subió de 1.19 a 0.90 y la regla ya no lo ve barato sino “justo” (con 0.896 sería “caras” y pediría un spread de crédito). El bear put spread 27,800/26,400 sale con P&amp;L esperado de −102 USD, 35 % de probabilidad de ganar y 957 USD de pérdida máxima; además su cadena real tiene un spread enorme y casi sin volumen.</li>
+          <li>Las otras cuatro salidas quedaron idénticas, así que el plan es el mismo.</li></ul></div>
+    </div>
+    <p class="mut">El bear put spread de SPCX del plan de la clase 6 se puede mover en la herramienta de arriba (sección 6 de la herramienta).</p>
+  </section>`;
+  const iArb = () => {
+    Chart.defaults.color = css("--mut"); Chart.defaults.borderColor = css("--line");
+    const dib = (nombre) => {
+      const a = A.find((x) => x.activo === nombre), uni = a.futuro ? "puntos" : "USD", c = a.curvas;
+      mk("c-ar-conv", { type: "line", data: { labels: a.convergencia.map((x) => x.N), datasets: [
+        { label: "Americana (árbol)", data: a.convergencia.map((x) => x.americana), borderColor: COLA[nombre], backgroundColor: COLA[nombre], pointRadius: 3, tension: 0 },
+        { label: "Europea (árbol)", data: a.convergencia.map((x) => x.europea), borderColor: gris, backgroundColor: gris, borderDash: [5, 3], pointRadius: 3, tension: 0 },
+        { label: "Black-Scholes", data: a.convergencia.map((x) => x.bs), borderColor: css("--ink"), borderDash: [2, 3], pointRadius: 0 }] },
+        options: { maintainAspectRatio: false, scales: { x: { title: { display: true, text: "Pasos N" } }, y: { title: { display: true, text: "Put (" + uni + ")" } } } } });
+      const xy = (xs, ys) => xs.map((x, i) => ({ x, y: ys[i] }));
+      mk("c-ar-val", { type: "scatter", data: { datasets: [
+        { label: "Americana", data: xy(c.S, c.americana), showLine: true, borderColor: COLA[nombre], pointRadius: 0, borderWidth: 2.5 },
+        { label: "Europea", data: xy(c.S, c.europea), showLine: true, borderColor: gris, borderDash: [5, 3], pointRadius: 0, borderWidth: 2 },
+        { label: "Intrínseco (K − S)", data: xy(c.S, c.intrinseco), showLine: true, borderColor: css("--ink"), borderDash: [2, 3], pointRadius: 0, borderWidth: 1.5 }] },
+        options: { maintainAspectRatio: false, scales: { x: { type: "linear", title: { display: true, text: "Precio del subyacente (" + uni + ")" } }, y: { title: { display: true, text: "Valor de la put" } } } } });
+      mk("c-ar-delta", { type: "scatter", data: { datasets: [{ label: "Delta de la put americana", data: xy(c.S_delta, c.delta), showLine: true, borderColor: COLA[nombre], pointRadius: 0, borderWidth: 2.5 }] },
+        options: { maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { type: "linear", title: { display: true, text: "Precio del subyacente (" + uni + ")" } }, y: { min: -1.05, max: 0, title: { display: true, text: "Delta" } } } } });
+    };
+    dib("SPCX");
+    $("#ar-sel").addEventListener("change", (e) => dib(e.target.value));
+    mk("c-ar-r", { type: "line", data: { labels: aS.prima_vs_tasa.map((x) => pct(x.r, 0)), datasets: A.map((a) => ({ label: a.activo, data: a.prima_vs_tasa.map((x) => +(x.prima_pct * 100).toFixed(3)), borderColor: COLA[a.activo], backgroundColor: COLA[a.activo], pointRadius: 3, tension: 0 })) },
+      options: { maintainAspectRatio: false, scales: { x: { title: { display: true, text: "Tasa libre de riesgo" } }, y: { title: { display: true, text: "% de la put europea" } } } } });
+    mk("c-ar-fr", { type: "scatter", data: { datasets: A.map((a) => ({ label: a.activo, data: a.frontera.filter((x) => x.S_sobre_K != null).map((x) => ({ x: x.dias, y: x.S_sobre_K })), showLine: true, borderColor: COLA[a.activo], backgroundColor: COLA[a.activo], pointRadius: 0, borderWidth: 2 })) },
+      options: { maintainAspectRatio: false, scales: { x: { type: "linear", title: { display: true, text: "Días desde hoy" } }, y: { title: { display: true, text: "S / K" } } } } });
+    montarHerramienta($("#host-arb"), "arboles");
+  };
+
+  /* ================= TAB: GARCH ================= */
+  const hull = [
+    ["23.1. Explain the exponentially weighted moving average (EWMA) model for estimating volatility from historical data.", [
+      "The EWMA model estimates daily variance as a moving average whose weights decline exponentially into the past.",
+      "Formula: σₙ² = λσₙ₋₁² + (1 − λ)uₙ₋₁², with 0 < λ < 1. Return: uᵢ = (Sᵢ − Sᵢ₋₁)/Sᵢ₋₁, with the mean assumed to be zero.",
+      "Weights: the observation from i days ago gets weight (1 − λ)λⁱ⁻¹, so recent data count more.",
+      "Practical advantage: only the latest variance estimate and the latest return need to be stored. RiskMetrics uses λ = 0.94.",
+      "Effect of λ: a high λ makes the estimate change slowly. A low λ makes it react quickly to recent moves."]],
+    ["23.2. What is the difference between the EWMA model and the GARCH(1,1) model for updating volatilities?", [
+      "GARCH(1,1): σₙ² = ω + αuₙ₋₁² + βσₙ₋₁², where ω = γV_L and γ + α + β = 1. V_L is the long-run variance.",
+      "Relationship: EWMA is a special case with ω = 0, α = 1 − λ and β = λ.",
+      "Key difference: GARCH has mean reversion, because variance is pulled toward V_L = ω/(1 − α − β). EWMA has none, so its forecast of future variance equals the current estimate."]],
+    ["23.3. The most recent estimate of the daily volatility of an asset is 1.5% and yesterday's close was $30.00. With λ = 0.94 and a close of $30.50 today, how does EWMA update the volatility?", [
+      "Today's return: u = (30.50 − 30.00)/30.00 = 1.6667%.",
+      "σₙ² = 0.94 × (0.015)² + 0.06 × (0.016667)² = 0.0002115 + 0.0000167 = 0.00022817, so σₙ = 1.5105%.",
+      "Daily volatility rises from 1.50% to about 1.51%. Today's return was slightly larger than the previous volatility estimate, but it carries only a 6% weight."]],
+    ["23.4. A company changes the EWMA parameter λ from 0.95 to 0.85. Explain the likely impact on the forecasts.", [
+      "Forecasts react faster to recent returns, because the weight on the latest observation rises from 5% to 15%.",
+      "They become noisier, since they rely on fewer observations. The effective memory drops from about 20 days (1/(1 − λ)) to about 7.",
+      "A day with a large move shifts the estimate much more, and its effect fades sooner."]],
+    ["23.5. The volatility of a market variable is 30% per annum. Calculate a 99% confidence interval for the size of the percentage daily change.", [
+      "Daily volatility = 30%/√252 = 1.89%.",
+      "For 99% confidence we use 2.576 standard deviations: 2.576 × 1.89% = 4.87%.",
+      "The daily percentage change should lie between −4.87% and +4.87% with 99% confidence. Using 365 days instead of 252 gives ±4.05% (30%/√365 = 1.57%; × 2.576)."]],
+    ["23.6. A company uses GARCH(1,1) with parameters ω, α and β. Describe the impact of a small increase in each, keeping the others fixed.", [
+      "ω: raises the long-run variance V_L = ω/(1 − α − β), so forecasts and the level that variance reverts to are higher. Everything else is unchanged.",
+      "α: the latest return gets more weight, so volatility reacts more strongly to recent shocks. It also raises persistence (α + β) and V_L, and mean reversion becomes slower.",
+      "β: more weight goes to the previous variance, so volatility changes more slowly and is more persistent. It also raises V_L and slows mean reversion."]]];
+  const tGar = `
+  <section><h2>GARCH(1,1) para SPCX</h2>
+    <div class="card"><p style="margin:0">Volatilidad histórica, EWMA y GARCH (Hull, cap. 23), pronóstico hasta el vencimiento de la opción, señal contra la volatilidad implícita y abanico de precios con Monte Carlo. La herramienta carga los <b>${px.n_dias} cierres reales de SPCX</b> (${esc(px.desde)} a ${esc(px.hasta)}) y todo corre en tu navegador.</p>
+      <div class="warn" style="margin-top:10px">Con ${px.n_dias - 1} rendimientos el GARCH es poco estable (la herramienta lo avisa) y los precios llegan al ${esc(px.hasta)}, mientras que la IV de 61 % es del 3-nov: sube un CSV más reciente (LSEG o TradingView) para una señal consistente. Úsalo como referencia junto con la volatilidad implícita y el árbol binomial.</div></div>
+    <div id="host-gar" style="margin-top:12px"></div>
+  </section>
+  <section><h2>Preguntas de Hull, capítulo 23 (23.1 a 23.6)</h2>
+    <div class="card">
+      ${hull.map(([q, bs], i) => `<details${i === 0 ? " open" : ""}><summary>${esc(q)}</summary><ul>${bs.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></details>`).join("")}
+      <p class="note-corr">Corrección frente a la entrega original: en la 23.5 el intervalo con 365 días es ±4.05 %, no ±3.97 %.</p>
+    </div>
+  </section>`;
+  const iGar = () => {
+    montarHerramienta($("#host-gar"), "garch", (win, doc) => {
+      try {
+        doc.getElementById("csv").value = "date,close\n" + px.datos.map((d) => d.fecha + "," + d.cierre).join("\n");
+        doc.getElementById("hoy").value = px.hasta;
+        doc.getElementById("btnRun").click();
+      } catch (e) { /* si el navegador bloquea el acceso, el usuario puede pegar el CSV */ }
+    });
+  };
+
+  /* ================= TAB: DEUDA ================= */
+  const tDeuda = `
+  <section><h2>Mercado de deuda</h2>
+    <div class="two">
+      <div class="card"><b>Curva UST y bonos de SPCX</b> <span class="mut">(rendimiento %, por plazo en años)</span><div class="ch"><canvas id="c-curva"></canvas></div></div>
+      <div class="card"><b>Bonos de SPCX</b> <span class="mut">(${bonos.bonos_unicos} emisiones únicas; los duplicados Reg S se eliminan)</span>
+        <div class="scroll" style="max-height:290px"><table id="t-bonos"></table></div></div>
+    </div>
+    <div class="card" style="margin-top:12px"><b>Calificaciones de SPCX</b> ${tag("dato (fuente periodística)")}
+      <div class="scroll"><table>
+        <tr><th>Agencia</th><th>Calificación</th><th>Perspectiva</th><th>Fecha</th></tr>
+        ${cal.emisor.map((c) => `<tr><td>${esc(c.agencia)}</td><td>${esc(c.calificacion)}</td><td>${esc(c.perspectiva)}</td><td>${esc(c.fecha)}</td></tr>`).join("")}
+      </table></div>
+      <p class="mut">${esc(cal.fuente)} ${esc(cal.nota)}</p></div>
+  </section>
+  <section><h2>Razones financieras de SPCX</h2>
+    <div class="card"><span class="mut">Calculadas a partir de los estados financieros de Refinitiv (millones de USD).</span> ${tag(rz.estado)}
+      <div class="scroll"><table>
+        <tr><th></th>${per.map((p, i) => `<th>${etqP(p, i)}</th>`).join("")}</tr>
+        ${[["Deuda / activos", "deuda_sobre_activos", pct], ["Deuda / capital", "deuda_sobre_capital", pct], ["Pasivos / activos", "pasivos_sobre_activos", pct],
+          ["Deuda de largo plazo / deuda total", "deuda_largo_plazo_pct", pct], ["Razón circulante", "razon_circulante", xv],
+          ["Cobertura de intereses (EBIT / intereses)", "cobertura_intereses", xv], ["Deuda neta / EBITDA (trimestres: EBITDA x 4)", "deuda_neta_sobre_ebitda", xv],
+          ["Margen EBITDA", "margen_ebitda", pct], ["Margen EBIT", "margen_ebit", pct], ["Margen neto", "margen_neto", pct],
+          ["ROA del periodo", "roa_periodo", pct], ["ROE del periodo", "roe_periodo", pct]].map(([t, k, f]) => `<tr><td>${esc(t)}</td>${per.map((p) => `<td class="${p.razones[k] != null && p.razones[k] < 0 ? "neg" : ""}">${f(p.razones[k])}</td>`).join("")}</tr>`).join("")}
+      </table></div>
+      ${rz.notas.map((a) => `<div class="warn">${esc(a)}</div>`).join("")}
+      <p class="mut">${esc(rz.fuente)}</p></div>
+  </section>
+  <section><h2>Estructura de deuda y vencimientos</h2>
+    <div class="grid">
+      <div class="card kpi"><div class="l">Deuda total (${esc(ed.periodo)})</div><div class="v">${n(ed.balance.deuda_total, 0)}</div><div class="n">M USD · balance</div></div>
+      <div class="card kpi"><div class="l">Corto plazo</div><div class="v">${n(ed.balance.deuda_corto_plazo, 0)}</div><div class="n">M USD · ${pct(1 - ed.balance.largo_plazo_pct, 1)} del total</div></div>
+      <div class="card kpi"><div class="l">Largo plazo</div><div class="v">${n(ed.balance.deuda_largo_plazo, 0)}</div><div class="n">M USD · ${pct(ed.balance.largo_plazo_pct, 1)} del total</div></div>
+      <div class="card kpi"><div class="l">Bonos vigentes</div><div class="v">${n(ed.bonos_vigentes_total_musd, 0)}</div><div class="n">M USD · suma de los bonos listados</div></div>
+    </div>
+    <div class="card" style="margin-top:12px"><b>Muro de vencimientos</b> <span class="mut">(M USD por año: cupones y principal de bonos; facilidades de crédito por su monto, no por saldo dispuesto)</span>
+      <div class="ch" style="height:320px"><canvas id="c-muro"></canvas></div></div>
+    <div style="display:grid;gap:12px;margin-top:12px">
+      <div class="card"><b>Bonos</b> ${tag("dato")}<div class="scroll"><table>
+        <tr><th>Bono</th><th>Emisor</th><th>Vence</th><th>Vigente (M)</th><th>Emitido (M)</th><th>Yield %</th></tr>
+        ${ed.bonos.slice().sort((x, y) => x.vencimiento.localeCompare(y.vencimiento)).map((x) => `<tr><td class="nw">${esc(x.descripcion.split("/").pop().replace(/\s'\d\d$/, "").trim())}</td><td class="nw">${esc(x.emisor.replace("SPACE EXPLORATION TECHNOLOGIES CORP", "SPCX"))}</td><td class="nw">${esc(x.vencimiento)}</td><td>${n(x.vigente_musd, 0)}</td><td>${n(x.emitido_musd, 0)}</td><td>${n(x.yield_pct, 2)}</td></tr>`).join("")}
+      </table></div></div>
+      <div class="card"><b>Facilidades de crédito</b> ${tag("dato")}<div class="scroll"><table>
+        <tr><th>Prestatario</th><th>Tipo</th><th>Vence</th><th>Monto (M)</th></tr>
+        ${ed.facilidades.slice().sort((x, y) => (x.vencimiento || "9999").localeCompare(y.vencimiento || "9999")).map((x) => `<tr><td>${esc(x.prestatario)}</td><td class="nw">${esc(x.tipo)}</td><td class="nw">${esc(x.vencimiento || "sin fecha")}</td><td>${n(x.monto_musd, 0)}</td></tr>`).join("")}
+      </table></div></div>
+    </div>
+    ${ed.notas.map((a) => `<div class="warn">${esc(a)}</div>`).join("")}
+  </section>`;
+  const iDeuda = () => {
+    const act = bonos.bonos.slice().sort((x, y) => x.plazo_anios - y.plazo_anios);
+    $("#t-bonos").innerHTML = `<tr><th>Bono</th><th>Años</th><th>Precio</th><th>Yield %</th><th>OAS pb</th></tr>` +
+      act.map((x) => `<tr><td class="nw">${esc(x.descripcion.split("/").pop().replace(/\s'\d\d$/, "").trim())}</td><td>${n(x.plazo_anios, 1)}</td><td>${n(x.precio_ultimo, 2)}</td><td>${n(x.yield_pct, 2)}</td><td>${n(x.oas_pb, 0)}</td></tr>`).join("");
+    mk("c-curva", { type: "scatter", data: { datasets: [
+      { label: "UST", data: ust.puntos.map((p) => ({ x: p.anios, y: p.yield_pct })), borderColor: acc, backgroundColor: acc, showLine: true, pointRadius: 2, borderWidth: 2 },
+      { label: "Bonos SPCX", data: act.filter((x) => x.yield_pct != null).map((x) => ({ x: x.plazo_anios, y: x.yield_pct })), backgroundColor: oro, pointRadius: 5 }] },
+      options: { maintainAspectRatio: false, scales: { x: { type: "linear", title: { display: true, text: "Años" } }, y: { title: { display: true, text: "Rendimiento %" } } } } });
+    const mv = ed.muro_vencimientos;
+    mk("c-muro", { type: "bar", data: { labels: mv.map((x) => x.anio), datasets: [
+      { label: "Cupones", data: mv.map((x) => x.cupones_musd), backgroundColor: gris, stack: "a" },
+      { label: "Principal de bonos", data: mv.map((x) => x.principal_bonos_musd), backgroundColor: acc, stack: "a" },
+      { label: "Facilidades de crédito (monto)", data: mv.map((x) => x.facilidades_musd), backgroundColor: oro, stack: "a" }] },
+      options: { maintainAspectRatio: false, scales: { x: { stacked: true }, y: { stacked: true, title: { display: true, text: "M USD" } } } } });
+  };
+
+  /* ================= TAB: COMPETIDORES ================= */
+  const R = (f, k) => f.retornos[k];
+  const cls = (x) => (x == null ? "" : x < 0 ? "neg" : "pos");
+  const clsN = (x) => (x != null && x < 0 ? "neg" : "");
+  const cobI = (x) => (x == null ? "—" : x < 0 ? "n.s." : xv(x, 1));
+  const tarjeta = (f) => {
+    const r = f.es_spcx ? { l: "Desde el listado", v: f.retorno_total } : { l: "Retorno 1 año", v: R(f, "1A") };
+    return `<div class="card co ${f.es_spcx ? "spcx" : ""} ${f.ticker === "BA" ? "ba" : ""}">
+      <div><h3>${esc(f.nombre)} <span class="mut">${f.ticker}</span></h3><span class="tag">${esc(f.grupo)}${f.ticker === "BA" ? " · caso de swaps" : ""}</span></div>
+      <p class="desc">${esc(f.que_hace)}</p><p class="why">${esc(f.por_que)}</p>
+      <div class="mini">
+        <div><div class="l">Capitalización</div><div class="v">${bn(f.cap_musd)}</div></div>
+        <div><div class="l">Precio</div><div class="v">${usd(f.precio, 2)}</div></div>
+        <div><div class="l">${r.l}</div><div class="v ${cls(r.v)}">${pct(r.v, 1)}</div></div>
+        <div><div class="l">Vol. realizada 60d</div><div class="v">${pct(f.vol_60d, 1)}</div></div>
+        <div><div class="l">Margen neto (FY0)</div><div class="v ${cls(f.margen_neto)}">${pct(f.margen_neto, 1)}</div></div>
+        <div><div class="l">Deuda / capital (FY0)</div><div class="v">${f.deuda_capital == null ? "—" : pct(f.deuda_capital, 0)}</div></div>
+        <div><div class="l">EBITDA / intereses</div><div class="v">${cobI(f.ebitda_sobre_intereses)}</div></div>
+        <div><div class="l">Calificación</div><div class="v">${esc(f.calificacion ?? "NR")}</div></div>
+      </div></div>`;
+  };
+  const filasTabla = [
+    ["Mercado"],
+    ["Capitalización (miles de M USD)", (f) => n(f.cap_musd / 1000, 1)], ["Precio al corte (USD)", (f) => n(f.precio, 2)],
+    ["Retorno 1 mes", (f) => pct(R(f, "1M"), 1), (f) => cls(R(f, "1M"))], ["Retorno 3 meses", (f) => pct(R(f, "3M"), 1), (f) => cls(R(f, "3M"))],
+    ["Retorno 6 meses", (f) => pct(R(f, "6M"), 1), (f) => cls(R(f, "6M"))], ["Retorno 1 año", (f) => pct(R(f, "1A"), 1), (f) => cls(R(f, "1A"))],
+    ["Máxima caída (en la historia disponible)", (f) => pct(f.max_drawdown, 1), () => "neg"],
+    ["Volatilidad realizada 60 días", (f) => pct(f.vol_60d, 1)], ["Volatilidad realizada total", (f) => pct(f.vol_realizada, 1)],
+    ["Correlación diaria con SPCX", (f) => f.es_spcx ? "1.00" : n(cmp.correlacion_con_spcx[f.ticker], 2)], ["Beta 5 años", (f) => n(f.beta, 2)],
+    ["Valuación"],
+    ["P/E", (f) => xv(f.pe, 1)], ["P/B", (f) => xv(f.pb, 1)], ["EV / EBITDA (FY0)", (f) => xv(f.ev_ebitda, 1)],
+    ["Rentabilidad y crecimiento"],
+    ["Margen neto (FY0)", (f) => pct(f.margen_neto, 1), (f) => cls(f.margen_neto)], ["ROE (TTM)", (f) => pct(f.roe, 1), (f) => cls(f.roe)],
+    ["Crecimiento de ingresos 5 años", (f) => f.crecimiento_5a_pct == null ? "—" : n(f.crecimiento_5a_pct, 1) + "%"], ["Rendimiento por dividendo", (f) => pct(f.dividendo, 2)],
+    ["Apalancamiento y liquidez"],
+    ["Deuda / capital (FY0)", (f) => f.deuda_capital == null ? "—" : pct(f.deuda_capital, 0)], ["Deuda neta / EBITDA (FY1 est.)", (f) => xv(f.deuda_neta_ebitda_fy1, 1)],
+    ["EBITDA / intereses (TTM; n.s. = EBITDA negativo)", (f) => cobI(f.ebitda_sobre_intereses)], ["Razón circulante", (f) => xv(f.razon_circulante, 2)], ["Prueba ácida", (f) => xv(f.quick, 2)],
+    ["Deuda total (M USD, FY0)", (f) => n(f.deuda_musd, 0)], ["Caja e inversiones CP (M USD, FY0)", (f) => n(f.caja_musd, 0)], ["Flujo libre de caja (M USD)", (f) => n(f.fcf_musd, 0), (f) => cls(f.fcf_musd)],
+    ["Calificación del emisor", (f) => esc(f.calificacion ?? "NR")]];
+  const sumPares = pares.reduce((s, f) => s + f.cap_musd, 0), mayor = pares.reduce((a, f) => (f.cap_musd > a.cap_musd ? f : a));
+  const rkVol = cmp.filas.slice().sort((a, c) => c.vol_60d - a.vol_60d), rkPos = rkVol.findIndex((f) => f.es_spcx) + 1;
+  const corrOrd = Object.entries(cmp.correlacion_con_spcx).sort((a, c) => a[1] - c[1]);
+  const ba = cmp.filas.find((f) => f.ticker === "BA");
+  const tComp = `
+  <section><h2>Competidores y comparables</h2>
+    <div class="card"><p style="margin:0">Seis comparables para ubicar a SPCX: un competidor de lanzamiento (Rocket Lab), dos empresas de <i>defense-tech</i> en crecimiento (AeroVironment y Kratos) y tres contratistas tradicionales de defensa y espacio (Northrop Grumman, General Dynamics y Boeing). Boeing es además la empresa que usaremos para la sección de swaps.</p>
+      <p class="mut" style="margin:6px 0 0">${tag(cmp.estado)} Corte de precios: ${esc(cmp.corte)}. ${esc(cmp.fuente)}.</p></div>
+    <div class="grid" style="margin-top:12px;grid-template-columns:repeat(auto-fit,minmax(330px,1fr))">${cmp.filas.map(tarjeta).join("")}</div>
+  </section>
+  <section><h2>Comparativo de indicadores</h2>
+    <div class="card"><div class="scroll"><table>
+      <tr><th></th>${cmp.filas.map((f) => `<th class="${f.es_spcx ? "hl" : ""}">${f.ticker}</th>`).join("")}</tr>
+      ${filasTabla.map((r) => r.length === 1 ? `<tr class="grp"><td colspan="${cmp.filas.length + 1}">${r[0]}</td></tr>`
+        : `<tr><td>${r[0]}</td>${cmp.filas.map((f) => `<td class="${f.es_spcx ? "hl" : ""} ${r[2] ? r[2](f) : ""}">${r[1](f)}</td>`).join("")}</tr>`).join("")}
+    </table></div>
+    ${cmp.notas.map((a) => `<div class="warn">${esc(a)}</div>`).join("")}</div>
+  </section>
+  <section><h2>Precios, riesgo y tamaño</h2>
+    <div class="two">
+      <div class="card"><b>Desde el listado de SPCX</b> <span class="mut">(base 100 = ${esc(cmp.inicio_spcx)})</span><div class="ch"><canvas id="c-cp-list"></canvas></div></div>
+      <div class="card"><b>Dos años de los comparables</b> <span class="mut">(base 100, semanal, escala logarítmica)</span><div class="ch"><canvas id="c-cp-2a"></canvas></div></div>
+      <div class="card"><b>Volatilidad realizada</b> <span class="mut">(60 días vs. historia total, % anualizado)</span><div class="ch"><canvas id="c-cp-vol"></canvas></div></div>
+      <div class="card"><b>Margen neto</b> <span class="mut">(FY0, %)</span><div class="ch"><canvas id="c-cp-mg"></canvas></div></div>
+      <div class="card"><b>Capitalización</b> <span class="mut">(miles de M USD, escala logarítmica)</span><div class="ch"><canvas id="c-cp-cap"></canvas></div></div>
+      <div class="card"><b>Correlación diaria con SPCX</b> <span class="mut">(${cmp.n_rendimientos_corr} rendimientos desde el listado)</span><div class="ch"><canvas id="c-cp-cor"></canvas></div></div>
+    </div>
+    <div class="interp"><b class="t">Lectura</b>
+      <ul class="read" style="margin:2px 0 0">
+        <li><b>Tamaño:</b> SPCX vale ${bn(filaSpcx.cap_musd)}, ${n(filaSpcx.cap_musd / mayor.cap_musd, 1)} veces ${mayor.nombre} (el comparable más grande) y ${n(filaSpcx.cap_musd / sumPares, 1)} veces los seis comparables juntos (${bn(sumPares)}).</li>
+        <li><b>Riesgo de mercado:</b> su volatilidad realizada a 60 días (${pct(filaSpcx.vol_60d, 1)}) es la ${rkPos === 1 ? "más alta del grupo" : "número " + rkPos + " del grupo"}; Rocket Lab (${pct(pares.find((f) => f.ticker === "RKLB").vol_60d, 1)}) es la más cercana y los contratistas tradicionales están entre ${pct(Math.min(...pares.filter((f) => f.grupo === "Contratista tradicional").map((f) => f.vol_60d)), 0)} y ${pct(Math.max(...pares.filter((f) => f.grupo === "Contratista tradicional").map((f) => f.vol_60d)), 0)}. Con solo ${filaSpcx.n_dias} días de historia, la cifra de SPCX es menos confiable.</li>
+        <li><b>Rentabilidad:</b> el margen neto de SPCX en FY2025 fue ${pct(filaSpcx.margen_neto, 1)} (pérdida) y en el 3T-2026 de ${pct(ult.razones.margen_neto, 1)}; entre los comparables solo Northrop (${pct(pares.find((f) => f.ticker === "NOC").margen_neto, 1)}) y General Dynamics (${pct(pares.find((f) => f.ticker === "GD").margen_neto, 1)}) superan 5 %.</li>
+        <li><b>Apalancamiento:</b> con ${xv(filaSpcx.ebitda_sobre_intereses, 1)} de EBITDA / intereses y calificación ${esc(filaSpcx.calificacion)}, SPCX queda entre los contratistas con A1 (Northrop y General Dynamics) y Boeing (${esc(ba.calificacion)}, ${xv(ba.ebitda_sobre_intereses, 1)}).</li>
+        <li><b>Co-movimiento:</b> la correlación diaria de SPCX es más alta con ${corrOrd[corrOrd.length - 1][0]} (${n(corrOrd[corrOrd.length - 1][1], 2)}) y ${corrOrd[corrOrd.length - 2][0]} (${n(corrOrd[corrOrd.length - 2][1], 2)}) y casi nula con ${corrOrd[0][0]} (${n(corrOrd[0][1], 2)}); con ${cmp.n_rendimientos_corr} observaciones, tómalo como indicio y no como una cobertura probada.</li>
+      </ul></div>
+  </section>
+  <section><h2>Boeing (BA): base para la sección de swaps</h2>
+    <div class="grid">
+      <div class="card kpi"><div class="l">Calificación del emisor</div><div class="v">${esc(ba.calificacion)}</div><div class="n">grado de inversión en el límite inferior</div></div>
+      <div class="card kpi"><div class="l">Deuda total (FY0)</div><div class="v">${n(ba.deuda_musd / 1000, 1)}</div><div class="n">miles de M USD</div></div>
+      <div class="card kpi"><div class="l">Caja e inversiones CP</div><div class="v">${n(ba.caja_musd / 1000, 1)}</div><div class="n">miles de M USD · deuda neta ≈ ${n((ba.deuda_musd - ba.caja_musd) / 1000, 1)}</div></div>
+      <div class="card kpi"><div class="l">EBITDA / intereses</div><div class="v">${xv(ba.ebitda_sobre_intereses, 2)}</div><div class="n">el más bajo del grupo con datos positivos</div></div>
+      <div class="card kpi"><div class="l">Deuda neta / EBITDA (FY1)</div><div class="v">${xv(ba.deuda_neta_ebitda_fy1, 1)}</div><div class="n">estimado</div></div>
+      <div class="card kpi"><div class="l">Flujo libre de caja</div><div class="v">${n(ba.fcf_musd, 0)}</div><div class="n">M USD</div></div>
+    </div>
+    <div class="warn">Pendiente para la sección de swaps: no tenemos todavía los bonos de Boeing (cupones, vencimientos, tasa fija o flotante) ni la curva de swaps en <code>data/raw/</code>; solo precios y razones. El apalancamiento alto y la cobertura de intereses baja son los datos que justifican revisar un swap de tasa.</div>
+  </section>`;
+  const iComp = () => {
+    Chart.defaults.color = css("--mut"); Chart.defaults.borderColor = css("--line");
+    const lineas = (id, d, log) => mk(id, { type: "line", data: { labels: d.fechas, datasets: Object.keys(d.series).map((t) => ({ label: t, data: d.series[t], borderColor: COL[t], backgroundColor: COL[t], pointRadius: 0, borderWidth: t === "SPCX" ? 3 : 1.6, tension: 0.1 })) },
+      options: { maintainAspectRatio: false, interaction: { mode: "index", intersect: false }, scales: { x: { ticks: { maxTicksLimit: 6 } }, y: { type: log ? "logarithmic" : "linear", title: { display: true, text: log ? "Base 100 (escala log.)" : "Base 100" } } } } });
+    lineas("c-cp-list", cmp.precios_listado, false); lineas("c-cp-2a", cmp.precios_2a, true);
+    const et = cmp.filas.map((f) => f.ticker), colores = cmp.filas.map((f) => COL[f.ticker]);
+    mk("c-cp-vol", { type: "bar", data: { labels: et, datasets: [
+      { label: "60 días", data: cmp.filas.map((f) => +(f.vol_60d * 100).toFixed(1)), backgroundColor: colores },
+      { label: "Historia total", data: cmp.filas.map((f) => +(f.vol_realizada * 100).toFixed(1)), backgroundColor: colores.map((c) => c + "88") }] },
+      options: { maintainAspectRatio: false, scales: { y: { title: { display: true, text: "% anualizado" } } } } });
+    mk("c-cp-mg", { type: "bar", data: { labels: et, datasets: [{ data: cmp.filas.map((f) => f.margen_neto == null ? null : +(f.margen_neto * 100).toFixed(1)), backgroundColor: colores }] },
+      options: { maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { title: { display: true, text: "%" } } } } });
+    mk("c-cp-cap", { type: "bar", data: { labels: et, datasets: [{ data: cmp.filas.map((f) => +(f.cap_musd / 1000).toFixed(1)), backgroundColor: colores }] },
+      options: { maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { type: "logarithmic", title: { display: true, text: "miles de M USD" } } } } });
+    mk("c-cp-cor", { type: "bar", data: { labels: pares.map((f) => f.ticker), datasets: [{ data: pares.map((f) => +cmp.correlacion_con_spcx[f.ticker].toFixed(2)), backgroundColor: pares.map((f) => COL[f.ticker]) }] },
+      options: { maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { min: -0.2, max: 1, title: { display: true, text: "correlación" } } } } });
+  };
+
+  /* ================= ARMADO DE PESTAÑAS ================= */
+  const TABS = [
+    { id: "empresa", label: "Empresa", html: tEmpresa, init: iEmpresa },
+    { id: "convertible", label: "Convertible", html: tConv, init: iConv },
+    { id: "cobertura", label: "Cobertura", html: tCob, init: iCob },
+    { id: "opciones", label: "Opciones y griegas", html: tOpc, init: iOpc },
+    { id: "arboles", label: "Árboles", html: tArb, init: iArb },
+    { id: "garch", label: "GARCH", html: tGar, init: iGar },
+    { id: "deuda", label: "Deuda", html: tDeuda, init: iDeuda },
+    { id: "competidores", label: "Competidores", html: tComp, init: iComp }];
+  $("#tabs").innerHTML = TABS.map((t) => `<button role="tab" id="tb-${t.id}" data-t="${t.id}" aria-selected="false">${t.label}</button>`).join("");
+  $("#app").innerHTML = TABS.map((t) => `<div class="pane" id="p-${t.id}" role="tabpanel" hidden>${t.html}</div>`).join("");
+  const hechas = {};
+  function mostrar(id) {
+    if (!TABS.some((t) => t.id === id)) id = TABS[0].id;
+    TABS.forEach((t) => { $("#p-" + t.id).hidden = t.id !== id; $("#tb-" + t.id).setAttribute("aria-selected", t.id === id); });
+    if (!hechas[id]) { hechas[id] = true;
+      if (typeof Chart === "undefined") document.querySelectorAll("#p-" + id + " .ch").forEach((e) => (e.innerHTML = '<p class="mut">No se pudo cargar la librería de gráficas.</p>'));
+      try { TABS.find((t) => t.id === id).init(); } catch (e) { console.error(id, e); } }
+    if (location.hash !== "#" + id) history.replaceState(null, "", "#" + id);
+  }
+  $("#tabs").addEventListener("click", (e) => { const t = e.target.closest("button"); if (t) { mostrar(t.dataset.t); if (window.scrollY > $(".hero").offsetHeight) window.scrollTo({ top: $(".hero").offsetHeight }); } });
+  window.addEventListener("hashchange", () => mostrar(location.hash.slice(1)));
+  mostrar(location.hash.slice(1));
+}
+</script>
+</body>
+</html>
