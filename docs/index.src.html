@@ -64,7 +64,7 @@
   th:first-child,td:first-child { text-align:left; }
   th { color:var(--mut); font-weight:600; font-size:13px; }
   tr.grp td { background:var(--bg); color:var(--mut); font-size:12px; letter-spacing:.06em; text-transform:uppercase; font-weight:700; }
-  td.hl, th.hl { background:var(--hl); }
+  td.hl, th.hl, tr.hl td { background:var(--hl); }
   .scroll { overflow-x:auto; }
   .bar { display:flex; height:46px; border-radius:8px; overflow:hidden; margin:10px 0 6px; font-weight:600; color:#fff; }
   .bar div { display:flex; align-items:center; justify-content:center; font-size:14px; padding:0 8px; white-space:nowrap; }
@@ -72,6 +72,9 @@
   .tag { display:inline-block; padding:1px 8px; border-radius:99px; font-size:12px; font-weight:600; border:1px solid var(--line); color:var(--mut); }
   .tag.dato { color:var(--pos); border-color:var(--pos); } .tag.sup { color:var(--warn); border-color:var(--warn); } .tag.calc { color:var(--acc); border-color:var(--acc); }
   .warn { background:var(--warnbg); color:var(--warn); border-radius:8px; padding:10px 14px; margin:6px 0; font-size:14px; }
+  .inp label { display:block; font-size:12.5px; color:var(--mut); margin-bottom:3px; }
+  .inp input { width:100%; padding:6px 8px; border:1px solid var(--line); border-radius:6px; background:var(--card); color:var(--ink); font:inherit; }
+  .vscroll { max-height:430px; overflow:auto; }
   .two { display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); }
   .three { display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); }
   .ch { position:relative; height:280px; }
@@ -143,7 +146,7 @@ const tag = (estado) => {
   const c = /dato/.test(estado) ? "dato" : /supuesto/.test(estado) ? "sup" : "calc";
   return `<span class="tag ${c}">${esc(estado)}</span>`;
 };
-const FILES = ["valuacion", "resumen_mercado", "precios_spcx", "treasuries", "bonos", "cobertura", "analisis", "griegas", "empresa", "competidores", "arboles"];
+const FILES = ["valuacion", "resumen_mercado", "precios_spcx", "treasuries", "bonos", "cobertura", "analisis", "griegas", "empresa", "competidores", "arboles", "swaps"];
 const get = (f) => (window.__DATA__ && window.__DATA__[f]) ? Promise.resolve(window.__DATA__[f])
   : fetch("data/" + f + ".json").then((r) => { if (!r.ok) throw new Error(f + ": " + r.status); return r.json(); });
 
@@ -166,9 +169,10 @@ function montarHerramienta(host, clave, alCargar) {
 }
 
 function render(D) {
-  const { valuacion: v, resumen_mercado: res, precios_spcx: px, treasuries: ust, bonos, cobertura: cob, analisis: an, griegas: gr, empresa: emp, competidores: cmp, arboles: arb } = D;
+  const { valuacion: v, resumen_mercado: res, precios_spcx: px, treasuries: ust, bonos, cobertura: cob, analisis: an, griegas: gr, empresa: emp, competidores: cmp, arboles: arb, swaps: sw } = D;
   const gc = gr.convertible, gp = gc.posiciones, gx = gc.por_bono;
   const b = v.base, S = b.S, rz = an.razones, ed = an.deuda, cp = an.comparables;
+  const n9 = ed.nota9_10q, cn = n9.conciliacion, rm = ed.riesgo_mercado;
   const per = rz.anual.concat(rz.trimestral);
   const etqP = (p, i) => i < rz.anual.length ? "FY " + p.periodo.slice(0, 4) : "T" + Math.ceil(+p.periodo.slice(5, 7) / 3) + " " + p.periodo.slice(0, 4);
   const deuda = res.deuda_total_musd, caja = res.caja_e_inversiones_cp_musd, ef = res.efectivo_musd, dn = res.deuda_neta_musd;
@@ -206,7 +210,7 @@ function render(D) {
       <ul><li><b>Convertible a 6 años</b> con prima de ${pct(b.prima, 0)} (bono simple + opción).</li>
       <li><b>Call spread</b>: compra de calls (note hedge) y venta de warrants a +${pct(cb.prima_warrant, 0)}; costo neto ${n(cb.costo_neto_musd, 1)} M USD.</li>
       <li><b>T-lock</b> para fijar la tasa del Tesoro durante la emisión (como Molson Coors).</li>
-      <li><b>Swaps de tasa</b> sobre los préstamos flotantes: se desarrollan en la sección de Boeing.</li></ul></div>`;
+      <li><b>Swaps de tasa</b> sobre los préstamos flotantes: ver la pestaña Swaps (Boeing).</li></ul></div>`;
 
   /* ================= TAB: EMPRESA ================= */
   const segTot = emp.segmentos.reduce((s, x) => s + x.ingresos_2025_musd, 0);
@@ -225,9 +229,9 @@ function render(D) {
   <section><h2>Desempeño económico</h2>
     <div class="two">
       <div class="card"><b>Ingreso y utilidad operativa por segmento, 2025</b> <span class="mut">(M USD)</span><div class="ch"><canvas id="c-seg"></canvas></div>
-        <p class="mut">Starlink genera toda la utilidad operativa; AI y Space la consumen. Fuente: S-1 vía prensa (secundaria).</p></div>
+        <p class="mut">Starlink genera toda la utilidad operativa; AI y Space la consumen. Fuente: nota 19 de los estados auditados del prospecto. En 2026 el segmento AI se llama SI (Super Intelligence).</p></div>
       <div class="card"><b>Ingresos, EBITDA y utilidad neta por periodo</b> <span class="mut">(M USD, Refinitiv)</span><div class="ch"><canvas id="c-per"></canvas></div>
-        <p class="mut">El 3T-2026 ingresó ${n(ult.cifras.ingresos, 0)} M, casi el doble que el 2T. La prensa lo atribuye al segmento de IA (≈${n(emp.q3_2026_aprox_musd.AI / 1000, 1)}B de ${n(ult.cifras.ingresos / 1000, 1)}B). ${esc(emp.q3_2026_aprox_musd.nota)}</p></div>
+        <p class="mut">El 3T-2026 ingresó ${n(ult.cifras.ingresos, 0)} M, casi el doble que el 2T. Por segmento (10-Q, nota 18): SI ${n(emp.q3_2026_musd.ingresos.SI, 0)} M (${pct(emp.q3_2026_musd.ingresos.SI / emp.q3_2026_musd.ingresos.total, 0)} del total, utilidad operativa de ${n(emp.q3_2026_musd.utilidad_operativa.SI, 0)} M), Connectivity ${n(emp.q3_2026_musd.ingresos.Connectivity, 0)} M (${n(emp.q3_2026_musd.utilidad_operativa.Connectivity, 0)} M) y Space ${n(emp.q3_2026_musd.ingresos.Space, 0)} M (${n(emp.q3_2026_musd.utilidad_operativa.Space, 0)} M). En nueve meses: ${n(emp.q3_2026_musd.nueve_meses.ingresos.total, 0)} M de ingreso y ${n(emp.q3_2026_musd.nueve_meses.utilidad_operativa.total, 0)} M de utilidad operativa. ${esc(emp.q3_2026_musd.nota)}</p></div>
       <div class="card wide"><b>Precio de SPCX</b> <span class="mut">(${px.n_dias} días desde ${esc(px.desde)}; cierre en USD)</span><div class="ch"><canvas id="c-px"></canvas></div></div>
     </div>
     <div class="grid" style="margin-top:12px">
@@ -647,7 +651,7 @@ function render(D) {
       <div class="card kpi"><div class="l">Largo plazo</div><div class="v">${n(ed.balance.deuda_largo_plazo, 0)}</div><div class="n">M USD · ${pct(ed.balance.largo_plazo_pct, 1)} del total</div></div>
       <div class="card kpi"><div class="l">Bonos vigentes</div><div class="v">${n(ed.bonos_vigentes_total_musd, 0)}</div><div class="n">M USD · suma de los bonos listados</div></div>
     </div>
-    <div class="card" style="margin-top:12px"><b>Muro de vencimientos</b> <span class="mut">(M USD por año: cupones y principal de bonos; facilidades de crédito por su monto, no por saldo dispuesto)</span>
+    <div class="card" style="margin-top:12px"><b>Muro de vencimientos</b> <span class="mut">(M USD por año: cupones y principal de bonos; solo facilidades vigentes, por su monto y no por saldo dispuesto)</span>
       <div class="ch" style="height:320px"><canvas id="c-muro"></canvas></div></div>
     <div style="display:grid;gap:12px;margin-top:12px">
       <div class="card"><b>Bonos</b> ${tag("dato")}<div class="scroll"><table>
@@ -655,13 +659,35 @@ function render(D) {
         ${ed.bonos.slice().sort((x, y) => x.vencimiento.localeCompare(y.vencimiento)).map((x) => `<tr><td class="nw">${esc(x.descripcion.split("/").pop().replace(/\s'\d\d$/, "").trim())}</td><td class="nw">${esc(x.emisor.replace("SPACE EXPLORATION TECHNOLOGIES CORP", "SPCX"))}</td><td class="nw">${esc(x.vencimiento)}</td><td>${n(x.vigente_musd, 0)}</td><td>${n(x.emitido_musd, 0)}</td><td>${n(x.yield_pct, 2)}</td></tr>`).join("")}
       </table></div></div>
       <div class="card"><b>Facilidades de crédito</b> ${tag("dato")}<div class="scroll"><table>
-        <tr><th>Prestatario</th><th>Tipo</th><th>Vence</th><th>Monto (M)</th></tr>
-        ${ed.facilidades.slice().sort((x, y) => (x.vencimiento || "9999").localeCompare(y.vencimiento || "9999")).map((x) => `<tr><td>${esc(x.prestatario)}</td><td class="nw">${esc(x.tipo)}</td><td class="nw">${esc(x.vencimiento || "sin fecha")}</td><td>${n(x.monto_musd, 0)}</td></tr>`).join("")}
+        <tr><th>Prestatario</th><th>Tipo</th><th>Vence</th><th>Monto (M)</th><th>Estado según el 10-Q</th></tr>
+        ${ed.facilidades.slice().sort((x, y) => (x.vencimiento || "9999").localeCompare(y.vencimiento || "9999")).map((x) => `<tr><td>${esc(x.prestatario)}</td><td class="nw">${esc(x.tipo)}</td><td class="nw">${esc(x.vencimiento || "sin fecha")}</td><td>${n(x.monto_musd, 0)}</td><td class="${{ vigente: "pos", pagada: "neg", cerrada: "neg" }[x.estado_10q] || ""}"><b>${{ vigente: "Vigente", pagada: "Pagada", cerrada: "Cerrada", sin_confirmar: "Sin confirmar" }[x.estado_10q]}</b><br><span class="mut">${esc(x.detalle_10q)}</span></td></tr>`).join("")}
       </table></div></div>
     </div>
+    <div class="two" style="margin-top:12px">
+      <div class="card"><b>Deuda según el 10-Q, nota 9</b> <span class="mut">(30-sep-2026, M USD)</span> ${tag("dato")}<div class="scroll"><table>
+        <tr><th></th><th>Principal</th><th>Costos diferidos</th><th>Neto</th></tr>
+        ${n9.deuda.map((r) => `<tr><td>${esc(r[0])}</td><td>${n(r[1], 0)}</td><td>${n(r[2], 0)}</td><td>${n(r[3], 0)}</td></tr>`).join("")}
+        <tr class="hl"><td><b>Total deuda</b></td><td><b>${n(n9.total_deuda[0], 0)}</b></td><td>${n(n9.total_deuda[1], 0)}</td><td><b>${n(n9.total_deuda[2], 0)}</b></td></tr>
+        <tr><td>Arrendamientos financieros</td><td>${n(n9.arrendamientos_financieros, 0)}</td><td>0</td><td>${n(n9.arrendamientos_financieros, 0)}</td></tr>
+        <tr class="hl"><td><b>Deuda y arrendamientos</b></td><td><b>${n(n9.total_con_arrendamientos[0], 0)}</b></td><td>${n(n9.total_con_arrendamientos[1], 0)}</td><td><b>${n(n9.total_con_arrendamientos[2], 0)}</b></td></tr>
+      </table></div>
+      <p class="mut">Al cierre de 2025 la deuda era de ${n(n9.deuda_2025.total_deuda, 0)} M (${n(n9.deuda_2025.total_con_arrendamientos, 0)} M con arrendamientos). Los «otros financiamientos» incluyen ${n((n9.otros_financiamientos.venta_con_arrendamiento_fallida_cp + n9.otros_financiamientos.venta_con_arrendamiento_fallida_lp), 0)} M de ventas con arrendamiento fallidas (infraestructura SI) y tienen tasa fija ponderada de ${n(n9.otros_financiamientos.tasa_fija_ponderada_pct, 1)} %. Pagos de 2026: ${n9.pagos_2026.map((x) => esc(x[0]) + " (" + esc(x[1]) + ")").join("; ")}; la extinción dejó una pérdida de ${n(n9.perdida_extincion_bridge_musd, 0)} M.</p>
+      <p style="margin:8px 0 0"><b>Conciliación con Refinitiv:</b> deuda y arrendamientos ${n(cn.deuda_total_refinitiv, 0)} vs ${n(cn.deuda_total_10q, 0)} M; corto plazo ${n(cn.cp_refinitiv, 0)} vs ${n(cn.cp_10q, 0)}; largo plazo ${n(cn.lp_refinitiv, 0)} vs ${n(cn.lp_10q, 0)}; SpaceX Notes ${n(cn.spacex_notes_refinitiv, 0)} vs ${n(cn.spacex_notes_10q, 0)} M en ${cn.n_tramos_refinitiv} tramos, con cupón ponderado de ${n(cn.cupon_ponderado_refinitiv, 3)} % vs ${n(cn.cupon_ponderado_10q, 3)} %. <b>Todo cuadra.</b></p></div>
+      <div class="card"><b>Vencimientos de principal de toda la deuda</b> <span class="mut">(10-Q, M USD; incluye préstamos y otros financiamientos)</span><div class="ch"><canvas id="c-venc10q"></canvas></div>
+        <p class="mut" style="margin:8px 0 0">Los vencimientos suman ${n(cn.vencimientos_suman, 0)} M, igual que el principal total. Casi dos terceras partes (25,200 M) vencen después de 2030: son los SpaceX Notes (2031 a 2056), con cupón ponderado de ${n(n9.spacex_notes.cupon_ponderado, 3)} %, tasa efectiva de ${n(n9.spacex_notes.tasa_efectiva, 3)} % y plazo ponderado de ${n(n9.spacex_notes.plazo_ponderado_anios, 1)} años. Su valor razonable es ${n(n9.spacex_notes.valor_razonable, 0)} M contra ${n(n9.spacex_notes.valor_en_libros, 0)} M en libros: el mercado los cotiza por debajo de la par.</p></div>
+    </div>
+    <div class="card" style="margin-top:12px"><b>Riesgo de mercado y derivados</b> <span class="mut">${esc(rm.fuente)}</span>
+      <div class="two" style="margin-top:8px">
+        <div><b>Tipo de cambio</b>${rm.moneda.map((t) => `<p style="margin:6px 0">${esc(t)}</p>`).join("")}</div>
+        <div><b>Tasa de interés</b>${rm.tasa.map((t) => `<p style="margin:6px 0">${esc(t)}</p>`).join("")}</div>
+      </div>
+      <div class="warn" style="margin-top:8px"><b>Derivados:</b> ${esc(rm.derivados)}</div>
+      <p class="mut" style="margin:8px 0 0">Por eso la sección de swaps usa a Boeing, que sí reporta derivados, y por eso la propuesta de cobertura de SPCX parte de una deuda nueva casi toda a tasa fija y sin coberturas.</p></div>
     ${ed.notas.map((a) => `<div class="warn">${esc(a)}</div>`).join("")}
   </section>`;
   const iDeuda = () => {
+    mk("c-venc10q", { type: "bar", data: { labels: n9.vencimientos.map((x) => x[0]), datasets: [{ label: "Principal", data: n9.vencimientos.map((x) => x[1]), backgroundColor: acc }] },
+      options: { maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { title: { display: true, text: "M USD" } } } } });
     const act = bonos.bonos.slice().sort((x, y) => x.plazo_anios - y.plazo_anios);
     $("#t-bonos").innerHTML = `<tr><th>Bono</th><th>Años</th><th>Precio</th><th>Yield %</th><th>OAS pb</th></tr>` +
       act.map((x) => `<tr><td class="nw">${esc(x.descripcion.split("/").pop().replace(/\s'\d\d$/, "").trim())}</td><td>${n(x.plazo_anios, 1)}</td><td>${n(x.precio_ultimo, 2)}</td><td>${n(x.yield_pct, 2)}</td><td>${n(x.oas_pb, 0)}</td></tr>`).join("");
@@ -755,13 +781,13 @@ function render(D) {
   <section><h2>Boeing (BA): base para la sección de swaps</h2>
     <div class="grid">
       <div class="card kpi"><div class="l">Calificación del emisor</div><div class="v">${esc(ba.calificacion)}</div><div class="n">grado de inversión en el límite inferior</div></div>
-      <div class="card kpi"><div class="l">Deuda total (FY0)</div><div class="v">${n(ba.deuda_musd / 1000, 1)}</div><div class="n">miles de M USD</div></div>
+      <div class="card kpi"><div class="l">Deuda total (FY0, dic-2025)</div><div class="v">${n(ba.deuda_musd / 1000, 1)}</div><div class="n">miles de M USD</div></div>
       <div class="card kpi"><div class="l">Caja e inversiones CP</div><div class="v">${n(ba.caja_musd / 1000, 1)}</div><div class="n">miles de M USD · deuda neta ≈ ${n((ba.deuda_musd - ba.caja_musd) / 1000, 1)}</div></div>
       <div class="card kpi"><div class="l">EBITDA / intereses</div><div class="v">${xv(ba.ebitda_sobre_intereses, 2)}</div><div class="n">el más bajo del grupo con datos positivos</div></div>
       <div class="card kpi"><div class="l">Deuda neta / EBITDA (FY1)</div><div class="v">${xv(ba.deuda_neta_ebitda_fy1, 1)}</div><div class="n">estimado</div></div>
       <div class="card kpi"><div class="l">Flujo libre de caja</div><div class="v">${n(ba.fcf_musd, 0)}</div><div class="n">M USD</div></div>
     </div>
-    <div class="warn">Pendiente para la sección de swaps: no tenemos todavía los bonos de Boeing (cupones, vencimientos, tasa fija o flotante) ni la curva de swaps en <code>data/raw/</code>; solo precios y razones. El apalancamiento alto y la cobertura de intereses baja son los datos que justifican revisar un swap de tasa.</div>
+    <div class="warn">Los bonos de Boeing, la curva SOFR OIS y la valuación de los swaps están en la pestaña <b>Swaps</b>, que usa la deuda más reciente de Refinitiv ($51.5B) en lugar de la de FY0.</div>
   </section>`;
   const iComp = () => {
     Chart.defaults.color = css("--mut"); Chart.defaults.borderColor = css("--line");
@@ -781,6 +807,308 @@ function render(D) {
       options: { maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { min: -0.2, max: 1, title: { display: true, text: "correlación" } } } } });
   };
 
+
+  /* ================= TAB: SWAPS ================= */
+  const sw_deuda_boeing = sw.deuda_refinitiv.resumen.deuda_total_musd * 1e6;
+  const tS = sw.tasas, vc = sw.ventaja, rx = sw.rtx, eq = sw.equity, sp = sw.supuestos, mv = eq.mitad_vida, rg = eq.riesgo, cbt = eq.cobertura;
+  const ppb = (x) => n(x * 1e4, 0) + " pb";
+  const pb_ = sw.precio_ba, dr = sw.deuda_refinitiv, rdr = dr.resumen, ar = sw.ar2025;
+  const M = (x) => n(x / 1e6, 0);
+  const dv = sw.divisas, rk = eq.riesgo, hasB = eq.tiene_spy_ita;
+  const d0s = (x) => (x < 0 ? "-" : "") + "$" + n(Math.abs(x), 0);
+  const d0 = (x) => (x < 0 ? "-" : "") + "$" + n(Math.abs(x), 0);
+  const tSwaps = `
+  <section><h2>Swaps con Boeing (BA)</h2>
+    <div class="card"><p style="margin:0">Boeing es la empresa que usamos para la parte de swaps: es un emisor grande, con calificación ${esc(ba.calificacion)} y mucho apalancamiento (deuda neta / EBITDA de ${xv(ba.deuda_neta_ebitda_fy1, 1)}), por lo que la deuda a tasa fija contra variable y su cobertura son relevantes. Los cálculos siguen el capítulo 7 de Hull (swaps) y replican el cuaderno de Colab de la clase.</p>
+      <p class="mut" style="margin:6px 0 0">${tag(sw.estado)} Curva SOFR OIS del ${esc(sw.fecha_curva)} y bonos de Boeing del ${esc(sw.fecha_bonos)} (LSEG). ${esc(sw.fuente)}</p></div>
+    <div class="warn">La tasa fija del swap (${pct(sp.tasa_fija, 2)}), el spread de financiamiento, el spread variable de Boeing y del emisor A-, los nocionales y la posición en BA son <b>supuestos del equipo</b> tomados del cuaderno. Cámbialos en <code>src/swaps.py</code> cuando tengas cotizaciones reales.</div>
+  </section>
+  <section><h2>Boeing de un vistazo</h2>
+    <div class="grid">
+      <div class="card kpi"><div class="l">Precio de BA (cierre ${esc(pb_.fecha)})</div><div class="v">${usd(pb_.cierre, 2)}</div><div class="n">${sgn(pb_.cambio, 2)} (${sgn(pb_.cambio_pct, 2)} %) · después del cierre ${usd(pb_.post_mercado, 2)}</div></div>
+      <div class="card kpi"><div class="l">Rendimiento 6 meses</div><div class="v neg">${n(pb_.rend_6m_pct, 2)}%</div><div class="n">rango 52 semanas ${esc(pb_.rango_52s)}</div></div>
+      <div class="card kpi"><div class="l">Capitalización</div><div class="v">$${n(pb_.cap_mmd, 1)}B</div><div class="n">beta 5 años ${n(pb_.beta_5a, 2)} · P/U ${n(pb_.pe_ttm, 2)} · UPA ${usd(pb_.eps_ttm, 2)}</div></div>
+      <div class="card kpi"><div class="l">Deuda total (Refinitiv, último periodo)</div><div class="v">$${n(rdr.deuda_total_musd / 1000, 1)}B</div><div class="n">$${n((ar.deuda_total_musd - rdr.deuda_total_musd) / 1000, 1)}B menos que al 31-dic-2025 ($${n(ar.deuda_total_musd / 1000, 1)}B)</div></div>
+      <div class="card kpi"><div class="l">Deuda neta (Refinitiv)</div><div class="v">$${n((rdr.deuda_total_musd - rdr.caja_musd) / 1000, 1)}B</div><div class="n">deuda $${n(rdr.deuda_total_musd / 1000, 1)}B − caja $${n(rdr.caja_musd / 1000, 1)}B</div></div>
+      <div class="card kpi"><div class="l">Líneas de crédito disponibles</div><div class="v">$${n(ar.disponible_musd / 1000, 1)}B</div><div class="n">sin dispuesto al 31-dic-2025</div></div>
+      <div class="card kpi"><div class="l">Intereses pagados (2025)</div><div class="v">$${n(ar.intereses_pagados_musd / 1000, 2)}B</div><div class="n">incurridos ${n(ar.intereses_incurridos_musd / 1000, 2)}B (incluye capitalizados)</div></div>
+    </div>
+    <div class="two" style="margin-top:12px">
+      <div class="card"><b>Resumen de precio</b> <span class="mut">(captura de cotización del ${esc(pb_.fecha)})</span><div class="scroll"><table>
+        <tr><td>Cierre anterior / apertura</td><td>${n(pb_.cierre_anterior, 2)} / ${n(pb_.apertura, 2)}</td></tr>
+        <tr><td>Bid / ask</td><td>${esc(pb_.bid)} / ${esc(pb_.ask)}</td></tr>
+        <tr><td>Rango del día</td><td>${esc(pb_.rango_dia)}</td></tr>
+        <tr><td>Volumen (promedio)</td><td>${n(pb_.volumen, 0)} (${n(pb_.volumen_prom, 0)})</td></tr>
+        <tr><td>Dividendo</td><td>${esc(pb_.dividendo)}: suspendido desde 2020</td></tr>
+        <tr><td>Próximos resultados (est.)</td><td>${esc(pb_.proximos_resultados)}</td></tr>
+        <tr><td>Precio objetivo a 1 año</td><td>${usd(pb_.objetivo_1a, 2)}</td></tr>
+      </table></div>
+      <p class="mut">El cierre de la captura (${usd(pb_.cierre, 2)}, 6-nov) coincide con el último cierre de la serie de Yahoo que usan los equity swaps (${usd(eq.s0, 2)}, ${esc(eq.fecha_ultima)}).</p></div>
+      <div class="card"><b>Deuda y calificación según Refinitiv</b> <span class="mut">(8-nov-2026)</span><div class="scroll"><table>
+        <tr><td>Deuda total / caja</td><td>$${n(rdr.deuda_total_musd / 1000, 2)}B / $${n(rdr.caja_musd / 1000, 2)}B</td></tr>
+        <tr><td>Intereses pagados (12 m) / flujo libre (12 m)</td><td>$${n(rdr.intereses_pagados_ltm_musd / 1000, 2)}B / $${n(rdr.fcf_ltm_musd / 1000, 2)}B</td></tr>
+        <tr><td>Calificación implícita del modelo</td><td>${esc(rdr.implicita)}</td></tr>
+        <tr><td>Prueba ácida (BA vs. industria)</td><td>${n(rdr.quick_ba, 3)} vs. ${n(rdr.quick_industria, 3)}</td></tr>
+        <tr><td>Deuda / capital de la industria</td><td>${n(rdr.de_industria, 2)}</td></tr>
+        ${rdr.calificaciones.map((c) => `<tr><td>${esc(c.agencia)}</td><td>corto ${esc(c.corto)} · largo ${esc(c.largo)} · perspectiva ${esc(c.perspectiva)}</td></tr>`).join("")}
+      </table></div>
+      <p class="mut">Refinitiv muestra $51.5B de deuda en el último periodo, $2.6B menos que los $54.1B del reporte anual al 31-dic-2025. Es coherente con pagos de deuda durante el año (en 2026 vencían $8.4B), aunque los datos no dicen qué se pagó. En esta pestaña usamos la cifra de Refinitiv; el reporte anual queda como referencia de diciembre. La calificación de largo plazo de Moody's es la de TradingView (Baa3).</p></div>
+    </div>
+    <div class="card" style="margin-top:12px"><b>Qué dice el reporte anual 2025 sobre tasas y cobertura</b>
+      <ul style="margin:8px 0 0;padding-left:18px;line-height:1.55">
+        <li><b>Tasa de interés:</b> ${esc(ar.riesgo_tasa)}</li>
+        <li><b>Divisas:</b> ${esc(ar.fx)}</li>
+        <li><b>Materias primas:</b> ${esc(ar.materias_primas)}</li>
+        <li><b>Financiamiento:</b> ${esc(ar.riesgos_financiamiento)}</li>
+        <li><b>Preferentes y dividendos:</b> ${esc(ar.preferentes)}</li>
+        <li><b>Spirit:</b> ${esc(ar.spirit)}</li>
+        <li><b>Líneas de crédito:</b> ${ar.lineas_credito.map((l) => esc(l.linea) + ": $" + n(l.musd, 0) + " M").join("; ")}. ${esc(ar.sin_margen)}</li>
+      </ul></div>
+    <div class="warn"><b>Lectura para los swaps:</b> toda la deuda de Boeing en el reporte es de tasa fija (la tabla de la nota 17 solo trae cupones fijos) y las líneas revolventes están sin disponer. Por eso el escenario del cuaderno, donde Boeing toma deuda variable y la cambia a fija, es un ejemplo del método. Con la deuda actual, el swap que tendría sentido para Boeing sería recibir fija y pagar variable (pasar parte de la deuda fija a variable); eso es una lectura nuestra, no algo que diga el reporte.</div>
+  </section>
+  <section><h2>1. Swap de tasa fija contra variable</h2>
+    <div class="grid">
+      <div class="card kpi"><div class="l">Nocional</div><div class="v">$${n(tS.nocional / 1e6, 0)}M</div><div class="n">no se intercambia</div></div>
+      <div class="card kpi"><div class="l">Tasa swap par (3 años)</div><div class="v">${pct(tS.tasa_par, 3)}</div><div class="n">la fija que vale cero hoy</div></div>
+      <div class="card kpi"><div class="l">Fija pactada (supuesto)</div><div class="v">${pct(tS.tasa_fija, 2)}</div><div class="n">${tS.tasa_fija < tS.tasa_par ? "menor que la par: favorece a quien paga fija" : "mayor que la par: favorece a quien recibe fija"}</div></div>
+      <div class="card kpi"><div class="l">Valor para quien paga fija</div><div class="v ${tS.valor_bonos < 0 ? "neg" : "pos"}">${d0(tS.valor_bonos)}</div><div class="n">igual por bonos y por FRAs (${d0(tS.valor_fra)})</div></div>
+      <div class="card kpi"><div class="l">DV01</div><div class="v">$${n(tS.dv01, 0)}</div><div class="n">por +1 pb, pagador de fija</div></div>
+    </div>
+    <div class="two" style="margin-bottom:12px">
+      <div class="card"><b>Curva SOFR OIS completa</b> <span class="mut">(LSEG USDSROIS=, bid, 8-nov-2026; ${sw.curva_ois.length} plazos, de 1 día a 50 años)</span><div class="ch"><canvas id="c-sw-ois"></canvas></div>
+        <p class="mut" style="margin:8px 0 0">El swap del cuaderno usa solo 5 plazos (6M, 1A, 1.5A, 2A y 3A) para armar la curva cero; la OIS a 3 meses (${pct(sp.r_free, 4)}) se usa como tasa de financiamiento. Los demás plazos sirven para calcular el spread de los bonos.</p></div>
+      <div class="card"><b>Tasas par OIS</b> <span class="mut">(%)</span><div class="scroll vscroll"><table>
+        <tr><th>Plazo</th><th>Años</th><th>Tasa %</th><th>En el cuaderno</th></tr>
+        ${sw.curva_ois.map((c) => `<tr><td>${esc(c.tenor)}</td><td>${n(c.anios, 3)}</td><td>${n(c.tasa, 4)}</td><td>${[0.5, 1, 1.5, 2, 3].includes(c.anios) ? "curva cero" : c.tenor === "3M" ? "tasa libre de riesgo" : ""}</td></tr>`).join("")}
+      </table></div>
+      <p class="mut">SOFR overnight del 3-nov-2026 en el cuaderno: ${pct(sp.sofr_on, 2)}; la OIS a 1 día del 8-nov es 3.8825 %.</p></div>
+    </div>
+    <div class="two" style="margin-top:12px">
+      <div class="card"><b>Flujos semestrales</b> <span class="mut">(USD; la variable esperada es la tasa forward de la curva)</span><div class="scroll"><table>
+        <tr><th>Año</th><th>Cero</th><th>Forward</th><th>Paga fija</th><th>Cobra variable</th><th>Neto (paga fija)</th></tr>
+        ${tS.flujos.map((f) => `<tr><td>${n(f.t, 1)}</td><td>${pct(f.cero, 3)}</td><td>${pct(f.forward, 3)}</td><td>${n(f.pago_fijo, 0)}</td><td>${n(f.cobro_variable, 0)}</td><td class="${f.neto < 0 ? "neg" : "pos"}">${n(f.neto, 0)}</td></tr>`).join("")}
+      </table></div></div>
+      <div class="card"><b>Sensibilidad a la curva</b> <span class="mut">(valor para el pagador de fija, millones USD, desplazamiento paralelo)</span><div class="ch"><canvas id="c-sw-sens"></canvas></div></div>
+    </div>
+    <div class="card" style="margin-top:12px"><p style="margin:0">Si la fija pactada es menor que la tasa par, quien paga fija tiene un swap con valor positivo: gana cuando suben las tasas y pierde cuando bajan. Para Boeing, pagar fija y recibir variable convierte deuda variable en deuda fija; recibir fija y pagar variable hace lo contrario.</p></div>
+  </section>
+  <section><h2>2. Bonos de Boeing y ventaja comparativa</h2>
+    <div class="two">
+      <div class="card"><b>Bonos listados de Boeing</b> <span class="mut">(${sw.bonos.length} filas de TradingView al ${esc(sw.fecha_bonos)}, ordenadas por YTW; en negritas los ${sw.tramos.n_cuaderno} que usa el cuaderno; spread contra la curva OIS completa)</span><div class="scroll vscroll"><table>
+        <tr><th>Vence</th><th>Emisor</th><th>Cupón %</th><th>Precio</th><th>YTW %</th><th>OIS %</th><th>Spread pb</th><th>Vigente M USD</th></tr>
+        ${sw.bonos.map((x) => `<tr class="${x.cuaderno ? "hl" : ""}"><td class="nw">${x.cuaderno ? "<b>" + esc(x.vence) + "</b>" : esc(x.vence)}</td><td>${x.boeing ? "Boeing" : esc(x.emisor)}</td><td>${n(x.cupon, 3)}</td><td>${n(x.precio, 2)}</td><td>${n(x.ytw, 2)}</td><td>${n(x.ois, 2)}</td><td>${n(x.spread_pb, 0)}</td><td>${n(x.importe_musd, 0)}</td></tr>`).join("")}
+      </table></div>
+      <p class="mut">Calificaciones de los bonos en TradingView: BBB- (S&amp;P), BBB- (Fitch) y Baa3 (Moody's); los bonos 2034 de 6.528 % y 2064 de 7.008 % aparecen sin calificación de Moody's. La fila de Spirit AeroSystems (4.60 %, 2028) es de otro emisor, aparece en la lista de TradingView y se deja fuera de los promedios. Promedio de ~3 años (${sw.tramos.n3} bonos del cuaderno, vencen 2029-30): ${pct(sw.tramos.y3, 2)}, spread de ${n(sw.tramos.sp3, 0)} pb. De ~5 años (${sw.tramos.n5} bonos, vencen 2031): ${pct(sw.tramos.y5, 2)}, spread de ${n(sw.tramos.sp5, 0)} pb. El spread es contra OIS y los bonos cotizan en base semestral, así que es aproximado.</p></div>
+      <div class="card"><b>Spread de Boeing contra OIS por vencimiento</b> <span class="mut">(pb; puntos más grandes: bonos del cuaderno)</span><div class="ch"><canvas id="c-sw-bonos"></canvas></div></div>
+    </div>
+    <div class="card" style="margin-top:12px"><b>Ventaja comparativa a 3 años: ejemplo del cuaderno</b> <span class="tag sup">B = Boeing real · A = supuesto</span>
+      <div class="scroll"><table>
+        <tr><th></th><th>Tasa fija</th><th>Variable (sobre SOFR)</th></tr>
+        <tr><td>A (emisor A-, supuesto)</td><td>${pct(vc.fija_a, 2)}</td><td>+${pct(vc.spread_a, 2)}</td></tr>
+        <tr><td>B (Boeing; fija real, variable supuesta)</td><td>${pct(vc.fija_b, 2)}</td><td>+${pct(vc.spread_b, 2)}</td></tr>
+        <tr class="hl"><td><b>Diferencia</b></td><td>${ppb(vc.dif_fija)}</td><td>${ppb(vc.dif_var)}</td></tr>
+      </table></div>
+      <p style="margin:10px 0 0">Ganancia total del swap: ${ppb(vc.ganancia_total)}. Con un margen del intermediario de ${ppb(vc.margen_banco)}, cada parte gana ${n(vc.ganancia_neta * 1e4, 1)} pb. Boeing termina con una tasa fija efectiva de <b>${pct(vc.costo_b, 3)}</b> (sin swap: ${pct(vc.fija_b, 2)}) y A con SOFR +${pct(vc.costo_a, 3)} (sin swap: SOFR +${pct(vc.spread_a, 2)}).</p>
+      <p class="mut" style="margin:6px 0 0">Cautela (Hull): la ventaja suele reflejar que el diferencial en variable es de corto plazo y Boeing sigue asumiendo riesgo de crédito. Si la ganancia total fuera negativa o menor que el margen, no habría swap que convenga. Con los spreads de A hipotéticos, esta tabla es un ejemplo del método y no una cotización. Abajo se repite con una contraparte real (RTX).</p></div>
+    <div class="two" style="margin-top:12px">
+      <div class="card"><b>Bonos listados de RTX</b> <span class="mut">(${rx.bonos.length} filas de TradingView al 6-nov-2026, ordenadas por YTW; en negritas los ${rx.tramo.n3} de ~3 años que se promedian)</span><div class="scroll vscroll"><table>
+        <tr><th>Vence</th><th>Emisor</th><th>Cupón %</th><th>Precio</th><th>YTW %</th><th>OIS %</th><th>Spread pb</th><th>Vigente M</th></tr>
+        ${rx.bonos.map((x) => `<tr class="${rx.tramo.bonos_tramo.includes(x.vence + " " + n(x.cupon, 3) + " %") ? "hl" : ""}"><td class="nw">${esc(x.vence)}</td><td>${esc(x.emisor)}${x.moneda !== "USD" ? " (" + esc(x.moneda) + ")" : ""}</td><td>${n(x.cupon, 3)}</td><td>${n(x.precio, 2)}</td><td>${x.ytw == null ? "—" : n(x.ytw, 2)}</td><td>${n(x.ois, 2)}</td><td>${x.spread_pb == null ? "—" : n(x.spread_pb, 0)}</td><td>${n(x.importe_musd, 0)}</td></tr>`).join("")}
+      </table></div>
+      <p class="mut">RTX cotiza como ${esc(rx.precio.sp)} (S&amp;P) y ${esc(rx.precio.moodys)} (Moody's), un escalón arriba de Boeing (BBB- / Baa3). Los bonos de United Technologies son de la misma empresa antes del cambio de nombre. Quedan fuera de los promedios el bono en EUR (2030) y el que vence el 8-nov-2026 (sin YTW). Spreads contra la curva OIS completa, aproximados.</p></div>
+      <div class="card"><b>Ventaja comparativa a 3 años con RTX como parte A</b> <span class="tag">fijas reales · variables supuestas</span>
+        <div class="scroll"><table>
+          <tr><th></th><th>Tasa fija (YTW ~3 años)</th><th>Variable (sobre SOFR)</th></tr>
+          <tr><td>A: RTX (${rx.tramo.n3} bonos, vencen 2028-29)</td><td>${pct(rx.ventaja.fija_a, 2)}</td><td>+${pct(vc.spread_a, 2)} (supuesto)</td></tr>
+          <tr><td>B: Boeing</td><td>${pct(rx.ventaja.fija_b, 2)}</td><td>+${pct(vc.spread_b, 2)} (supuesto)</td></tr>
+          <tr class="hl"><td><b>Diferencia</b></td><td>${ppb(rx.ventaja.dif_fija)}</td><td>${ppb(rx.ventaja.dif_var)}</td></tr>
+        </table></div>
+        <p style="margin:10px 0 0">Ganancia total: ${ppb(rx.ventaja.ganancia_total)} (${n(rx.ventaja.dif_fija * 1e4, 0)} pb de diferencia en fija menos ${n(rx.ventaja.dif_var * 1e4, 0)} pb en variable). Con margen de ${ppb(rx.ventaja.margen_banco)}, <b>${rx.ventaja.hay_swap ? "sí queda ganancia para ambas partes" : "no hay swap que convenga"}</b>.</p>
+        <p class="mut" style="margin:6px 0 0">Con los rendimientos reales de RTX, la diferencia de fija entre las dos empresas (${n(rx.ventaja.dif_fija * 1e4, 0)} pb) es menor que la diferencia de variable que supone el cuaderno (${n(rx.ventaja.dif_var * 1e4, 0)} pb), así que la ventaja desaparece. Habría swap solo si la diferencia de márgenes variables fuera menor que ${n(rx.ventaja.dif_var_maxima * 1e4, 0)} pb. Ese margen no se conoce (el reporte de Boeing no lo publica), por eso la conclusión depende de un dato que sigue siendo supuesto. El cuaderno usaba un emisor A- hipotético con fija de ${pct(vc.fija_a, 2)}; RTX rinde ${pct(rx.ventaja.fija_a, 2)} a 3 años, ${n((rx.ventaja.fija_a - vc.fija_a) * 1e4, 0)} pb ${rx.ventaja.fija_a > vc.fija_a ? "más" : "menos"}.</p></div>
+    </div>
+  </section>
+  <section><h2>3. Swap de divisas fijo contra fijo (USD / MXN)</h2>
+    <div class="card"><p style="margin:0">Se intercambian principales al inicio y al final, e intereses en cada moneda. Caso del cuaderno: una empresa mexicana con deuda en USD e ingresos en MXN, que <b>recibe USD y paga MXN</b> sobre $${n(dv.n_usd / 1e6, 0)}M a 3 años. Valor = B<sub>USD</sub> − B<sub>MXN</sub> / S<sub>0</sub> (Hull 7.10).</p></div>
+    <div class="warn">El spot (${n(dv.spot, 2)} MXN por USD, valor de respaldo del cuaderno), el cupón USD (${pct(dv.cup_usd, 2)}) y el cupón MXN (${pct(dv.cup_mxn, 2)}) son <b>hipotéticos</b>. Las <b>curvas de descuento sí son reales</b>: SOFR OIS para USD y la curva MXN IRS (LSEG, 14 plazos) para MXN, con bootstrap anual a 1, 2 y 3 años. Por eso el swap no vale cero al inicio con esos cupones: valor inicial ${d0s(dv.valor_inicial)} USD. Los cupones que lo harían valer cero (tasa par a 3 años) serían ${pct(dv.par_usd_3a, 2)} en USD y ${pct(dv.par_mxn_3a, 2)} en MXN.</div>
+    <div class="two" style="margin-top:12px">
+      <div class="card"><b>Curva MXN IRS</b> <span class="mut">(LSEG MXNIRS, bid, tasas par %)</span><div class="ch"><canvas id="c-sw-mxn"></canvas></div>
+        <p class="mut" style="margin:8px 0 0">Tasas par interpoladas: 1 año ${pct(dv.par_mxn_interp["1"], 2)}, 2 años ${pct(dv.par_mxn_interp["2"], 2)}, 3 años ${pct(dv.par_mxn_interp["3"], 2)}. Factores de descuento MXN: ${n(dv.df_mxn["1"], 4)}, ${n(dv.df_mxn["2"], 4)}, ${n(dv.df_mxn["3"], 4)}; USD: ${n(dv.df_usd["1"], 4)}, ${n(dv.df_usd["2"], 4)}, ${n(dv.df_usd["3"], 4)}.</p></div>
+      <div class="card"><b>Tabla de la curva MXN</b><div class="scroll vscroll"><table>
+        <tr><th>Plazo</th><th>Años</th><th>Tasa %</th></tr>
+        ${dv.curva_mxn.map((x) => `<tr><td>${esc(x.tenor)}</td><td>${n(x.anios, 2)}</td><td>${n(x.tasa, 3)}</td></tr>`).join("")}
+      </table></div></div>
+    </div>
+    <div class="two" style="margin-top:12px">
+      <div class="card"><b>Flujos</b> <span class="mut">(el año 0 intercambia principales)</span><div class="scroll"><table>
+        <tr><th>Año</th><th>USD</th><th>MXN</th></tr>
+        ${dv.flujos.map((f) => `<tr><td>${f.anio}</td><td class="${f.usd < 0 ? "neg" : "pos"}">${n(f.usd, 0)}</td><td class="${f.mxn < 0 ? "neg" : "pos"}">${n(f.mxn, 0)}</td></tr>`).join("")}
+      </table></div>
+      <p class="mut">Valor del swap un año después (quedan 2 años), para quien recibe USD y paga MXN:</p><div class="scroll"><table>
+        <tr><th>USD/MXN</th><th>Valor (USD)</th></tr>
+        ${dv.escenarios.map((e) => `<tr><td>${n(e.spot, 2)}</td><td class="${e.valor < 0 ? "neg" : "pos"}">${d0s(e.valor)}</td></tr>`).join("")}
+      </table></div>
+      <p class="mut">Tipo de cambio que hace valer cero el swap: <b>${dv.s_equilibrio == null ? "—" : n(dv.s_equilibrio, 3)}</b> MXN/USD.</p></div>
+      <div class="card"><b>Valor del swap según USD/MXN</b> <span class="mut">(millones USD; empresa que recibe USD y paga MXN)</span><div class="ch"><canvas id="c-sw-fx"></canvas></div>
+        <p class="mut" style="margin:8px 0 0">Si el peso se deprecia (sube USD/MXN), las obligaciones en MXN valen menos en USD y el swap gana valor: es una cobertura natural de la deuda en dólares.</p></div>
+    </div>
+  </section>
+  <section><h2>4. Equity swaps sobre Boeing (BA)</h2>
+    <div class="card"><p style="margin:0">El receptor cobra el <b>rendimiento total de BA</b> (BA no paga dividendo) y paga: <b>swap A</b>, SOFR + ${pct(sp.fin_spread, 2)}; <b>swap B</b>, el rendimiento de SPY (BA contra el mercado); <b>swap C</b>, el de ITA (BA contra su sector, aeroespacial y defensa). Nocional de $${n(sp.nocional_equity / 1e6, 0)}M y periodos de 63 días hábiles sobre el último año disponible.</p>
+      <p class="mut" style="margin:6px 0 0">Precios: ${esc(eq.fuente)}; ${eq.n_obs} cierres de ${esc(eq.desde)} a ${esc(eq.fecha_ultima)}. Último cierre: ${Object.keys(eq.activos).map((t) => t + " " + usd(eq.activos[t].ultimo, 2)).join(" · ")}. Dividendos supuestos: ${Object.keys(eq.activos).map((t) => t + " " + pct(eq.activos[t].div, 1)).join(" · ")}.</p></div>
+    <div class="warn">Los precios de Yahoo ya vienen ajustados por dividendos y el cuaderno suma además el dividend yield de SPY e ITA en cada periodo, así que sus rendimientos quedan un poco sobrestimados (≈ 0.28 % y 0.20 % por trimestre). Se dejó igual que en el cuaderno; no afecta a BA, que no paga dividendo.</div>
+    <div class="two" style="margin-top:12px">
+      <div class="card wide"><b>Flujos del receptor de BA</b> <span class="mut">(últimos 4 trimestres, USD)</span><div class="scroll"><table>
+        <tr><th>Periodo</th><th>Rend. BA</th>${hasB ? "<th>Rend. SPY</th><th>Rend. ITA</th>" : ""}<th>Neto A: BA − (SOFR+spread)</th>${hasB ? "<th>Neto B: BA − SPY</th><th>Neto C: BA − ITA</th>" : ""}</tr>
+        ${eq.flujos.map((f) => `<tr><td class="nw">${esc(f.periodo)}</td><td class="${f.rend_ba < 0 ? "neg" : "pos"}">${pct(f.rend_ba, 2)}</td>${hasB ? `<td>${pct(f.rend_spy, 2)}</td><td>${pct(f.rend_ita, 2)}</td>` : ""}<td class="${f.neto < 0 ? "neg" : "pos"}">${n(f.neto, 0)}</td>${hasB ? `<td class="${f.neto_b < 0 ? "neg" : "pos"}">${n(f.neto_b, 0)}</td><td class="${f.neto_c < 0 ? "neg" : "pos"}">${n(f.neto_c, 0)}</td>` : ""}</tr>`).join("")}
+        <tr class="hl"><td><b>Total</b></td><td></td>${hasB ? "<td></td><td></td>" : ""}<td class="${eq.total_neto < 0 ? "neg" : "pos"}"><b>${n(eq.total_neto, 0)}</b></td>${hasB ? `<td class="${eq.total_neto_b < 0 ? "neg" : "pos"}"><b>${n(eq.total_neto_b, 0)}</b></td><td class="${eq.total_neto_c < 0 ? "neg" : "pos"}"><b>${n(eq.total_neto_c, 0)}</b></td>` : ""}</tr>
+      </table></div>
+      <p class="mut">En el swap A el receptor gana cuando BA rinde más que SOFR + spread; en B y C solo gana si BA le gana al mercado o al sector, así que sus flujos dependen del rendimiento relativo y no de la dirección general del mercado.</p></div>
+      <div class="card wide"><b>Flujo neto del receptor de BA por trimestre</b> <span class="mut">(millones USD)</span><div class="ch"><canvas id="c-sw-flujos"></canvas></div></div>
+    </div>
+    ${eq.base100 ? `<div class="card" style="margin-top:12px"><b>Precio de BA, SPY e ITA</b> <span class="mut">(base 100, semanal, ${esc(eq.desde)} a ${esc(eq.fecha_ultima)})</span><div class="ch"><canvas id="c-sw-px"></canvas></div></div>` : ""}
+    <div class="two" style="margin-top:12px">
+      <div class="card"><b>Valuación a mitad de vida</b> <span class="mut">(pasaron 2 trimestres, quedan 2)</span>
+        <div class="grid" style="margin-top:8px;grid-template-columns:repeat(auto-fit,minmax(130px,1fr))">
+          <div><div class="mut">BA hace 2 trimestres</div><div style="font:600 20px system-ui">${usd(mv.s_hace_2_trim, 2)}</div></div>
+          <div><div class="mut">Rend. acumulado de BA</div><div class="${mv.rend_acum < 0 ? "neg" : "pos"}" style="font:600 20px system-ui">${pct(mv.rend_acum, 1)}</div></div>
+        </div>
+        ${mv.tabla ? `<div class="scroll" style="margin-top:8px"><table><tr><th>Swap</th><th>Valor para el receptor de BA (USD)</th><th>% del nocional</th></tr>
+        ${mv.tabla.map((r) => `<tr><td>${esc(r.swap)}</td><td class="${r.valor < 0 ? "neg" : "pos"}">${d0s(r.valor)}</td><td class="${r.pct < 0 ? "neg" : "pos"}">${pct(r.pct, 1)}</td></tr>`).join("")}</table></div>` : ""}
+        <p class="mut" style="margin-top:10px">Contra tasa fija: valor = nocional × S<sub>t</sub>/S<sub>0</sub> − B<sub>fijo</sub> (Hull 7.13), con B<sub>fijo</sub> = $${n(mv.b_fijo, 0)}. Contra otro activo: nocional × (rendimiento de BA − rendimiento del otro). Valor positivo: le conviene el swap al receptor de BA; negativo: va perdiendo.</p></div>
+      <div class="card"><b>Riesgo: volatilidad, beta y VaR</b> <span class="mut">(EWMA, λ = 0.94, ${rk.muestra} días)</span>
+        ${rk.tabla ? `<div class="scroll" style="margin-top:6px"><table><tr><th>Swap</th><th>σ anual del flujo</th><th>VaR 99 % 10 d (% nocional)</th><th>VaR (USD)</th></tr>
+        ${rk.tabla.map((r) => `<tr><td>${esc(r.swap)}</td><td>${pct(r.sigma, 1)}</td><td>${pct(r.var_pct, 1)}</td><td>${n(r.var_usd, 0)}</td></tr>`).join("")}</table></div>
+        <p style="margin:8px 0 0">Correlación BA-SPY: <b>${n(rk.corr_ba_spy, 2)}</b> · BA-ITA: <b>${n(rk.corr_ba_ita, 2)}</b> · Beta de BA contra SPY: <b>${n(rk.beta, 2)}</b> · σ residual de BA (sin mercado): <b>${pct(rk.vol_resid, 1)}</b>.</p>` : `<p>σ de BA: ${pct(rk.vol_ewma, 1)}; VaR 99 % 10 d: ${pct(rk.var99_10d_pct, 1)}.</p>`}
+        <p class="mut" style="margin-top:8px">El swap contra SPY o ITA elimina parte del riesgo de mercado o sector; lo que queda es el riesgo propio de Boeing (producción, entregas, certificaciones, resultados). El EWMA de BA reacciona a la caída de 10.7 % del 27-oct.</p></div>
+    </div>
+  </section>
+  <section><h2>5. Cobertura de una posición en Boeing</h2>
+    <div class="card"><p style="margin:0">Posición hipotética de ${n(cbt.acciones, 0)} acciones de BA (${d0s(cbt.nocional)} de nocional al último cierre). Dos formas de cubrir con equity swaps (pagas el rendimiento y recibes SOFR): <b>swap sobre BA</b> (cobertura total, casi elimina el riesgo de precio pero también la ganancia) y <b>swap sobre SPY por beta</b> (neutraliza el riesgo sistemático y deja el riesgo propio de Boeing).</p></div>
+    <div class="grid" style="margin-top:12px">
+      <div class="card kpi"><div class="l">VaR 99 % 10 d sin cobertura</div><div class="v">${d0s(cbt.var99_10d_sin)}</div><div class="n">σ anual ${pct(rk.vol_ewma, 1)}</div></div>
+      ${cbt.var99_10d_spy != null ? `<div class="card kpi"><div class="l">VaR 99 % 10 d con swap sobre SPY (β)</div><div class="v">${d0s(cbt.var99_10d_spy)}</div><div class="n">σ residual ${pct(cbt.vols["Swap sobre SPY (β)"], 1)}</div></div>` : ""}
+      <div class="card kpi"><div class="l">VaR con swap sobre BA</div><div class="v">$0</div><div class="n">cobertura total (σ = 0)</div></div>
+      <div class="card kpi"><div class="l">Carry a 3 meses</div><div class="v">${d0s(cbt.carry_3m)}</div><div class="n">recibe SOFR (OIS 3M) sobre la posición</div></div>
+    </div>
+    <div class="card" style="margin-top:12px"><b>Escenarios a 3 meses</b> <span class="mut">(movimiento del mercado y movimiento propio de BA; P&amp;L en USD)</span>
+      ${cbt.matriz ? `<div class="scroll vscroll"><table><tr><th>Mercado (SPY)</th><th>Propio de BA</th><th>Sin cobertura</th><th>Con swap sobre SPY (β)</th><th>Con swap sobre BA</th></tr>
+      ${cbt.matriz.map((r) => `<tr><td>${sgn(r.mercado * 100, 0)}%</td><td>${sgn(r.propio * 100, 0)}%</td><td class="${r.sin < 0 ? "neg" : "pos"}">${n(r.sin, 0)}</td><td class="${r.con_spy < 0 ? "neg" : "pos"}">${n(r.con_spy, 0)}</td><td class="${r.con_ba < 0 ? "neg" : "pos"}">${n(r.con_ba, 0)}</td></tr>`).join("")}</table></div>` : ""}</div>
+    <div class="card" style="margin-top:12px"><b>Cobertura de la posición en BA</b> <span class="mut">(P&amp;L a 3 meses, miles de USD, sin shock propio de Boeing)</span><div class="ch"><canvas id="c-sw-cob"></canvas></div>
+      <p class="mut" style="margin:8px 0 0">El swap sobre BA deja el P&amp;L casi constante (el carry de ≈ ${d0s(cbt.carry_3m)} a 3 meses) pero cede todo el potencial de alza; no hay prima, a diferencia de una opción. El swap sobre SPY por beta deja expuesto el riesgo propio de Boeing (columna «Propio de BA»).</p></div>
+  </section>
+  <section><h2>6. Estructura de deuda de Boeing</h2>
+    <div class="two">
+      <div class="card"><b>Vencimientos de bonos (Refinitiv)</b> <span class="mut">(vigente por año, miles de M USD; 8-nov-2026)</span><div class="ch"><canvas id="c-sw-venc"></canvas></div>
+        <p class="mut" style="margin:8px 0 0">${dr.bonos_emisiones} bonos vigentes por $${n(dr.bonos_vigente / 1e9, 2)}B (emitidos $${n(dr.bonos_emitido / 1e9, 2)}B) y ${dr.prestamos_emisiones} préstamos por $${n(dr.prestamos_emitido / 1e9, 2)}B emitidos; ${dr.total_emisiones} emisiones en total. Hay ${n(dr.bonos_inactivos, 0)} bonos inactivos ($${n(dr.bonos_inactivos_emitido / 1e9, 1)}B emitidos). Refinitiv no muestra el monto vigente de los préstamos.</p></div>
+      <div class="card"><b>Tabla por año</b> <span class="mut">(USD)</span><div class="scroll vscroll"><table>
+        <tr><th>Año</th><th>Emisiones</th><th>Vigente</th><th>Emitido</th></tr>
+        ${dr.vencimientos.map((v) => `<tr><td>${v.anio}</td><td>${v.emisiones}</td><td>${n(v.vigente, 0)}</td><td>${n(v.emitido, 0)}</td></tr>`).join("")}
+        <tr class="hl"><td><b>Total</b></td><td><b>${dr.total_emisiones}</b></td><td><b>${n(dr.total_vigente, 0)}</b></td><td><b>${n(dr.total_emitido, 0)}</b></td></tr>
+      </table></div></div>
+    </div>
+    <div class="two" style="margin-top:12px">
+      <div class="card"><b>Deuda por tramo de cupón (reporte anual 2025, nota 17)</b> <span class="mut">(M USD, 31-dic)</span><div class="scroll"><table>
+        <tr><th>Tramo</th><th>2025</th><th>2024</th></tr>
+        ${ar.tramos.map((t) => `<tr><td>${esc(t.tramo)}</td><td>${n(t.a2025, 0)}</td><td>${n(t.a2024, 0)}</td></tr>`).join("")}
+        <tr class="hl"><td><b>Deuda total</b></td><td><b>${n(ar.deuda_total_musd, 0)}</b></td><td><b>${n(ar.deuda_total_2024_musd, 0)}</b></td></tr>
+      </table></div>
+      <p class="mut">Los tramos de bonos son deuda no garantizada de tasa fija (cupones de 2.20 % a 8.75 %). Los 230 M del tramo 3.25 %-3.90 % son las notas canjeables de Spirit.</p></div>
+      <div class="card"><b>Amortizaciones de principal programadas</b> <span class="mut">(M USD, reporte anual 2025)</span><div class="ch"><canvas id="c-sw-amort"></canvas></div>
+        <p class="mut" style="margin:8px 0 0">En 2026 vencen $${n(ar.amortizaciones[0].musd, 0)} M (incluye las notas al 2.20-2.50 %): es el vencimiento más cercano y el que pesa más para refinanciar.</p></div>
+    </div>
+  </section>
+  <section><h2>7. Boeing frente a sus pares (Refinitiv)</h2>
+    <div class="card"><div class="scroll"><table>
+      <tr><th>Empresa</th><th>Cambio del día</th><th>P/U (12 m)</th><th>Crec. UPA</th><th>ROE</th><th>Deuda / capital</th></tr>
+      ${sw.pares.map((q, i) => `<tr class="${i === 0 ? "hl" : ""}"><td>${esc(q.nombre)}</td><td class="${q.cambio_pct < 0 ? "neg" : "pos"}">${sgn(q.cambio_pct, 2)}%</td><td>${n(q.pe, 2)}</td><td class="${q.crec_eps_pct != null && q.crec_eps_pct < 0 ? "neg" : ""}">${q.crec_eps_pct == null ? "—" : n(q.crec_eps_pct, 2) + "%"}</td><td>${n(q.roe_pct, 2)}%</td><td>${n(q.de_pct, 2)}%</td></tr>`).join("")}
+    </table></div>
+    <p class="mut">Boeing tiene el apalancamiento más alto del grupo (deuda / capital de 702 %). Su ROE de 290 % se infla por un capital contable muy pequeño, y con estos datos no se puede explicar la caída de 108.9 % en la UPA; ninguna de las dos cifras es comparable con las de sus pares. RTX es la contraparte real de la parte A de la ventaja comparativa (sus bonos están arriba); los de Lockheed no se han cargado.</p></div>
+  </section>
+  <section><h2>8. RTX: estructura de deuda (Refinitiv, 8-nov-2026)</h2>
+    <div class="two">
+      <div class="card"><div class="grid">
+        <div class="kpi"><div class="l">Deuda vigente</div><div class="v">${usd(rx.deuda.total_vigente / 1e9, 2)}B</div></div>
+        <div class="kpi"><div class="l">Bonos vigentes</div><div class="v">${rx.deuda.bonos_emisiones}</div><div class="s">${usd(rx.deuda.bonos_vigente / 1e9, 2)}B de ${usd(rx.deuda.bonos_emitido / 1e9, 2)}B emitidos</div></div>
+        <div class="kpi"><div class="l">Préstamos</div><div class="v">${rx.deuda.prestamos_emisiones}</div><div class="s">${usd(rx.deuda.prestamos_emitido / 1e9, 1)}B emitidos</div></div>
+        <div class="kpi"><div class="l">Acción RTX</div><div class="v">${usd(rx.precio.cierre, 2)}</div><div class="s">${sgn(rx.precio.cambio_pct, 2)}% el ${esc(rx.precio.fecha)}</div></div>
+      </div>
+      <p class="mut" style="margin:10px 0 0">Los préstamos aparecen con monto emitido pero sin saldo vigente en la captura. Refinitiv registra además ${n(rx.deuda.bonos_inactivos, 0)} bonos inactivos (${usd(rx.deuda.bonos_inactivos_emitido / 1e9, 1)}B emitidos en total). Como referencia, la deuda total de Boeing en Refinitiv es ${usd(sw_deuda_boeing / 1e9, 1)}B.</p></div>
+      <div class="card"><b>Vencimientos de RTX por año</b> <span class="mut">(miles de millones USD vigentes)</span><div class="ch"><canvas id="c-sw-rtxv"></canvas></div></div>
+    </div>
+  </section>
+  <section><h2>Ejercicios del cuaderno (cámbialos y se recalcula)</h2>
+    <div class="card"><p style="margin:0 0 10px">Son los ejercicios para practicar de la sección 6 del cuaderno: subir el spread del equity swap a 1.5 %, cambiar el nocional a 5 o 20 millones y modificar las acciones de BA. También puedes mover la fija pactada y desplazar la curva.</p>
+      <div class="grid inp" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr))">
+        <div><label for="x-nt">Nocional del swap de tasas (M USD)</label><input id="x-nt" type="number" step="10" value="${n(sp.nocional_tasas / 1e6, 0).replace(/,/g, "")}"></div>
+        <div><label for="x-fija">Tasa fija pactada (%)</label><input id="x-fija" type="number" step="0.05" value="${(sp.tasa_fija * 100).toFixed(2)}"></div>
+        <div><label for="x-shift">Desplazamiento de la curva (pb)</label><input id="x-shift" type="number" step="5" value="0"></div>
+        <div><label for="x-ne">Nocional del equity swap (M USD)</label><input id="x-ne" type="number" step="1" value="${n(sp.nocional_equity / 1e6, 0).replace(/,/g, "")}"></div>
+        <div><label for="x-fs">Spread sobre SOFR del equity swap (%)</label><input id="x-fs" type="number" step="0.1" value="${(sp.fin_spread * 100).toFixed(2)}"></div>
+        <div><label for="x-acc">Acciones de BA a cubrir</label><input id="x-acc" type="number" step="100" value="${sp.acciones_ba}"></div>
+      </div>
+      <div class="grid" style="margin-top:12px" id="x-out"></div></div>
+  </section>
+  <section><h2>Pendiente en esta sección</h2>
+    ${sw.pendiente.map((a) => `<div class="warn">${esc(a)}</div>`).join("")}
+  </section>`;
+  const iSwaps = () => {
+    Chart.defaults.color = css("--mut"); Chart.defaults.borderColor = css("--line");
+    mk("c-sw-sens", { type: "line", data: { labels: tS.sensibilidad.map((x) => x.pb), datasets: [{ label: "Valor", data: tS.sensibilidad.map((x) => +(x.valor / 1e6).toFixed(3)), borderColor: acc, backgroundColor: acc, tension: 0.1 }] },
+      options: { maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { title: { display: true, text: "Desplazamiento paralelo (pb)" } }, y: { title: { display: true, text: "millones USD" } } } } });
+    const bb = sw.bonos.filter((x) => x.boeing);
+    mk("c-sw-bonos", { type: "scatter", data: { datasets: [
+      { label: "Otros bonos de Boeing", data: bb.filter((x) => !x.cuaderno).map((x) => ({ x: x.anios, y: x.spread_pb })), backgroundColor: gris, pointRadius: 4 },
+      { label: "Bonos del cuaderno", data: bb.filter((x) => x.cuaderno).map((x) => ({ x: x.anios, y: x.spread_pb })), backgroundColor: COL.BA, pointRadius: 7 }] },
+      options: { maintainAspectRatio: false, scales: { x: { type: "linear", title: { display: true, text: "Años al vencimiento" } }, y: { title: { display: true, text: "pb sobre OIS" } } } } });
+    mk("c-sw-ois", { type: "line", data: { labels: sw.curva_ois.map((c) => c.tenor), datasets: [{ label: "SOFR OIS %", data: sw.curva_ois.map((c) => c.tasa), borderColor: acc, backgroundColor: acc, pointRadius: 2, tension: 0.15 }] },
+      options: { maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { ticks: { maxTicksLimit: 10 } }, y: { title: { display: true, text: "tasa par %" } } } } });
+    mk("c-sw-venc", { type: "bar", data: { labels: dr.vencimientos.map((v) => v.anio), datasets: [{ label: "Vigente", data: dr.vencimientos.map((v) => +(v.vigente / 1e9).toFixed(2)), backgroundColor: COL.BA }] },
+      options: { maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { ticks: { autoSkip: false, maxRotation: 90, minRotation: 90 } }, y: { title: { display: true, text: "miles de M USD" } } } } });
+    mk("c-sw-mxn", { type: "line", data: { labels: dv.curva_mxn.map((x) => x.tenor), datasets: [{ label: "MXN IRS", data: dv.curva_mxn.map((x) => x.tasa), borderColor: acc, backgroundColor: acc, tension: 0.2 }] },
+      options: { maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { title: { display: true, text: "tasa par %" } } } } });
+    mk("c-sw-rtxv", { type: "bar", data: { labels: rx.deuda.vencimientos.filter((v) => v.vigente > 0).map((v) => v.anio), datasets: [{ label: "Vigente", data: rx.deuda.vencimientos.filter((v) => v.vigente > 0).map((v) => +(v.vigente / 1e9).toFixed(2)), backgroundColor: acc }] },
+      options: { maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { title: { display: true, text: "miles de millones USD" } } } } });
+    mk("c-sw-amort", { type: "bar", data: { labels: ar.amortizaciones.map((v) => v.anio), datasets: [{ label: "Principal", data: ar.amortizaciones.map((v) => +(v.musd / 1000).toFixed(2)), backgroundColor: acc }] },
+      options: { maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { title: { display: true, text: "miles de M USD" } } } } });
+    const num = (id) => { const v = parseFloat($("#" + id).value); return Number.isFinite(v) ? v : 0; };
+    const recalcula = () => {
+      const N = num("x-nt") * 1e6, fija = num("x-fija") / 100, sh = num("x-shift"), Ne = num("x-ne") * 1e6, fs = num("x-fs") / 100, acc_ = num("x-acc");
+      const Z = (shift) => tS.flujos.map((f) => Math.exp(-(f.cero + shift / 1e4) * f.t));
+      const val = (shift, fj) => { const z = Z(shift); return N - (N * fj * 0.5 * z.reduce((a, b) => a + b, 0) + N * z[z.length - 1]); };
+      const zs = Z(sh), par = (1 - zs[zs.length - 1]) / (0.5 * zs.reduce((a, b) => a + b, 0));
+      const dv = val(sh + 0.5, fija) - val(sh - 0.5, fija);
+      const fijoP = (sp.r_free + fs) * 63 / 252, cup = Ne * fijoP;
+      const bf = cup * Math.exp(-sp.r_free * 63 / 252) + (cup + Ne) * Math.exp(-sp.r_free * 126 / 252);
+      const tot = eq.flujos.reduce((a, f) => a + Ne * (f.rend_ba - fijoP), 0), vm = Ne * (1 + mv.rend_acum) - bf;
+      const nCob = acc_ * eq.s0, c = (x, d = 0) => `<div class="card kpi"><div class="l">${x[0]}</div><div class="v ${x[1] < 0 ? "neg" : ""}">${(x[1] < 0 ? "-" : "") + "$" + n(Math.abs(x[1]), d)}</div><div class="n">${x[2]}</div></div>`;
+      $("#x-out").innerHTML = c(["Valor del swap de tasas (paga fija)", val(sh, fija), "tasa par con ese desplazamiento: " + pct(par, 3)]) + c(["DV01 (pagador de fija)", dv, "por +1 pb"]) +
+        c(["Equity swap: neto de 4 trimestres", tot, "receptor de BA"]) + c(["Equity swap: valor a mitad de vida", vm, pct(vm / Ne, 1) + " del nocional"]) +
+        c(["VaR 99 % 10 d del equity swap", Ne * rg.var99_10d_pct, pct(rg.var99_10d_pct, 1) + " del nocional"]) + c(["VaR 99 % 10 d de la posición en BA", nCob * rg.var99_10d_pct, n(acc_, 0) + " acciones por " + usd(eq.s0, 2)]) +
+        c(["Carry a 3 meses de la cobertura", nCob * sp.r_free * 63 / 252, "recibe SOFR (OIS 3M) sobre la posición"]);
+    };
+    ["x-nt", "x-fija", "x-shift", "x-ne", "x-fs", "x-acc"].forEach((id) => $("#" + id).addEventListener("input", recalcula));
+    recalcula();
+    mk("c-sw-fx", { type: "line", data: { labels: dv.curva.map((x) => n(x.spot, 1)), datasets: [{ label: "Valor", data: dv.curva.map((x) => +(x.valor / 1e6).toFixed(3)), borderColor: acc, backgroundColor: acc, pointRadius: 0, tension: 0.1 }] },
+      options: { maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { ticks: { maxTicksLimit: 8 }, title: { display: true, text: "USD/MXN" } }, y: { title: { display: true, text: "millones USD" } } } } });
+    mk("c-sw-flujos", { type: "bar", data: { labels: eq.flujos.map((f) => f.periodo.split(" → ")[1]), datasets: [
+      { label: "A: BA − (SOFR+spread)", data: eq.flujos.map((f) => +(f.neto / 1e6).toFixed(3)), backgroundColor: COL.BA }].concat(hasB ? [
+      { label: "B: BA − SPY", data: eq.flujos.map((f) => +(f.neto_b / 1e6).toFixed(3)), backgroundColor: COLA.SPY },
+      { label: "C: BA − ITA", data: eq.flujos.map((f) => +(f.neto_c / 1e6).toFixed(3)), backgroundColor: oro }] : []) },
+      options: { maintainAspectRatio: false, scales: { x: { title: { display: true, text: "Fin del trimestre" } }, y: { title: { display: true, text: "millones USD" } } } } });
+    if (eq.base100) mk("c-sw-px", { type: "line", data: { labels: eq.base100.fechas, datasets: Object.keys(eq.base100.series).map((t) => ({ label: t, data: eq.base100.series[t], borderColor: { BA: COL.BA, SPY: COLA.SPY, ITA: oro }[t], backgroundColor: "transparent", pointRadius: 0, borderWidth: t === "BA" ? 2.5 : 1.6, tension: 0.1 })) },
+      options: { maintainAspectRatio: false, interaction: { mode: "index", intersect: false }, scales: { x: { ticks: { maxTicksLimit: 8 } }, y: { title: { display: true, text: "Base 100" } } } } });
+    if (cbt.matriz) { const sub = cbt.matriz.filter((r) => r.propio === 0);
+      mk("c-sw-cob", { type: "line", data: { labels: sub.map((r) => sgn(r.mercado * 100, 0) + "%"), datasets: [
+        { label: "Sin cobertura", data: sub.map((r) => +(r.sin / 1e3).toFixed(2)), borderColor: gris, backgroundColor: gris, tension: 0.1 },
+        { label: "Swap sobre SPY (β)", data: sub.map((r) => +(r.con_spy / 1e3).toFixed(2)), borderColor: COLA.SPY, backgroundColor: COLA.SPY, tension: 0.1 },
+        { label: "Swap sobre BA", data: sub.map((r) => +(r.con_ba / 1e3).toFixed(2)), borderColor: COL.BA, backgroundColor: COL.BA, tension: 0.1 }] },
+        options: { maintainAspectRatio: false, scales: { x: { title: { display: true, text: "Movimiento de SPY a 3 meses" } }, y: { title: { display: true, text: "P&L (miles USD)" } } } } }); }
+    else mk("c-sw-cob", { type: "bar", data: { labels: cbt.escenarios.map((x) => (x.mov > 0 ? "+" : "") + Math.round(x.mov * 100) + "%"), datasets: [
+      { label: "Sin cobertura", data: cbt.escenarios.map((x) => +(x.sin / 1e3).toFixed(1)), backgroundColor: gris },
+      { label: "Con swap sobre BA", data: cbt.escenarios.map((x) => +(x.con_swap / 1e3).toFixed(1)), backgroundColor: acc }] },
+      options: { maintainAspectRatio: false, scales: { x: { title: { display: true, text: "Movimiento de BA en 3 meses" } }, y: { title: { display: true, text: "miles USD" } } } } });
+  };
+
   /* ================= ARMADO DE PESTAÑAS ================= */
   const TABS = [
     { id: "empresa", label: "Empresa", html: tEmpresa, init: iEmpresa },
@@ -790,7 +1118,8 @@ function render(D) {
     { id: "arboles", label: "Árboles", html: tArb, init: iArb },
     { id: "garch", label: "GARCH", html: tGar, init: iGar },
     { id: "deuda", label: "Deuda", html: tDeuda, init: iDeuda },
-    { id: "competidores", label: "Competidores", html: tComp, init: iComp }];
+    { id: "competidores", label: "Competidores", html: tComp, init: iComp },
+    { id: "swaps", label: "Swaps", html: tSwaps, init: iSwaps }];
   $("#tabs").innerHTML = TABS.map((t) => `<button role="tab" id="tb-${t.id}" data-t="${t.id}" aria-selected="false">${t.label}</button>`).join("");
   $("#app").innerHTML = TABS.map((t) => `<div class="pane" id="p-${t.id}" role="tabpanel" hidden>${t.html}</div>`).join("");
   const hechas = {};

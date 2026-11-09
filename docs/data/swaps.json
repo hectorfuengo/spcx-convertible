@@ -1,0 +1,2959 @@
+{
+ "fecha_curva": "2026-11-08",
+ "fecha_bonos": "2026-11-06",
+ "supuestos": {
+  "nocional_tasas": 100000000.0,
+  "tasa_fija": 0.043,
+  "nocional_equity": 10000000.0,
+  "fin_spread": 0.005,
+  "r_free": 0.040553,
+  "sofr_on": 0.0397,
+  "acciones_ba": 1000,
+  "spread_var_boeing": 0.0065,
+  "spread_var_a": 0.0025,
+  "prima_a_fija": 0.0033,
+  "margen_banco": 0.0004
+ },
+ "tasas": {
+  "nocional": 100000000.0,
+  "tasa_fija": 0.043,
+  "tasa_par": 0.04323093000344698,
+  "valor_bonos": 64338.39034874737,
+  "valor_fra": 64338.39034875818,
+  "dv01": 28445.536551073194,
+  "flujos": [
+   {
+    "t": 0.5,
+    "cero": 0.041178165329901234,
+    "forward": 0.041605000000000114,
+    "pago_fijo": 2150000.0,
+    "cobro_variable": 2080250.0000000058,
+    "neto": -69749.99999999418
+   },
+   {
+    "t": 1.0,
+    "cero": 0.04230729092123279,
+    "forward": 0.04391153038908113,
+    "pago_fijo": 2150000.0,
+    "cobro_variable": 2195576.5194540564,
+    "neto": 45576.5194540564
+   },
+   {
+    "t": 1.5,
+    "cero": 0.042699726632972564,
+    "forward": 0.04396077038874546,
+    "pago_fijo": 2150000.0,
+    "cobro_variable": 2198038.519437273,
+    "neto": 48038.51943727303
+   },
+   {
+    "t": 2.0,
+    "cero": 0.04283709149196694,
+    "forward": 0.043720198113755604,
+    "pago_fijo": 2150000.0,
+    "cobro_variable": 2186009.90568778,
+    "neto": 36009.90568778012
+   },
+   {
+    "t": 2.5,
+    "cero": 0.04280817972023863,
+    "forward": 0.04315145533071574,
+    "pago_fijo": 2150000.0,
+    "cobro_variable": 2157572.766535787,
+    "neto": 7572.766535786912
+   },
+   {
+    "t": 3.0,
+    "cero": 0.042779267948510336,
+    "forward": 0.043092385056150206,
+    "pago_fijo": 2150000.0,
+    "cobro_variable": 2154619.2528075106,
+    "neto": 4619.252807510551
+   }
+  ],
+  "sensibilidad": [
+   {
+    "pb": -100,
+    "valor": -2822417.4704398513
+   },
+   {
+    "pb": -75,
+    "valor": -2092756.6776776314
+   },
+   {
+    "pb": -50,
+    "valor": -1368436.717384234
+   },
+   {
+    "pb": -25,
+    "valor": -649418.0950970054
+   },
+   {
+    "pb": 0,
+    "valor": 64338.39034874737
+   },
+   {
+    "pb": 25,
+    "valor": 772871.6490025073
+   },
+   {
+    "pb": 50,
+    "valor": 1476220.3019649982
+   },
+   {
+    "pb": 75,
+    "valor": 2174422.68353875
+   },
+   {
+    "pb": 100,
+    "valor": 2867516.8433621675
+   }
+  ],
+  "curva_ois": [
+   {
+    "t": 0.5,
+    "tasa": 4.1605
+   },
+   {
+    "t": 1.0,
+    "tasa": 4.3215
+   },
+   {
+    "t": 1.5,
+    "tasa": 4.346
+   },
+   {
+    "t": 2.0,
+    "tasa": 4.3756
+   },
+   {
+    "t": 3.0,
+    "tasa": 4.3702
+   },
+   {
+    "t": 4.0,
+    "tasa": 4.3653
+   },
+   {
+    "t": 5.0,
+    "tasa": 4.3637
+   }
+  ]
+ },
+ "bonos": [
+  {
+   "vence": "2043-10-15",
+   "cupon": 6.875,
+   "precio": 102.72,
+   "ytw": 6.6,
+   "importe_musd": 124.99,
+   "emisor": "BA",
+   "boeing": true,
+   "cuaderno": false,
+   "anios": 16.933607118412045,
+   "ois": 4.619876317590691,
+   "spread_pb": 198.01236824093084
+  },
+  {
+   "vence": "2064-05-01",
+   "cupon": 7.008,
+   "precio": 106.1,
+   "ytw": 6.56,
+   "importe_musd": 1500,
+   "emisor": "BA",
+   "boeing": true,
+   "cuaderno": false,
+   "anios": 37.478439425051334,
+   "ois": 4.505806160164271,
+   "spread_pb": 205.41938398357286
+  },
+  {
+   "vence": "2060-05-01",
+   "cupon": 5.93,
+   "precio": 91.91,
+   "ytw": 6.52,
+   "importe_musd": 3500,
+   "emisor": "BA",
+   "boeing": true,
+   "cuaderno": false,
+   "anios": 33.478439425051334,
+   "ois": 4.559319589322382,
+   "spread_pb": 196.06804106776173
+  },
+  {
+   "vence": "2047-03-01",
+   "cupon": 3.65,
+   "precio": 68.15,
+   "ytw": 6.49,
+   "importe_musd": 300,
+   "emisor": "BA",
+   "boeing": true,
+   "cuaderno": false,
+   "anios": 20.309377138945926,
+   "ois": 4.652563682409308,
+   "spread_pb": 183.7436317590692
+  },
+  {
+   "vence": "2059-08-01",
+   "cupon": 3.95,
+   "precio": 65.83,
+   "ytw": 6.47,
+   "importe_musd": 1000,
+   "emisor": "BA",
+   "boeing": true,
+   "cuaderno": false,
+   "anios": 32.72826830937714,
+   "ois": 4.568351649555099,
+   "spread_pb": 190.16483504449005
+  },
+  {
+   "vence": "2045-03-01",
+   "cupon": 3.5,
+   "precio": 68.47,
+   "ytw": 6.46,
+   "importe_musd": 250,
+   "emisor": "BA",
+   "boeing": true,
+   "cuaderno": false,
+   "anios": 18.310746064339494,
+   "ois": 4.6348871321013005,
+   "spread_pb": 182.51128678986993
+  },
+  {
+   "vence": "2059-03-01",
+   "cupon": 3.825,
+   "precio": 64.77,
+   "ytw": 6.42,
+   "importe_musd": 300,
+   "emisor": "BA",
+   "boeing": true,
+   "cuaderno": false,
+   "anios": 32.309377138945926,
+   "ois": 4.573395099247091,
+   "spread_pb": 184.66049007529088
+  },
+  {
+   "vence": "2054-05-01",
+   "cupon": 6.858,
+   "precio": 105.55,
+   "ytw": 6.42,
+   "importe_musd": 2490,
+   "emisor": "BA",
+   "boeing": true,
+   "cuaderno": false,
+   "anios": 27.477070499657767,
+   "ois": 4.621484353182752,
+   "spread_pb": 179.8515646817248
+  },
+  {
+   "vence": "2050-05-01",
+   "cupon": 5.805,
+   "precio": 92.96,
+   "ytw": 6.39,
+   "importe_musd": 5500,
+   "emisor": "BA",
+   "boeing": true,
+   "cuaderno": false,
+   "anios": 23.477070499657767,
+   "ois": 4.645024572210814,
+   "spread_pb": 174.49754277891856
+  },
+  {
+   "vence": "2048-11-01",
+   "cupon": 3.85,
+   "precio": 70.31,
+   "ytw": 6.38,
+   "importe_musd": 350,
+   "emisor": "BA",
+   "boeing": true,
+   "cuaderno": false,
+   "anios": 21.982203969883642,
+   "ois": 4.648582354551677,
+   "spread_pb": 173.14176454483228
+  },
+  {
+   "vence": "2048-03-01",
+   "cupon": 3.625,
+   "precio": 68.49,
+   "ytw": 6.34,
+   "importe_musd": 350,
+   "emisor": "BA",
+   "boeing": true,
+   "cuaderno": false,
+   "anios": 21.311430527036276,
+   "ois": 4.650178795345654,
+   "spread_pb": 168.9821204654346
+  },
+  {
+   "vence": "2049-05-01",
+   "cupon": 3.9,
+   "precio": 71.04,
+   "ytw": 6.33,
+   "importe_musd": 800,
+   "emisor": "BA",
+   "boeing": true,
+   "cuaderno": false,
+   "anios": 22.477754962354553,
+   "ois": 4.647402943189596,
+   "spread_pb": 168.25970568104037
+  },
+  {
+   "vence": "2050-02-01",
+   "cupon": 3.75,
+   "precio": 68.88,
+   "ytw": 6.32,
+   "importe_musd": 1250,
+   "emisor": "BA",
+   "boeing": true,
+   "cuaderno": false,
+   "anios": 23.23340177960301,
+   "ois": 4.645604503764544,
+   "spread_pb": 167.4395496235456
+  },
+  {
+   "vence": "2043-04-15",
+   "cupon": 7.875,
+   "precio": 115.92,
+   "ytw": 6.3,
+   "importe_musd": 175,
+   "emisor": "BA",
+   "boeing": true,
+   "cuaderno": false,
+   "anios": 16.432580424366872,
+   "ois": 4.614415126625599,
+   "spread_pb": 168.55848733744008
+  },
+  {
+   "vence": "2046-06-15",
+   "cupon": 3.375,
+   "precio": 67.68,
+   "ytw": 6.25,
+   "importe_musd": 400,
+   "emisor": "BA",
+   "boeing": true,
+   "cuaderno": false,
+   "anios": 19.600273785078713,
+   "ois": 4.648942984257357,
+   "spread_pb": 160.10570157426426
+  },
+  {
+   "vence": "2040-02-15",
+   "cupon": 5.875,
+   "precio": 98.04,
+   "ytw": 6.09,
+   "importe_musd": 450,
+   "emisor": "BA",
+   "boeing": true,
+   "cuaderno": false,
+   "anios": 13.270362765229295,
+   "ois": 4.556029431895962,
+   "spread_pb": 153.39705681040377
+  },
+  {
+   "vence": "2039-03-15",
+   "cupon": 6.875,
+   "precio": 107.4,
+   "ytw": 6.01,
+   "importe_musd": 500,
+   "emisor": "BA",
+   "boeing": true,
+   "cuaderno": false,
+   "anios": 12.347707049965777,
+   "ois": 4.528844147843943,
+   "spread_pb": 148.1155852156057
+  },
+  {
+   "vence": "2040-05-01",
+   "cupon": 5.705,
+   "precio": 97.27,
+   "ytw": 6.0,
+   "importe_musd": 3000,
+   "emisor": "BA",
+   "boeing": true,
+   "cuaderno": false,
+   "anios": 13.478439425051334,
+   "ois": 4.561439425051335,
+   "spread_pb": 143.85605749486655
+  },
+  {
+   "vence": "2038-03-01",
+   "cupon": 3.55,
+   "precio": 80.04,
+   "ytw": 6.0,
+   "importe_musd": 350,
+   "emisor": "BA",
+   "boeing": true,
+   "cuaderno": false,
+   "anios": 11.31006160164271,
+   "ois": 4.501472484599589,
+   "spread_pb": 149.85275154004114
+  },
+  {
+   "vence": "2038-02-15",
+   "cupon": 6.625,
+   "precio": 105.01,
+   "ytw": 6.0,
+   "importe_musd": 300,
+   "emisor": "BA",
+   "boeing": true,
+   "cuaderno": false,
+   "anios": 11.271731690622861,
+   "ois": 4.500548733744011,
+   "spread_pb": 149.94512662559893
+  },
+  {
+   "vence": "2039-03-01",
+   "cupon": 3.5,
+   "precio": 78.64,
+   "ytw": 5.97,
+   "importe_musd": 400,
+   "emisor": "BA",
+   "boeing": true,
+   "cuaderno": false,
+   "anios": 12.309377138945928,
+   "ois": 4.527659753593429,
+   "spread_pb": 144.23402464065705
+  },
+  {
+   "vence": "2035-03-01",
+   "cupon": 3.3,
+   "precio": 82.8,
+   "ytw": 5.95,
+   "importe_musd": 250,
+   "emisor": "BA",
+   "boeing": true,
+   "cuaderno": false,
+   "anios": 8.309377138945928,
+   "ois": 4.415894729637235,
+   "spread_pb": 153.41052703627653
+  },
+  {
+   "vence": "2035-02-01",
+   "cupon": 3.25,
+   "precio": 83.86,
+   "ytw": 5.73,
+   "importe_musd": 750,
+   "emisor": "BA",
+   "boeing": true,
+   "cuaderno": false,
+   "anios": 8.232717316906228,
+   "ois": 4.414384531143052,
+   "spread_pb": 131.5615468856948
+  },
+  {
+   "vence": "2033-02-15",
+   "cupon": 6.125,
+   "precio": 102.19,
+   "ytw": 5.7,
+   "importe_musd": 400,
+   "emisor": "BA",
+   "boeing": true,
+   "cuaderno": false,
+   "anios": 6.272416153319644,
+   "ois": 4.376123819301848,
+   "spread_pb": 132.38761806981518
+  },
+  {
+   "vence": "2034-05-01",
+   "cupon": 3.6,
+   "precio": 87.41,
+   "ytw": 5.69,
+   "importe_musd": 850,
+   "emisor": "BA",
+   "boeing": true,
+   "cuaderno": false,
+   "anios": 7.477070499657769,
+   "ois": 4.396413004791238,
+   "spread_pb": 129.3586995208762
+  },
+  {
+   "vence": "2034-05-01",
+   "cupon": 6.528,
+   "precio": 105.21,
+   "ytw": 5.64,
+   "importe_musd": 2500,
+   "emisor": "BA",
+   "boeing": true,
+   "cuaderno": false,
+   "anios": 7.477070499657769,
+   "ois": 4.396413004791238,
+   "spread_pb": 124.35869952087613
+  },
+  {
+   "vence": "2027-03-01",
+   "cupon": 2.8,
+   "precio": 99.16,
+   "ytw": 5.54,
+   "importe_musd": 300,
+   "emisor": "BA",
+   "boeing": true,
+   "cuaderno": false,
+   "anios": 0.30937713894592744,
+   "ois": 4.078385831622176,
+   "spread_pb": 146.16141683778235
+  },
+  {
+   "vence": "2031-09-15",
+   "cupon": 8.75,
+   "precio": 113.57,
+   "ytw": 5.52,
+   "importe_musd": 248,
+   "emisor": "BA",
+   "boeing": true,
+   "cuaderno": false,
+   "anios": 4.851471594798084,
+   "ois": 4.363937645448323,
+   "spread_pb": 115.60623545516763
+  },
+  {
+   "vence": "2031-11-15",
+   "cupon": 8.625,
+   "precio": 113.88,
+   "ytw": 5.43,
+   "importe_musd": 175,
+   "emisor": "BA",
+   "boeing": true,
+   "cuaderno": false,
+   "anios": 5.018480492813142,
+   "ois": 4.363873716632443,
+   "spread_pb": 106.61262833675566
+  },
+  {
+   "vence": "2031-02-01",
+   "cupon": 3.625,
+   "precio": 93.29,
+   "ytw": 5.42,
+   "importe_musd": 1400,
+   "emisor": "BA",
+   "boeing": true,
+   "cuaderno": true,
+   "anios": 4.232717316906228,
+   "ois": 4.36492765229295,
+   "spread_pb": 105.50723477070498
+  },
+  {
+   "vence": "2031-05-01",
+   "cupon": 6.388,
+   "precio": 103.73,
+   "ytw": 5.41,
+   "importe_musd": 999.06,
+   "emisor": "BA",
+   "boeing": true,
+   "cuaderno": true,
+   "anios": 4.476386036960986,
+   "ois": 4.364537782340863,
+   "spread_pb": 104.54622176591374
+  },
+  {
+   "vence": "2030-05-01",
+   "cupon": 5.15,
+   "precio": 99.35,
+   "ytw": 5.36,
+   "importe_musd": 4500,
+   "emisor": "BA",
+   "boeing": true,
+   "cuaderno": true,
+   "anios": 3.477070499657769,
+   "ois": 4.367862354551677,
+   "spread_pb": 99.21376454483237
+  },
+  {
+   "vence": "2030-02-01",
+   "cupon": 2.95,
+   "precio": 92.96,
+   "ytw": 5.34,
+   "importe_musd": 750,
+   "emisor": "BA",
+   "boeing": true,
+   "cuaderno": true,
+   "anios": 3.2334017796030117,
+   "ois": 4.369056331279945,
+   "spread_pb": 97.09436687200545
+  },
+  {
+   "vence": "2028-06-15",
+   "cupon": 4.6,
+   "precio": 98.87,
+   "ytw": 5.33,
+   "importe_musd": 700,
+   "emisor": "Spirit AeroSystems",
+   "boeing": false,
+   "cuaderno": false,
+   "anios": 1.6016427104722792,
+   "ois": 4.351691991786447,
+   "spread_pb": 97.83080082135527
+  },
+  {
+   "vence": "2029-05-01",
+   "cupon": 6.298,
+   "precio": 102.37,
+   "ytw": 5.25,
+   "importe_musd": 1500,
+   "emisor": "BA",
+   "boeing": true,
+   "cuaderno": true,
+   "anios": 2.4777549623545516,
+   "ois": 4.373020123203285,
+   "spread_pb": 87.69798767967147
+  },
+  {
+   "vence": "2028-03-01",
+   "cupon": 3.25,
+   "precio": 97.53,
+   "ytw": 5.21,
+   "importe_musd": 350,
+   "emisor": "BA",
+   "boeing": true,
+   "cuaderno": true,
+   "anios": 1.3114305270362765,
+   "ois": 4.339211498973306,
+   "spread_pb": 87.0788501026694
+  },
+  {
+   "vence": "2027-05-01",
+   "cupon": 5.04,
+   "precio": 99.96,
+   "ytw": 5.2,
+   "importe_musd": 2000,
+   "emisor": "BA",
+   "boeing": true,
+   "cuaderno": true,
+   "anios": 0.47638603696098564,
+   "ois": 4.151233880903491,
+   "spread_pb": 104.87661190965092
+  },
+  {
+   "vence": "2029-03-01",
+   "cupon": 3.2,
+   "precio": 95.74,
+   "ytw": 5.17,
+   "importe_musd": 1000,
+   "emisor": "BA",
+   "boeing": true,
+   "cuaderno": true,
+   "anios": 2.3107460643394937,
+   "ois": 4.3739219712525665,
+   "spread_pb": 79.60780287474334
+  },
+  {
+   "vence": "2028-11-01",
+   "cupon": 3.45,
+   "precio": 96.87,
+   "ytw": 5.13,
+   "importe_musd": 350,
+   "emisor": "BA",
+   "boeing": true,
+   "cuaderno": true,
+   "anios": 1.9822039698836413,
+   "ois": 4.37448952772074,
+   "spread_pb": 75.55104722792603
+  },
+  {
+   "vence": "2027-02-01",
+   "cupon": 2.7,
+   "precio": 99.45,
+   "ytw": 5.05,
+   "importe_musd": 1000,
+   "emisor": "BA",
+   "boeing": true,
+   "cuaderno": true,
+   "anios": 0.2327173169062286,
+   "ois": 4.046548049281314,
+   "spread_pb": 100.3451950718686
+  },
+  {
+   "vence": "2028-02-01",
+   "cupon": 3.25,
+   "precio": 97.92,
+   "ytw": 5.0,
+   "importe_musd": 1100,
+   "emisor": "BA",
+   "boeing": true,
+   "cuaderno": true,
+   "anios": 1.2320328542094456,
+   "ois": 4.335886036960986,
+   "spread_pb": 66.41139630390143
+  },
+  {
+   "vence": "2027-05-01",
+   "cupon": 6.259,
+   "precio": 100.61,
+   "ytw": 4.73,
+   "importe_musd": 996.9,
+   "emisor": "BA",
+   "boeing": true,
+   "cuaderno": true,
+   "anios": 0.47638603696098564,
+   "ois": 4.151233880903491,
+   "spread_pb": 57.87661190965095
+  }
+ ],
+ "tramos": {
+  "y3": 0.05279999999999999,
+  "sp3": 90.90348049281316,
+  "n3": 4,
+  "y5": 0.054150000000000004,
+  "sp5": 105.02672826830937,
+  "n5": 2,
+  "n_cuaderno": 12
+ },
+ "curva_ois": [
+  {
+   "tenor": "1D",
+   "anios": 0.0027397260273972603,
+   "tasa": 3.8825
+  },
+  {
+   "tenor": "7D",
+   "anios": 0.019178082191780823,
+   "tasa": 3.8909
+  },
+  {
+   "tenor": "14D",
+   "anios": 0.038356164383561646,
+   "tasa": 3.8874
+  },
+  {
+   "tenor": "21D",
+   "anios": 0.057534246575342465,
+   "tasa": 3.888
+  },
+  {
+   "tenor": "1M",
+   "anios": 0.08333333333333333,
+   "tasa": 3.9052
+  },
+  {
+   "tenor": "2M",
+   "anios": 0.16666666666666666,
+   "tasa": 4.0131
+  },
+  {
+   "tenor": "3M",
+   "anios": 0.25,
+   "tasa": 4.0553
+  },
+  {
+   "tenor": "4M",
+   "anios": 0.3333333333333333,
+   "tasa": 4.0877
+  },
+  {
+   "tenor": "5M",
+   "anios": 0.4166666666666667,
+   "tasa": 4.1278
+  },
+  {
+   "tenor": "6M",
+   "anios": 0.5,
+   "tasa": 4.1605
+  },
+  {
+   "tenor": "7M",
+   "anios": 0.5833333333333334,
+   "tasa": 4.1926
+  },
+  {
+   "tenor": "8M",
+   "anios": 0.6666666666666666,
+   "tasa": 4.2212
+  },
+  {
+   "tenor": "9M",
+   "anios": 0.75,
+   "tasa": 4.248
+  },
+  {
+   "tenor": "10M",
+   "anios": 0.8333333333333334,
+   "tasa": 4.274
+  },
+  {
+   "tenor": "11M",
+   "anios": 0.9166666666666666,
+   "tasa": 4.3006
+  },
+  {
+   "tenor": "1Y",
+   "anios": 1.0,
+   "tasa": 4.3215
+  },
+  {
+   "tenor": "1Y3M",
+   "anios": 1.25,
+   "tasa": 4.337
+  },
+  {
+   "tenor": "1Y6M",
+   "anios": 1.5,
+   "tasa": 4.346
+  },
+  {
+   "tenor": "1Y9M",
+   "anios": 1.75,
+   "tasa": 4.36
+  },
+  {
+   "tenor": "2Y",
+   "anios": 2.0,
+   "tasa": 4.3756
+  },
+  {
+   "tenor": "3Y",
+   "anios": 3.0,
+   "tasa": 4.3702
+  },
+  {
+   "tenor": "4Y",
+   "anios": 4.0,
+   "tasa": 4.3653
+  },
+  {
+   "tenor": "5Y",
+   "anios": 5.0,
+   "tasa": 4.3637
+  },
+  {
+   "tenor": "6Y",
+   "anios": 6.0,
+   "tasa": 4.3731
+  },
+  {
+   "tenor": "7Y",
+   "anios": 7.0,
+   "tasa": 4.3842
+  },
+  {
+   "tenor": "8Y",
+   "anios": 8.0,
+   "tasa": 4.4098
+  },
+  {
+   "tenor": "9Y",
+   "anios": 9.0,
+   "tasa": 4.4295
+  },
+  {
+   "tenor": "10Y",
+   "anios": 10.0,
+   "tasa": 4.4587
+  },
+  {
+   "tenor": "11Y",
+   "anios": 11.0,
+   "tasa": 4.494
+  },
+  {
+   "tenor": "12Y",
+   "anios": 12.0,
+   "tasa": 4.5181
+  },
+  {
+   "tenor": "13Y",
+   "anios": 13.0,
+   "tasa": 4.549
+  },
+  {
+   "tenor": "14Y",
+   "anios": 14.0,
+   "tasa": 4.575
+  },
+  {
+   "tenor": "15Y",
+   "anios": 15.0,
+   "tasa": 4.5988
+  },
+  {
+   "tenor": "20Y",
+   "anios": 20.0,
+   "tasa": 4.6533
+  },
+  {
+   "tenor": "25Y",
+   "anios": 25.0,
+   "tasa": 4.6414
+  },
+  {
+   "tenor": "30Y",
+   "anios": 30.0,
+   "tasa": 4.6012
+  },
+  {
+   "tenor": "35Y",
+   "anios": 35.0,
+   "tasa": 4.541
+  },
+  {
+   "tenor": "40Y",
+   "anios": 40.0,
+   "tasa": 4.47
+  },
+  {
+   "tenor": "45Y",
+   "anios": 45.0,
+   "tasa": 4.408
+  },
+  {
+   "tenor": "50Y",
+   "anios": 50.0,
+   "tasa": 4.334
+  }
+ ],
+ "deuda_refinitiv": {
+  "bonos_emisiones": 59,
+  "bonos_vigente": 45750970000,
+  "bonos_emitido": 55694911000,
+  "prestamos_emisiones": 4,
+  "prestamos_emitido": 10594000000,
+  "total_emisiones": 63,
+  "total_vigente": 45750970000,
+  "total_emitido": 66288911000,
+  "bonos_inactivos": 876,
+  "bonos_inactivos_emitido": 56250429151,
+  "vencimientos": [
+   {
+    "anio": 2027,
+    "emisiones": 10,
+    "vigente": 4300000000,
+    "emitido": 8890899000
+   },
+   {
+    "anio": 2028,
+    "emisiones": 6,
+    "vigente": 2730000000,
+    "emitido": 2730000000
+   },
+   {
+    "anio": 2029,
+    "emisiones": 5,
+    "vigente": 2500000000,
+    "emitido": 6986049000
+   },
+   {
+    "anio": 2030,
+    "emisiones": 3,
+    "vigente": 5250000000,
+    "emitido": 9250000000
+   },
+   {
+    "anio": 2031,
+    "emisiones": 6,
+    "vigente": 2824980000,
+    "emitido": 3824056000
+   },
+   {
+    "anio": 2033,
+    "emisiones": 1,
+    "vigente": 400000000,
+    "emitido": 400000000
+   },
+   {
+    "anio": 2034,
+    "emisiones": 4,
+    "vigente": 3350000000,
+    "emitido": 5841872000
+   },
+   {
+    "anio": 2035,
+    "emisiones": 2,
+    "vigente": 1000000000,
+    "emitido": 1000000000
+   },
+   {
+    "anio": 2038,
+    "emisiones": 2,
+    "vigente": 650000000,
+    "emitido": 650000000
+   },
+   {
+    "anio": 2039,
+    "emisiones": 2,
+    "vigente": 900000000,
+    "emitido": 900000000
+   },
+   {
+    "anio": 2040,
+    "emisiones": 2,
+    "vigente": 3450000000,
+    "emitido": 3450000000
+   },
+   {
+    "anio": 2042,
+    "emisiones": 1,
+    "vigente": 100000000,
+    "emitido": 100000000
+   },
+   {
+    "anio": 2043,
+    "emisiones": 2,
+    "vigente": 299990000,
+    "emitido": 300000000
+   },
+   {
+    "anio": 2045,
+    "emisiones": 1,
+    "vigente": 250000000,
+    "emitido": 250000000
+   },
+   {
+    "anio": 2046,
+    "emisiones": 1,
+    "vigente": 400000000,
+    "emitido": 400000000
+   },
+   {
+    "anio": 2047,
+    "emisiones": 1,
+    "vigente": 300000000,
+    "emitido": 300000000
+   },
+   {
+    "anio": 2048,
+    "emisiones": 2,
+    "vigente": 700000000,
+    "emitido": 700000000
+   },
+   {
+    "anio": 2049,
+    "emisiones": 1,
+    "vigente": 800000000,
+    "emitido": 800000000
+   },
+   {
+    "anio": 2050,
+    "emisiones": 2,
+    "vigente": 6750000000,
+    "emitido": 6750000000
+   },
+   {
+    "anio": 2054,
+    "emisiones": 3,
+    "vigente": 2496000000,
+    "emitido": 4986531000
+   },
+   {
+    "anio": 2059,
+    "emisiones": 2,
+    "vigente": 1300000000,
+    "emitido": 1300000000
+   },
+   {
+    "anio": 2060,
+    "emisiones": 1,
+    "vigente": 3500000000,
+    "emitido": 3500000000
+   },
+   {
+    "anio": 2064,
+    "emisiones": 3,
+    "vigente": 1500000000,
+    "emitido": 2979504000
+   }
+  ],
+  "resumen": {
+   "deuda_total_musd": 51500,
+   "caja_musd": 20710,
+   "intereses_pagados_ltm_musd": 2450,
+   "fcf_ltm_musd": 5260,
+   "implicita": "BB- (0.45 %)",
+   "quick_ba": 0.405,
+   "quick_industria": 1.343,
+   "de_industria": 0.42,
+   "calificaciones": [
+    {
+     "agencia": "S&P",
+     "corto": "A-3",
+     "largo": "BBB-",
+     "perspectiva": "Estable"
+    },
+    {
+     "agencia": "Moody's",
+     "corto": "P-3",
+     "largo": "Baa3 (TradingView)",
+     "perspectiva": "Estable"
+    },
+    {
+     "agencia": "Fitch",
+     "corto": "F3",
+     "largo": "BBB-",
+     "perspectiva": "Positiva"
+    }
+   ]
+  }
+ },
+ "pares": [
+  {
+   "nombre": "Boeing Co",
+   "cambio_pct": 0.52,
+   "pe": 17.9,
+   "crec_eps_pct": -108.92,
+   "roe_pct": 290.08,
+   "de_pct": 702.03
+  },
+  {
+   "nombre": "RTX Corporation",
+   "cambio_pct": -1.22,
+   "pe": 30.79,
+   "crec_eps_pct": 19.01,
+   "roe_pct": 10.96,
+   "de_pct": 53.98
+  },
+  {
+   "nombre": "Lockheed Martin Corporation",
+   "cambio_pct": -1.58,
+   "pe": 20.14,
+   "crec_eps_pct": 12.38,
+   "roe_pct": 76.87,
+   "de_pct": 203.7
+  },
+  {
+   "nombre": "General Dynamics Corp",
+   "cambio_pct": -0.64,
+   "pe": 20.83,
+   "crec_eps_pct": 9.9,
+   "roe_pct": 17.66,
+   "de_pct": 25.71
+  },
+  {
+   "nombre": "Northrop Grumman Corp",
+   "cambio_pct": -0.05,
+   "pe": 16.57,
+   "crec_eps_pct": 10.44,
+   "roe_pct": 26.17,
+   "de_pct": 81.34
+  },
+  {
+   "nombre": "Airbus SE",
+   "cambio_pct": -1.25,
+   "pe": 25.18,
+   "crec_eps_pct": -12.44,
+   "roe_pct": 21.62,
+   "de_pct": 65.96
+  },
+  {
+   "nombre": "BAE Systems PLC",
+   "cambio_pct": -1.84,
+   "pe": 26.61,
+   "crec_eps_pct": null,
+   "roe_pct": 18.14,
+   "de_pct": 73.96
+  },
+  {
+   "nombre": "General Electric Company",
+   "cambio_pct": 2.7,
+   "pe": 36.41,
+   "crec_eps_pct": 30.98,
+   "roe_pct": 45.37,
+   "de_pct": 110.29
+  }
+ ],
+ "precio_ba": {
+  "fecha": "2026-11-06",
+  "cierre": 173.4,
+  "cambio": 0.9,
+  "cambio_pct": 0.52,
+  "cierre_anterior": 172.5,
+  "apertura": 172.0,
+  "bid": "173.35 x 30,000",
+  "ask": "173.46 x 20,000",
+  "rango_dia": "169.91 - 174.46",
+  "rango_52s": "165.01 - 254.35",
+  "volumen": 6223766,
+  "volumen_prom": 7849442,
+  "cap_mmd": 137.411,
+  "beta_5a": 1.33,
+  "pe_ttm": 17.89,
+  "eps_ttm": 9.69,
+  "dividendo": "0.00 %",
+  "proximos_resultados": "2027-01-26",
+  "objetivo_1a": 233.35,
+  "rend_6m_pct": -24.59,
+  "post_mercado": 173.46
+ },
+ "ar2025": {
+  "deuda_total_musd": 54098,
+  "deuda_corto_plazo_musd": 8461,
+  "deuda_total_2024_musd": 53864,
+  "tramos": [
+   {
+    "tramo": "2.20 % - 2.50 %, vence hasta 2026",
+    "a2025": 5899,
+    "a2024": 6159
+   },
+   {
+    "tramo": "2.60 % - 3.20 %, hasta 2030",
+    "a2025": 5088,
+    "a2024": 5389
+   },
+   {
+    "tramo": "3.25 % - 3.90 %, hasta 2059",
+    "a2025": 10136,
+    "a2024": 9637
+   },
+   {
+    "tramo": "3.95 % - 5.15 %, hasta 2059",
+    "a2025": 8166,
+    "a2024": 7462
+   },
+   {
+    "tramo": "5.71 % - 6.63 %, hasta 2060",
+    "a2025": 18996,
+    "a2024": 18987
+   },
+   {
+    "tramo": "6.86 % - 8.75 %, hasta 2064",
+    "a2025": 5265,
+    "a2024": 5577
+   },
+   {
+    "tramo": "Arrendamientos financieros, hasta 2044",
+    "a2025": 250,
+    "a2024": 239
+   },
+   {
+    "tramo": "Otras notas",
+    "a2025": 298,
+    "a2024": 414
+   }
+  ],
+  "amortizaciones": [
+   {
+    "anio": 2026,
+    "musd": 8351
+   },
+   {
+    "anio": 2027,
+    "musd": 4403
+   },
+   {
+    "anio": 2028,
+    "musd": 2739
+   },
+   {
+    "anio": 2029,
+    "musd": 2508
+   },
+   {
+    "anio": 2030,
+    "musd": 5274
+   }
+  ],
+  "lineas_credito": [
+   {
+    "linea": "364 días (ago-2026, con opción de extender a ago-2027)",
+    "musd": 3000
+   },
+   {
+    "linea": "5 años (ago-2028)",
+    "musd": 3000
+   },
+   {
+    "linea": "5 años (may-2029)",
+    "musd": 4000
+   }
+  ],
+  "disponible_musd": 10000,
+  "intereses_incurridos_musd": 2956,
+  "intereses_pagados_musd": 2630,
+  "spirit": "En dic-2025 asumió 3,608 M de deuda de Spirit y pagó 2,260 M de inmediato; quedan 300 M de notas al 3.85 % (2026), 700 M al 4.60 % (2028) y 230 M de notas canjeables al 3.25 % (2028, canjeables por acciones de BA).",
+  "riesgo_tasa": "Boeing indica que su riesgo de tasa viene principalmente de deuda a tasa fija y que, como los tenedores no pueden exigir el pago anticipado, no lo considera material.",
+  "fx": "Cubre pagos y cobros comprometidos y proyectados en moneda extranjera con forwards; un movimiento de 10 % del tipo de cambio cambiaría las ganancias no realizadas en 425 M USD (compensado por la partida cubierta).",
+  "materias_primas": "Usa swaps de materias primas; un movimiento de 10 % en el precio cambiaría las ganancias no realizadas en 38 M USD.",
+  "riesgos_financiamiento": "Vencimientos de principal por unos 15,500 M USD en los próximos tres años y compromisos de financiamiento de aviones por 15,200 M USD (cifras de los factores de riesgo).",
+  "preferentes": "Acciones preferentes convertibles obligatorias Serie A (6.00 %): dividendos de hasta 345 M USD al año hasta la conversión obligatoria del 15-oct-2027; el dividendo común está suspendido desde 2020.",
+  "sin_margen": "El reporte no informa el margen (spread) de las líneas de crédito, por eso el margen variable de Boeing en la ventaja comparativa es un supuesto."
+ },
+ "ventaja": {
+  "fija_a": 0.047001999999999995,
+  "fija_b": 0.05279999999999999,
+  "spread_a": 0.0025,
+  "spread_b": 0.0065,
+  "dif_fija": 0.005797999999999998,
+  "dif_var": 0.004,
+  "ganancia_total": 0.0017979999999999975,
+  "margen_banco": 0.0004,
+  "ganancia_neta": 0.0006989999999999988,
+  "costo_a": 0.0018010000000000014,
+  "costo_b": 0.052100999999999995,
+  "ois3": 0.043702
+ },
+ "rtx": {
+  "bonos": [
+   {
+    "vence": "2044-12-15",
+    "cupon": 4.2,
+    "precio": 77.3,
+    "ytw": 6.32,
+    "importe_musd": 262.55,
+    "moneda": "USD",
+    "emisor": "RTX",
+    "anios": 18.102669404517453,
+    "ois": 4.63261909650924,
+    "spread_pb": 168.73809034907606,
+    "usable": true
+   },
+   {
+    "vence": "2048-11-16",
+    "cupon": 4.625,
+    "precio": 81.81,
+    "ytw": 6.14,
+    "importe_musd": 1750,
+    "moneda": "USD",
+    "emisor": "United Technologies",
+    "anios": 22.023271731690624,
+    "ois": 4.648484613278576,
+    "spread_pb": 149.15153867214235,
+    "usable": true
+   },
+   {
+    "vence": "2046-11-01",
+    "cupon": 3.75,
+    "precio": 73.11,
+    "ytw": 6.09,
+    "importe_musd": 1100,
+    "moneda": "USD",
+    "emisor": "United Technologies",
+    "anios": 19.980835044490075,
+    "ois": 4.653091101984941,
+    "spread_pb": 143.69088980150588,
+    "usable": true
+   },
+   {
+    "vence": "2054-03-15",
+    "cupon": 6.4,
+    "precio": 103.99,
+    "ytw": 6.09,
+    "importe_musd": 1750,
+    "moneda": "USD",
+    "emisor": "RTX",
+    "anios": 27.34839151266256,
+    "ois": 4.622518932238193,
+    "spread_pb": 146.74810677618072,
+    "usable": true
+   },
+   {
+    "vence": "2051-09-01",
+    "cupon": 2.82,
+    "precio": 58.37,
+    "ytw": 6.09,
+    "importe_musd": 1000,
+    "moneda": "USD",
+    "emisor": "RTX",
+    "anios": 24.813141683778234,
+    "ois": 4.641844722792608,
+    "spread_pb": 144.8155277207392,
+    "usable": true
+   },
+   {
+    "vence": "2047-05-04",
+    "cupon": 4.05,
+    "precio": 76.29,
+    "ytw": 6.09,
+    "importe_musd": 600,
+    "moneda": "USD",
+    "emisor": "United Technologies",
+    "anios": 20.484599589322382,
+    "ois": 4.652146652977413,
+    "spread_pb": 143.78533470225872,
+    "usable": true
+   },
+   {
+    "vence": "2053-02-27",
+    "cupon": 5.375,
+    "precio": 90.88,
+    "ytw": 6.07,
+    "importe_musd": 1250,
+    "moneda": "USD",
+    "emisor": "RTX",
+    "anios": 26.305270362765228,
+    "ois": 4.630905626283368,
+    "spread_pb": 143.90943737166327,
+    "usable": true
+   },
+   {
+    "vence": "2047-04-15",
+    "cupon": 4.35,
+    "precio": 80.14,
+    "ytw": 6.07,
+    "importe_musd": 956.01,
+    "moneda": "USD",
+    "emisor": "RTX",
+    "anios": 20.432580424366872,
+    "ois": 4.6522704585900065,
+    "spread_pb": 141.7729541409994,
+    "usable": true
+   },
+   {
+    "vence": "2050-07-01",
+    "cupon": 3.125,
+    "precio": 63.41,
+    "ytw": 6.05,
+    "importe_musd": 1000,
+    "moneda": "USD",
+    "emisor": "RTX",
+    "anios": 23.644079397672826,
+    "ois": 4.644627091033539,
+    "spread_pb": 140.5372908966461,
+    "usable": true
+   },
+   {
+    "vence": "2052-03-15",
+    "cupon": 3.03,
+    "precio": 61.07,
+    "ytw": 6.05,
+    "importe_musd": 1100,
+    "moneda": "USD",
+    "emisor": "RTX",
+    "anios": 25.349760438056126,
+    "ois": 4.638587926078029,
+    "spread_pb": 141.14120739219712,
+    "usable": true
+   },
+   {
+    "vence": "2045-05-15",
+    "cupon": 4.15,
+    "precio": 79.33,
+    "ytw": 6.01,
+    "importe_musd": 850,
+    "moneda": "USD",
+    "emisor": "United Technologies",
+    "anios": 18.5160848733744,
+    "ois": 4.637125325119781,
+    "spread_pb": 137.2874674880219,
+    "usable": true
+   },
+   {
+    "vence": "2042-06-01",
+    "cupon": 4.5,
+    "precio": 85.66,
+    "ytw": 5.92,
+    "importe_musd": 3500,
+    "moneda": "USD",
+    "emisor": "United Technologies",
+    "anios": 15.561943874058864,
+    "ois": 4.6049251882272415,
+    "spread_pb": 131.50748117727585,
+    "usable": true
+   },
+   {
+    "vence": "2041-12-15",
+    "cupon": 4.7,
+    "precio": 89.33,
+    "ytw": 5.76,
+    "importe_musd": 407.2,
+    "moneda": "USD",
+    "emisor": "RTX",
+    "anios": 15.101984941820671,
+    "ois": 4.599911635865845,
+    "spread_pb": 116.00883641341548,
+    "usable": true
+   },
+   {
+    "vence": "2040-10-15",
+    "cupon": 4.875,
+    "precio": 91.61,
+    "ytw": 5.75,
+    "importe_musd": 534.04,
+    "moneda": "USD",
+    "emisor": "RTX",
+    "anios": 13.935660506502396,
+    "ois": 4.573327173169062,
+    "spread_pb": 117.66728268309379,
+    "usable": true
+   },
+   {
+    "vence": "2038-07-15",
+    "cupon": 6.125,
+    "precio": 103.87,
+    "ytw": 5.66,
+    "importe_musd": 575.05,
+    "moneda": "USD",
+    "emisor": "United Technologies",
+    "anios": 11.682409308692677,
+    "ois": 4.510446064339493,
+    "spread_pb": 114.95539356605073,
+    "usable": true
+   },
+   {
+    "vence": "2038-11-16",
+    "cupon": 4.45,
+    "precio": 89.56,
+    "ytw": 5.66,
+    "importe_musd": 750,
+    "moneda": "USD",
+    "emisor": "United Technologies",
+    "anios": 12.021902806297057,
+    "ois": 4.518776796714579,
+    "spread_pb": 114.12232032854214,
+    "usable": true
+   },
+   {
+    "vence": "2040-04-15",
+    "cupon": 5.7,
+    "precio": 101.5,
+    "ytw": 5.54,
+    "importe_musd": 552.92,
+    "moneda": "USD",
+    "emisor": "United Technologies",
+    "anios": 13.434633812457221,
+    "ois": 4.560300479123888,
+    "spread_pb": 97.9699520876112,
+    "usable": true
+   },
+   {
+    "vence": "2035-05-01",
+    "cupon": 5.4,
+    "precio": 99.09,
+    "ytw": 5.53,
+    "importe_musd": 446.12,
+    "moneda": "USD",
+    "emisor": "United Technologies",
+    "anios": 8.476386036960985,
+    "ois": 4.419184804928131,
+    "spread_pb": 111.08151950718694,
+    "usable": true
+   },
+   {
+    "vence": "2036-06-01",
+    "cupon": 6.05,
+    "precio": 104.22,
+    "ytw": 5.47,
+    "importe_musd": 410.38,
+    "moneda": "USD",
+    "emisor": "United Technologies",
+    "anios": 9.56331279945243,
+    "ois": 4.445948733744011,
+    "spread_pb": 102.40512662559888,
+    "usable": true
+   },
+   {
+    "vence": "2034-03-15",
+    "cupon": 6.1,
+    "precio": 103.9,
+    "ytw": 5.43,
+    "importe_musd": 1500,
+    "moneda": "USD",
+    "emisor": "RTX",
+    "anios": 7.34839151266256,
+    "ois": 4.393118822724161,
+    "spread_pb": 103.68811772758386,
+    "usable": true
+   },
+   {
+    "vence": "2033-02-27",
+    "cupon": 5.15,
+    "precio": 99.08,
+    "ytw": 5.32,
+    "importe_musd": 1250,
+    "moneda": "USD",
+    "emisor": "RTX",
+    "anios": 6.30527036276523,
+    "ois": 4.376488501026694,
+    "spread_pb": 94.35114989733063,
+    "usable": true
+   },
+   {
+    "vence": "2032-03-15",
+    "cupon": 2.375,
+    "precio": 86.54,
+    "ytw": 5.29,
+    "importe_musd": 1000,
+    "moneda": "USD",
+    "emisor": "RTX",
+    "anios": 5.349760438056126,
+    "ois": 4.366987748117728,
+    "spread_pb": 92.30122518822724,
+    "usable": true
+   },
+   {
+    "vence": "2031-09-01",
+    "cupon": 1.9,
+    "precio": 85.84,
+    "ytw": 5.26,
+    "importe_musd": 1000,
+    "moneda": "USD",
+    "emisor": "RTX",
+    "anios": 4.813141683778234,
+    "ois": 4.3639989733059545,
+    "spread_pb": 89.60010266940452,
+    "usable": true
+   },
+   {
+    "vence": "2030-07-01",
+    "cupon": 2.25,
+    "precio": 90.59,
+    "ytw": 5.11,
+    "importe_musd": 1000,
+    "moneda": "USD",
+    "emisor": "RTX",
+    "anios": 3.6440793976728267,
+    "ois": 4.367044010951403,
+    "spread_pb": 74.2955989048597,
+    "usable": true
+   },
+   {
+    "vence": "2031-03-15",
+    "cupon": 6.0,
+    "precio": 103.32,
+    "ytw": 5.1,
+    "importe_musd": 1000,
+    "moneda": "USD",
+    "emisor": "RTX",
+    "anios": 4.347707049965777,
+    "ois": 4.364743668720055,
+    "spread_pb": 73.52563312799445,
+    "usable": true
+   },
+   {
+    "vence": "2028-11-16",
+    "cupon": 4.125,
+    "precio": 98.17,
+    "ytw": 5.08,
+    "importe_musd": 3000,
+    "moneda": "USD",
+    "emisor": "United Technologies",
+    "anios": 2.023271731690623,
+    "ois": 4.375474332648871,
+    "spread_pb": 70.45256673511292,
+    "usable": true
+   },
+   {
+    "vence": "2029-09-15",
+    "cupon": 7.5,
+    "precio": 106.49,
+    "ytw": 5.02,
+    "importe_musd": 414.23,
+    "moneda": "USD",
+    "emisor": "United Technologies",
+    "anios": 2.8528405201916494,
+    "ois": 4.370994661190965,
+    "spread_pb": 64.90053388090348,
+    "usable": true
+   },
+   {
+    "vence": "2027-05-04",
+    "cupon": 3.125,
+    "precio": 99.14,
+    "ytw": 4.96,
+    "importe_musd": 1100,
+    "moneda": "USD",
+    "emisor": "United Technologies",
+    "anios": 0.48459958932238195,
+    "ois": 4.154456878850103,
+    "spread_pb": 80.55431211498973,
+    "usable": true
+   },
+   {
+    "vence": "2029-01-15",
+    "cupon": 5.75,
+    "precio": 101.55,
+    "ytw": 4.95,
+    "importe_musd": 500,
+    "moneda": "USD",
+    "emisor": "RTX",
+    "anios": 2.187542778918549,
+    "ois": 4.37458726899384,
+    "spread_pb": 57.54127310061605,
+    "usable": true
+   },
+   {
+    "vence": "2027-08-15",
+    "cupon": 7.2,
+    "precio": 101.79,
+    "ytw": 4.85,
+    "importe_musd": 318.83,
+    "moneda": "USD",
+    "emisor": "RTX",
+    "anios": 0.7665982203969883,
+    "ois": 4.25317864476386,
+    "spread_pb": 59.682135523613944,
+    "usable": true
+   },
+   {
+    "vence": "2028-08-01",
+    "cupon": 6.7,
+    "precio": 103.07,
+    "ytw": 4.84,
+    "importe_musd": 284.88,
+    "moneda": "USD",
+    "emisor": "United Technologies",
+    "anios": 1.730321697467488,
+    "ois": 4.3588980150581795,
+    "spread_pb": 48.11019849418203,
+    "usable": true
+   },
+   {
+    "vence": "2027-11-15",
+    "cupon": 7.1,
+    "precio": 102.42,
+    "ytw": 4.68,
+    "importe_musd": 122.75,
+    "moneda": "USD",
+    "emisor": "RTX",
+    "anios": 1.0184804928131417,
+    "ois": 4.322645790554415,
+    "spread_pb": 35.73542094455844,
+    "usable": true
+   },
+   {
+    "vence": "2027-03-15",
+    "cupon": 3.5,
+    "precio": 99.61,
+    "ytw": 4.64,
+    "importe_musd": 1150,
+    "moneda": "USD",
+    "emisor": "RTX",
+    "anios": 0.34770704996577684,
+    "ois": 4.094616632443532,
+    "spread_pb": 54.53833675564681,
+    "usable": true
+   },
+   {
+    "vence": "2030-05-18",
+    "cupon": 2.15,
+    "precio": 94.59,
+    "ytw": 3.81,
+    "importe_musd": 500,
+    "moneda": "EUR",
+    "emisor": "United Technologies",
+    "anios": 3.5236139630390144,
+    "ois": 4.367634291581109,
+    "spread_pb": -55.763429158110924,
+    "usable": false
+   },
+   {
+    "vence": "2026-11-08",
+    "cupon": 5.75,
+    "precio": 99.94,
+    "ytw": null,
+    "importe_musd": 1250,
+    "moneda": "USD",
+    "emisor": "RTX",
+    "anios": 0.0,
+    "ois": 3.8825,
+    "spread_pb": null,
+    "usable": false
+   }
+  ],
+  "tramo": {
+   "y3": 0.050166666666666665,
+   "sp3": 64.29812457221082,
+   "n3": 3,
+   "bonos_tramo": [
+    "2028-11-16 4.125 %",
+    "2029-09-15 7.500 %",
+    "2029-01-15 5.750 %"
+   ]
+  },
+  "ventaja": {
+   "fija_a": 0.050166666666666665,
+   "fija_b": 0.05279999999999999,
+   "dif_fija": 0.002633333333333328,
+   "dif_var": 0.004,
+   "ganancia_total": -0.0013666666666666723,
+   "margen_banco": 0.0004,
+   "ganancia_neta": -0.0008833333333333361,
+   "hay_swap": false,
+   "dif_var_maxima": 0.0022333333333333276,
+   "spread_a_pb": 64.64666666666668
+  },
+  "deuda": {
+   "bonos_emisiones": 58,
+   "bonos_vigente": 34251756000,
+   "bonos_emitido": 41840106000,
+   "prestamos_emisiones": 2,
+   "prestamos_emitido": 10000000000,
+   "total_emisiones": 60,
+   "total_vigente": 34251756000,
+   "total_emitido": 51840106000,
+   "bonos_inactivos": 3220,
+   "bonos_inactivos_emitido": 94634587533,
+   "vencimientos": [
+    {
+     "anio": 2026,
+     "emisiones": 5,
+     "vigente": 0,
+     "emitido": 0
+    },
+    {
+     "anio": 2027,
+     "emisiones": 9,
+     "vigente": 2916098000,
+     "emitido": 5798625000
+    },
+    {
+     "anio": 2028,
+     "emisiones": 5,
+     "vigente": 3470057000,
+     "emitido": 8814020000
+    },
+    {
+     "anio": 2029,
+     "emisiones": 2,
+     "vigente": 914233000,
+     "emitido": 1050000000
+    },
+    {
+     "anio": 2030,
+     "emisiones": 2,
+     "vigente": 1557150000,
+     "emitido": 1557150000
+    },
+    {
+     "anio": 2031,
+     "emisiones": 3,
+     "vigente": 2000000000,
+     "emitido": 7000000000
+    },
+    {
+     "anio": 2032,
+     "emisiones": 1,
+     "vigente": 1000000000,
+     "emitido": 1000000000
+    },
+    {
+     "anio": 2033,
+     "emisiones": 1,
+     "vigente": 1250000000,
+     "emitido": 1250000000
+    },
+    {
+     "anio": 2034,
+     "emisiones": 1,
+     "vigente": 1500000000,
+     "emitido": 1500000000
+    },
+    {
+     "anio": 2035,
+     "emisiones": 1,
+     "vigente": 446123000,
+     "emitido": 600000000
+    },
+    {
+     "anio": 2036,
+     "emisiones": 3,
+     "vigente": 527942000,
+     "emitido": 983305000
+    },
+    {
+     "anio": 2038,
+     "emisiones": 4,
+     "vigente": 1472698000,
+     "emitido": 2084016000
+    },
+    {
+     "anio": 2040,
+     "emisiones": 3,
+     "vigente": 1152902000,
+     "emitido": 2134038000
+    },
+    {
+     "anio": 2041,
+     "emisiones": 2,
+     "vigente": 424979000,
+     "emitido": 832199000
+    },
+    {
+     "anio": 2042,
+     "emisiones": 1,
+     "vigente": 3500000000,
+     "emitido": 3500000000
+    },
+    {
+     "anio": 2043,
+     "emisiones": 2,
+     "vigente": 399735000,
+     "emitido": 788192000
+    },
+    {
+     "anio": 2044,
+     "emisiones": 2,
+     "vigente": 299839000,
+     "emitido": 562547000
+    },
+    {
+     "anio": 2045,
+     "emisiones": 1,
+     "vigente": 850000000,
+     "emitido": 850000000
+    },
+    {
+     "anio": 2046,
+     "emisiones": 3,
+     "vigente": 1120000000,
+     "emitido": 1130000000
+    },
+    {
+     "anio": 2047,
+     "emisiones": 3,
+     "vigente": 1600000000,
+     "emitido": 2556014000
+    },
+    {
+     "anio": 2048,
+     "emisiones": 1,
+     "vigente": 1750000000,
+     "emitido": 1750000000
+    },
+    {
+     "anio": 2050,
+     "emisiones": 1,
+     "vigente": 1000000000,
+     "emitido": 1000000000
+    },
+    {
+     "anio": 2051,
+     "emisiones": 1,
+     "vigente": 1000000000,
+     "emitido": 1000000000
+    },
+    {
+     "anio": 2052,
+     "emisiones": 1,
+     "vigente": 1100000000,
+     "emitido": 1100000000
+    },
+    {
+     "anio": 2053,
+     "emisiones": 1,
+     "vigente": 1250000000,
+     "emitido": 1250000000
+    },
+    {
+     "anio": 2054,
+     "emisiones": 1,
+     "vigente": 1750000000,
+     "emitido": 1750000000
+    }
+   ]
+  },
+  "precio": {
+   "fecha": "2026-11-06",
+   "cierre": 189.53,
+   "cambio": -2.35,
+   "cambio_pct": -1.22,
+   "post_mercado": 190.3,
+   "sp": "BBB+",
+   "moodys": "Baa1",
+   "fitch": "—"
+  }
+ },
+ "equity": {
+  "fuente": "Yahoo Finance (cuaderno, precios ajustados)",
+  "fecha_ultima": "2026-11-06",
+  "desde": "2024-11-11",
+  "n_obs": 499,
+  "s0": 173.39999389648438,
+  "activos": {
+   "BA": {
+    "ultimo": 173.39999389648438,
+    "desde": "2024-11-11",
+    "hasta": "2026-11-06",
+    "obs": 499,
+    "div": 0.0
+   },
+   "SPY": {
+    "ultimo": 735.2899780273438,
+    "desde": "2024-11-11",
+    "hasta": "2026-11-06",
+    "obs": 499,
+    "div": 0.011
+   },
+   "ITA": {
+    "ultimo": 68.9800033569336,
+    "desde": "2024-11-11",
+    "hasta": "2026-11-06",
+    "obs": 499,
+    "div": 0.008
+   }
+  },
+  "tiene_spy_ita": true,
+  "flujos": [
+   {
+    "periodo": "2025-11-05 → 2026-02-06",
+    "rend_ba": 0.22978445898240962,
+    "fijo": 0.011388249999999999,
+    "neto": 2183962.0898240963,
+    "rend_spy": 0.02500671195401535,
+    "rend_ita": 0.11877094482617889,
+    "neto_b": 2047777.4702839428,
+    "neto_c": 1110135.1415623073
+   },
+   {
+    "periodo": "2026-02-06 → 2026-05-08",
+    "rend_ba": -0.02333044561340092,
+    "fijo": 0.011388249999999999,
+    "neto": -347186.95613400923,
+    "rend_spy": 0.07372166723194915,
+    "rend_ita": -0.042008771013477775,
+    "neto_b": -970521.1284535007,
+    "neto_c": 186783.25400076856
+   },
+   {
+    "periodo": "2026-05-08 → 2026-08-10",
+    "rend_ba": -0.019253485475511423,
+    "fijo": 0.011388249999999999,
+    "neto": -306417.35475511424,
+    "rend_spy": 0.05345568624928296,
+    "rend_ita": 0.12646330794175986,
+    "neto_b": -727091.7172479439,
+    "neto_c": -1457167.9341727127
+   },
+   {
+    "periodo": "2026-08-10 → 2026-11-06",
+    "rend_ba": -0.25512264746126556,
+    "fijo": 0.011388249999999999,
+    "neto": -2665108.9746126556,
+    "rend_spy": -0.04370894225804736,
+    "rend_ita": -0.17300929801195908,
+    "neto_b": -2114137.052032182,
+    "neto_c": -821133.4944930648
+   }
+  ],
+  "total_neto": -1134751.1956776828,
+  "total_neto_b": -1763972.4274496837,
+  "total_neto_c": -981383.0331027018,
+  "mitad_vida": {
+   "s_hace_2_trim": 237.3600006103516,
+   "rend_acum": -0.2694641327494075,
+   "valor": -2718248.564241688,
+   "valor_pct": -0.27182485642416876,
+   "b_fijo": 10023607.236747613,
+   "tabla": [
+    {
+     "swap": "A: BA contra SOFR + spread",
+     "valor": -2718248.564241688,
+     "pct": -0.27182485642416876
+    },
+    {
+     "swap": "B: BA contra SPY",
+     "valor": -2768807.2617535465,
+     "pct": -0.27688072617535464
+    },
+    {
+     "swap": "C: BA contra ITA",
+     "valor": -2008540.249024482,
+     "pct": -0.2008540249024482
+    }
+   ],
+   "rend_acum_spy": 0.007416593425947138,
+   "rend_acum_ita": -0.06861010784695931
+  },
+  "riesgo": {
+   "vol_ewma": 0.4553265506439304,
+   "var99_10d_pct": 0.2109756896886654,
+   "var99_10d_usd": 2109756.8968866537,
+   "muestra": 498,
+   "vol": {
+    "BA": 0.4553265506439304,
+    "SPY": 0.21440651255438004,
+    "ITA": 0.2685326530651937
+   },
+   "tabla": [
+    {
+     "swap": "Swap A: BA contra tasa fija",
+     "sigma": 0.4553265506439304,
+     "var_pct": 0.2109756896886654,
+     "var_usd": 2109756.8968866537
+    },
+    {
+     "swap": "Swap B: BA contra SPY",
+     "sigma": 0.4597541012129143,
+     "var_pct": 0.2130271965327135,
+     "var_usd": 2130271.965327135
+    },
+    {
+     "swap": "Swap C: BA contra ITA",
+     "sigma": 0.42848780655426405,
+     "var_pct": 0.19853994980772238,
+     "var_usd": 1985399.4980772238
+    }
+   ],
+   "corr_ba_spy": 0.21469191446122468,
+   "corr_ba_ita": 0.3918795148083186,
+   "beta": 0.45593264727897465,
+   "vol_resid": 0.4447091651903908
+  },
+  "cobertura": {
+   "acciones": 1000,
+   "nocional": 173399.99389648438,
+   "var99_10d_sin": 36583.18330432116,
+   "carry_3m": 1757.9724881210327,
+   "var99_10d_spy": 35730.13013245985,
+   "vols": {
+    "Sin cobertura": 0.4553265506439304,
+    "Swap sobre SPY (β)": 0.4447091651903908,
+    "Swap sobre BA": 0.0
+   },
+   "matriz": [
+    {
+     "mercado": -0.1,
+     "propio": -0.1,
+     "sin": -25245.871215186653,
+     "con_spy": -16538.482339295806,
+     "con_ba": 1757.9724881210313
+    },
+    {
+     "mercado": -0.1,
+     "propio": 0.0,
+     "sin": -7905.871825538217,
+     "con_spy": 801.5170503526278,
+     "con_ba": 1757.9724881210332
+    },
+    {
+     "mercado": -0.1,
+     "propio": 0.1,
+     "sin": 9434.127564110222,
+     "con_spy": 18141.51644000107,
+     "con_ba": 1757.9724881210332
+    },
+    {
+     "mercado": -0.05,
+     "propio": -0.1,
+     "sin": -21292.935302417547,
+     "con_spy": -16538.48233929581,
+     "con_ba": 1757.9724881210313
+    },
+    {
+     "mercado": -0.05,
+     "propio": 0.0,
+     "sin": -3952.9359127691087,
+     "con_spy": 801.5170503526278,
+     "con_ba": 1757.9724881210323
+    },
+    {
+     "mercado": -0.05,
+     "propio": 0.1,
+     "sin": 13387.06347687933,
+     "con_spy": 18141.516440001065,
+     "con_ba": 1757.9724881210313
+    },
+    {
+     "mercado": 0.0,
+     "propio": -0.1,
+     "sin": -17339.999389648438,
+     "con_spy": -16538.48233929581,
+     "con_ba": 1757.972488121035
+    },
+    {
+     "mercado": 0.0,
+     "propio": 0.0,
+     "sin": 0.0,
+     "con_spy": 801.5170503526282,
+     "con_ba": 1757.9724881210327
+    },
+    {
+     "mercado": 0.0,
+     "propio": 0.1,
+     "sin": 17339.999389648438,
+     "con_spy": 18141.516440001065,
+     "con_ba": 1757.9724881210313
+    },
+    {
+     "mercado": 0.05,
+     "propio": -0.1,
+     "sin": -13387.06347687933,
+     "con_spy": -16538.48233929581,
+     "con_ba": 1757.9724881210332
+    },
+    {
+     "mercado": 0.05,
+     "propio": 0.0,
+     "sin": 3952.9359127691087,
+     "con_spy": 801.5170503526288,
+     "con_ba": 1757.9724881210327
+    },
+    {
+     "mercado": 0.05,
+     "propio": 0.1,
+     "sin": 21292.935302417547,
+     "con_spy": 18141.51644000107,
+     "con_ba": 1757.972488121035
+    },
+    {
+     "mercado": 0.1,
+     "propio": -0.1,
+     "sin": -9434.127564110222,
+     "con_spy": -16538.48233929581,
+     "con_ba": 1757.9724881210313
+    },
+    {
+     "mercado": 0.1,
+     "propio": 0.0,
+     "sin": 7905.871825538217,
+     "con_spy": 801.5170503526288,
+     "con_ba": 1757.9724881210332
+    },
+    {
+     "mercado": 0.1,
+     "propio": 0.1,
+     "sin": 25245.871215186653,
+     "con_spy": 18141.516440001065,
+     "con_ba": 1757.9724881210277
+    }
+   ],
+   "escenarios": [
+    {
+     "mov": -0.2,
+     "sin": -34679.998779296875,
+     "con_swap": 1757.9724881210327
+    },
+    {
+     "mov": -0.1,
+     "sin": -17339.999389648438,
+     "con_swap": 1757.9724881210327
+    },
+    {
+     "mov": -0.05,
+     "sin": -8669.999694824219,
+     "con_swap": 1757.9724881210327
+    },
+    {
+     "mov": 0.0,
+     "sin": 0.0,
+     "con_swap": 1757.9724881210327
+    },
+    {
+     "mov": 0.05,
+     "sin": 8669.999694824219,
+     "con_swap": 1757.9724881210327
+    },
+    {
+     "mov": 0.1,
+     "sin": 17339.999389648438,
+     "con_swap": 1757.9724881210327
+    },
+    {
+     "mov": 0.2,
+     "sin": 34679.998779296875,
+     "con_swap": 1757.9724881210327
+    }
+   ]
+  },
+  "base100": {
+   "fechas": [
+    "2024-11-11",
+    "2024-11-18",
+    "2024-11-25",
+    "2024-12-03",
+    "2024-12-10",
+    "2024-12-17",
+    "2024-12-24",
+    "2025-01-02",
+    "2025-01-10",
+    "2025-01-17",
+    "2025-01-27",
+    "2025-02-03",
+    "2025-02-10",
+    "2025-02-18",
+    "2025-02-25",
+    "2025-03-04",
+    "2025-03-11",
+    "2025-03-18",
+    "2025-03-25",
+    "2025-04-01",
+    "2025-04-08",
+    "2025-04-15",
+    "2025-04-23",
+    "2025-04-30",
+    "2025-05-07",
+    "2025-05-14",
+    "2025-05-21",
+    "2025-05-29",
+    "2025-06-05",
+    "2025-06-12",
+    "2025-06-20",
+    "2025-06-27",
+    "2025-07-07",
+    "2025-07-14",
+    "2025-07-21",
+    "2025-07-28",
+    "2025-08-04",
+    "2025-08-11",
+    "2025-08-18",
+    "2025-08-25",
+    "2025-09-02",
+    "2025-09-09",
+    "2025-09-16",
+    "2025-09-23",
+    "2025-09-30",
+    "2025-10-07",
+    "2025-10-14",
+    "2025-10-21",
+    "2025-10-28",
+    "2025-11-04",
+    "2025-11-11",
+    "2025-11-18",
+    "2025-11-25",
+    "2025-12-03",
+    "2025-12-10",
+    "2025-12-17",
+    "2025-12-24",
+    "2026-01-02",
+    "2026-01-09",
+    "2026-01-16",
+    "2026-01-26",
+    "2026-02-02",
+    "2026-02-09",
+    "2026-02-17",
+    "2026-02-24",
+    "2026-03-03",
+    "2026-03-10",
+    "2026-03-17",
+    "2026-03-24",
+    "2026-03-31",
+    "2026-04-08",
+    "2026-04-15",
+    "2026-04-22",
+    "2026-04-29",
+    "2026-05-06",
+    "2026-05-13",
+    "2026-05-20",
+    "2026-05-28",
+    "2026-06-04",
+    "2026-06-11",
+    "2026-06-18",
+    "2026-06-26",
+    "2026-07-06",
+    "2026-07-13",
+    "2026-07-20",
+    "2026-07-27",
+    "2026-08-03",
+    "2026-08-10",
+    "2026-08-17",
+    "2026-08-24",
+    "2026-08-31",
+    "2026-09-08",
+    "2026-09-15",
+    "2026-09-22",
+    "2026-09-29",
+    "2026-10-06",
+    "2026-10-13",
+    "2026-10-20",
+    "2026-10-27",
+    "2026-11-03",
+    "2026-11-06"
+   ],
+   "series": {
+    "BA": [
+     100.0,
+     96.58,
+     102.78,
+     104.05,
+     110.16,
+     116.16,
+     120.39,
+     115.38,
+     115.47,
+     114.86,
+     117.59,
+     118.07,
+     121.21,
+     124.17,
+     119.68,
+     106.67,
+     103.42,
+     108.47,
+     122.58,
+     112.9,
+     93.58,
+     104.4,
+     115.72,
+     123.01,
+     124.57,
+     137.43,
+     136.42,
+     139.76,
+     140.32,
+     136.78,
+     133.43,
+     144.03,
+     146.77,
+     154.75,
+     153.95,
+     158.71,
+     149.26,
+     151.69,
+     156.02,
+     152.3,
+     159.36,
+     154.08,
+     144.35,
+     145.23,
+     144.89,
+     148.91,
+     143.86,
+     145.85,
+     149.93,
+     132.96,
+     131.05,
+     127.3,
+     122.48,
+     135.97,
+     133.4,
+     138.51,
+     146.46,
+     152.91,
+     157.44,
+     166.27,
+     166.78,
+     156.43,
+     164.28,
+     163.83,
+     156.68,
+     150.46,
+     146.19,
+     141.53,
+     131.86,
+     133.61,
+     146.21,
+     150.33,
+     155.26,
+     150.45,
+     154.36,
+     161.52,
+     149.17,
+     153.58,
+     145.96,
+     148.78,
+     149.52,
+     145.84,
+     157.45,
+     144.68,
+     140.63,
+     141.98,
+     156.75,
+     156.28,
+     151.69,
+     141.29,
+     139.49,
+     141.47,
+     140.77,
+     132.73,
+     125.99,
+     127.43,
+     125.19,
+     127.87,
+     112.9,
+     116.35,
+     116.41
+    ],
+    "SPY": [
+     100.0,
+     98.23,
+     99.79,
+     100.86,
+     100.67,
+     100.92,
+     100.76,
+     97.97,
+     97.27,
+     100.14,
+     100.44,
+     100.17,
+     101.36,
+     102.47,
+     99.58,
+     96.67,
+     93.16,
+     94.01,
+     96.72,
+     94.29,
+     83.45,
+     90.36,
+     89.99,
+     93.21,
+     94.32,
+     98.76,
+     97.97,
+     99.17,
+     99.68,
+     101.48,
+     100.18,
+     103.66,
+     104.63,
+     105.33,
+     105.99,
+     107.37,
+     106.4,
+     107.2,
+     108.44,
+     108.3,
+     107.93,
+     109.63,
+     111.26,
+     112.11,
+     112.61,
+     113.11,
+     111.94,
+     113.48,
+     116.14,
+     114.14,
+     115.46,
+     111.58,
+     114.11,
+     115.61,
+     116.23,
+     113.49,
+     117.05,
+     115.83,
+     117.67,
+     117.27,
+     117.45,
+     117.9,
+     117.65,
+     115.77,
+     116.53,
+     115.34,
+     114.81,
+     113.73,
+     111.04,
+     110.56,
+     114.92,
+     118.99,
+     120.91,
+     120.97,
+     124.75,
+     126.2,
+     126.02,
+     128.29,
+     128.71,
+     125.42,
+     127.28,
+     124.25,
+     128.05,
+     127.69,
+     126.48,
+     125.97,
+     129.14,
+     131.76,
+     131.7,
+     130.13,
+     130.74,
+     130.55,
+     129.09,
+     132.14,
+     130.58,
+     133.12,
+     132.94,
+     131.4,
+     131.51,
+     128.89,
+     125.64
+    ],
+    "ITA": [
+     100.0,
+     95.55,
+     97.18,
+     97.52,
+     95.21,
+     94.27,
+     94.27,
+     92.36,
+     92.5,
+     96.67,
+     98.83,
+     99.96,
+     100.21,
+     98.65,
+     95.92,
+     95.22,
+     94.57,
+     97.53,
+     101.86,
+     98.48,
+     87.74,
+     95.99,
+     95.94,
+     100.2,
+     102.37,
+     106.72,
+     109.07,
+     112.59,
+     115.1,
+     114.61,
+     115.34,
+     119.88,
+     120.22,
+     123.78,
+     124.42,
+     126.6,
+     126.51,
+     125.45,
+     125.24,
+     124.88,
+     126.88,
+     125.43,
+     129.53,
+     132.27,
+     134.26,
+     136.63,
+     135.22,
+     136.89,
+     139.57,
+     135.86,
+     135.06,
+     130.09,
+     129.86,
+     129.36,
+     131.17,
+     131.4,
+     141.28,
+     142.44,
+     149.47,
+     156.4,
+     149.74,
+     148.31,
+     150.67,
+     152.81,
+     155.98,
+     157.18,
+     153.8,
+     149.52,
+     142.94,
+     140.44,
+     149.06,
+     150.23,
+     140.7,
+     136.84,
+     143.44,
+     144.91,
+     143.35,
+     151.24,
+     148.67,
+     151.54,
+     153.54,
+     152.12,
+     161.12,
+     151.01,
+     147.3,
+     156.7,
+     158.1,
+     161.34,
+     161.39,
+     149.95,
+     146.71,
+     143.61,
+     137.65,
+     137.65,
+     134.62,
+     133.95,
+     131.21,
+     132.6,
+     132.64,
+     139.04,
+     133.11
+    ]
+   }
+  }
+ },
+ "divisas": {
+  "spot": 18.5,
+  "n_usd": 10000000.0,
+  "n_mxn": 185000000.0,
+  "cup_usd": 0.04,
+  "cup_mxn": 0.0875,
+  "flujos": [
+   {
+    "anio": 0,
+    "usd": -10000000.0,
+    "mxn": 185000000.0
+   },
+   {
+    "anio": 1,
+    "usd": 400000.0,
+    "mxn": -16187499.999999998
+   },
+   {
+    "anio": 2,
+    "usd": 400000.0,
+    "mxn": -16187499.999999998
+   },
+   {
+    "anio": 3,
+    "usd": 10400000.0,
+    "mxn": -201187500.0
+   }
+  ],
+  "valor_inicial": -457563.458934946,
+  "escenarios": [
+   {
+    "spot": 16.650000000000002,
+    "valor": -1377833.0654191896
+   },
+   {
+    "spot": 18.5,
+    "valor": -247478.47620890103
+   },
+   {
+    "spot": 20.35,
+    "valor": 677357.0967813358
+   },
+   {
+    "spot": 22.2,
+    "valor": 1448053.407606531
+   }
+  ],
+  "s_equilibrio": 18.961261764248963,
+  "curva": [
+   {
+    "spot": 14.8,
+    "valor": -2790776.30193205
+   },
+   {
+    "spot": 15.037179487179488,
+    "valor": -2590200.763625808
+   },
+   {
+    "spot": 15.274358974358975,
+    "valor": -2395854.2793042324
+   },
+   {
+    "spot": 15.511538461538462,
+    "valor": -2207451.112546006
+   },
+   {
+    "spot": 15.74871794871795,
+    "valor": -2024722.7399672456
+   },
+   {
+    "spot": 15.985897435897437,
+    "valor": -1847416.5742899328
+   },
+   {
+    "spot": 16.223076923076924,
+    "valor": -1675294.7994218972
+   },
+   {
+    "spot": 16.46025641025641,
+    "valor": -1508133.3062503487
+   },
+   {
+    "spot": 16.6974358974359,
+    "valor": -1345720.7191348057
+   },
+   {
+    "spot": 16.934615384615384,
+    "valor": -1187857.5042073783
+   },
+   {
+    "spot": 17.171794871794873,
+    "valor": -1034355.1515707597
+   },
+   {
+    "spot": 17.40897435897436,
+    "valor": -885035.4243465848
+   },
+   {
+    "spot": 17.646153846153847,
+    "valor": -739729.6682843491
+   },
+   {
+    "spot": 17.883333333333333,
+    "valor": -598278.1763086468
+   },
+   {
+    "spot": 18.120512820512822,
+    "valor": -460529.602971049
+   },
+   {
+    "spot": 18.357692307692307,
+    "valor": -326340.4242933411
+   },
+   {
+    "spot": 18.594871794871796,
+    "valor": -195574.4389492441
+   },
+   {
+    "spot": 18.83205128205128,
+    "valor": -68102.30714026652
+   },
+   {
+    "spot": 19.06923076923077,
+    "valor": 56198.87611625157
+   },
+   {
+    "spot": 19.306410256410256,
+    "valor": 177445.97624607198
+   },
+   {
+    "spot": 19.543589743589745,
+    "valor": 295750.18559604324
+   },
+   {
+    "spot": 19.78076923076923,
+    "valor": 411217.3635467347
+   },
+   {
+    "spot": 20.01794871794872,
+    "valor": 523948.35244646296
+   },
+   {
+    "spot": 20.255128205128205,
+    "valor": 634039.271348536
+   },
+   {
+    "spot": 20.49230769230769,
+    "valor": 741581.7893500999
+   },
+   {
+    "spot": 20.72948717948718,
+    "valor": 846663.3801662754
+   },
+   {
+    "spot": 20.96666666666667,
+    "valor": 949367.5594255216
+   },
+   {
+    "spot": 21.203846153846154,
+    "valor": 1049774.1060391478
+   },
+   {
+    "spot": 21.44102564102564,
+    "valor": 1147959.2688781358
+   },
+   {
+    "spot": 21.67820512820513,
+    "valor": 1243995.9598825742
+   },
+   {
+    "spot": 21.915384615384617,
+    "valor": 1337953.9346315041
+   },
+   {
+    "spot": 22.152564102564103,
+    "valor": 1429899.9613130037
+   },
+   {
+    "spot": 22.38974358974359,
+    "valor": 1519897.978954643
+   },
+   {
+    "spot": 22.626923076923077,
+    "valor": 1608009.2457023272
+   },
+   {
+    "spot": 22.864102564102566,
+    "valor": 1694292.477870184
+   },
+   {
+    "spot": 23.101282051282052,
+    "valor": 1778803.9804247376
+   },
+   {
+    "spot": 23.338461538461537,
+    "valor": 1861597.7695127344
+   },
+   {
+    "spot": 23.575641025641026,
+    "valor": 1942725.6875929255
+   },
+   {
+    "spot": 23.812820512820515,
+    "valor": 2022237.5116874557
+   },
+   {
+    "spot": 24.05,
+    "valor": 2100181.0552278524
+   }
+  ],
+  "par_usd_3a": 0.043701999999999984,
+  "par_mxn_3a": 0.07390769230769226,
+  "df_usd": {
+   "1": 0.9585751738615722,
+   "2": 0.9178932477442172,
+   "3": 0.8795562114846803
+  },
+  "df_mxn": {
+   "1": 0.937305948377875,
+   "2": 0.871725737820201,
+   "3": 0.806678869112149
+  },
+  "par_mxn_interp": {
+   "1": 0.0668875,
+   "2": 0.07090769230769231,
+   "3": 0.07390769230769231
+  },
+  "curva_mxn": [
+   {
+    "tenor": "3M",
+    "anios": 0.25,
+    "tasa": 6.545
+   },
+   {
+    "tenor": "6M",
+    "anios": 0.5,
+    "tasa": 6.425
+   },
+   {
+    "tenor": "9M",
+    "anios": 0.75,
+    "tasa": 6.625
+   },
+   {
+    "tenor": "1Y1M",
+    "anios": 1.0833333333333333,
+    "tasa": 6.71
+   },
+   {
+    "tenor": "2Y2M",
+    "anios": 2.1666666666666665,
+    "tasa": 7.16
+   },
+   {
+    "tenor": "3Y3M",
+    "anios": 3.25,
+    "tasa": 7.46
+   },
+   {
+    "tenor": "4Y4M",
+    "anios": 4.333333333333333,
+    "tasa": 7.68
+   },
+   {
+    "tenor": "5Y5M",
+    "anios": 5.416666666666667,
+    "tasa": 7.83
+   },
+   {
+    "tenor": "7Y7M",
+    "anios": 7.583333333333333,
+    "tasa": 8.08
+   },
+   {
+    "tenor": "10Y10M",
+    "anios": 10.833333333333334,
+    "tasa": 8.36
+   },
+   {
+    "tenor": "13Y",
+    "anios": 13.0,
+    "tasa": 8.48
+   },
+   {
+    "tenor": "16Y3M",
+    "anios": 16.25,
+    "tasa": 8.645
+   },
+   {
+    "tenor": "21Y8M",
+    "anios": 21.666666666666668,
+    "tasa": 8.745
+   },
+   {
+    "tenor": "32Y6M",
+    "anios": 32.5,
+    "tasa": 8.745
+   }
+  ],
+  "estado": "dato (curvas) / supuesto (spot y cupones del swap)"
+ },
+ "pendiente": [
+  "Spot de USD/MXN: el cuaderno usa 18.50 (valor de respaldo) y es hipotético. Falta el spot real (la línea «USD/MXN spot» que imprime la sección 3 del cuaderno). Los cupones del swap de divisas (4.00 % USD y 8.75 % MXN) también son supuestos; las curvas de descuento sí son reales.",
+  "Margen variable de Boeing y de RTX: el reporte 2025 de Boeing no informa el margen de sus líneas de crédito, así que la diferencia de spreads variables (65 pb y 25 pb) es un supuesto del cuaderno. De ella depende si el swap conviene (ver la ventaja comparativa con RTX).",
+  "Cotización real del spread del equity swap (mesa o prime broker) y costo de préstamo de BA.",
+  "Los dividend yields de SPY (1.1 %) e ITA (0.8 %) del cuaderno son aproximados; confírmalos en LSEG."
+ ],
+ "fuente": "Cuaderno swaps_hull_cap7_BA.ipynb (Hull cap. 7); curva SOFR OIS de LSEG (Curve.xlsx, 8-nov-2026); bonos de Boeing de TradingView (6-nov-2026); estructura de deuda, pares y resumen de deuda de Refinitiv (8-nov-2026); reporte anual 2025 de Boeing (10-K); precios diarios de BA de Refinitiv.",
+ "estado": "dato (curva, bonos, precios) / hipotético (spreads, nocionales, tasa fija, posición)"
+}

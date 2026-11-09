@@ -273,87 +273,241 @@
     "prestatario": "Twitter Inc",
     "tipo": "Revolver/Line >= 1 Yr.",
     "vencimiento": "2027-10-28",
-    "monto_musd": 500.0
+    "monto_musd": 500.0,
+    "estado_10q": "cerrada",
+    "detalle_10q": "El 10-Q indica que el compromiso se redujo a 0 en feb-2025; ya no existe."
    },
    {
     "prestatario": "Twitter Inc",
     "tipo": "Term Loan B",
     "vencimiento": "2029-10-28",
-    "monto_musd": 6500.0
+    "monto_musd": 6500.0,
+    "estado_10q": "pagada",
+    "detalle_10q": "X B-1 Term Loan: pagado el 2-mar-2026 con el bridge (incluye penalización de 425 M junto con el B-3)."
    },
    {
     "prestatario": "Space Exploration Technologies Corp",
     "tipo": "Revolver/Line >= 1 Yr.",
     "vencimiento": "2028-06-23",
-    "monto_musd": 1500.0
+    "monto_musd": 1500.0,
+    "estado_10q": "sin_confirmar",
+    "detalle_10q": "El 10-Q solo describe la línea de feb-2025, ampliada a 5,000 M en may-2026; esta de 1,500 M probablemente es la anterior."
    },
    {
     "prestatario": "Twitter Inc",
     "tipo": "Term Loan B",
     "vencimiento": "2029-10-27",
-    "monto_musd": 1225.0
+    "monto_musd": 1225.0,
+    "estado_10q": "pagada",
+    "detalle_10q": "X B-3 Term Loan: pagado el 2-mar-2026 con el bridge."
    },
    {
     "prestatario": "Twitter Inc",
     "tipo": "Term Loan B",
     "vencimiento": "2029-10-27",
-    "monto_musd": 4740.0
+    "monto_musd": 4740.0,
+    "estado_10q": "pagada",
+    "detalle_10q": "X B-3 Term Loan: pagado el 2-mar-2026 con el bridge."
    },
    {
     "prestatario": "xAI Corp",
     "tipo": "Term Loan",
     "vencimiento": "2030-06-30",
-    "monto_musd": 1000.0
+    "monto_musd": 1000.0,
+    "estado_10q": "pagada",
+    "detalle_10q": "xAI Fixed Rate Term Loan: pagado el 2-mar-2026 (penalización de 221 M junto con el flotante)."
    },
    {
     "prestatario": "xAI Corp",
     "tipo": "Term Loan B",
     "vencimiento": "2030-06-30",
-    "monto_musd": 1000.0
+    "monto_musd": 1000.0,
+    "estado_10q": "pagada",
+    "detalle_10q": "xAI Floating Rate Term Loan: pagado el 2-mar-2026."
    },
    {
     "prestatario": "xAI Corp",
     "tipo": "Other Loan",
     "vencimiento": null,
-    "monto_musd": 3400.0
+    "monto_musd": 3400.0,
+    "estado_10q": "sin_confirmar",
+    "detalle_10q": "No se identifica en la nota 9 del 10-Q; podría estar dentro de «otros financiamientos»."
    },
    {
     "prestatario": "Space Exploration Technologies Corp",
     "tipo": "Bridge Loan",
     "vencimiento": "2027-03-01",
-    "monto_musd": 20000.0
+    "monto_musd": 20000.0,
+    "estado_10q": "pagada",
+    "detalle_10q": "SpaceX Bridge Loan: pagado en su totalidad en jun-2026 con los SpaceX Notes."
    },
    {
     "prestatario": "Space Exploration Technologies Corp",
     "tipo": "Revolver/Line >= 1 Yr.",
     "vencimiento": "2031-05-19",
-    "monto_musd": 5000.0
+    "monto_musd": 5000.0,
+    "estado_10q": "vigente",
+    "detalle_10q": "SpaceX Credit Facility ampliada; sin disposiciones en los nueve meses de 2026."
+   },
+   {
+    "prestatario": "xAI (subsidiaria)",
+    "tipo": "Revolver (10-Q)",
+    "vencimiento": null,
+    "monto_musd": 250.0,
+    "estado_10q": "vigente",
+    "detalle_10q": "Solo aparece en el 10-Q (no en Refinitiv); sin disposiciones en 2026."
    }
   ],
+  "nota9_10q": {
+   "fecha": "2026-09-30",
+   "deuda": [
+    [
+     "SpaceX Notes",
+     25000,
+     145,
+     24855
+    ],
+    [
+     "X 2027 y X 2030 Notes",
+     27,
+     0,
+     27
+    ],
+    [
+     "Otros financiamientos (1)",
+     12979,
+     0,
+     12979
+    ]
+   ],
+   "total_deuda": [
+    38006,
+    145,
+    37861
+   ],
+   "arrendamientos_financieros": 983,
+   "total_con_arrendamientos": [
+    38989,
+    145,
+    38844
+   ],
+   "corto_plazo": 2698,
+   "largo_plazo": 36146,
+   "deuda_2025": {
+    "total_deuda": 22049,
+    "total_con_arrendamientos": 23286
+   },
+   "vencimientos": [
+    [
+     "2026 (3 meses restantes)",
+     495
+    ],
+    [
+     "2027",
+     2425
+    ],
+    [
+     "2028",
+     2867
+    ],
+    [
+     "2029",
+     3422
+    ],
+    [
+     "2030",
+     3597
+    ],
+    [
+     "Después de 2030",
+     25200
+    ]
+   ],
+   "spacex_notes": {
+    "cupon_min": 5.35,
+    "cupon_max": 6.65,
+    "cupon_ponderado": 5.855,
+    "tasa_efectiva": 6.072,
+    "plazo_ponderado_anios": 11.7,
+    "valor_razonable": 22932,
+    "valor_en_libros": 24855
+   },
+   "otros_financiamientos": {
+    "tasa_fija_ponderada_pct": 6.3,
+    "venta_con_arrendamiento_fallida_cp": 2181,
+    "venta_con_arrendamiento_fallida_lp": 10716
+   },
+   "pagos_2026": [
+    [
+     "X B-1 y X B-3 Term Loans",
+     "2-mar-2026"
+    ],
+    [
+     "xAI Fixed y Floating Term Loans",
+     "2-mar-2026"
+    ],
+    [
+     "xAI 12.5 % Senior Secured Notes",
+     "5-mar-2026"
+    ],
+    [
+     "SpaceX Bridge Loan (20,000 M)",
+     "jun-2026"
+    ]
+   ],
+   "perdida_extincion_bridge_musd": 1526,
+   "conciliacion": {
+    "spacex_notes_refinitiv": 25000.0,
+    "spacex_notes_10q": 25000,
+    "cupon_ponderado_refinitiv": 5.855,
+    "cupon_ponderado_10q": 5.855,
+    "deuda_total_refinitiv": 38844.0,
+    "deuda_total_10q": 38844,
+    "cp_refinitiv": 2698.0,
+    "cp_10q": 2698,
+    "lp_refinitiv": 36146.0,
+    "lp_10q": 36146,
+    "vencimientos_suman": 38006,
+    "n_tramos_refinitiv": 5
+   }
+  },
+  "riesgo_mercado": {
+   "fuente": "Prospecto de la salida a bolsa, MD&A «Quantitative and Qualitative Disclosures About Market Risk» (cifras al 31-mar-2026) y 10-Q al 30-sep-2026, punto 3",
+   "moneda": [
+    "Los negocios de Connectivity y AI operan en muchos países y en varias monedas; en general, SpaceX es receptor neto de monedas distintas al dólar en sus subsidiarias extranjeras.",
+    "No cubre el riesgo cambiario. Un movimiento adverso de 10 % en todas las monedas habría dado una ganancia o pérdida inmaterial al 31-mar-2026 y al 31-dic-2025."
+   ],
+   "tasa": [
+    "La exposición a tasas viene de su portafolio de inversión, el ingreso por intereses de la caja y sus créditos. Un movimiento de 100 pb en las tasas tendría un efecto inmaterial en el ingreso por intereses.",
+    "Al 31-mar-2026 el bridge loan de 20,000 M tenía tasa efectiva de 4.58 %; un alza de 100 pb habría subido el gasto anual por intereses en unos 200 M.",
+    "Al 30-sep-2026 el bridge ya estaba pagado y no había deuda a tasa variable (10-Q): el riesgo de tasa del gasto financiero desapareció al refinanciar con bonos fijos."
+   ],
+   "derivados": "Las notas de los estados auditados (2025 y 1T-2026) y el 10-Q no registran instrumentos derivados: ni coberturas de tasa ni de tipo de cambio. La única mención de «derivatives» es el nombre del ajuste ISDA de una línea de crédito."
+  },
   "muro_vencimientos": [
    {
     "anio": 2027,
     "cupones_musd": 1541.003476,
     "principal_bonos_musd": 0.0,
-    "facilidades_musd": 20500.0
+    "facilidades_musd": 0.0
    },
    {
     "anio": 2028,
     "cupones_musd": 1463.750004,
     "principal_bonos_musd": 0.0,
-    "facilidades_musd": 1500.0
+    "facilidades_musd": 0.0
    },
    {
     "anio": 2029,
     "cupones_musd": 1463.750004,
     "principal_bonos_musd": 0.0,
-    "facilidades_musd": 12465.0
+    "facilidades_musd": 0.0
    },
    {
     "anio": 2030,
     "cupones_musd": 1463.750004,
     "principal_bonos_musd": 0.0,
-    "facilidades_musd": 2000.0
+    "facilidades_musd": 0.0
    },
    {
     "anio": 2031,
@@ -514,8 +668,8 @@
   ],
   "notas": [
    "Los bonos vigentes suman 25,027 M, menos que la deuda total del balance; el resto son préstamos y otras obligaciones.",
-   "Las facilidades de crédito muestran el monto de la facilidad, no el saldo dispuesto; Refinitiv no indica cuánto está usado. La facilidad puente de 20,000 M (vence 2027) podría estar ya repagada; no se verificó.",
-   "Una facilidad sin fecha de vencimiento (3,400 M) no aparece en el muro de vencimientos.",
+   "Refinitiv lista las facilidades con su monto original y no indica si siguen vigentes. Contrastadas con la nota 9 del 10-Q: el bridge de 20,000 M, los term loans de X y xAI y las notas de xAI al 12.5 % ya fueron pagados en 2026, así que el muro de vencimientos solo cuenta las facilidades vigentes (la de 5,000 M, sin saldo dispuesto).",
+   "Dos facilidades de Refinitiv no se pueden confirmar en el 10-Q (un préstamo de xAI por 3,400 M sin fecha y una línea de SpaceX por 1,500 M al 2028); se muestran marcadas y fuera del muro.",
    "Los bonos de 2027 y 2030 figuran emitidos por X Corp. (empresa adquirida): su monto vigente es muy pequeño frente a lo emitido.",
    "Los cupones son los pagos anuales de los bonos vigentes; el calendario excluye préstamos."
   ],

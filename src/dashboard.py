@@ -12,7 +12,7 @@ import json
 import shutil
 from pathlib import Path
 
-DATOS = ["valuacion", "resumen_mercado", "precios_spcx", "treasuries", "bonos", "cobertura", "analisis", "griegas", "empresa", "competidores", "arboles"]
+DATOS = ["valuacion", "resumen_mercado", "precios_spcx", "treasuries", "bonos", "cobertura", "analisis", "griegas", "empresa", "competidores", "arboles", "swaps"]
 HERRAMIENTAS = {"arboles": "arboles_spcx.html", "garch": "garch_spcx.html"}
 
 # Alinea los colores de las herramientas con los del dashboard (claro y oscuro)

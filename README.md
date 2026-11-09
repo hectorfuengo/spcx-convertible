@@ -34,6 +34,7 @@ pytest
 8. Correr `python3 -m src.arboles`: árbol binomial CRR para las puts americanas de la tarea (SPCX, TSLA, MU, SPY, NQ); replica el R Markdown de la clase. Escribe `data/processed/arboles.json`.
 9. Correr `python3 -m src.competidores`: indicadores, precios base 100 y correlación de SPCX contra RKLB, AVAV, KTOS, NOC, GD y BA (corte 2026-10-26). Escribe `competidores.json`.
 10. Correr `python3 -m src.dashboard`: arma `docs/index.html` autocontenido desde `docs/index.src.html`, los JSON y las herramientas de la tarea en `docs/tools/` (árboles y GARCH). Los datos de la empresa están en `data/empresa.json`.
+11. Correr `python3 -m src.swaps` antes del paso 10: swaps con Boeing (cap. 7 de Hull) a partir del cuaderno de Colab: swap de tasas, ventaja comparativa, swap de divisas, equity swaps sobre BA contra tasa, SPY e ITA, y cobertura. Lee `data/raw/precios_swaps.csv` (cierres de BA, SPY e ITA de Yahoo, que baja `descargar_precios_swaps.py`) y escribe `data/processed/swaps.json`. Incluye bonos y estructura de deuda de RTX (TradingView y Refinitiv) como contraparte real de la ventaja comparativa, y la curva MXN IRS de LSEG para descontar el swap de divisas. Siguen siendo supuestos el spot USD/MXN (falta el real), los cupones del swap de divisas y los márgenes variables de Boeing y RTX.
 6. Revisar, hacer commit de `data/processed/`, `docs/data/` y `data/opciones_iv.csv`, y push. GitHub Pages publica `docs/`.
 
 Opciones: `--raw`, `--out`, `--fecha YYYY-MM-DD` (fecha de valuación).
@@ -47,3 +48,8 @@ Los exportes de LSEG/Refinitiv están sujetos a su licencia y por eso `data/raw/
 - Pendientes de datos: CDS de SPCX; superficie de volatilidad completa (las IV actuales se transcribieron de pantalla); la cuenta de LSEG no permite exportar derivados.
 - Confirmar que la licencia de LSEG permite publicar cifras derivadas en `data/processed/`.
 - Menús y gráficas del sitio.
+
+
+## Verificación contra fuentes primarias
+
+`tests/test_deuda_10q.py` concilia la deuda de Refinitiv con la nota 9 del 10-Q al 30-sep-2026 (total, corto y largo plazo, SpaceX Notes y cupón ponderado) y los segmentos del 3T-2026 con el ingreso de Refinitiv. Las facilidades de crédito de Refinitiv se marcan como vigentes, pagadas o sin confirmar según el 10-Q, y el muro de vencimientos solo cuenta las vigentes. SPCX no registra derivados en sus notas auditadas ni en el 10-Q; la sección de swaps usa a Boeing por esa razón. El dashboard está hecho en HTML con Chart.js, no con Plotly.

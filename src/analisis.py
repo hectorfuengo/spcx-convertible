@@ -94,6 +94,55 @@ def razones_financieras(processed: Path) -> dict:
         ],
     }
 
+# Estado de cada facilidad de Refinitiv según el 10-Q al 30-sep-2026 (nota 9). clave: (prestatario, tipo, vencimiento)
+ESTADO_FAC_10Q = {
+    ("Twitter Inc", "Revolver/Line >= 1 Yr.", "2027-10-28"): ("cerrada", "El 10-Q indica que el compromiso se redujo a 0 en feb-2025; ya no existe."),
+    ("Twitter Inc", "Term Loan B", "2029-10-28"): ("pagada", "X B-1 Term Loan: pagado el 2-mar-2026 con el bridge (incluye penalización de 425 M junto con el B-3)."),
+    ("Twitter Inc", "Term Loan B", "2029-10-27"): ("pagada", "X B-3 Term Loan: pagado el 2-mar-2026 con el bridge."),
+    ("xAI Corp", "Term Loan", "2030-06-30"): ("pagada", "xAI Fixed Rate Term Loan: pagado el 2-mar-2026 (penalización de 221 M junto con el flotante)."),
+    ("xAI Corp", "Term Loan B", "2030-06-30"): ("pagada", "xAI Floating Rate Term Loan: pagado el 2-mar-2026."),
+    ("xAI Corp", "Other Loan", None): ("sin_confirmar", "No se identifica en la nota 9 del 10-Q; podría estar dentro de «otros financiamientos»."),
+    ("Space Exploration Technologies Corp", "Bridge Loan", "2027-03-01"): ("pagada", "SpaceX Bridge Loan: pagado en su totalidad en jun-2026 con los SpaceX Notes."),
+    ("Space Exploration Technologies Corp", "Revolver/Line >= 1 Yr.", "2028-06-23"): ("sin_confirmar", "El 10-Q solo describe la línea de feb-2025, ampliada a 5,000 M en may-2026; esta de 1,500 M probablemente es la anterior."),
+    ("Space Exploration Technologies Corp", "Revolver/Line >= 1 Yr.", "2031-05-19"): ("vigente", "SpaceX Credit Facility ampliada; sin disposiciones en los nueve meses de 2026."),
+}
+# Nota 9 del 10-Q (30-sep-2026), M USD
+NOTA9_10Q = {
+    "fecha": "2026-09-30",
+    "deuda": [("SpaceX Notes", 25000, 145, 24855), ("X 2027 y X 2030 Notes", 27, 0, 27), ("Otros financiamientos (1)", 12979, 0, 12979)],
+    "total_deuda": (38006, 145, 37861), "arrendamientos_financieros": 983, "total_con_arrendamientos": (38989, 145, 38844),
+    "corto_plazo": 2698, "largo_plazo": 36146,
+    "deuda_2025": {"total_deuda": 22049, "total_con_arrendamientos": 23286},
+    "vencimientos": [("2026 (3 meses restantes)", 495), ("2027", 2425), ("2028", 2867), ("2029", 3422), ("2030", 3597), ("Después de 2030", 25200)],
+    "spacex_notes": {"cupon_min": 5.35, "cupon_max": 6.65, "cupon_ponderado": 5.855, "tasa_efectiva": 6.072, "plazo_ponderado_anios": 11.7,
+                     "valor_razonable": 22932, "valor_en_libros": 24855},
+    "otros_financiamientos": {"tasa_fija_ponderada_pct": 6.3, "venta_con_arrendamiento_fallida_cp": 2181, "venta_con_arrendamiento_fallida_lp": 10716},
+    "pagos_2026": [("X B-1 y X B-3 Term Loans", "2-mar-2026"), ("xAI Fixed y Floating Term Loans", "2-mar-2026"), ("xAI 12.5 % Senior Secured Notes", "5-mar-2026"),
+                   ("SpaceX Bridge Loan (20,000 M)", "jun-2026")],
+    "perdida_extincion_bridge_musd": 1526,
+}
+RIESGO_MERCADO = {
+    "fuente": "Prospecto de la salida a bolsa, MD&A «Quantitative and Qualitative Disclosures About Market Risk» (cifras al 31-mar-2026) y 10-Q al 30-sep-2026, punto 3",
+    "moneda": ["Los negocios de Connectivity y AI operan en muchos países y en varias monedas; en general, SpaceX es receptor neto de monedas distintas al dólar en sus subsidiarias extranjeras.",
+               "No cubre el riesgo cambiario. Un movimiento adverso de 10 % en todas las monedas habría dado una ganancia o pérdida inmaterial al 31-mar-2026 y al 31-dic-2025."],
+    "tasa": ["La exposición a tasas viene de su portafolio de inversión, el ingreso por intereses de la caja y sus créditos. Un movimiento de 100 pb en las tasas tendría un efecto inmaterial en el ingreso por intereses.",
+             "Al 31-mar-2026 el bridge loan de 20,000 M tenía tasa efectiva de 4.58 %; un alza de 100 pb habría subido el gasto anual por intereses en unos 200 M.",
+             "Al 30-sep-2026 el bridge ya estaba pagado y no había deuda a tasa variable (10-Q): el riesgo de tasa del gasto financiero desapareció al refinanciar con bonos fijos."],
+    "derivados": "Las notas de los estados auditados (2025 y 1T-2026) y el 10-Q no registran instrumentos derivados: ni coberturas de tasa ni de tipo de cambio. La única mención de «derivatives» es el nombre del ajuste ISDA de una línea de crédito.",
+}
+
+
+def _conciliar(bonos: dict, tot, cp, lp) -> dict:
+    """Contrasta Refinitiv contra la nota 9 del 10-Q (30-sep-2026)."""
+    sx = [b for b in bonos["bonos"] if b["emisor"].startswith("SPACE EXPLORATION") and b["monto_vigente_usd"]]
+    principal = sum(b["monto_vigente_usd"] for b in sx) / 1e6
+    cup = sum(b["monto_vigente_usd"] * b["cupon_pct"] for b in sx) / 1e6 / principal if principal else None
+    n9 = NOTA9_10Q
+    return {"spacex_notes_refinitiv": principal, "spacex_notes_10q": n9["deuda"][0][1], "cupon_ponderado_refinitiv": cup,
+            "cupon_ponderado_10q": n9["spacex_notes"]["cupon_ponderado"], "deuda_total_refinitiv": tot, "deuda_total_10q": n9["total_con_arrendamientos"][2],
+            "cp_refinitiv": cp, "cp_10q": n9["corto_plazo"], "lp_refinitiv": lp, "lp_10q": n9["largo_plazo"],
+            "vencimientos_suman": sum(v for _, v in n9["vencimientos"]), "n_tramos_refinitiv": len(sx)}
+
 
 def estructura_deuda(processed: Path) -> dict:
     trim = _cargar(processed / "financieros_trimestral.json")
@@ -103,11 +152,15 @@ def estructura_deuda(processed: Path) -> dict:
     periodo = "2026-09-30"
     cp, lp, tot = (serie(trim, CONCEPTOS[k]).get(periodo) for k in ("deuda_cp", "deuda_lp", "deuda_total"))
 
-    anios = sorted(set(cal["pagos_por_anio_usd"]) | {f["vencimiento"][:4] for f in prest["facilidades"] if f.get("vencimiento")})
+    def _est(f):
+        return ESTADO_FAC_10Q.get((f["prestatario"], f["tipo"], f.get("vencimiento")), ("sin_confirmar", ""))[0]
+
+    vig = [f for f in prest["facilidades"] if _est(f) == "vigente"]
+    anios = sorted(set(cal["pagos_por_anio_usd"]) | {f["vencimiento"][:4] for f in vig if f.get("vencimiento")})
     muro = []
     for a in anios:
         p = cal["pagos_por_anio_usd"].get(a, {})
-        fac = sum(f["monto_facilidad_usd"] for f in prest["facilidades"] if (f.get("vencimiento") or "")[:4] == a and f["monto_facilidad_usd"])
+        fac = sum(f["monto_facilidad_usd"] for f in vig if (f.get("vencimiento") or "")[:4] == a and f["monto_facilidad_usd"])
         muro.append({"anio": int(a), "cupones_musd": p.get("Coupon", 0.0) / 1e6, "principal_bonos_musd": p.get("Principal", 0.0) / 1e6,
                      "facilidades_musd": fac / 1e6})
     vigente = sum(b["monto_vigente_usd"] for b in bonos["bonos"] if b["monto_vigente_usd"]) / 1e6
@@ -122,13 +175,17 @@ def estructura_deuda(processed: Path) -> dict:
                    "precio": b["precio_ultimo"], "yield_pct": b["yield_pct"]} for b in bonos["bonos"]],
         "bonos_vigentes_total_musd": vigente,
         "facilidades": [{"prestatario": f["prestatario"], "tipo": f["tipo"], "vencimiento": f["vencimiento"],
-                         "monto_musd": (f["monto_facilidad_usd"] or 0) / 1e6} for f in prest["facilidades"]],
+                         "monto_musd": (f["monto_facilidad_usd"] or 0) / 1e6, "estado_10q": _est(f),
+                         "detalle_10q": ESTADO_FAC_10Q.get((f["prestatario"], f["tipo"], f.get("vencimiento")), ("", ""))[1]} for f in prest["facilidades"]]
+                        + [{"prestatario": "xAI (subsidiaria)", "tipo": "Revolver (10-Q)", "vencimiento": None, "monto_musd": 250.0, "estado_10q": "vigente",
+                            "detalle_10q": "Solo aparece en el 10-Q (no en Refinitiv); sin disposiciones en 2026."}],
+        "nota9_10q": {**NOTA9_10Q, "conciliacion": _conciliar(bonos, tot, cp, lp)},
+        "riesgo_mercado": RIESGO_MERCADO,
         "muro_vencimientos": muro,
         "notas": [
             f"Los bonos vigentes suman {vigente:,.0f} M, menos que la deuda total del balance; el resto son préstamos y otras obligaciones.",
-            "Las facilidades de crédito muestran el monto de la facilidad, no el saldo dispuesto; Refinitiv no indica cuánto está usado. "
-            "La facilidad puente de 20,000 M (vence 2027) podría estar ya repagada; no se verificó.",
-            "Una facilidad sin fecha de vencimiento (3,400 M) no aparece en el muro de vencimientos.",
+            "Refinitiv lista las facilidades con su monto original y no indica si siguen vigentes. Contrastadas con la nota 9 del 10-Q: el bridge de 20,000 M, los term loans de X y xAI y las notas de xAI al 12.5 % ya fueron pagados en 2026, así que el muro de vencimientos solo cuenta las facilidades vigentes (la de 5,000 M, sin saldo dispuesto).",
+            "Dos facilidades de Refinitiv no se pueden confirmar en el 10-Q (un préstamo de xAI por 3,400 M sin fecha y una línea de SpaceX por 1,500 M al 2028); se muestran marcadas y fuera del muro.",
             "Los bonos de 2027 y 2030 figuran emitidos por X Corp. (empresa adquirida): su monto vigente es muy pequeño frente a lo emitido.",
             "Los cupones son los pagos anuales de los bonos vigentes; el calendario excluye préstamos.",
         ],
