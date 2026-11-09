@@ -11,9 +11,9 @@ Dashboard de valuación de un bono convertible de SPCX: datos de LSEG/Refinitiv,
 | `data/processed/` | Archivos JSON que consume el sitio (los genera Python). |
 | `src/` | Cálculos en Python: `bs.py` (Black-Scholes), `bono.py` (bono simple y cupón de equilibrio), `ingesta.py` (exportes → JSON), `valuacion.py` (valuación del convertible), `cobertura.py` (note hedge, warrants y escenarios), `analisis.py` (razones financieras, estructura de deuda y comparables), `griegas.py` (griegas de las opciones listadas y del convertible con su cobertura). |
 | `tests/` | Pruebas de los cálculos. |
-| `notebooks/` | Notebooks de Colab con resultados parciales. |
-| `docs/` | El sitio web (`index.html`) y los JSON que lee (`docs/data/`). |
-| `reports/` | Reportes en Word/PDF y Excel de respaldo. |
+| `notebooks/` | `spcx_convertible.py` (script único; cada `# %%` es una celda de Colab) y `spcx_convertible.ipynb` (ejecutado, con outputs), más notebooks de Colab con resultados parciales. |
+| `docs/` | El sitio web (`index.html`), la calculadora interactiva (`calculadora.html`, autocontenida) y los JSON que lee (`docs/data/`). |
+| `reports/` | `reporte_spcx.Rmd` y su HTML generado, más reportes en Word/PDF y Excel de respaldo. |
 
 ## Cómo correr las pruebas
 
@@ -38,6 +38,27 @@ pytest
 6. Revisar, hacer commit de `data/processed/`, `docs/data/` y `data/opciones_iv.csv`, y push. GitHub Pages publica `docs/`.
 
 Opciones: `--raw`, `--out`, `--fecha YYYY-MM-DD` (fecha de valuación).
+
+## Entregables
+
+| # | Entregable | Archivo |
+|---|---|---|
+| 1 | Reporte ejecutivo (Word y PDF) | `reports/Equipo_2_-_Reporte_Ejecutivo.docx` y `.pdf` |
+| 2 | Dashboard | `docs/index.html` (se genera con `python3 -m src.dashboard`; GitHub Pages publica `docs/`) |
+| 3 | Reporte reproducible | `reports/reporte_spcx.Rmd` y `reports/reporte_spcx.html` |
+| 4 | Calculadora HTML interactiva | `docs/calculadora.html` |
+| 5 | Código en Python y Colab | `notebooks/spcx_convertible.py` y `notebooks/spcx_convertible.ipynb` (más `src/`) |
+| 6 | PDF del prompt de IA | `reports/Equipo_2_-_Prompt_IA.pdf` |
+| 7 | Anexo de Bloomberg | pendiente (capturas de la terminal) |
+| 8 | Repositorio | este repositorio |
+| - | Capturas de pantalla usadas para alimentar el dashboard | `reports/SPCX_capturas_originales.pdf` (73 páginas: LSEG, TradingView, SEC y prospecto) |
+
+Notas:
+
+- **Calculadora**: bono recto + opción y call spread con parámetros editables, sin librerías externas. Coincide con `src/bs.py`, `src/bono.py` y `src/cobertura.py`.
+- **Script y Colab**: descarga con `yfinance` (si no hay internet, sigue con la volatilidad implícita y lo avisa), Black-Scholes, árbol CRR, griegas, escenarios y costo del call spread. Para entregar con outputs de Colab, súbelo y ejecútalo con "Ejecutar todo".
+- **R Markdown**: se genera con `rmarkdown::render("reporte_spcx.Rmd")` desde `reports/` (paquetes: ggplot2, jsonlite, dplyr, tidyr). Lee `data/processed/`.
+- **Capturas**: las pantallas de LSEG son datos con licencia. Confirma que se puedan publicar antes de dejar el repositorio público; `data/raw/` ya está excluido en `.gitignore`.
 
 ## Nota sobre los datos
 

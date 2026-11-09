@@ -1,0 +1,311 @@
+---
+title: "Convertible de SPCX: diagnóstico, valuación, cobertura y griegas"
+subtitle: "Equipo 2 · Productos Derivados y Administración de Riesgos Corporativos (EGADE)"
+date: "8 de noviembre de 2026"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    df_print: paged
+    code_folding: show
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE,
+                      fig.width = 9, fig.height = 4.2, fig.align = "center")
+library(ggplot2)
+library(jsonlite)
+library(dplyr)
+AZUL <- "#14305c"; ROJO <- "#a0222a"; GRIS <- "#7a8396"; DORADO <- "#b7791f"
+tema <- theme_minimal(base_size = 12) + theme(plot.title = element_text(face = "bold", color = AZUL))
+theme_set(tema)
+fmt <- function(x, d = 2) formatC(x, format = "f", digits = d, big.mark = ",")
+```
+
+# Objetivo
+
+Este reporte replica, para SPCX (Space Exploration Technologies Corp.), el tipo de decisión del caso *Molson Coors Brewing Co.: Valuing a Convertible Bond*: financiarse más barato con un bono convertible y cubrir la dilución con un call spread.
+La idea central es que **convertible = bono recto + opción call**, y que toda mejora del cupón o de la prima de conversión tiene un precio en derivados.
+
+Cada sección trae sus datos, el código, la gráfica o tabla y la interpretación. Las cifras del texto salen del código: si cambian los parámetros de la sección 2, el texto se actualiza.
+
+> **Sobre los datos.** Los precios de SPCX, la estructura de deuda y los comparables vienen de exportes de Refinitiv (LSEG) procesados en `data/processed/`; los vencimientos de principal, de la nota 9 del 10-Q al 30-sep-2026. El spot y la volatilidad implícita son de TradingView (consulta del 8-nov-2026, domingo: reflejan el cierre del viernes 6). Los supuestos del equipo están marcados como tales en la sección 2.
+
+# 1. Datos de la empresa
+
+```{r datos}
+# El Rmd vive en reports/; los datos procesados, en data/processed/
+ruta <- if (dir.exists("../data/processed")) "../data/processed" else "data/processed"
+precios <- fromJSON(file.path(ruta, "precios_spcx.json"))$datos
+precios$fecha <- as.Date(precios$fecha)
+precios <- precios[order(precios$fecha), ]
+precios$ret <- c(NA, diff(log(precios$cierre)))
+cat("SPCX:", nrow(precios), "cierres diarios, del", format(min(precios$fecha)), "al", format(max(precios$fecha)), "\n")
+tail(precios[, c("fecha", "apertura", "maximo", "minimo", "cierre", "volumen")], 5)
+```
+
+## 1.1 Precio
+
+```{r precio}
+ggplot(precios, aes(fecha, cierre)) +
+  geom_line(color = AZUL, linewidth = 0.9) +
+  geom_hline(yintercept = 135, linetype = "dashed", color = ROJO) +
+  annotate("text", x = min(precios$fecha) + 3, y = 139, label = "Precio de la oferta: 135.00 USD", color = ROJO, hjust = 0, size = 3.5) +
+  labs(title = "SPCX: cierre diario", x = NULL, y = "USD")
+```
+
+**Interpretación.** SPCX salió a bolsa a 135.00 USD, abrió en 150.00 y cerró el primer día en `r fmt(precios$cierre[1])`. El cierre más alto fue de `r fmt(max(precios$cierre))` y el más bajo de `r fmt(min(precios$cierre))`. Con tan pocos datos (`r nrow(precios)` días desde el listado), cualquier estadística de riesgo tiene mucho error de estimación.
+
+## 1.2 Deuda y vencimientos
+
+```{r deuda}
+# Principal vigente por año de vencimiento, nota 9 del 10-Q al 30-sep-2026 (millones de USD)
+venc <- data.frame(
+  periodo = factor(c("Resto de 2026", "2027", "2028", "2029", "2030", "Después de 2030"),
+                   levels = c("Resto de 2026", "2027", "2028", "2029", "2030", "Después de 2030")),
+  musd = c(495, 2425, 2867, 3422, 3597, 25200))
+cat("Principal total:", fmt(sum(venc$musd), 0), "M USD\n")
+ggplot(venc, aes(periodo, musd)) +
+  geom_col(fill = AZUL) +
+  geom_text(aes(label = fmt(musd, 0)), vjust = -0.4, size = 3.5) +
+  labs(title = "Muro de vencimientos de principal (10-Q, 30-sep-2026)", x = NULL, y = "Millones de USD") +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.12)))
+```
+
+**Interpretación.** El principal suma `r fmt(sum(venc$musd), 0)` M USD y `r fmt(100 * venc$musd[6] / sum(venc$musd), 0)` % vence después de 2030, casi todo en los SpaceX Notes emitidos en junio de 2026 (25,000 M USD, cupón ponderado de 5.855 %). La deuda de corto plazo es manejable frente a la caja y los valores negociables (89,855 M USD según el 10-Q), así que el convertible no responde a una necesidad de liquidez, sino a bajar el costo de la deuda existente.
+
+## 1.3 Calificaciones
+
+```{r calif}
+cal <- fromJSON(file.path(ruta, "valuacion.json"))$calificaciones$emisor
+knitr::kable(cal, caption = "Calificaciones del emisor (primera calificación de las tres agencias, 19-jun-2026)")
+```
+
+# 2. Parámetros y supuestos
+
+```{r parametros}
+P <- list(
+  S      = 134.27,    # precio de la acción, 8-nov-2026 (cierre del viernes 6). Dato de mercado.
+  prima  = 0.32,      # prima de conversión. Supuesto del equipo.
+  prima_w = 0.60,     # prima del warrant (caso Molson Coors). Supuesto del caso.
+  T      = 6,         # plazo en años (caso Molson Coors). Supuesto del caso.
+  r      = 0.049,     # UST a 6 años aproximada. Dato de mercado.
+  sigma  = 0.4893,    # implícita, call strike 130 que vence el 19-ene-2027 (TradingView). Dato de mercado.
+  ytm    = 0.07195,   # yield de los bonos de SPCX a 6 años (Refinitiv, interpolado). Calculado.
+  nom    = 1000,      # valor nominal por bono. Supuesto del caso.
+  emision = 1000,     # monto de la emisión, millones de USD. Supuesto del equipo.
+  circ   = 13579      # acciones en circulación, millones. Dato de mercado.
+)
+data.frame(parametro = names(P), valor = unlist(P))
+```
+
+# 3. Volatilidad
+
+El modelo de Black-Scholes necesita una volatilidad. Se comparan tres estimaciones con la implícita de las opciones listadas.
+
+```{r vol}
+vol_real <- function(ret, dias = 252) sd(ret, na.rm = TRUE) * sqrt(dias)
+vol_ewma <- function(ret, lam = 0.94, dias = 252) {
+  ret <- ret[!is.na(ret)]
+  v <- var(ret[1:20])
+  for (x in ret[-(1:20)]) v <- lam * v + (1 - lam) * x^2
+  sqrt(v * dias)
+}
+vols <- data.frame(
+  medida = c("Realizada total", "Realizada últimos 60 días", "EWMA (lambda = 0.94)", "Implícita usada en la valuación"),
+  valor = c(vol_real(precios$ret), vol_real(tail(precios$ret, 60)), vol_ewma(precios$ret), P$sigma))
+vols$valor_pct <- paste0(fmt(100 * vols$valor, 1), " %")
+vols[, c("medida", "valor_pct")]
+```
+
+```{r volgraf}
+precios$vol30 <- NA
+for (i in 31:nrow(precios)) precios$vol30[i] <- vol_real(precios$ret[(i - 29):i])
+ggplot(precios, aes(fecha, 100 * vol30)) +
+  geom_line(color = ROJO, linewidth = 0.9) +
+  geom_hline(yintercept = 100 * P$sigma, linetype = "dashed", color = AZUL) +
+  annotate("text", x = min(precios$fecha[!is.na(precios$vol30)]), y = 100 * P$sigma + 3,
+           label = paste0("Implícita: ", fmt(100 * P$sigma, 1), " %"), color = AZUL, hjust = 0, size = 3.5) +
+  labs(title = "Volatilidad realizada a 30 días", x = NULL, y = "% anual")
+```
+
+**Interpretación.** La volatilidad realizada (`r fmt(100 * vols$valor[1], 0)` % total y `r fmt(100 * vols$valor[2], 0)` % en los últimos 60 días) es mucho más alta que la implícita (`r fmt(100 * P$sigma, 0)` %), y la total incluye las primeras semanas tras la oferta, que fueron muy volátiles. Para el convertible a 6 años se usa la implícita de la opción más larga disponible, que es la única comparable al plazo del bono, y se muestran sensibilidades con otras volatilidades.
+
+# 4. Convertible = bono recto + opción
+
+```{r bs}
+N <- function(x) pnorm(x)
+bs_call <- function(S, K, T, r, sg) {
+  d1 <- (log(S / K) + (r + 0.5 * sg^2) * T) / (sg * sqrt(T)); d2 <- d1 - sg * sqrt(T)
+  S * N(d1) - K * exp(-r * T) * N(d2)
+}
+valor_bono <- function(cup, ytm, T, nom = 1000, f = 2) {
+  n <- round(T * f); i <- ytm / f; k <- 1:n
+  sum(cup * nom / f / (1 + i)^k) + nom / (1 + i)^n
+}
+cupon_eq <- function(objetivo, ytm, T, nom = 1000, f = 2) {   # el valor es lineal en el cupón: solución exacta
+  b0 <- valor_bono(0, ytm, T, nom, f); (objetivo - b0) / (valor_bono(1, ytm, T, nom, f) - b0)
+}
+convertible <- function(S, prima, T, r, sg, ytm, nom = 1000) {
+  X <- S * (1 + prima); acc <- nom / X; call <- bs_call(S, X, T, r, sg)
+  op <- call * acc
+  list(X = X, acciones = acc, call = call, opcion = op, necesario = nom - op,
+       cupon_eq = cupon_eq(nom - op, ytm, T, nom))
+}
+base <- with(P, convertible(S, prima, T, r, sigma, ytm, nom))
+data.frame(concepto = c("Precio de conversión (USD)", "Acciones por bono", "Call por acción (USD)", "Opción por bono (USD)",
+                        "Bono recto necesario (USD)", "Cupón de equilibrio (%)"),
+           valor = c(base$X, base$acciones, base$call, base$opcion, base$necesario, 100 * base$cupon_eq)) |>
+  mutate(valor = round(valor, 4))
+```
+
+**Interpretación.** Con una prima de `r fmt(100 * P$prima, 0)` % el precio de conversión es `r fmt(base$X)` USD y cada bono de 1,000 USD da `r fmt(base$acciones, 3)` acciones. La opción cedida vale `r fmt(base$opcion)` USD por bono, así que el bono recto debe valer `r fmt(base$necesario)` USD. A un yield de `r fmt(100 * P$ytm, 3)` %, eso corresponde a un cupón de equilibrio de `r fmt(100 * base$cupon_eq, 2)` %: es decir, con esta prima el convertible puede salir a cupón cero y aun así valer el nominal.
+
+## 4.1 Validación contra el caso Molson Coors
+
+```{r mc}
+mc <- convertible(87.61, 0.25, 6, 0.0446, 0.23, 0.0575)
+data.frame(medida = c("Opción por bono (USD)", "Bono recto necesario (USD)", "Cupón de equilibrio (%)"),
+           este_codigo = round(c(mc$opcion, mc$necesario, 100 * mc$cupon_eq), 2),
+           caso = c(191.5, 808.5, 1.93))
+stopifnot(abs(mc$opcion - 191.5) < 0.1, abs(mc$cupon_eq - 0.0193) < 1e-4)
+```
+
+**Interpretación.** El mismo código con los supuestos del caso reproduce la opción de 191.5 USD y el cupón de equilibrio de 1.93 % del caso, lo que valida las fórmulas antes de aplicarlas a SPCX.
+
+## 4.2 Cupón de equilibrio según la prima y la volatilidad
+
+```{r sens}
+rejilla <- expand.grid(prima = seq(0.10, 0.60, 0.01), sigma = c(0.40, P$sigma, 0.60, 0.713))
+rejilla$cupon <- mapply(function(p, s) 100 * convertible(P$S, p, P$T, P$r, s, P$ytm)$cupon_eq, rejilla$prima, rejilla$sigma)
+rejilla$vol <- factor(paste0("Volatilidad ", fmt(100 * rejilla$sigma, 1), " %"))
+ggplot(rejilla, aes(100 * prima, cupon, color = vol)) +
+  geom_line(linewidth = 1) +
+  geom_hline(yintercept = 0, color = "black", linewidth = 0.4) +
+  geom_vline(xintercept = 100 * P$prima, linetype = "dotted", color = ROJO) +
+  scale_color_manual(values = c(GRIS, AZUL, DORADO, ROJO)) +
+  labs(title = "Cupón de equilibrio según la prima de conversión", x = "Prima de conversión (%)", y = "Cupón de equilibrio (%)", color = NULL)
+```
+
+**Interpretación.** Cada punto de prima que sube hace menos valiosa la opción y obliga a pagar más cupón; cada punto de volatilidad que sube hace lo contrario. Con la volatilidad implícita, el cupón cero se alcanza con una prima cercana a `r fmt(100 * P$prima, 0)` %. Si la volatilidad real fuera la del modelo GARCH de largo plazo (71.3 %), la opción valdría mucho más y el emisor estaría regalando valor al vender el convertible a cupón cero.
+
+# 5. Call spread: note hedge y warrants
+
+La empresa compra un call con strike en el precio de conversión (note hedge) y vende un warrant con strike más alto (prima de 60 %, como en el caso). La dilución solo empieza si la acción supera el strike del warrant.
+
+```{r cs}
+K1 <- base$X
+K2 <- P$S * (1 + P$prima_w)
+acc <- P$emision / P$nom * P$nom / K1            # millones de acciones subyacentes
+costo <- function(sg) {
+  c1 <- bs_call(P$S, K1, P$T, P$r, sg); c2 <- bs_call(P$S, K2, P$T, P$r, sg)
+  c(call_comprado = c1, warrant_vendido = c2, costo_call_musd = c1 * acc, ingreso_warrants_musd = c2 * acc,
+    costo_neto_musd = (c1 - c2) * acc, costo_neto_pct_emision = 100 * (c1 - c2) * acc / P$emision)
+}
+cs <- t(sapply(c(0.40, P$sigma, 0.60, 0.713), costo))
+rownames(cs) <- paste0("vol ", fmt(c(40, 100 * P$sigma, 60, 71.3), 1), " %")
+round(cs, 3)
+```
+
+**Interpretación.** El call spread cuesta `r fmt(cs[2, "costo_neto_musd"], 1)` M USD (`r fmt(cs[2, "costo_neto_pct_emision"], 1)` % de la emisión) con la volatilidad base, y se paga una sola vez. A cambio, la prima efectiva pasa de `r fmt(100 * P$prima, 0)` % a `r fmt(100 * P$prima_w, 0)` %: la dilución empieza en `r fmt(K2)` USD y no en `r fmt(K1)` USD. Las `r fmt(acc, 2)` M de acciones subyacentes equivalen a `r fmt(100 * acc / P$circ, 3)` % de las acciones en circulación.
+
+# 6. Escenarios al vencimiento
+
+```{r esc}
+ST <- seq(60, 1.5 * K2, length.out = 300)
+pagos <- data.frame(ST = ST,
+  conversion = pmax(ST - K1, 0),
+  spread = pmin(pmax(ST - K1, 0), K2 - K1))
+pagos$dilucion <- pagos$conversion - pagos$spread
+largo <- tidyr::pivot_longer(pagos, -ST, names_to = "serie", values_to = "usd")
+largo$serie <- factor(largo$serie, c("conversion", "spread", "dilucion"),
+                      c("Opción de conversión cedida (sin cobertura)", "Call spread comprado", "Dilución que queda con cobertura"))
+ggplot(largo, aes(ST, usd, color = serie, linetype = serie)) +
+  geom_line(linewidth = 1.1) +
+  geom_vline(xintercept = c(P$S, K1, K2), linetype = "dotted") +
+  annotate("text", x = c(P$S, K1, K2) + 2, y = max(pagos$conversion) * 0.95, label = c("spot", "K1", "K2"), hjust = 0, size = 3.5) +
+  scale_color_manual(values = c(GRIS, AZUL, ROJO)) +
+  labs(title = "Pagos por acción al vencimiento", x = "Precio de la acción al vencimiento (USD)", y = "USD por acción", color = NULL, linetype = NULL) +
+  theme(legend.position = "bottom")
+```
+
+```{r esctab}
+niveles <- c(60, 100, P$S, K1, 200, K2, 250, 300, 400)
+data.frame(
+  precio_vto = niveles,
+  valor_por_bono = pmax(P$nom, niveles * P$nom / K1),
+  costo_sin_cobertura_musd = pmax(niveles - K1, 0) * acc,
+  costo_con_cobertura_musd = pmax(niveles - K2, 0) * acc,
+  acciones_nuevas_con_cobertura_m = ifelse(niveles > K2, acc * (1 - K2 / niveles), 0)) |>
+  mutate(across(everything(), ~ round(.x, 2)))
+```
+
+**Interpretación.** Si la acción termina por debajo de `r fmt(K1)` USD, el convertible se paga a la par y no hay dilución. Entre `r fmt(K1)` y `r fmt(K2)` USD el note hedge compensa lo que se paga de más; arriba de `r fmt(K2)` USD la empresa asume el exceso a través de los warrants. Sin la cobertura, cada dólar por encima de `r fmt(K1)` USD se convierte en costo para el emisor.
+
+# 7. Griegas
+
+```{r griegas}
+griegas <- function(S, K, T, r, sg) {
+  d1 <- (log(S / K) + (r + 0.5 * sg^2) * T) / (sg * sqrt(T)); d2 <- d1 - sg * sqrt(T)
+  c(delta = N(d1), gamma = dnorm(d1) / (S * sg * sqrt(T)), vega_punto = S * dnorm(d1) * sqrt(T) / 100,
+    theta_dia = (-S * dnorm(d1) * sg / (2 * sqrt(T)) - r * K * exp(-r * T) * N(d2)) / 365)
+}
+g1 <- griegas(P$S, K1, P$T, P$r, P$sigma)   # opción de conversión y note hedge (mismo strike)
+g2 <- griegas(P$S, K2, P$T, P$r, P$sigma)   # warrant
+pos <- rbind(
+  "Opción de conversión vendida" = -acc * g1,
+  "Note hedge comprado"          =  acc * g1,
+  "Warrants vendidos"            = -acc * g2)
+pos <- rbind(pos, "Posición neta con cobertura" = colSums(pos), "Posición sin cobertura" = pos[1, ])
+round(pos, 4)
+```
+
+**Interpretación.** En millones de acciones y de USD por punto de volatilidad y por día. La opción de conversión vendida deja al emisor con una delta de `r fmt(pos[1, "delta"], 2)` M de acciones y vega de `r fmt(pos[1, "vega_punto"], 2)` M USD por punto de volatilidad. El note hedge comprado la neutraliza; con cobertura solo queda la exposición del warrant vendido (delta de `r fmt(pos[4, "delta"], 2)` M de acciones, vega de `r fmt(pos[4, "vega_punto"], 2)` M USD por punto): una subida fuerte del precio o de la volatilidad le cuesta al emisor por encima de `r fmt(K2)` USD. La theta es positiva (`r fmt(pos[4, "theta_dia"], 3)` M USD por día): el paso del tiempo juega a favor del emisor.
+
+# 8. Árbol binomial (CRR)
+
+```{r crr}
+crr <- function(S, K, T, r, sg, N, tipo = "call", americana = FALSE) {
+  dt <- T / N; u <- exp(sg * sqrt(dt)); d <- 1 / u; p <- (exp(r * dt) - d) / (u - d); disc <- exp(-r * dt)
+  sgn <- if (tipo == "call") 1 else -1
+  V <- pmax(sgn * (S * u^(N:0) * d^(0:N) - K), 0)
+  for (i in (N - 1):0) {
+    cont <- disc * (p * V[1:(i + 1)] + (1 - p) * V[2:(i + 2)])
+    if (americana) V <- pmax(cont, pmax(sgn * (S * u^(i:0) * d^(0:i) - K), 0)) else V <- cont
+  }
+  V[1]
+}
+Ns <- c(10, 25, 50, 100, 250, 500, 1000, 2000)
+conv <- data.frame(N = Ns, crr = sapply(Ns, function(n) crr(P$S, K1, P$T, P$r, P$sigma, n)))
+conv$bs <- bs_call(P$S, K1, P$T, P$r, P$sigma)
+conv$dif <- conv$crr - conv$bs
+ggplot(conv, aes(N, dif)) +
+  geom_hline(yintercept = 0) + geom_line(color = AZUL) + geom_point(color = AZUL) +
+  scale_x_log10() +
+  labs(title = "Convergencia del árbol CRR europeo a Black-Scholes", x = "Pasos del árbol (escala log)", y = "CRR menos Black-Scholes (USD)")
+round(conv, 4)
+```
+
+**Interpretación.** El call europeo a 6 años con strike `r fmt(K1)` USD vale `r fmt(conv$bs[1])` USD en Black-Scholes; el árbol converge a ese valor (diferencia de `r fmt(abs(conv$dif[length(Ns)]), 4)` USD con 2,000 pasos). La convergencia oscila, como es normal en el CRR, según la posición del strike en el árbol.
+
+## 8.1 Put americana y prima por ejercicio anticipado
+
+```{r put}
+S0 <- 159.31; K0 <- 160; T0 <- 30 / 365; r0 <- 0.0509; sg0 <- 0.5991   # cadena del 21-oct-2026, tarea de clase
+eu <- crr(S0, K0, T0, r0, sg0, 500, "put", FALSE)
+am <- crr(S0, K0, T0, r0, sg0, 500, "put", TRUE)
+data.frame(opcion = c("Put europea (CRR 500)", "Put americana (CRR 500)", "Prima por ejercicio anticipado"),
+           usd = round(c(eu, am, am - eu), 4))
+```
+
+**Interpretación.** La put americana vale `r fmt(am - eu, 3)` USD más que la europea (`r fmt(100 * (am / eu - 1), 2)` %). Es la prima por poder ejercer antes, que Black-Scholes no captura; sube con la tasa libre de riesgo y con la profundidad *in-the-money*.
+
+# 9. Conclusiones y supuestos abiertos
+
+1. Con los supuestos del 8-nov, el convertible a 6 años con prima de `r fmt(100 * P$prima, 0)` % puede emitirse con cupón de `r fmt(100 * base$cupon_eq, 2)` %, cediendo una opción de `r fmt(base$opcion, 0)` USD por bono, y el call spread cuesta `r fmt(cs[2, "costo_neto_musd"], 1)` M USD.
+2. El resultado depende de la volatilidad: con la implícita sale cupón cero; con una volatilidad mayor, la opción cedida vale más de lo que se necesita.
+3. Supuestos que siguen abiertos: la prima de conversión y el monto de la emisión son supuestos del equipo; la volatilidad implícita de plazos largos viene de pantalla y no de una superficie completa; el tratamiento contable (utilidad por acción diluida) debe confirmarse con contabilidad.
+
+```{r info}
+sessionInfo()$R.version$version.string
+```

@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Calculadora de convertible</title>
+<style>
+:root{--bg:#f6f7fa;--card:#fff;--ink:#1a1f2b;--mut:#5c6578;--line:#d9deea;--blue:#14305c;--red:#a0222a;--gold:#b7791f;--ok:#1d6b3c}
+@media (prefers-color-scheme:dark){:root{--bg:#10141c;--card:#181e2a;--ink:#e8ecf4;--mut:#9aa5ba;--line:#2a3345;--blue:#8fb2ee;--red:#ee8a90;--gold:#e0b25a;--ok:#6fcf97}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,Segoe UI,Arial,sans-serif}
+.wrap{max-width:1100px;margin:0 auto;padding:20px 16px 40px}
+h1{font-size:22px;margin:0 0 2px;color:var(--blue)} h2{font-size:15px;margin:0 0 10px;color:var(--blue)}
+.sub{color:var(--mut);font-size:13px;margin-bottom:14px}
+.grid{display:grid;grid-template-columns:340px 1fr;gap:16px}
+@media(max-width:820px){.grid{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;margin-bottom:14px}
+.f{display:grid;grid-template-columns:1fr 110px;gap:6px 10px;align-items:center;margin-bottom:6px}
+.f label{font-size:13px;color:var(--mut)} .f input{width:100%;padding:5px 7px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);font:inherit;text-align:right}
+.pre{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+button{border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:6px;padding:5px 9px;font:inherit;font-size:12.5px;cursor:pointer}
+button:hover{border-color:var(--blue)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.k{border:1px solid var(--line);border-radius:8px;padding:8px 10px}
+.k span{display:block;font-size:11.5px;color:var(--mut)} .k b{font-size:18px}
+table{border-collapse:collapse;width:100%;font-size:13px} td,th{padding:4px 6px;border-bottom:1px solid var(--line);text-align:right} th:first-child,td:first-child{text-align:left} th{color:var(--mut);font-weight:600}
+canvas{width:100%;height:260px;display:block}
+.note{font-size:12.5px;color:var(--mut)} .warn{color:var(--red)} .good{color:var(--ok)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Calculadora de bono convertible</h1>
+<div class="sub">Convertible = bono recto + opción call (Black-Scholes europeo, sin dividendos). Con call spread: se compra el call en el precio de conversión y se vende el warrant en un strike mayor. Cambia cualquier parámetro y se recalcula.</div>
+<div class="grid">
+<div>
+ <div class="card"><h2>Escenario</h2>
+  <div class="pre">
+   <button data-p="spcx1108">SPCX 8-nov</button>
+   <button data-p="spcx1026">SPCX 26-oct (dashboard)</button>
+   <button data-p="molson">Molson Coors 2007</button>
+  </div>
+  <div class="note" id="presetnote"></div>
+ </div>
+ <div class="card"><h2>Acción y opción</h2>
+  <div class="f"><label>Precio de la acción (USD)</label><input id="S" type="number" step="any"></div>
+  <div class="f"><label>Prima de conversión (%)</label><input id="prima" type="number" step="any"></div>
+  <div class="f"><label>Plazo (años)</label><input id="T" type="number" step="any"></div>
+  <div class="f"><label>Tasa libre de riesgo (%)</label><input id="r" type="number" step="any"></div>
+  <div class="f"><label>Volatilidad (%)</label><input id="sigma" type="number" step="any"></div>
+ </div>
+ <div class="card"><h2>Bono recto</h2>
+  <div class="f"><label>Valor nominal (USD)</label><input id="nom" type="number" step="any"></div>
+  <div class="f"><label>Tasa de descuento / yield (%)</label><input id="ytm" type="number" step="any"></div>
+  <div class="f"><label>Cupón a evaluar (%)</label><input id="cup" type="number" step="any"></div>
+ </div>
+ <div class="card"><h2>Call spread y emisión</h2>
+  <div class="f"><label>Prima del warrant (%)</label><input id="primaw" type="number" step="any"></div>
+  <div class="f"><label>Volatilidad del warrant (%)</label><input id="sigmaw" type="number" step="any"></div>
+  <div class="f"><label>Monto de la emisión (M USD)</label><input id="emi" type="number" step="any"></div>
+  <div class="f"><label>Acciones en circulación (M)</label><input id="circ" type="number" step="any"></div>
+ </div>
+</div>
+<div>
+ <div class="card"><h2>1. Convertible = bono recto + opción</h2>
+  <div class="kpis" id="k1"></div>
+  <p class="note" id="n1"></p>
+ </div>
+ <div class="card"><h2>Cupón de equilibrio según la prima de conversión</h2>
+  <canvas id="c1" width="640" height="260"></canvas>
+  <p class="note">Cada punto de la curva es el cupón que hace que bono recto + opción valga el nominal. Un cupón negativo significa que la opción vale más de lo que se necesita descontar: con esa prima el emisor podría pagar cupón cero y aun así recibir valor.</p>
+ </div>
+ <div class="card"><h2>2. Call spread (note hedge y warrant)</h2>
+  <div class="kpis" id="k2"></div>
+  <p class="note" id="n2"></p>
+ </div>
+ <div class="card"><h2>Pago por acción al vencimiento</h2>
+  <canvas id="c2" width="640" height="260"></canvas>
+  <p class="note">Gris: opción de conversión cedida sin cobertura. Azul: call spread comprado. Rojo: dilución que le queda a la empresa (empieza en el strike del warrant).</p>
+ </div>
+ <div class="card"><h2>Sensibilidad del cupón de equilibrio (volatilidad × prima)</h2>
+  <div id="sens"></div>
+ </div>
+ <div class="note">Herramienta académica del Equipo 2 (Productos Derivados y Administración de Riesgos Corporativos, EGADE). Black-Scholes europeo sin dividendos; el bono recto se descuenta semestralmente. Los resultados dependen de los supuestos capturados arriba; no son una recomendación de inversión.</div>
+</div>
+</div>
+</div>
+<script>
+"use strict";
+// ---- matemáticas (mismo cálculo que src/bs.py y src/bono.py del repositorio)
+function erf(x){const s=x<0?-1:1;x=Math.abs(x);const t=1/(1+0.3275911*x);const y=1-(((((1.061405429*t-1.453152027)*t)+1.421413741)*t-0.284496736)*t+0.254829592)*t*Math.exp(-x*x);return s*y}
+// erf: serie de Taylor para |x|<3 (precisión de máquina) y Abramowitz-Stegun fuera de ese rango
+function erfp(x){const a=Math.abs(x);if(a<3){let sum=x,term=x,n=0;while(Math.abs(term)>1e-17&&n<200){n++;term*=-x*x/n;sum+=term/(2*n+1)}return 2/Math.sqrt(Math.PI)*sum}return erf(x)}
+function cdf(x){return 0.5*(1+erfp(x/Math.SQRT2))}
+function call(S,K,T,r,sg){if(S<=0||K<=0||T<=0||sg<=0)return NaN;const d1=(Math.log(S/K)+(r+0.5*sg*sg)*T)/(sg*Math.sqrt(T));const d2=d1-sg*Math.sqrt(T);return S*cdf(d1)-K*Math.exp(-r*T)*cdf(d2)}
+function bono(cup,ytm,T,nom){const n=Math.round(T*2),i=ytm/2,p=cup*nom/2;let c=0;for(let k=1;k<=n;k++)c+=p/Math.pow(1+i,k);const pr=nom/Math.pow(1+i,n);return{cupones:c,principal:pr,total:c+pr}}
+function cupEq(obj,ytm,T,nom){const b0=bono(0,ytm,T,nom).total,u=bono(1,ytm,T,nom).total-b0;return(obj-b0)/u}
+
+const PRESETS={
+ spcx1108:{S:134.27,prima:32,T:6,r:4.9,sigma:48.93,nom:1000,ytm:7.195,cup:0,primaw:60,sigmaw:48.93,emi:1000,circ:13579,
+  nota:"SPCX con el spot de 134.27 USD (consulta del 8-nov, refleja el cierre del viernes 6), volatilidad implícita de 48.93 %, tasa de descuento de 7.195 % (yield de los bonos de SPCX a 6 años) y prima de 32 %. La tasa de 4.9 % es la UST a 6 años aproximada."},
+ spcx1026:{S:146.9,prima:25,T:6,r:4.90275,sigma:52.65,nom:1000,ytm:7.19509713,cup:0,primaw:60,sigmaw:52.65,emi:1000,circ:13579,
+  nota:"Los mismos supuestos que el dashboard del 26-oct: cierre de 146.9, prima de 25 %, volatilidad de 52.65 %, UST a 6 años interpolada y yield de bonos de SPCX de 7.195 %."},
+ molson:{S:87.61,prima:25,T:6,r:4.46,sigma:23,nom:1000,ytm:5.75,cup:1.93,primaw:60,sigmaw:21,emi:500,circ:0,
+  nota:"Supuestos del caso Molson Coors (NE90-06-107, junio de 2007): precio de 87.61, prima de 25 %, volatilidad de 23 %, descuento de 5.75 %. El caso reporta una opción de 191.5 USD por bono y un cupón de equilibrio de 1.93 %. El warrant usa volatilidad de 21 % y la emisión original fue de 500 M."}
+};
+const IDS=["S","prima","T","r","sigma","nom","ytm","cup","primaw","sigmaw","emi","circ"];
+const $=id=>document.getElementById(id);
+const fmt=(x,d=2)=>isFinite(x)?x.toLocaleString("en-US",{minimumFractionDigits:d,maximumFractionDigits:d}):"—";
+const pct=(x,d=2)=>isFinite(x)?(x*100).toFixed(d)+" %":"—";
+
+function leer(){const v={};IDS.forEach(i=>v[i]=parseFloat($(i).value));return v}
+function calcular(v){
+ const S=v.S,X=S*(1+v.prima/100),T=v.T,r=v.r/100,sg=v.sigma/100,nom=v.nom,ytm=v.ytm/100;
+ const acc=nom/X;                       // acciones por bono
+ const callPS=call(S,X,T,r,sg);
+ const opcion=callPS*acc;
+ const necesario=nom-opcion;
+ const ceq=(necesario-bono(0,ytm,T,nom).total)/(bono(1,ytm,T,nom).total-bono(0,ytm,T,nom).total);
+ const valCup=bono(v.cup/100,ytm,T,nom).total+opcion;
+ // prima que da cupón cero: bisección sobre la prima
+ const f=p=>{const x=S*(1+p);return nom-call(S,x,T,r,sg)*nom/x-bono(0,ytm,T,nom).total};
+ let lo=0,hi=5;for(let i=0;i<80;i++){const m=(lo+hi)/2;f(m)>0?hi=m:lo=m} // f crece con la prima
+ const primaCero=f(0)>=0?0:(lo+hi)/2;
+ const Kw=S*(1+v.primaw/100),swg=v.sigmaw/100;
+ const callW=call(S,Kw,T,r,swg);
+ const bonos=v.emi/nom, accM=bonos*nom/X; // M de bonos y de acciones (emi en M USD)
+ const costoH=callPS*accM, ingW=callW*accM, neto=costoH-ingW;
+ return{X,acc,callPS,opcion,necesario,ceq,valCup,primaCero,Kw,callW,bonos,accM,costoH,ingW,neto,S,T,r,sg,nom,ytm,swg,emi:v.emi,circ:v.circ};
+}
+function k(l,v,cls){return `<div class="k"><span>${l}</span><b class="${cls||""}">${v}</b></div>`}
+function render(){
+ const v=leer(),c=calcular(v);
+ $("k1").innerHTML=
+  k("Precio de conversión",fmt(c.X)+" USD")+
+  k("Acciones por bono",fmt(c.acc,4))+
+  k("Call por acción",fmt(c.callPS)+" USD")+
+  k("Opción por bono",fmt(c.opcion)+" USD")+
+  k("Bono recto necesario",fmt(c.necesario)+" USD")+
+  k("Cupón de equilibrio",pct(c.ceq),c.ceq<0?"warn":"good")+
+  k("Valor con el cupón de "+fmt(v.cup)+" %",fmt(c.valCup)+" USD")+
+  k("Prima para cupón cero",pct(c.primaCero,1));
+ const dif=c.valCup-c.nom;
+ $("n1").innerHTML=`El convertible vale ${fmt(c.valCup)} USD con ese cupón (${dif>=0?"+":""}${fmt(dif)} USD frente al nominal de ${fmt(c.nom,0)}). `+
+  (c.ceq<0?`El cupón de equilibrio es negativo (${pct(c.ceq)}): con estos supuestos la opción vale más que la parte del nominal que se necesita para igualar el bono recto, así que aun con cupón cero el inversionista paga de más y el emisor gana valor.`:
+   `Para que el valor sea igual al nominal, el cupón tendría que ser ${pct(c.ceq)}; cada punto de cupón que el emisor se ahorra tiene su precio en la opción cedida.`);
+ $("k2").innerHTML=
+  k("Strike del warrant",fmt(c.Kw)+" USD")+
+  k("Call comprado por acción",fmt(c.callPS)+" USD")+
+  k("Warrant vendido por acción",fmt(c.callW)+" USD")+
+  k("Acciones subyacentes",fmt(c.accM,3)+" M")+
+  k("Costo del call comprado",fmt(c.costoH,1)+" M USD")+
+  k("Ingreso por warrants",fmt(c.ingW,1)+" M USD")+
+  k("Costo neto del call spread",fmt(c.neto,1)+" M USD")+
+  k("Costo neto / emisión",pct(c.emi?c.neto/c.emi:NaN,1));
+ const dil=c.circ>0?` Frente a ${fmt(c.circ,0)} M de acciones en circulación, la conversión total equivale a ${pct(c.accM/c.circ,3)}.`:"";
+ $("n2").textContent=`Con el call spread la dilución solo empieza si la acción supera ${fmt(c.Kw)} USD (la prima efectiva pasa de ${fmt(v.prima,0)} % a ${fmt(v.primaw,0)} %). El costo neto de ${fmt(c.neto,1)} M USD se paga una sola vez.`+dil;
+ graf1(v,c);graf2(c);sens(v);
+}
+// ---- gráficas en canvas (sin librerías)
+function prep(cv){const dpr=window.devicePixelRatio||1,w=cv.clientWidth,h=cv.clientHeight;cv.width=w*dpr;cv.height=h*dpr;const g=cv.getContext("2d");g.scale(dpr,dpr);g.clearRect(0,0,w,h);return{g,w,h}}
+function css(n){return getComputedStyle(document.documentElement).getPropertyValue(n).trim()}
+function ejes(g,w,h,xs,ys,xl,yl,m){g.strokeStyle=css("--line");g.fillStyle=css("--mut");g.font="11px system-ui";g.lineWidth=1;
+ const X=x=>m.l+(x-xs[0])/(xs[1]-xs[0])*(w-m.l-m.r),Y=y=>h-m.b-(y-ys[0])/(ys[1]-ys[0])*(h-m.t-m.b);
+ const ny=5;for(let i=0;i<=ny;i++){const y=ys[0]+(ys[1]-ys[0])*i/ny;g.beginPath();g.moveTo(m.l,Y(y));g.lineTo(w-m.r,Y(y));g.stroke();g.textAlign="right";g.fillText(yl(y),m.l-5,Y(y)+4)}
+ const nx=6;for(let i=0;i<=nx;i++){const x=xs[0]+(xs[1]-xs[0])*i/nx;g.textAlign="center";g.fillText(xl(x),X(x),h-m.b+14)}
+ return{X,Y}}
+function linea(g,pts,X,Y,col,ancho,dash){g.beginPath();g.strokeStyle=col;g.lineWidth=ancho;g.setLineDash(dash||[]);pts.forEach((p,i)=>i?g.lineTo(X(p[0]),Y(p[1])):g.moveTo(X(p[0]),Y(p[1])));g.stroke();g.setLineDash([])}
+function graf1(v,c){const{g,w,h}=prep($("c1"));const pr=[];for(let p=10;p<=60;p+=1){const x=c.S*(1+p/100);const op=call(c.S,x,c.T,c.r,c.sg)*c.nom/x;pr.push([p,cupEq(c.nom-op,c.ytm,c.T,c.nom)*100])}
+ const ys=pr.map(p=>p[1]);const a=Math.min(...ys,0),b=Math.max(...ys,0);const pad=(b-a)*0.1||1;
+ const m={l:46,r:12,t:10,b:28};const{X,Y}=ejes(g,w,h,[10,60],[a-pad,b+pad],x=>x.toFixed(0)+" %",y=>y.toFixed(1)+" %",m);
+ g.strokeStyle=css("--mut");g.beginPath();g.moveTo(m.l,Y(0));g.lineTo(w-m.r,Y(0));g.stroke();
+ linea(g,pr,X,Y,css("--blue"),2.2);
+ const cx=v.prima;if(cx>=10&&cx<=60){linea(g,[[cx,a-pad],[cx,b+pad]],X,Y,css("--red"),1,[4,3]);g.fillStyle=css("--red");g.textAlign="left";g.fillText("prima actual: "+fmt(cx,1)+" % → cupón "+pct(c.ceq),X(cx)+5,m.t+12)}
+ g.fillStyle=css("--mut");g.textAlign="center";g.fillText("Prima de conversión",(w+m.l)/2,h-2)}
+function graf2(c){const{g,w,h}=prep($("c2"));const lo=c.S*0.4,hi=c.Kw*1.5;const A=[],B=[],D=[];const N=120;
+ for(let i=0;i<=N;i++){const s=lo+(hi-lo)*i/N;const op=Math.max(s-c.X,0);const cs=Math.min(Math.max(s-c.X,0),c.Kw-c.X);A.push([s,op]);B.push([s,cs]);D.push([s,op-cs])}
+ const mx=Math.max(...A.map(p=>p[1]))*1.05||1;const m={l:46,r:12,t:10,b:28};
+ const{X,Y}=ejes(g,w,h,[lo,hi],[0,mx],x=>x.toFixed(0),y=>y.toFixed(0),m);
+ [[c.S,"spot",css("--mut")],[c.X,"K1",css("--blue")],[c.Kw,"K2",css("--red")]].forEach(([x,t,col])=>{linea(g,[[x,0],[x,mx]],X,Y,col,1,[3,3]);g.fillStyle=col;g.textAlign="left";g.fillText(t+" "+x.toFixed(1),X(x)+3,m.t+12+(t==="K2"?12:0))});
+ linea(g,A,X,Y,css("--mut"),2);linea(g,B,X,Y,css("--blue"),2.2);linea(g,D,X,Y,css("--red"),2.2,[6,3]);
+ g.fillStyle=css("--mut");g.textAlign="center";g.fillText("Precio de la acción al vencimiento (USD)",(w+m.l)/2,h-2)}
+function sens(v){const c=calcular(v);const vols=[0.4,0.5,0.6,0.7,0.8,1.0,1.2].map(x=>x*v.sigma),pr=[15,20,25,30,35,40,50];
+ let t=`<table><tr><th>Volatilidad \\ Prima</th>${pr.map(p=>`<th>${p} %</th>`).join("")}</tr>`;
+ vols.forEach(s=>{t+=`<tr><td>${fmt(s,1)} %</td>`+pr.map(p=>{const x=c.S*(1+p/100);const op=call(c.S,x,c.T,c.r,s/100)*c.nom/x;const e=cupEq(c.nom-op,c.ytm,c.T,c.nom);return`<td class="${e<0?"warn":""}">${pct(e)}</td>`}).join("")+"</tr>"});
+ $("sens").innerHTML=t+`</table><p class="note">Cupón de equilibrio con la tasa de descuento y el plazo capturados. En rojo, cupones negativos (la opción vale más de lo que hace falta).</p>`}
+function cargar(n){const p=PRESETS[n];IDS.forEach(i=>$(i).value=p[i]);$("presetnote").textContent=p.nota;render()}
+document.querySelectorAll("button[data-p]").forEach(b=>b.addEventListener("click",()=>cargar(b.dataset.p)));
+IDS.forEach(i=>$(i).addEventListener("input",render));
+window.addEventListener("resize",render);
+cargar("spcx1108");
+window.__calc={call,bono,cupEq,calcular,PRESETS};
+</script>
+</body>
+</html>
