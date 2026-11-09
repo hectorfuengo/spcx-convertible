@@ -263,9 +263,14 @@ def ventaja_comparativa(y3: float):
             "costo_a": spread_a - g_neta, "costo_b": fija_b - g_neta, "ois3": ois3}
 
 
-DIV_YIELD = {"BA": 0.0, "SPY": 0.011, "ITA": 0.008}   # supuestos del cuaderno (BA no paga dividendo desde 2020; SPY e ITA aproximados)
+# BA no paga dividendo desde 2020. SPY: Fund Distribution Yield de State Street (1.03 %, al 5-nov-2026; el cuaderno usaba 1.1 %, que es el yield del índice).
+# ITA: 12m Trailing Yield de iShares/BlackRock (0.27 %, al 30-sep-2026; el cuaderno usaba 0.8 %). Ambos verificados en las páginas oficiales de los emisores.
+DIV_YIELD = {"BA": 0.0, "SPY": 0.0103, "ITA": 0.0027}
+DIV_FUENTE = "SPY: Fund Distribution Yield de State Street (5-nov-2026). ITA: 12m Trailing Yield de iShares (30-sep-2026)."
 TICKERS = ["BA", "SPY", "ITA"]
-FX = {"spot": 18.50, "n_usd": 10e6, "cup_usd": 0.04, "cup_mxn": 0.0875, "r_mxn": 0.09}   # HIPOTÉTICOS (el cuaderno trae 18.50 si Yahoo no responde)
+# Spot: salida del cuaderno de Colab (Yahoo Finance, 18.6031; 18.60309984 reproduce al peso los flujos que imprime); el FIX de Banxico del 6-nov-2026 (18.6297) coincide a 0.15 %.
+# Nocional, cupones del swap y la tasa MXN plana del cuaderno (9 %): HIPOTÉTICOS.
+FX = {"spot": 18.60309984, "n_usd": 10e6, "cup_usd": 0.04, "cup_mxn": 0.0875, "r_mxn_plana": 0.09, "spot_fuente": "Cuaderno de Colab (Yahoo Finance); FIX Banxico 6-nov-2026: 18.6297"}
 
 
 def _precios(processed: Path):
@@ -402,8 +407,8 @@ def _df_anuales_mxn():
 
 
 def swap_divisas():
-    """Sección 3 del cuaderno: swap fijo-fijo USD/MXN (recibe USD y paga MXN). Se descuenta con las curvas reales (SOFR OIS y MXN IRS)
-    en lugar de las tasas planas del cuaderno. Spot y cupones del swap son hipotéticos."""
+    """Sección 3 del cuaderno: swap fijo-fijo USD/MXN (recibe USD y paga MXN). Se reproduce la valuación del cuaderno (tasas planas) y se compara
+    con una valuación con las curvas reales (SOFR OIS y MXN IRS). El spot es real; nocional y cupones del swap son hipotéticos."""
     from scipy.optimize import brentq
     S0, n_usd, cu, cm = FX["spot"], FX["n_usd"], FX["cup_usd"], FX["cup_mxn"]
     n_mxn = n_usd * S0
@@ -425,13 +430,25 @@ def swap_divisas():
         s_eq = None
     par = lambda d: float((1 - d[3]) / (d[1] + d[2] + d[3]))
     spots = np.linspace(S0 * 0.8, S0 * 1.3, 40)
+
+    # Valuación del cuaderno: tasas planas continuas (USD = OIS 3M, MXN = 9 % hipotético), un año después (quedan 2 años)
+    ru, rm = R_FREE, FX["r_mxn_plana"]
+
+    def valor_plano(S, anios=2):
+        ks = np.arange(1, anios + 1)
+        b_u = sum(n_usd * cu * np.exp(-ru * k) for k in ks) + n_usd * np.exp(-ru * anios)
+        b_m = sum(n_mxn * cm * np.exp(-rm * k) for k in ks) + n_mxn * np.exp(-rm * anios)
+        return float(b_u - b_m / S)
+
+    cuaderno = {"r_usd": ru, "r_mxn": rm, "escenarios": [{"spot": float(S0 * k), "valor": valor_plano(S0 * k)} for k in (0.9, 1.0, 1.1, 1.2)],
+                "s_equilibrio": float(brentq(valor_plano, 5, 60)), "curva": [{"spot": float(x), "valor": valor_plano(float(x))} for x in spots]}
     return {"spot": S0, "n_usd": n_usd, "n_mxn": n_mxn, "cup_usd": cu, "cup_mxn": cm, "flujos": flujos,
             "valor_inicial": valor(S0, 0), "escenarios": [{"spot": float(S0 * k), "valor": valor(S0 * k)} for k in (0.9, 1.0, 1.1, 1.2)], "s_equilibrio": s_eq,
             "curva": [{"spot": float(x), "valor": valor(x)} for x in spots],
-            "par_usd_3a": par(du), "par_mxn_3a": par(dm),
+            "cuaderno": cuaderno, "par_usd_3a": par(du), "par_mxn_3a": par(dm),
             "df_usd": {str(k): v for k, v in du.items()}, "df_mxn": {str(k): v for k, v in dm.items()}, "par_mxn_interp": {str(k): v for k, v in r_mxn_par.items()},
             "curva_mxn": [{"tenor": t, "anios": a_, "tasa": v} for t, a_, v in MXN_IRS],
-            "estado": "dato (curvas) / supuesto (spot y cupones del swap)"}
+            "estado": "dato (curvas y spot) / supuesto (cupones y nocional del swap)"}
 
 
 def construir(processed: Path) -> dict:
@@ -453,10 +470,9 @@ def construir(processed: Path) -> dict:
                 "deuda": {**DEUDA_RTX, "vencimientos": [{"anio": a, "emisiones": n, "vigente": v, "emitido": e} for a, n, v, e in DEUDA_RTX_VENC]}, "precio": PRECIO_RTX},
         "equity": equity_swaps(processed), "divisas": swap_divisas(),
         "pendiente": [
-            "Spot de USD/MXN: el cuaderno usa 18.50 (valor de respaldo) y es hipotético. Falta el spot real (la línea «USD/MXN spot» que imprime la sección 3 del cuaderno). Los cupones del swap de divisas (4.00 % USD y 8.75 % MXN) también son supuestos; las curvas de descuento sí son reales.",
-            "Margen variable de Boeing y de RTX: el reporte 2025 de Boeing no informa el margen de sus líneas de crédito, así que la diferencia de spreads variables (65 pb y 25 pb) es un supuesto del cuaderno. De ella depende si el swap conviene (ver la ventaja comparativa con RTX).",
-            "Cotización real del spread del equity swap (mesa o prime broker) y costo de préstamo de BA.",
-            "Los dividend yields de SPY (1.1 %) e ITA (0.8 %) del cuaderno son aproximados; confírmalos en LSEG.",
+            "Cupones del swap de divisas (4.00 % en USD y 8.75 % en MXN) y nocional de 10 M USD: son los términos del contrato de ejemplo, no un dato de mercado. Para que el swap valga cero hoy, los cupones serían los de la tasa par de cada curva (ver sección 3).",
+            "Margen variable de Boeing y de RTX (SOFR + 0.65 % y + 0.25 %): el reporte 2025 de Boeing no informa el margen de sus líneas de crédito y no hay dato público comparable. De la diferencia entre ambos depende si el swap conviene (ver la ventaja comparativa con RTX, donde el umbral es de 22 pb).",
+            "Spread del equity swap (SOFR + 0.50 %) y costo de préstamo de BA: son cotizaciones de mesa o de prime broker y no se publican.",
         ],
         "fuente": "Cuaderno swaps_hull_cap7_BA.ipynb (Hull cap. 7); curva SOFR OIS de LSEG (Curve.xlsx, 8-nov-2026); bonos de Boeing de TradingView (6-nov-2026); estructura de deuda, pares y resumen de deuda de Refinitiv (8-nov-2026); reporte anual 2025 de Boeing (10-K); precios diarios de BA de Refinitiv.",
         "estado": "dato (curva, bonos, precios) / hipotético (spreads, nocionales, tasa fija, posición)",

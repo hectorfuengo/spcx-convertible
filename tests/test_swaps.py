@@ -88,3 +88,14 @@ def test_swap_divisas_con_curva_mxn():
     d = swaps.swap_divisas()
     assert 0.07 < d["par_mxn_3a"] < 0.08 and 0.04 < d["par_usd_3a"] < 0.045
     assert d["df_mxn"]["1"] > d["df_mxn"]["2"] > d["df_mxn"]["3"]
+
+
+def test_swap_divisas_reproduce_la_salida_del_cuaderno():
+    d = swaps.swap_divisas()
+    assert round(d["spot"], 4) == 18.6031
+    v = [round(e["valor"]) for e in d["cuaderno"]["escenarios"]]
+    assert v == [-1007491, 90648, 989125, 1737857]
+    assert abs(d["cuaderno"]["s_equilibrio"] - 18.434) < 0.001
+    # flujos del cuaderno (el spot del cuaderno solo se conoce a 4 decimales: tolerancia de 2 MXN sobre cientos de millones)
+    mxn = [f["mxn"] for f in d["flujos"]]
+    assert abs(mxn[0] - 186030998) < 2 and abs(mxn[1] + 16277712) < 2 and abs(mxn[3] + 202308711) < 2

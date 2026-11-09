@@ -929,7 +929,7 @@ function render(D) {
   </section>
   <section><h2>3. Swap de divisas fijo contra fijo (USD / MXN)</h2>
     <div class="card"><p style="margin:0">Se intercambian principales al inicio y al final, e intereses en cada moneda. Caso del cuaderno: una empresa mexicana con deuda en USD e ingresos en MXN, que <b>recibe USD y paga MXN</b> sobre $${n(dv.n_usd / 1e6, 0)}M a 3 años. Valor = B<sub>USD</sub> − B<sub>MXN</sub> / S<sub>0</sub> (Hull 7.10).</p></div>
-    <div class="warn">El spot (${n(dv.spot, 2)} MXN por USD, valor de respaldo del cuaderno), el cupón USD (${pct(dv.cup_usd, 2)}) y el cupón MXN (${pct(dv.cup_mxn, 2)}) son <b>hipotéticos</b>. Las <b>curvas de descuento sí son reales</b>: SOFR OIS para USD y la curva MXN IRS (LSEG, 14 plazos) para MXN, con bootstrap anual a 1, 2 y 3 años. Por eso el swap no vale cero al inicio con esos cupones: valor inicial ${d0s(dv.valor_inicial)} USD. Los cupones que lo harían valer cero (tasa par a 3 años) serían ${pct(dv.par_usd_3a, 2)} en USD y ${pct(dv.par_mxn_3a, 2)} en MXN.</div>
+    <div class="warn"><b>Datos reales:</b> el spot (${n(dv.spot, 4)} MXN por USD, Yahoo Finance como en el cuaderno; el FIX de Banxico del 6-nov-2026 fue 18.6297) y, para la segunda valuación, las curvas de descuento: SOFR OIS para USD y MXN IRS (LSEG, 14 plazos) para MXN, con bootstrap anual a 1, 2 y 3 años. <b>Supuestos del contrato de ejemplo:</b> el nocional y los cupones de ${pct(dv.cup_usd, 2)} en USD y ${pct(dv.cup_mxn, 2)} en MXN. Con las curvas reales el swap no vale cero al inicio con esos cupones: valor inicial ${d0s(dv.valor_inicial)} USD. Los cupones que lo harían valer cero (tasa par a 3 años) serían ${pct(dv.par_usd_3a, 2)} en USD y ${pct(dv.par_mxn_3a, 2)} en MXN.</div>
     <div class="two" style="margin-top:12px">
       <div class="card"><b>Curva MXN IRS</b> <span class="mut">(LSEG MXNIRS, bid, tasas par %)</span><div class="ch"><canvas id="c-sw-mxn"></canvas></div>
         <p class="mut" style="margin:8px 0 0">Tasas par interpoladas: 1 año ${pct(dv.par_mxn_interp["1"], 2)}, 2 años ${pct(dv.par_mxn_interp["2"], 2)}, 3 años ${pct(dv.par_mxn_interp["3"], 2)}. Factores de descuento MXN: ${n(dv.df_mxn["1"], 4)}, ${n(dv.df_mxn["2"], 4)}, ${n(dv.df_mxn["3"], 4)}; USD: ${n(dv.df_usd["1"], 4)}, ${n(dv.df_usd["2"], 4)}, ${n(dv.df_usd["3"], 4)}.</p></div>
@@ -943,19 +943,19 @@ function render(D) {
         <tr><th>Año</th><th>USD</th><th>MXN</th></tr>
         ${dv.flujos.map((f) => `<tr><td>${f.anio}</td><td class="${f.usd < 0 ? "neg" : "pos"}">${n(f.usd, 0)}</td><td class="${f.mxn < 0 ? "neg" : "pos"}">${n(f.mxn, 0)}</td></tr>`).join("")}
       </table></div>
-      <p class="mut">Valor del swap un año después (quedan 2 años), para quien recibe USD y paga MXN:</p><div class="scroll"><table>
-        <tr><th>USD/MXN</th><th>Valor (USD)</th></tr>
-        ${dv.escenarios.map((e) => `<tr><td>${n(e.spot, 2)}</td><td class="${e.valor < 0 ? "neg" : "pos"}">${d0s(e.valor)}</td></tr>`).join("")}
+      <p class="mut">Valor del swap un año después (quedan 2 años), para quien recibe USD y paga MXN. «Cuaderno» usa tasas planas continuas (USD ${pct(dv.cuaderno.r_usd, 2)}, la OIS a 3 meses; MXN ${pct(dv.cuaderno.r_mxn, 1)}, hipotética); «curvas reales» descuenta con SOFR OIS y MXN IRS:</p><div class="scroll"><table>
+        <tr><th>USD/MXN</th><th>Cuaderno (USD)</th><th>Curvas reales (USD)</th></tr>
+        ${dv.escenarios.map((e, i) => `<tr><td>${n(e.spot, 2)}</td><td class="${dv.cuaderno.escenarios[i].valor < 0 ? "neg" : "pos"}">${d0s(dv.cuaderno.escenarios[i].valor)}</td><td class="${e.valor < 0 ? "neg" : "pos"}">${d0s(e.valor)}</td></tr>`).join("")}
       </table></div>
-      <p class="mut">Tipo de cambio que hace valer cero el swap: <b>${dv.s_equilibrio == null ? "—" : n(dv.s_equilibrio, 3)}</b> MXN/USD.</p></div>
+      <p class="mut">Tipo de cambio que hace valer cero el swap: <b>${n(dv.cuaderno.s_equilibrio, 3)}</b> con las tasas planas del cuaderno y <b>${dv.s_equilibrio == null ? "—" : n(dv.s_equilibrio, 3)}</b> con las curvas reales (MXN/USD).</p></div>
       <div class="card"><b>Valor del swap según USD/MXN</b> <span class="mut">(millones USD; empresa que recibe USD y paga MXN)</span><div class="ch"><canvas id="c-sw-fx"></canvas></div>
         <p class="mut" style="margin:8px 0 0">Si el peso se deprecia (sube USD/MXN), las obligaciones en MXN valen menos en USD y el swap gana valor: es una cobertura natural de la deuda en dólares.</p></div>
     </div>
   </section>
   <section><h2>4. Equity swaps sobre Boeing (BA)</h2>
     <div class="card"><p style="margin:0">El receptor cobra el <b>rendimiento total de BA</b> (BA no paga dividendo) y paga: <b>swap A</b>, SOFR + ${pct(sp.fin_spread, 2)}; <b>swap B</b>, el rendimiento de SPY (BA contra el mercado); <b>swap C</b>, el de ITA (BA contra su sector, aeroespacial y defensa). Nocional de $${n(sp.nocional_equity / 1e6, 0)}M y periodos de 63 días hábiles sobre el último año disponible.</p>
-      <p class="mut" style="margin:6px 0 0">Precios: ${esc(eq.fuente)}; ${eq.n_obs} cierres de ${esc(eq.desde)} a ${esc(eq.fecha_ultima)}. Último cierre: ${Object.keys(eq.activos).map((t) => t + " " + usd(eq.activos[t].ultimo, 2)).join(" · ")}. Dividendos supuestos: ${Object.keys(eq.activos).map((t) => t + " " + pct(eq.activos[t].div, 1)).join(" · ")}.</p></div>
-    <div class="warn">Los precios de Yahoo ya vienen ajustados por dividendos y el cuaderno suma además el dividend yield de SPY e ITA en cada periodo, así que sus rendimientos quedan un poco sobrestimados (≈ 0.28 % y 0.20 % por trimestre). Se dejó igual que en el cuaderno; no afecta a BA, que no paga dividendo.</div>
+      <p class="mut" style="margin:6px 0 0">Precios: ${esc(eq.fuente)}; ${eq.n_obs} cierres de ${esc(eq.desde)} a ${esc(eq.fecha_ultima)}. Último cierre: ${Object.keys(eq.activos).map((t) => t + " " + usd(eq.activos[t].ultimo, 2)).join(" · ")}. Dividend yield: ${Object.keys(eq.activos).map((t) => t + " " + pct(eq.activos[t].div, 2)).join(" · ")} (BA no paga dividendo; SPY e ITA de los emisores).</p></div>
+    <div class="warn">Los precios de Yahoo ya vienen ajustados por dividendos y el cuaderno suma además el dividend yield de SPY e ITA en cada periodo, así que sus rendimientos quedan un poco sobrestimados (≈ ${n(eq.activos.SPY.div * 25, 2)} % y ${n(eq.activos.ITA.div * 25, 2)} % por trimestre con los yields actuales). Se dejó el método del cuaderno; no afecta a BA, que no paga dividendo. Los yields vienen de las páginas oficiales de los emisores: SPY 1.03 % (distribution yield, State Street, 5-nov-2026) e ITA 0.27 % (12m trailing, iShares, 30-sep-2026); el cuaderno usaba 1.1 % y 0.8 %.</div>
     <div class="two" style="margin-top:12px">
       <div class="card wide"><b>Flujos del receptor de BA</b> <span class="mut">(últimos 4 trimestres, USD)</span><div class="scroll"><table>
         <tr><th>Periodo</th><th>Rend. BA</th>${hasB ? "<th>Rend. SPY</th><th>Rend. ITA</th>" : ""}<th>Neto A: BA − (SOFR+spread)</th>${hasB ? "<th>Neto B: BA − SPY</th><th>Neto C: BA − ITA</th>" : ""}</tr>
@@ -1048,7 +1048,8 @@ function render(D) {
       </div>
       <div class="grid" style="margin-top:12px" id="x-out"></div></div>
   </section>
-  <section><h2>Pendiente en esta sección</h2>
+  <section><h2>Supuestos de esta sección</h2>
+    <div class="card"><p style="margin:0">Todos los datos de mercado de esta sección son reales y traen su fuente y fecha: curva SOFR OIS, curva MXN IRS, spot USD/MXN (FIX), bonos de Boeing y RTX, precios de BA, SPY e ITA, dividend yields de los emisores y estructura de deuda. Lo que sigue son <b>supuestos del equipo</b> porque no existe un dato público para ellos; cada uno está marcado donde se usa.</p></div>
     ${sw.pendiente.map((a) => `<div class="warn">${esc(a)}</div>`).join("")}
   </section>`;
   const iSwaps = () => {
@@ -1088,8 +1089,8 @@ function render(D) {
     };
     ["x-nt", "x-fija", "x-shift", "x-ne", "x-fs", "x-acc"].forEach((id) => $("#" + id).addEventListener("input", recalcula));
     recalcula();
-    mk("c-sw-fx", { type: "line", data: { labels: dv.curva.map((x) => n(x.spot, 1)), datasets: [{ label: "Valor", data: dv.curva.map((x) => +(x.valor / 1e6).toFixed(3)), borderColor: acc, backgroundColor: acc, pointRadius: 0, tension: 0.1 }] },
-      options: { maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { ticks: { maxTicksLimit: 8 }, title: { display: true, text: "USD/MXN" } }, y: { title: { display: true, text: "millones USD" } } } } });
+    mk("c-sw-fx", { type: "line", data: { labels: dv.curva.map((x) => n(x.spot, 1)), datasets: [{ label: "Cuaderno (tasas planas)", data: dv.cuaderno.curva.map((x) => +(x.valor / 1e6).toFixed(3)), borderColor: acc, backgroundColor: acc, pointRadius: 0, tension: 0.1 }, { label: "Curvas reales", data: dv.curva.map((x) => +(x.valor / 1e6).toFixed(3)), borderColor: oro, backgroundColor: oro, pointRadius: 0, tension: 0.1 }] },
+      options: { maintainAspectRatio: false, plugins: { legend: { display: true } }, scales: { x: { ticks: { maxTicksLimit: 8 }, title: { display: true, text: "USD/MXN" } }, y: { title: { display: true, text: "millones USD" } } } } });
     mk("c-sw-flujos", { type: "bar", data: { labels: eq.flujos.map((f) => f.periodo.split(" → ")[1]), datasets: [
       { label: "A: BA − (SOFR+spread)", data: eq.flujos.map((f) => +(f.neto / 1e6).toFixed(3)), backgroundColor: COL.BA }].concat(hasB ? [
       { label: "B: BA − SPY", data: eq.flujos.map((f) => +(f.neto_b / 1e6).toFixed(3)), backgroundColor: COLA.SPY },
